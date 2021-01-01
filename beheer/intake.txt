@@ -1,0 +1,84 @@
+					  <input type="text" name="roepnaam" class="form-control" value="<?php // echo $wkz->roepnaam; ?>">
+					  <input type="telnr" name="gebdatum" class="form-control" value="<?php // echo $wkz->gebdatum; ?>">
+					  <input type="telnr" name="gebplaats" class="form-control" value="<?php // echo $wkz->gebdatum; ?>">
+					  <input type="telnr" name="gebland" class="form-control" value="<?php // echo $wkz->gebland; ?>">
+					  <input type="telnr" name="nationaliteit" class="form-control" value="<?php // echo $wkz->nationaliteit; ?>">
+					  <input type="checkbox" name="legitimatieind" class="form-control" value="j" style="margin-left: 15px;" <?php if($wkz->legitimatieind == 'j') echo ' checked'; ?>>				
+	<!--2---------------------------------------------------------------------------------------------->			
+<!--3---------------------------------------------------------------------------------------------->			
+					<select class="form-control"  name="relatie">
+						<option value="ong" <?php // if($wkz->startsituatie == 'nug') echo 'selected'; ?>>Ongehuwd</option>
+						<option value="geh" <?php // if($wkz->startsituatie == 'wkw') echo 'selected'; ?>>Gehuwd</option>
+						<option value="smw" <?php // if($wkz->startsituatie == 'wrk') echo 'selected'; ?>>Samenwonend</option>
+						<option value="ges" <?php // if($wkz->startsituatie == 'zkw') echo 'selected'; ?>>Gescheiden</option>
+						<option value="wed" <?php // if($wkz->startsituatie == 'bst') echo 'selected'; ?>>Weduwe/weduwenaar</option>
+					</select>
+					<input type="text" name="volw_kind" class="form-control" value="<?php // echo $wkz->volw_kind; ?>">				
+					<input type="text" name="partner_beroep" class="form-control" value="<?php // echo $wkz->partner_beroep; ?>">
+<!--4---------------------------------------------------------------------------------------------->			
+					<select class="form-control"  name="aanmelding">
+						<option value="zlf" <?php // if($wkz->startsituatie == 'zlf') echo 'selected'; ?>>Zelf</option>
+						<option value="vrd" <?php // if($wkz->startsituatie == 'vrd') echo 'selected'; ?>>UWV</option>
+						<option value="and" <?php // if($wkz->startsituatie == 'and') echo 'selected'; ?>>Anders</option>
+					</select>
+					</div>
+					<select class="form-control"  name="regeling">
+						<option value="gen" <?php // if($wkz->startsituatie == 'gen') echo 'selected'; ?>>Geen</option>
+						<option value="wwe" <?php // if($wkz->startsituatie == 'wwe') echo 'selected'; ?>>WW</option>
+						<option value="opl" <?php // if($wkz->startsituatie == 'opl') echo 'selected'; ?>>Outplacement</option>
+						<option value="wia" <?php // if($wkz->startsituatie == 'wia') echo 'selected'; ?>>WIA</option>
+						<option value="bst" <?php // if($wkz->startsituatie == 'bst') echo 'selected'; ?>>Bijstand</option>
+					</select>
+					<input type="text" name="uitdaging" class="form-control" value="<?php // echo $wkz->uitdaging; ?>">
+					<input type="text" name="beperking" class="form-control" value="<?php // echo $wkz->beperking; ?>">
+					<input type="text" name="motivatie" class="form-control" value="<?php // echo $wkz->motivatie; ?>">
+					<input type="text" name="eisen" class="form-control" value="<?php // echo $wkz->eisen; ?>">
+					<textarea type="text" name="netwerken" class="form-control" rows="4"><?php // echo $wkz->netwerken; ?></textarea>
+					<textarea type="text" name="andere_hulp" class="form-control" rows="4"><?php // echo $wkz->andere_hulp; ?></textarea>
+<!--5---------------------------------------------------------------------------------------------->			
+				  	<input type="checkbox" name="CVind" class="form-control" value="j"  style="margin-left: 15px;" <?php // if($wkz->CVind == 'j') echo ' checked'; ?>>				
+					<select class="form-control"  name="opleiding">
+						<option value="gop" <?php // if($wkz->startsituatie == 'gop') echo 'selected'; ?>>Geen</option>
+						<option value="bas" <?php // if($wkz->startsituatie == 'bas') echo 'selected'; ?>>Basisschool</option>
+						<option value="wmb" <?php // if($wkz->startsituatie == 'wmb') echo 'selected'; ?>>VMBO</option>
+						<option value="mbo" <?php // if($wkz->startsituatie == 'mbo') echo 'selected'; ?>>MBO</option>
+						<option value="hbo" <?php // if($wkz->startsituatie == 'hbo') echo 'selected'; ?>>HBO</option>
+						<option value="won" <?php // if($wkz->startsituatie == 'won') echo 'selected'; ?>>WO</option>
+					</select>
+					<input type="text" name="uitdaging" class="form-control" value="<?php // echo $wkz->uitdaging; ?>">
+					<textarea type="text" name="studie" class="form-control" rows="4"><?php // echo $wkz->studie; ?></textarea>
+					<textarea type="text" name="werkervaring" class="form-control" rows="4"><?php // echo $wkz->werkervaring; ?></textarea>
+<!--6---------------------------------------------------------------------------------------------->			
+					  <textarea type="text" name="werk_gewenst" class="form-control" rows="4"><?php // echo $wkz->werk_gewenst; ?></textarea>				
+					  <textarea type="text" name="voorwaarden" class="form-control" rows="4"><?php // echo $wkz->voorwaarden; ?></textarea>				
+					<div class="pl-3">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh" id="taalbeh1" value="1" checked>
+							<label class="form-check-label" for="taalbeh1">&nbsp;Goed</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh" id="taalbeh2" value="2">
+							<label class="form-check-label" for="taalbeh2">&nbsp;Redelijk</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh" id="taalbeh3" value="3">
+							<label class="form-check-label" for="taalbeh3">&nbsp;Niet goed</label>
+						</div>
+					</div>
+					  <input type="text" name="reistijd" class="form-control" value="<?php // echo $wkz->reistijd; ?>">				
+					  <input type="text" name="vervoer" class="form-control" value="<?php // echo $wkz->vervoer; ?>">				
+					<textarea type="text" name="werk_bijzonderheden" class="form-control" rows="4"><?php // echo $wkz->werk_bijzonderheden; ?></textarea>
+<!--7---------------------------------------------------------------------------------------------->			
+					<textarea type="text" name="werkervaring" class="form-control" rows="8"><?php // echo $wkz->werkervaring; ?></textarea>
+					<input type="checkbox" name="bespr_missie" class="form-control" value="j" style="margin-left: 15px;" <?php // if($wkz->GAKind == 'j') echo ' checked'; ?>>
+					<input type="checkbox" name="bespr_missie" class="form-control" value="j" style="margin-left: 15px;" <?php // if($wkz->GAKind == 'j') echo ' checked'; ?>>
+					<input type="checkbox" name="bespr_missie" class="form-control" value="j" style="margin-left: 15px;" <?php // if($wkz->GAKind == 'j') echo ' checked'; ?>>
+					<input type="checkbox" name="bespr_missie" class="form-control" value="j" style="margin-left: 15px;" <?php // if($wkz->GAKind == 'j') echo ' checked'; ?>>
+<!--8---------------------------------------------------------------------------------------------->			
+					<input type="text" name="akkoord_datum" class="form-control" value="<?php // echo $wkz->akkoord_datum; ?>">
+				<input type="text" name="akkoord_plaats" class="form-control" value="<?php // echo $wkz->akkoord_plaats; ?>">
+					<input type="text" name="akkoord_naam" class="form-control" value="<?php // echo $wkz->akkoord_naam; ?>">
+					<select class="form-control"  name="handtekening">
+						<option value="ong" <?php // if($wkz->handtekening == 'nug') echo 'selected'; ?>>Niet ondertekend</option>
+						<option value="geh" <?php // if($wkz->handtekening == 'wkw') echo 'selected'; ?>>Ondertekend</option>
+					</select>

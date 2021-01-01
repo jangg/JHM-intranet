@@ -1,0 +1,96 @@
+/* alles voor de sticky notes */
+#sticky ul li{
+  list-style:none;
+}
+#sticky ul{
+  overflow:hidden;
+  padding:0em;
+  position: absolute;
+}
+#sticky-left ul li a{
+  text-decoration:none;
+  color:#000;
+  background-color:#cfc;
+
+  display:block;
+  height:12em;
+  width:18em;
+  padding:1em;
+  opacity: .9;
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+}
+#sticky-right ul li a{
+  text-decoration:none;
+  color:#000;
+  background-color:#ccf;
+  display:block;
+  height:12em;
+  width:18em;
+  padding:1em;
+  opacity: .9;
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+}
+
+#sticky ul li{
+  margin:1em;
+  float:left;
+}
+#sticky ul li h2{
+  font-size:100%;
+  font-weight:bold;
+  padding-bottom:10px;
+}
+#sticky ul li p{
+  font-family:"Gloria Hallelujah", cursive;
+  font-size:120%;
+  line-height: 1em;
+}
+/* #sticky-left ul li a{
+  -webkit-transform: rotate(-6deg);
+  -o-transform: rotate(-6deg);
+  -moz-transform:rotate(-6deg);
+} */
+#sticky-right ul li a{
+  -o-transform:rotate(-4deg);
+  -webkit-transform:rotate(-4deg);
+  -moz-transform:rotate(-4deg);
+  position:relative;
+  top: 5px;
+  background:#cfc;
+  z-index: 2;
+}
+/* #sticky-left ul li a{
+  -o-transform:rotate(-3deg);
+  -webkit-transform:rotate(-3deg);
+  -moz-transform:rotate(-3deg);
+  position:relative;
+  top:-5px;
+ background:#ccf;
+} */
+#sticky-left ul li a{
+  -o-transform:rotate(5deg);
+  -webkit-transform:rotate(5deg);
+  -moz-transform:rotate(5deg);
+  position:relative;
+  top:0px;
+  background:#ccf;
+  z-index: 2;
+
+}
+/* #sticky ul li a:hover,ul li a:focus{
+  box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  position:relative;
+  z-index:5;
+} */
+#sticky ol{text-align:center;}
+#sticky ol li{display:inline;padding-right:1em;}
+#sticky ol li a{color:#fff;}

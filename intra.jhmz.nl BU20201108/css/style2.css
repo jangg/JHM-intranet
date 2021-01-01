@@ -1,0 +1,19 @@
+.btn-width {
+    width:    120px;
+}
+.header-margin {
+    /* background-color: white; */
+    margin-top: 80px;
+}
+
+.footer-margin {
+    margin-top: 100px;
+}
+.bluefont {
+    color: #304280;
+    font-weight: 300;
+}
+
+.nieuwsbrief h3, h4 {
+    margin-top: 1.5em;
+}
