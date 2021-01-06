@@ -30,7 +30,11 @@ class Intakeform
 	protected $reistijd				;			
 	protected $vervoer				;			
 	protected $werkbijzh			;		
-	protected $overige_opm			;		
+	protected $overige_opm			;
+	protected $besprmis				;
+	protected $besprtkn				;
+	protected $besprvwk				;
+	protected $besprprv				;		
 	protected $akkoord_datum		;
 	protected $akkoord_plaats		;		
 	protected $akkoord_naam			;	
@@ -67,11 +71,22 @@ class Intakeform
 		$this->reistijd				= '';		
 		$this->vervoer				= '';		
 		$this->werkbijzh			= '';		
-		$this->overige_opm			= '';		
+		$this->overige_opm			= '';
+		$this->besprmis				= '';
+		$this->besprtkn				= '';
+		$this->besprvwk				= '';
+		$this->besprprv				= '';		
 		$this->akkoord_datum		= '';		
 		$this->akkoord_plaats		= '';		
 		$this->akkoord_naam			= '';		
-		$this->akkoord_handtek		= '';		
+		$this->akkoord_handtek		= '';
+		$a = func_get_args(); 
+		$i = func_num_args(); 
+		if (method_exists($this,$f='__construct'.$i)) 
+		{ 
+			call_user_func_array(array($this,$f),$a); 
+		}
+	
     }
      	
 	public function __construct1 ($intakeformrow) 
@@ -109,6 +124,10 @@ class Intakeform
 			$this->vervoer				= $intakeformrow['vervoer'];
 			$this->werkbijzh			= $intakeformrow['werkbijzh'];
 			$this->overige_opm			= $intakeformrow['overige_opm'];
+			$this->besprmis				= $intakeformrow['besprmis'];
+			$this->besprtkn				= $intakeformrow['besprtkn'];
+			$this->besprvwk				= $intakeformrow['besprvwk'];
+			$this->besprprv				= $intakeformrow['besprprv'];
 			$this->akkoord_datum		= $intakeformrow['akkoord_datum'];
 			$this->akkoord_plaats		= $intakeformrow['akkoord_plaats'];
 			$this->akkoord_naam			= $intakeformrow['akkoord_naam'];
@@ -121,8 +140,8 @@ class Intakeform
 		/* id, gebruikersnaam of emailadres is bekend, haal op uit DB */
 		switch ($attr)
 		{
-			case 'intakeform_id':
-				$this->__construct1($this->readintakeformnWithIntakeform_id($value));
+			case 'id':
+				$this->__construct1($this->readIntakeformWithId($value));
 				break;
 			default:
 				return FALSE;
@@ -214,7 +233,11 @@ class Intakeform
 							reistijd		,	
 							vervoer			,
 							werkbijzh		,
-							overige_opm	,	
+							overige_opm		,
+							besprmis		,
+							besprtkn		,
+							besprvwk		,
+							besprprv		,	
 							akkoord_datum	,
 							akkoord_plaats	,
 							akkoord_naam	,	
@@ -252,6 +275,10 @@ class Intakeform
 							:vervoer		,
 							:werkbijzh		,
 							:overige_opm	,
+							:besprmis		,
+							:besprtkn		,
+							:besprvwk		,
+							:besprprv		,
 							:akkoord_datum	,
 							:akkoord_plaats	,
 							:akkoord_naam	,
@@ -291,13 +318,17 @@ class Intakeform
 			$stmt->bindvalue(":vervoer"			, htmlentities($this->vervoer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":werkbijzh"		, htmlentities($this->werkbijzh, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":overige_opm"		, htmlentities($this->overige_opm, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":besprmis"		, $this->besprmis, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprtkn"		, $this->besprtkn, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprvwk"		, $this->besprvwk, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprprv"		, $this->besprprv, PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_datum"	, htmlentities($this->akkoord_datum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_plaats"	, htmlentities($this->akkoord_plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_naam"	, htmlentities($this->akkoord_naam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_handtek" , htmlentities($this->akkoord_handtek, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			
 			$stmt->execute();
-// 			error_log('Een nieuwe c_person is toegevoegd');
+// 			error_log('Een nieuwe c_intakeform is toegevoegd');
 			$this->id = $connection->lastInsertId();
 		}
 		catch (PDOException $e) 
@@ -345,6 +376,10 @@ class Intakeform
 						vervoer				= :vervoer			,
 						werkbijzh			= :werkbijzh		,
 						overige_opm			= :overige_opm		,
+						besprmis			= :besprmis			,
+						besprtkn			= :besprtkn			,
+						besprvwk			= :besprvwk			,
+						besprprv			= :besprprv			,
 						akkoord_datum		= :akkoord_datum	,
 						akkoord_plaats		= :akkoord_plaats	,
 						akkoord_naam		= :akkoord_naam		,
@@ -378,9 +413,13 @@ class Intakeform
 			$stmt->bindvalue(":voorwaarden"		, htmlentities($this->voorwaarden, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":taalbeh"			, $this->taalbeh, PDO::PARAM_STR);
 			$stmt->bindvalue(":reistijd"		, htmlentities($this->reistijd, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindvalue(":vervoer"			, htmlentities($this->vovervoerornaam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":vervoer"			, htmlentities($this->vervoer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":werkbijzh"		, htmlentities($this->werkbijzh, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":overige_opm"		, htmlentities($this->overige_opm, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":besprmis"		, $this->besprmis, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprtkn"		, $this->besprtkn, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprvwk"		, $this->besprvwk, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprprv"		, $this->besprprv, PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_datum"	, htmlentities($this->akkoord_datum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_plaats"	, htmlentities($this->akkoord_plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_naam"	, htmlentities($this->akkoord_naam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -397,4 +436,26 @@ class Intakeform
 		}
 	    return TRUE;	
 	}
+	public function readIntakeformWithId ($attr)
+	{
+		global $connection;
+		try
+		{
+			openDB();
+			$sql = "SELECT intakeform.* FROM intakeform WHERE intakeform.id = :id;";
+			
+			$stmt = $connection->prepare( $sql );
+			$stmt->bindValue( ":id", $attr, PDO::PARAM_STR);
+	//			echo $sql . '<br/>';
+			$stmt->execute();
+			$intakeformrow = $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		catch (PDOException $e) 
+		{
+			  error_log('Connectie (intakeform 1) met de database mislukt: ' . $e->getMessage());
+			  return FALSE;
+		}
+		return $intakeformrow;	
+	}
+
 }

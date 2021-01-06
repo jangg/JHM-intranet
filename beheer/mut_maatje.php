@@ -4,6 +4,17 @@ include_once('../class/c_user.php');
 include_once('../class/c_maatje.php');
 include_once('../class/c_processtap.php');
 
+function calculateAge($date)
+{
+	// $birthDate = "12/17/1983";
+	  //explode the date to get month, day and year
+	  $birthDate = explode("-", $date);
+	  //get age from date or birthdate
+	  $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md")
+		? ((date("Y") - $birthDate[0]) - 1)
+		: (date("Y") - $birthDate[0]));
+	  return $age;
+}
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
 *************************/
@@ -51,9 +62,19 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 	$mtj_nw->telefoonnr				= $_POST['telefoonnr'];
 	$mtj_nw->link_linkedin			= $_POST['link_linkedin'];
 	if ($_POST['date_geboorte'] != '')
-		$mtj_nw->date_geboorte		= $_POST['date_geboorte'];
-		else
+	{
+		if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['date_geboorte']) === 0)
+		{
+			$mtj_nw->date_geboorte		= '';
+		} else
+		{
+			$date = DateTime::createFromFormat('d-m-Y', $_POST['date_geboorte']);
+			$mtj_nw->date_geboorte		= $date->format('Y-m-d');
+		} 
+	} else
+	{
 		$mtj_nw->date_geboorte		= '';
+	}
 	$mtj_nw->omschrijving			= $_POST['omschrijving'];
 	$mtj_nw->functie				= $_POST['functie'];
 	
@@ -184,7 +205,15 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
 						</div>
-						<input type="date" name="date_geboorte" class="form-control" value="<?php echo $mtj->date_geboorte; ?>" placeholder="dd-mm-jjjj">
+						<input type="date" name="date_geboorte" class="form-control" value="<?php 
+						// error_log ($mtj->date_geboorte);
+						if ($mtj->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $mtj->date_geboorte))->format('d-m-Y'); ?>" maxlength="10">
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class=" input-group-text" style="width: 100%;">Leeftijd</span>
+						</div>
+						<input type="text" class="form-control" value="<?php if ($mtj->date_geboorte != '') echo calculateAge($mtj->date_geboorte); else echo ''; ?>" disabled>
 					</div>
 
 				</div>

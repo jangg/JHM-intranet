@@ -63,12 +63,22 @@ if (isset($_POST['backWzBut']) && $_POST['backWzBut'] == 'back')
 
 $wkz = new Werkzoekende('id', $_SESSION['werkzkd_id']);
 
+if (isset($_POST['deleteWzBut']) && $_POST['deleteWzBut'] == 'delete')
+{
+	// echo '<script>alert("De gegevens zijn in de database opgenomen."); window.location.href ="http://jhmintra:8888/beheer/overz_werkzoekenden.php";</script>';
+	$wkz->delind = 'j';
+	$wkz->updateToDB();
+	header("location: overz_werkzoekenden.php");
+	exit();	
+}
+
 if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 {
 	$wkz_nw = clone $wkz;
 	$wkz_nw->voornaam				= $_POST['voornaam'];
 	$wkz_nw->achternaam				= $_POST['achternaam'];
 	$wkz_nw->tussenvoegsels			= $_POST['tussenvoegsels'];
+	$wkz_nw->geslacht				= $_POST['geslacht'];
 	$wkz_nw->straat					= $_POST['straat'];
 	$wkz_nw->huisnummer				= $_POST['huisnummer'];
 	$wkz_nw->postcode				= $_POST['postcode'];
@@ -76,10 +86,9 @@ if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 	$wkz_nw->emailadres				= $_POST['emailadres'];
 	$wkz_nw->telefoonnr				= $_POST['telefoonnr'];
 	$wkz_nw->link_linkedin			= $_POST['link_linkedin'];
-	if ($_POST['date_geboorte'] != '')
-		$wkz_nw->date_geboorte		= $_POST['date_geboorte'];
-		else
-		$wkz_nw->date_geboorte		= '';
+	$date = DateTime::createFromFormat('d-m-Y', $_POST['date_geboorte']);
+	if ($date)
+		$wkz_nw->date_geboorte		= $date->format('Y-m-d');
 	// $wkz_nw->picfile				= $_POST['picfile'];
 	if(isset($_POST['nnind'])) $wkz_nw->nnind = 'j'; else $wkz_nw->nnind = 'n';
 	$wkz_nw->startsituatie			= $_POST['startsituatie'];
@@ -144,38 +153,26 @@ try
 	  return FALSE;
 }
 
+/* Haal alle opmerkingen op */
 $ps_html = '';
 foreach ($psList as $ps)
 {
 	$user = new User('id', $ps->id_user);
 	$ps_html .= 
-		'<div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $ps->dt_stap . '</div>
+		'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $ps->dt_stap . '</div>
 		<div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $user->username . '</div>
-		<div class="input-group-text" style="font-size: .8em; display: inline-block;">' .  $wkz->status . ' - ' . $statusArray[$wkz->status] . '</div>
-		<div class="input-group input-group-sm mb-1">
+		<div class="input-group-text mb-1" style="font-size: .8em; display: inline-block;">' .  $wkz->status . ' - ' . (isset($statusArray[$wkz->status]) ? $statusArray[$wkz->status] : 'onbekend') . '</div></div>';
+	if ($ps->toelichting != '')
+	{
+		$ps_html .=
+		'<div class="input-group input-group-sm mb-1">
 	    	<div class="input-group-prepend" style="width: 30%;">
 			<span class="input-group-text" style="width: 100%;">Toelichting</span>
 	    	</div>
-	    	<textarea type="textarea" rows="2" class="form-control" disabled>' . $ps->toelichting . '</textarea>
+	    	<textarea type="textarea" rows="3" class="form-control" disabled>' . $ps->toelichting . '</textarea>
 		</div>';
+	}
 }
-	
-// 	'<div class="input-group input-group-sm mb-1">
-// 			<div class="input-group-prepend" style="width: 10%;">
-// 				<span class=" input-group-text" style="width: 100%;">Status</span>
-// 			</div>
-// 			<input type="text" class="form-control" style="width: 20%;" disabled value="' . $ps->wzstatus . '">
-// 			<div class="input-group-prepend" style="width: 10%;">
-// 				<span class=" input-group-text" style="width: 100%;">Timestamp</span>
-// 			</div>
-// 			<input type="text" class="form-control" style="width: 20%;" disabled value="' . $ps->dt_stap . '">
-// 			<div class="input-group-prepend" style="width: 10%;">
-// 				<span class=" input-group-text" style="width: 100%;">User</span>
-// 			</div>
-// 			<input type="text" class="form-control" style="width: 30%;" disabled value="' . $user->username . '">
-// 		</div>
-
-/* Haal alle opmerkingen op */
 
 ?>
 
@@ -204,6 +201,9 @@ foreach ($psList as $ps)
 			  }
 			}
 		</style>
+		<script>
+		$('input[type="date"]').val('dd-MM-yyyy');
+		</script>
 	</head>
 	<body style="background-color: #dddddd;">
 		<div class="container">
@@ -228,7 +228,7 @@ foreach ($psList as $ps)
         <div class="container-fluid" style="padding-bottom: 80px;">	
 			<form method="POST" action="mut_persoon.php" id="postwz" novalidate>
 			<div class="row">
-				<div class="col-md-4 bg-light mt-2 pt-2">
+				<div class="col-lg-4 mt-2 pt-2" style="background-color:#a5cad8">
 					<img class="card-img-top mb-2" src="fotoos_wkz/<?php echo $wkz->picfile; ?>" style="max-width: 160px;" alt="">
 
 					<div class="input-group input-group-sm mb-1">
@@ -248,6 +248,17 @@ foreach ($psList as $ps)
 							<span class="input-group-text" style="width: 100%;">Achternaam</span>
 						</div>
 						<input type="text" name="achternaam" class="form-control" value="<?php echo $wkz->achternaam; ?>" required>
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class=" input-group-text" style="width: 100%;">M/V/G</span>
+						</div>
+						<select class="form-control"  name="geslacht" id="geslacht">
+							<option value="" <?php if($wkz->geslacht == '') echo 'selected'; ?>>---</option>
+							<option value="m" <?php if($wkz->geslacht == 'm') echo 'selected'; ?>>Man</option>
+							<option value="v" <?php if($wkz->geslacht == 'v') echo 'selected'; ?>>Vrouw</option>
+							<option value="n" <?php if($wkz->geslacht == 'n') echo 'selected'; ?>>Genderneutraal</option>
+						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -283,7 +294,7 @@ foreach ($psList as $ps)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">URL LinkedIn</span>
 						</div>
-						<input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>">
+						<input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>"></a>
 					</div>					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -313,13 +324,13 @@ foreach ($psList as $ps)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
 						</div>
-						<input type="date" name="date_geboorte" class="form-control" value="<?php if ($wkz->date_geboorte != '') echo $wkz->date_geboorte; ?>" placeholder="dd-mm-jjjj">
+						<input type="date" name="date_geboorte" class="form-control" value="<?php if ($wkz->date_geboorte != '') echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" placeholder="dd-mm-jjjj" maxlength="10">
 					</div>
 
 				</div>
 
 
-				<div class="col-md-4 mt-2 pt-2">
+				<div class="col-lg-4 mt-2 pt-2" style="background-color:#a5cad8">
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Id werkzoekende</span>
@@ -330,7 +341,7 @@ foreach ($psList as $ps)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Status</span>
 						</div>
-						<input type="text" name="wzstatus" class="form-control" disabled value="<?php echo $wkz->status . ' - ' .$statusArray[$wkz->status]; ?>">
+						<input type="text" name="wzstatus" class="form-control" disabled value="<?php echo $wkz->status . ' - ' . (isset($statusArray[$wkz->status]) ? $statusArray[$wkz->status] : 'onbekend'); ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -349,7 +360,7 @@ foreach ($psList as $ps)
 							<span class="input-group-text" style="width: 100%;">Startsituatie</span>
 						</div>
 						<select class="form-control"  name="startsituatie" id="startsituatie">
-							<option value="---" <?php if($wkz->startsituatie == '---') echo 'selected'; ?>>---</option>
+							<option value="" <?php if($wkz->startsituatie == '') echo 'selected'; ?>>---</option>
 							<option value="nug" <?php if($wkz->startsituatie == 'nug') echo 'selected'; ?>>Niet uitkering gerechtigd</option>
 							<option value="wkw" <?php if($wkz->startsituatie == 'wkw') echo 'selected'; ?>>WW</option>
 							<option value="wrk" <?php if($wkz->startsituatie == 'wrk') echo 'selected'; ?>>Werk</option>
@@ -376,7 +387,7 @@ foreach ($psList as $ps)
 							<span class="input-group-text" style="width: 100%;">Opleiding</span>
 						</div>
 						<select class="form-control"  name="opleiding" id="opleiding">
-							<option value="---" <?php if($wkz->opleiding == '---') echo 'selected'; ?>>---</option>
+							<option value="" <?php if($wkz->opleiding == '') echo 'selected'; ?>>---</option>
 							<option value="GO" <?php if($wkz->opleiding == 'GO') echo 'selected'; ?>>Geen opleiding</option>
 							<option value="VMBO" <?php if($wkz->opleiding == 'VMBO/Mavo') echo 'selected'; ?>>VMBO/Mavo</option>
 							<option value="MBO1" <?php if($wkz->opleiding == 'MBO1') echo 'selected'; ?>>MBO 1/2</option>
@@ -423,11 +434,12 @@ foreach ($psList as $ps)
 					<div class="forms-group mb-1">
 						<button name="updateWzBut" value="wijzig" type="submit" class="btn btn-primary btn-width btn-sm">Wijzig</button>
 						<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+						<button name="deleteWzBut" value="delete" type="submit" class="btn btn-danger btn-width btn-sm" style="float: right;">Delete</button>
 					</div>
 				</div>
 
 
-				<div class="col-md-4 mt-2 pt-2 bg-light">
+				<div class="col-lg-4 mt-2 pt-2 bg-light">
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Status</span>

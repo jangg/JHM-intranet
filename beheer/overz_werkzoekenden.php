@@ -30,23 +30,43 @@ $html = '';
 
 foreach($wzColl->werkzoekendeColl as $werkzoekende)
 {
-	if ($werkzoekende->emailadres == '')
+	$acties = '';
+
+	if ($werkzoekende->status != 0)
 	{
-		$emailtxt = '<td class="p-1"></td>';
+		$acties .= '<a href="mut_persoon.php?id=' . $werkzoekende->id . '"><i class="fas fa-user ifont"></i></a>&nbsp&nbsp&nbsp';
 	} else
 	{
-		$emailtxt = '<td class="p-1"><a href="mailto:' . $werkzoekende->emailadres . '"><i class="fa fa-envelope"></i></a> ' . $werkzoekende->emailadres . '</td>';
+		$acties .= '<a href="mut_persoon.php?id=' . $werkzoekende->id . '"><i class="far fa-user ifont"></i></a>&nbsp&nbsp&nbsp';
 	}
+	if ($werkzoekende->id_intakeform != '')
+	{
+		$acties .= '<a href="intake.php?id=' . $werkzoekende->id . '"><i class="fas fa-file-alt ifont"></i></a>&nbsp&nbsp&nbsp';
+	} else
+	{
+		$acties .= '<a href="intake.php?id=' . $werkzoekende->id . '"><i class="far fa-file-alt ifont"></i></a>&nbsp&nbsp&nbsp';
+	}
+	if ($werkzoekende->emailadres != '')
+	{
+		$acties .= '<a href="mailto:' . $werkzoekende->emailadres . '"><i class="far fa-envelope ifont"></i></a>&nbsp&nbsp&nbsp';
+	} else
+	{
+		$acties .= '<i class="far fa-envelope ifont" style="opacity: 0;"></i>&nbsp&nbsp&nbsp';
+	}
+	// $acties .= '<i class="far fa-trash-alt ifont"></i>';
+	
+	
 	$html .= '
 	<tr>
-		<td style="text-align: center;" class="p-1"><a href="mut_persoon.php?id=' . $werkzoekende->id . '">' . sprintf('%04d', $werkzoekende->id) . '</td>
+		<td style="text-align: center;" class="p-1">' . sprintf('%04d', $werkzoekende->id) . '</td>
 		<td class="p-1">' . $werkzoekende->status . '</td>
 		<td class="p-1">' . $werkzoekende->voornaam . '</td>
 		<td class="p-1">' . $werkzoekende->tussenvoegsels . '</td>
 		<td class="p-1">' . $werkzoekende->achternaam . '</td>
-		' . $emailtxt . '
+		<td class="p-1">' . $werkzoekende->emailadres . '</td>
 		<td class="p-1">' . $werkzoekende->datetime_created . '</td>
 		<td class="p-1">' . $werkzoekende->telefoonnr . '</td>
+		<td class="p-1">' . $acties . '</td>
 	</tr>';
 }
 ?>
@@ -54,26 +74,14 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 <!DOCTYPE html>
 <html lang="nl-NL">
 	<?php include('../includes/head.inc'); ?>
-		<link href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" rel="stylesheet">
-		
-		<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-		<script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
-		<script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table-locale-all.min.js"></script>
-		<script src="https://unpkg.com/bootstrap-table@1.18.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
-		
-		<style>
-		  .select,
-		  #locale {
-			width: 100%;
-		  }
-		  .like {
-			margin-right: 10px;
-		  }
-		</style>
-		
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 		<style>
 		.bootstrap-table .fixed-table-container .fixed-table-body {
 			height: auto;
+		}
+		.ifont {
+			font-size: 1.5em;
 		}
 		</style>
 	</head>
@@ -96,173 +104,32 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<div id="toolbar">
-						<button id="remove" class="btn btn-danger" disabled>
-							<i class="fa fa-trash"></i> Delete
-						</button>
-					</div>
-					<table
-					  id="table"
-					  data-toolbar="#toolbar"
-					  data-search="true"
-					  data-show-refresh="true"
-					  data-show-toggle="true"
-					  data-show-fullscreen="true"
-					  data-show-columns="true"
-					  data-show-columns-toggle-all="true"
-					  data-detail-view="true"
-					  data-show-export="true"
-					  data-click-to-select="true"
-					  data-detail-formatter="detailFormatter"
-					  data-minimum-count-columns="2"
-					  data-show-pagination-switch="true"
-					  data-pagination="true"
-					  data-id-field="id"
-					  data-page-list="[10, 25, 50, 100, all]"
-					  data-show-footer="true"
-					  data-side-pagination="server"
-					  data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
-					  data-response-handler="responseHandler">
+					<table class="table table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true"  data-page-size="20" data-page-list="20, 40, 60, 80" data-show-columns="true">
+					<!-- <table class="table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true" data-show-columns="true" data-page-size="15" data-page-list="15, 30, 60, 90"> -->
+					<thead class="thead-dark">
+					<tr>
+					<th data-sortable="true" data-field="id">id</th>
+					<th data-field="status" data-sortable="true">status</th>
+					<th data-field="voornaam" data-sortable="true">voornaam</th>
+					<th>tussenvoegsels</th>
+					<th data-field="achternaam" data-sortable="true">achternaam</th>
+					<th data-field="emailadres" data-sortable="true">emailadres</th>
+					<th data-field="datetime_created" data-sortable="true">datum</th>
+					<!-- <th data-field="straat" data-sortable="true">straat</th>
+					<th data-field="huisnummer" data-sortable="true">huisnr</th>
+					<th data-field="postcode" data-sortable="true">postcode</th>
+					<th data-field="woonplaats" data-sortable="true">woonplaats</th> -->
+					<th>telefoonnr</th>
+					<th>acties</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php echo $html; ?>
+					</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<?php include('../includes/footer.inc'); ?>
-		<script>
-			  var $table = $('#table')
-			  var $remove = $('#remove')
-			  var selections = []
-			
-			  function getIdSelections() {
-				return $.map($table.bootstrapTable('getSelections'), function (row) {
-				  return row.id
-				})
-			  }
-			
-			  function responseHandler(res) {
-				$.each(res.rows, function (i, row) {
-				  row.state = $.inArray(row.id, selections) !== -1
-				})
-				return res
-			  }
-			
-			  function detailFormatter(index, row) {
-				var html = []
-				$.each(row, function (key, value) {
-				  html.push('<p><b>' + key + ':</b> ' + value + '</p>')
-				})
-				return html.join('')
-			  }
-			
-			  function operateFormatter(value, row, index) {
-				return [
-				  '<a class="like" href="javascript:void(0)" title="Like">',
-				  '<i class="fa fa-heart"></i>',
-				  '</a>  ',
-				  '<a class="remove" href="javascript:void(0)" title="Remove">',
-				  '<i class="fa fa-trash"></i>',
-				  '</a>'
-				].join('')
-			  }
-			
-			  window.operateEvents = {
-				'click .like': function (e, value, row, index) {
-				  alert('You click like action, row: ' + JSON.stringify(row))
-				},
-				'click .remove': function (e, value, row, index) {
-				  $table.bootstrapTable('remove', {
-					field: 'id',
-					values: [row.id]
-				  })
-				}
-			  }
-			
-			  function totalTextFormatter(data) {
-				return 'Total'
-			  }
-			
-			  function totalNameFormatter(data) {
-				return data.length
-			  }
-			
-			  function totalPriceFormatter(data) {
-				var field = this.field
-				return '$' + data.map(function (row) {
-				  return +row[field].substring(1)
-				}).reduce(function (sum, i) {
-				  return sum + i
-				}, 0)
-			  }
-			
-			  function initTable() {
-				$table.bootstrapTable('destroy').bootstrapTable({
-				  height: 750,
-				  // locale: $('#locale').val(),
-				  locale: 'nl-NL',
-				  columns: [
-					[{
-					  field: 'state',
-					  checkbox: true,
-					  rowspan: 2,
-					  align: 'center',
-					  valign: 'middle'
-					}, {
-					  field: 'id',
-					  title: 'ID',
-					  rowspan: 2,
-					  align: 'center',
-					  valign: 'middle',
-					  sortable: true,
-					  footerFormatter: totalTextFormatter
-					}, {
-					  field: 'name',
-					  title: 'Item Name',
-					  sortable: true,
-					  footerFormatter: totalNameFormatter,
-					  align: 'center'
-					}, {
-					  field: 'price',
-					  title: 'Item Price',
-					  sortable: true,
-					  align: 'center',
-					  footerFormatter: totalPriceFormatter
-					}, {
-					  field: 'operate',
-					  title: 'Item Operate',
-					  align: 'center',
-					  clickToSelect: false,
-					  events: window.operateEvents,
-					  formatter: operateFormatter
-					}]
-				  ]
-				})
-				$table.on('check.bs.table uncheck.bs.table ' +
-				  'check-all.bs.table uncheck-all.bs.table',
-				function () {
-				  $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
-			
-				  // save your data, here just save the current page
-				  selections = getIdSelections()
-				  // push or splice the selections if you want to save all data selections
-				})
-				$table.on('all.bs.table', function (e, name, args) {
-				  console.log(name, args)
-				})
-				$remove.click(function () {
-				  var ids = getIdSelections()
-				  $table.bootstrapTable('remove', {
-					field: 'id',
-					values: ids
-				  })
-				  $remove.prop('disabled', true)
-				})
-			  }
-			
-			  $(function() {
-				initTable()
-			
-				$('#locale').change(initTable)
-			  })
-			</script>
 	</body>
 </html>

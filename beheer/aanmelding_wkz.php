@@ -46,7 +46,7 @@ function chkchkbx ($p, $pos)
 
 if (isset($_POST['backWzBut']) && $_POST['backWzBut'] == 'back')
 {
-	header("location: overz_werkzoekenden.php");
+	header("location: beheer.php");
 	exit();	
 }
 
@@ -85,6 +85,7 @@ if (isset($_POST['saveWzBut']) && $_POST['saveWzBut'] == 'bewaar1')
 	$wkz_nw->telefoonnr				= substr($_POST['telefoonnr'], 0, 11);
 	$wkz_nw->situatie				= $_POST['situatie'];
 	$wkz_nw->opmerkingen			= $_POST['opmerkingen'];
+	$wkz_nw->status					= '000';
 	$opties = 0;
 	if(isset($_POST['hulpvorm1'])) $opties = $opties + 1;
 	if(isset($_POST['hulpvorm2'])) $opties = $opties + 2;
@@ -132,8 +133,8 @@ if (isset($_POST['saveWzBut']) && $_POST['saveWzBut'] == 'bewaar1')
 			</div>
 		</div>
 		<div id="personalia" class="container tab-pane active bg-tab pb-2" style="margin: 10px auto;"><br>
-			<p class="uitlegtekst mx-1">Gebruik dit formulier voor inschrijvingen van werkzoekenden die zelf geen online aanmeldformulier hebben ingevuld. B.v. bij aanmeldingen aan de balie of via de telefoon. Ook aanmeldingen die via email worden gedaan, dienen m.b.v. dit formulier in de administratie te worden opgenomen.</p>
-			<p class="uitlegtekst mx-1">Een werkzoekende kan meerdere keren worden geregistreerd. Het emailadres is meestal identificerend voor de persoon. Met dit emailadres kan worden gechecked of het al in de database voorkomt. De bijbehorende gegevens worden dan getoond in het formulier. Opslaan betekent wel dat de persoon nogmaals onder dit emailadres wordt opgeslagen. Bij opnieuw opvragen kan slechts het meest recent opgeslagen persoon worden getoond.</p>
+			<p class="uitlegtekst mx-1">Gebruik dit formulier voor inschrijvingen van werkzoekenden die zelf geen online aanmeldformulier hebben ingevuld. B.v. bij aanmeldingen aan de balie of via de telefoon of via JobHulpMaatje landelijk. Ook aanmeldingen die via email worden gedaan, dienen m.b.v. dit formulier in de administratie te worden opgenomen.</p>
+			<p class="uitlegtekst mx-1">Een werkzoekende kan meerdere keren worden geregistreerd. Het emailadres is meestal identificerend voor de persoon. Met dit emailadres kan worden gechecked of het al in de database voorkomt. De bijbehorende gegevens worden dan getoond in het formulier. Opslaan betekent wel dat de persoon <strong>nogmaals</strong> onder dit emailadres wordt opgeslagen. Bij opnieuw opvragen kan slechts het meest recent opgeslagen persoon worden getoond.</p>
 			<form method="POST" action="aanmelding_wkz.php" id="aanmwz" novalidate>
 				<div class="input-group input-group-sm pb-3 border-bottom border-primary">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -143,7 +144,7 @@ if (isset($_POST['saveWzBut']) && $_POST['saveWzBut'] == 'bewaar1')
 					<input id="emailadres" type="email" name="getemailadres" class="form-control" value="" required>
 					<span id="availability"></span>
 					<button name="getWkzBut" value="get1" class="btn btn-primary btn-width btn-sm">
-						  <i class="fa fa-arrow-circle-o-down" aria-hidden="true" style="font-size: 1.3em;"></i>
+						  <i class="fas fa-arrow-down" aria-hidden="true" style="font-size: 1.3em;"></i>
 					</button>
 				</div>
 			</form>

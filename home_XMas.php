@@ -6,17 +6,17 @@ include_once('includes/newsmsgs.inc');
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
 *************************/
-if (!isset($_SESSION['username'])) {
-	header('location:index.php');
-	exit();
-}
-if (isset($_SESSION['userid']))
-{
-	$curr_user = new User ('id', $_SESSION['userid']);
-} else
-{
-	$curr_user = new User ();
-}
+// if (!isset($_SESSION['username'])) {
+// 	header('location:index.php');
+// 	exit();
+// }
+// if (isset($_SESSION['userid']))
+// {
+// 	$curr_user = new User ('id', $_SESSION['userid']);
+// } else
+// {
+// 	$curr_user = new User ();
+// }
 /**********************/
 
 /* haal de filenames van de fotootjes op */
@@ -72,8 +72,53 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 
 	</head>
  
-<body style="background-color: #dddddd; font-size: 16px;">
+<body style="background-color: #81a3bf; font-size: 16px;">
 	<?php include('includes/navbar.inc'); ?>
+	<main role="main">
+<!-- ------>
+		<style>
+		.editor-stage .snow {
+		  height: 50px;
+		  background: #fff;
+		}
+		.snow{
+		  position:fixed;
+		  pointer-events:none;
+		  top:0;
+		  left:0;
+		  right:0;
+		  bottom:0;
+		  height:100vh;
+		  background: none;
+		  background-image: url('https://s3-eu-west-1.amazonaws.com/static-ressources/s1.png'), url('https://s3-eu-west-1.amazonaws.com/static-ressources/s2.png'), url('https://s3-eu-west-1.amazonaws.com/static-ressources/s3.png');
+		  z-index: 100;
+		  -webkit-animation: snow 10s linear infinite;
+		  -moz-animation: snow 10s linear infinite;
+		  -ms-animation: snow 10s linear infinite;
+		  animation: snow 10s linear infinite;
+		}
+		@keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;} */
+		}
+		@-moz-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+		}
+		@-webkit-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+		}
+		@-ms-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+		}
+		</style>
+<!---------->		
 	<div class="container mb-4">
 		<div class="row">
 			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[0]; ?>" alt="<?php  echo $list[0]; ?>" width="100%"></div>
@@ -109,7 +154,7 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 		<div class="container mb-3" id="sticky">
 			<div class="row">
 				<div class="col-sm-4 d-none d-sm-block" id="sticky-left" style="position: relative;">
-					<!-- <ul>
+					<ul>
 						<li>
 						  <a href="nieuwsbrief.php">
 							<p>December-nieuwsbrieven van JobHulpMaatje.</p>
@@ -117,7 +162,7 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 							<p>Klik hier om ze te lezen.</p>
 						  </a>
 						</li>
-					</ul> -->
+					</ul>
 				</div>
 				<!-- <div class="col-sm-4 d-none d-sm-block" id="sticky-left" style="position: absolute; z-index: 3;">
 					<ul>
@@ -130,14 +175,14 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 					<img src="img/Logo_JobHulpMaatje_Zoetermeer.svg" class="mx-auto d-block mb-5" style="width: 350px;">
 				</div>
 				<div class="col-sm-4" id="sticky-right">
-					<!-- <ul>
+					<ul>
 						<li class="text-center">
 						  <a href="https://www.giekwerf.nl?nm=<?php echo $curr_user->voornaam; ?>" style="color: white; background-color: #223; background-image: url('img/fireworks-1993221_960_720.png'); background-size: cover;">
 							<p style="font-size: 2em;">Toch even knallen voor 2021?</p>
 							<p style="font-size: 2em;">Klik hier</p>
 						  </a>
 						</li>
-					</ul> -->
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -191,5 +236,7 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 					
 	</main>
 	<?php include('includes/footer.inc'); ?>
+	<div class="snow" />
+
 </body>
 </html>

@@ -71,27 +71,27 @@ class Werkzoekende extends Person
 			$this->toelichting		= $werkzoekenderow['toelichting'];
 			parent::__construct1 ($werkzoekenderow);
 		}
-		else
-		{
-	// 			error_log("Geen person gevonden, dan lege geven");
-			$this->id				= '';
-			$this->id_person		= '';
-			$this->id_intakeform	= '';
-			$this->situatie			= '';
-			$this->opmerkingen		= '';
-			$this->status			= '000';
-			$this->opties			= 0;
-			$this->nnind			= '';
-			$this->startsituatie	= '';
-			$this->GAKind			= '';
-			$this->opleiding		= '';
-			$this->instroomtrede	= '0';
-			$this->instroomscore	= '0';
-			$this->uitstroomscore	= '0';
-			$this->soortwerk		= '';
-			$this->toelichting		= '';
-			parent::__construct1 ($werkzoekenderow);	
-		}
+	// 	else
+	// 	{
+	// // 			error_log("Geen person gevonden, dan lege geven");
+	// 		$this->id				= '';
+	// 		$this->id_person		= '';
+	// 		$this->id_intakeform	= '';
+	// 		$this->situatie			= '';
+	// 		$this->opmerkingen		= '';
+	// 		$this->status			= '000';
+	// 		$this->opties			= 0;
+	// 		$this->nnind			= '';
+	// 		$this->startsituatie	= '';
+	// 		$this->GAKind			= '';
+	// 		$this->opleiding		= '';
+	// 		$this->instroomtrede	= '0';
+	// 		$this->instroomscore	= '0';
+	// 		$this->uitstroomscore	= '0';
+	// 		$this->soortwerk		= '';
+	// 		$this->toelichting		= '';
+	// 		parent::__construct1 ($werkzoekenderow);	
+	// 	}
 	}
 			
 	public function __construct2 ($attr, $value)

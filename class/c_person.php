@@ -19,13 +19,14 @@ abstract class person
 	protected $link_linkedin;
 	protected $presentInd;
 	protected $date_geboorte;
+	protected $geslacht;
 	
 	public function __construct () 
 	{
 		$this->person_id		= NULL;
 		$this->delind			= 'n';
-		$this->datetime_created			= '';
-		$this->datetime_modified			= '';
+		$this->datetime_created	= '';
+		$this->datetime_modified = '';
 		$this->voornaam			= '';
 		$this->tussenvoegsels	= '';
 		$this->achternaam		= '';
@@ -39,7 +40,8 @@ abstract class person
 		$this->picfile			= '';
 		$this->link_linkedin	= '';
 		$this->presentInd		= '';
-		$this->date_geboorte 	= '';
+		$this->date_geboorte 	= NULL;
+		$this->geslacht		 	= '';
 
     }
      	
@@ -65,33 +67,12 @@ abstract class person
 			$this->picfile			= $personrow['picfile'];
 			$this->link_linkedin	= $personrow['link_linkedin'];
 			$this->presentInd		= $personrow['presentInd'];
-			if ($personrow['date_geboorte'] != '')
-				$this->date_geboorte = date("d-m-Y", strtotime($personrow['date_geboorte']));
-				else 
-				$this->date_geboorte = '';
-		}
-		else
-		{
-// 			error_log("Geen person gevonden, dan lege geven");
-			$this->person_id		= '';
-			$this->delind			= 'n';
-			$this->datetime_created	= '';
-			$this->datetime_modified = '';
-			$this->voornaam			= '';
-			$this->tussenvoegsels	= '';
-			$this->achternaam		= '';
-			$this->straat		    = '';
-			$this->huisnummer	    = '';
-			$this->postcode		    = '';
-			$this->woonplaats	    = '';
-			$this->emailadres		= '';
-			$this->telefoonnr		= '';
-			$this->type				= 'wkz';
-			$this->picfile			= '';
-			$this->link_linkedin	= '';
-			$this->presentInd		= '';
-			$this->date_geboorte 	= '';
-
+			$this->date_geboorte	= $personrow['date_geboorte'];
+			$this->geslacht			= $personrow['geslacht'];
+			// if ($personrow['date_geboorte'] != NULL)
+			// 	$this->date_geboorte = date("Y-m-d", strtotime($personrow['date_geboorte']));
+			// 	else 
+			// 	$this->date_geboorte = '';
 		}
 	}
 
@@ -149,8 +130,9 @@ abstract class person
 			'$type				: ' . $this->type			. '<br/>' .
 			'$picfile			: ' . $this->picfile		. '<br/>' .
 			'$link_linkedin		: ' . $this->link_linkedin	. '<br/>' .
-			'$presentInd		: ' . $this->presentInd	. '<br/>';
-			'$date_geboorte		: ' . $this->date_geboorte	. '<br/>';
+			'$presentInd		: ' . $this->presentInd	. '<br/>' .
+			'$date_geboorte		: ' . $this->date_geboorte	. '<br/>' .
+			'$geslacht			: ' . $this->geslacht	. '<br/>';
 
 	}
 	
@@ -162,6 +144,7 @@ abstract class person
 			$date = new DateTime();
 			$this->datetime_created = $date->format('Y-m-d H:i:s');
 			$this->datetime_modified = $date->format('Y-m-d H:i:s');
+			if ($this->date_geboorte == '') $this->date_geboorte = NULL; 
 		
 			$sql = "INSERT person 
 						(	person_id	,
@@ -181,7 +164,8 @@ abstract class person
 							picfile		,
 							link_linkedin ,
 							presentInd,
-							date_geboorte
+							date_geboorte,
+							geslacht
 						)
 					VALUES (
 						 	:person_id	,
@@ -201,7 +185,8 @@ abstract class person
 							:picfile		,
 							:link_linkedin ,
 							:presentInd ,
-							:date_geboorte
+							:date_geboorte,
+							:geslacht
 						);";
 		
 			
@@ -223,7 +208,12 @@ abstract class person
 			$stmt->bindValue( ":picfile"		, $this->picfile, PDO::PARAM_STR);
 			$stmt->bindValue( ":link_linkedin"	, htmlentities($this->link_linkedin, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":presentInd"		, $this->presentInd, PDO::PARAM_STR);
-			$stmt->bindValue( ":date_geboorte"	, date('Y-m-d', strtotime($this->date_geboorte)), PDO::PARAM_STR);
+			$stmt->bindValue( ":date_geboorte"	, $this->date_geboorte, PDO::PARAM_STR);
+			$stmt->bindValue( ":geslacht"		, $this->geslacht, PDO::PARAM_STR);
+			// if ($this->date_geboorte != '')
+			// 	$stmt->bindValue( ":date_geboorte"	, date('Y-m-d', strtotime($this->date_geboorte)), PDO::PARAM_STR);
+			// 	else
+			// 	$stmt->bindValue( ":date_geboorte"	, NULL, PDO::PARAM_STR);
 			$stmt->execute();
 // 			error_log('Een nieuwe c_person is toegevoegd');
 			$this->person_id = $connection->lastInsertId();
@@ -244,6 +234,7 @@ abstract class person
 		{
 			$date = new DateTime();
 			$this->datetime_modified = $date->format('Y-m-d H:i:s');
+			if ($this->date_geboorte == '') $this->date_geboorte = NULL;
 
 			$sql = "UPDATE person SET		
 						delind				= :delind		,
@@ -262,7 +253,8 @@ abstract class person
 						picfile				= :picfile		,
 						link_linkedin		= :link_linkedin ,
 						presentInd			= :presentInd ,
-						date_geboorte   	= :date_geboorte
+						date_geboorte   	= :date_geboorte ,
+						geslacht			= :geslacht
 					WHERE person_id = :person_id;";
 			// error_log($sql);
 			$stmt = $connection->prepare( $sql );
@@ -283,7 +275,13 @@ abstract class person
 			$stmt->bindValue( ":picfile"		, $this->picfile, PDO::PARAM_STR);
 			$stmt->bindValue( ":link_linkedin"	, htmlentities($this->link_linkedin, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":presentInd"		, $this->presentInd, PDO::PARAM_STR);
-			$stmt->bindValue( ":date_geboorte"	, date('Y-m-d', strtotime($this->date_geboorte)), PDO::PARAM_STR);
+			$stmt->bindValue( ":date_geboorte"	, $this->date_geboorte, PDO::PARAM_STR);
+			$stmt->bindValue( ":geslacht"		, $this->geslacht, PDO::PARAM_STR);
+			// if ($this->date_geboorte != '')
+			// 	$stmt->bindValue( ":date_geboorte"	, date('Y-m-d', strtotime($this->date_geboorte)), PDO::PARAM_STR);
+			// 	else
+			// 	$stmt->bindValue( ":date_geboorte"	, NULL, PDO::PARAM_STR);
+
 			// error_log($sql);
 			$stmt->execute();
 			

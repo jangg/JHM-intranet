@@ -42,12 +42,16 @@ if (isset($_SESSION['userid']))
 				<p>Maak je keuze ....</p>
 			</div> -->
             <div class="row mt-4">
-				<div class="col-md-6 p-0 text-center">
+				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="overz_werkzoekenden.php">Overzicht werkzoekenden</a></button>
 					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="aanmelding_wkz.php">Aanmelding werkzoekende</a></button>
 					<!-- <button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="intake.php">Intakeformulier</a></button> -->
 	            </div>
-				<div class="col-md-6 p-0 text-center">
+				<div class="col-md-4 p-0 text-center">
+					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="#">Overzicht Jobgroups</a></button>
+				</div>
+
+				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="overz_maatjes.php">Overzicht maatjes</a></button>
 				</div>
             </div>
