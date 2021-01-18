@@ -2,6 +2,7 @@
 include_once('config.php');
 include_once('class/c_user.php');
 include_once('class/c_agendaitem_coll.php');
+include_once('class/c_maatje_coll.php');
 
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
@@ -21,16 +22,41 @@ if (isset($_SESSION['userid']))
 $today = new DateTimeImmutable();
 $arr1 = array (	array (0 => 'agendaitem.datum', 1 => $today->format('Y' . 'm' . 'd')));
 $arr2 = array (	array (0 => 'agendaitem.datum', 1 => 'ASC'), array (0 => 'agendaitem.begintijd', 1 => 'ASC'));
-
 $agendaColl = new Agendaitem_coll ($arr1, $arr2);
+$maatjes = new Maatje_coll (NULL, NULL);
+// print_r ($maatjes);
+$verjaardagen = $maatjes->verjaardagenAgenda ();
+// print_r ($verjaardagen);
+$agenda = array_merge($agendaColl->agendaitemColl, $verjaardagen);
+
+usort($agenda, function($a, $b)
+ {
+	 if ($a->datum == $b->datum)
+		 return (0);
+	 return (($a->datum < $b->datum) ? -1 : 1);
+ });
+
+
 $agenda_html = '';
 $maand = '';
 
-foreach ($agendaColl->agendaitemColl as $agendaitem)
+foreach ($agenda as $agendaitem)
 {
 	$datum = new DateTimeImmutable($agendaitem->datum);
-	$begintijd = new DateTimeImmutable($agendaitem->begintijd);
-	$eindtijd = new DateTimeImmutable($agendaitem->eindtijd);
+	if ($agendaitem->begintijd != '')
+	{
+		$begin = new DateTimeImmutable($agendaitem->begintijd);
+		$begintijd = $begin->format("G") . ':' . $begin->format("i");
+	}
+	else
+		$begintijd = '';
+	if ($agendaitem->eindtijd != '')
+	{
+		$eind = new DateTimeImmutable($agendaitem->eindtijd);
+		$eindtijd = $eind->format("G") . ':' . $eind->format("i");
+	}
+	else
+		$eindtijd = '';
 	if ($maand != $datum->format("m"))
 	{
 		if ($maand != '')
@@ -53,7 +79,7 @@ foreach ($agendaColl->agendaitemColl as $agendaitem)
 	. $agendaitem->titel . '<br/>' 
 	. nl2br($agendaitem->omschrijving)
 	. '</div><div class="col-4 ">'
-	. $begintijd->format("G") . ':' . $begintijd->format("i") . ' - ' . $eindtijd->format("G") . ':' . $eindtijd->format("i") . '<br/>'
+	. $begintijd . ' - ' . $eindtijd . '<br/>'
 	. $agendaitem->locatie . '<br/>
 	<br/>
 	</div></div>';	

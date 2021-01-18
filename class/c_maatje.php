@@ -6,6 +6,12 @@ class Maatje extends Person
 	protected $id_person;
 	protected $omschrijving;
 	protected $functie;
+	protected $actief_als;
+	/* 	A = als maatje
+		B = als jobgroupleider
+		K = als beide
+		blanco = als niets
+	*/
 	
 	public function __construct () 
 	{
@@ -30,6 +36,7 @@ class Maatje extends Person
 			$this->id_person	  = $maatjerow['id_person'];
 			$this->omschrijving	  = $maatjerow['omschrijving'];
 			$this->functie		  = $maatjerow['functie'];
+			$this->actief_als	  = $maatjerow['actief_als'];
 			parent::__construct1 ($maatjerow);
 		}
 		else
@@ -38,6 +45,7 @@ class Maatje extends Person
 			$this->id_person	  = '';
 			$this->omschrijving	  = '';
 			$this->functie		  = '';
+			$this->actief_als	  = '';
 			parent::__construct1 ($maatjerow);			
 		}
 	}
@@ -67,7 +75,8 @@ class Maatje extends Person
 			'$id				: ' . $this->id	. '<br/>' .
 			'$id_person			: ' . $this->id_person		. '<br/>' .
 			'$omschrijving		: ' . $this->omschrijving		. '<br/>' .
-			'$functie			: ' . $this->functie		. '<br/>';
+			'$functie			: ' . $this->functie		. '<br/>' .
+			'$actief_als		: ' . $this->actief_als	. '<br/>';
 	}
 	
 	public function readMaatjeWithId ($attr)
@@ -115,6 +124,73 @@ class Maatje extends Person
 		return $maatjerow;	
 	}
 	
+	public function saveToDB () 
+	{
+		openDB();
+		if (!parent::saveToDB()) exit();
+		global $connection;
+		try
+		{			
+			$sql = "INSERT maatje 
+			(	id 			,
+				id_person 	,
+				omschrijving 	,
+				functie 	,
+				actief_als )
+			VALUES (
+				:id 			,
+				:id_person 	,
+				:omschrijving 	,
+				:functie 	,
+				:actief_als
+			);";
+			$stmt = $connection->prepare( $sql );
+			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
+			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, htmlentities($this->id_user, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":functie"		, htmlentities($this->dt_opmerking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":actief_als"		, $this->opmerking, PDO::PARAM_STR);
+			$stmt->execute();
+			$this->id = $connection->lastInsertId();
+		}
+		catch (PDOException $e) 
+		{
+			error_log('Connectie (maatje 1) met de database mislukt: ' . $e->getMessage());
+			return FALSE;
+		}
+		return TRUE;	
+	}
+	
+	public function updateToDB () 
+	{
+		global $connection;
+		try
+		{
+			openDB();
+			$sql = "UPDATE maatje SET
+				id_person       = :id_person	,
+				omschrijving	= :omschrijving	,
+				functie			= :functie,
+				actief_als		= :actief_als
+				WHERE id = :id;";
+			$stmt = $connection->prepare( $sql );
+			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
+			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":functie"		, htmlentities($this->functie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":actief_als"		, $this->actief_als, PDO::PARAM_STR);
+			// error_log($sql);
+			// error_log(print_r($this));
+			$stmt->execute();
+		}
+		catch (PDOException $e) 
+		{
+			  error_log('Connectie (maatje 4) met de database mislukt: ' . $e->getMessage());
+			  return FALSE;
+		}
+		parent::updateToDB ();
+		return TRUE;	
+	}
 
 }
 

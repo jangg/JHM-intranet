@@ -53,9 +53,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 	if ($wkz->id_intakeform != '')
 	{
 		$intakeform = new Intakeform ('id', $wkz->id_intakeform);
-	}
-	// error_log($intakeform->id . ' - ' . $intakeform->nationaliteit);
+	}	
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +69,27 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 	.error-border {
 		border:	2px solid red;
 	}
-	</style>				
+	input.invalid, textarea.invalid{
+		border: 2px solid red;
+	}
+	
+	input.valid, textarea.valid{
+		border: 2px solid green;
+	}
+
+	</style>
+	<script>
+		$(document).ready(function() {
+			$('#date_geboorte').on('input', function() {
+				var input=$(this);
+				var datum= input.val();
+				if (datum.substr(0, 2) > 0 && datum.substr(0, 2) < 32 && datum.substr(3, 2) > 0 && datum.substr(3, 2) < 13 && datum.substr(6, 4) > 1940 && datum.substr(6, 4) < 2004 && datum.substr(2, 1) == '-' && datum.substr(5, 1) == '-')
+					{input.removeClass("invalid").addClass("valid");}
+				else
+					{input.removeClass("valid").addClass("invalid");}
+			});
+		});
+		</script>				
 	</head>
 	<body style="background-color: #dddddd;">
 		<div class="container">
@@ -87,6 +107,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 		</div>
 
 		<div class="container" style="margin: 10px auto;">
+			<p><a class="btn btn-primary" href="intake_pdf.php?id=<?php echo $wkz->id; ?>" role="button">maak PDF</a></p>
 			<ul class="nav nav-pills" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="pill" href="#personalia">Persoon</a>
@@ -111,8 +132,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="pill" href="#akkoord">Akkoord</a>
-				</li>
+				</li>				
 			</ul>
+			
 		</div>
 		<!-- Tab panes -->
 		<div class="tab-content" style="color: black;">
@@ -196,7 +218,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					  <div class="input-group-prepend" style="width: 30%;">
 						  <span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
 					  </div>
-					  <input type="date" name="gebdatum" class="form-control"  maxlength="10" value="<?php if ($wkz->date_geboorte != '') echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" placeholder="dd-mm-jjjj">
+					  <input type="text" name="gebdatum" id="gebdatum" class="form-control" value="<?php 
+					  if ($wkz->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
@@ -228,10 +251,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 						  <span class=" input-group-text" style="width: 100%;">URL LinkedIn</span>
 					  </div>
 					  <input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>">
+					  	<?php if ($wkz->link_linkedin != ''): ?>
+							<a href="<?php echo $wkz->link_linkedin; ?>" target="_blank"><i class="fab fa-linkedin" style="font-size: 2em;"></i></a>
+						<?php endif; ?>
 				  </div>
 				  <div class="forms-group mb-1">
 					  <button name="saveWzBut" value="bewaar1" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					  <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					  <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				  </div>				
 			  </form>
 			</div>
@@ -239,6 +265,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			
 			<div id="aanmelding" class="container tab-pane fade bg-tab pb-2"><br>
 				<h3>Aanmelding</h3>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text" style="width: 100%;">Situatie</span>
@@ -280,8 +307,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar2" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>
+				</form>
 		    </div>
 <!--3---------------------------------------------------------------------------------------------->			
 		 
@@ -310,13 +338,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Opleiding/beroep partner</span>
+						<span class=" input-group-text" style="width: 100%;">Opleiding/beroep partner (indien relevant)</span>
 					</div>
 					<input type="text" name="partner_beroep" class="form-control" value="<?php echo $intakeform->partner_beroep; ?>" maxlength="120">
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar3" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>
 				</form>			
  			</div>
@@ -327,7 +355,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Wie heeft aangemeld?</span>
+						<span class=" input-group-text" style="width: 100%;">Wie heeft de werkzoekende aangemeld?</span>
 					</div>
 					<select class="form-control"  name="aanmelding">
 						<option value="" 	<?php if($intakeform->aanmelding == '') echo 'selected'; ?>>---</option>
@@ -347,6 +375,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 						<option value="opl" <?php if($intakeform->regeling == 'opl') echo 'selected'; ?>>Outplacement</option>
 						<option value="wia" <?php if($intakeform->regeling == 'wia') echo 'selected'; ?>>WIA</option>
 						<option value="bst" <?php if($intakeform->regeling == 'bst') echo 'selected'; ?>>Bijstand</option>
+						<option value="waj" <?php if($intakeform->regeling == 'waj') echo 'selected'; ?>>Wajong</option>
 					</select>
 				</div>
 				<div class="input-group input-group-sm mb-2">
@@ -387,7 +416,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar4" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>				
 				</form>
 			</div>
@@ -410,6 +439,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 						<option value="" <?php if($wkz->opleiding == '') echo 'selected'; ?>>---</option>
 						<option value="GO" <?php if($wkz->opleiding == 'GO') echo 'selected'; ?>>Geen opleiding</option>
 						<option value="VMBO" <?php if($wkz->opleiding == 'VMBO/Mavo') echo 'selected'; ?>>VMBO/Mavo</option>
+						<option value="Havo" <?php if($wkz->opleiding == 'Havo') echo 'selected'; ?>>Havo</option>
+						<option value="VWO" <?php if($wkz->opleiding == 'VWO') echo 'selected'; ?>>VWO</option>
 						<option value="MBO1" <?php if($wkz->opleiding == 'MBO1') echo 'selected'; ?>>MBO 1/2</option>
 						<option value="MBO2" <?php if($wkz->opleiding == 'MBO2') echo 'selected'; ?>>MBO 3/4</option>
 						<option value="HB1O" <?php if($wkz->opleiding == 'HBO1') echo 'selected'; ?>>HBO bachelor</option>
@@ -441,7 +472,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar5" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>				
 				</form>
 			</div>
@@ -501,7 +532,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar6" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>				
 				</form>
 			</div>
@@ -543,7 +574,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar7" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>				
 				</form>
 			</div>
@@ -581,7 +612,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar8" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Cancel</button>
+					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
 				</div>
 				</form>			
 			</div>

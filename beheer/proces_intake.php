@@ -4,12 +4,6 @@ include_once('../class/c_user.php');
 include_once('../class/c_werkzoekende.php');
 include_once('../class/c_intakeform.php');
 
-if (isset($_POST['BackWzBut']))
-{
-	header("location: beheer.php");
-	exit();	
-}
-
 function updateIntakeform ($wkz, $wkz_nw, $intakeform, $intakeform_nw)
 {
 	if ($intakeform_nw != $intakeform)
@@ -67,7 +61,17 @@ if (isset($_POST['saveWzBut']))
 			$wkz_nw->woonplaats				= $_POST['woonplaats'];
 			$wkz_nw->telefoonnr				= $_POST['telefoonnr'];
 			$wkz_nw->link_linkedin			= $_POST['link_linkedin'];
-			$intakeform_nw->gebdatum		= $_POST['gebdatum'];
+			if ($_POST['gebdatum'] != '')
+			{
+				if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['gebdatum']) !== 0)
+				{
+					$date = DateTime::createFromFormat('d-m-Y', $_POST['gebdatum']);
+					$wkz_nw->date_geboorte		= $date->format('Y-m-d');
+				} 
+			} else
+			{
+				$wkz_nw->date_geboorte			= '';
+			}
 			$intakeform_nw->gebplaats		= $_POST['gebplaats'];
 			$intakeform_nw->gebland			= $_POST['gebland'];
 			$intakeform_nw->nationaliteit	= $_POST['nationaliteit'];

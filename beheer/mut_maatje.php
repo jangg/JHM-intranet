@@ -3,6 +3,7 @@ include_once('../config.php');
 include_once('../class/c_user.php');
 include_once('../class/c_maatje.php');
 include_once('../class/c_processtap.php');
+include_once('../class/c_werkzoekende_coll.php');
 
 function calculateAge($date)
 {
@@ -48,6 +49,11 @@ if (isset($_POST['backMtBut']) && $_POST['backMtBut'] == 'back')
 
 $mtj = new Maatje ('id', $_SESSION['maatje_id']);
 
+$arr1 = array (array (0 => 'werkzkd.id_maatje', 1 => $mtj->id));
+$arr2 = array (array (0 => 'person.achternaam', 1 => 'ASC'));
+$wkzList = new Werkzoekende_coll($arr1, $arr2);
+
+
 if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 {
 	$mtj_nw = clone $mtj;
@@ -77,15 +83,12 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 	}
 	$mtj_nw->omschrijving			= $_POST['omschrijving'];
 	$mtj_nw->functie				= $_POST['functie'];
+	$mtj_nw->actief_als				= $_POST['actief_als'];
 	
 	if ($mtj_nw != $mtj)
 	{
 		$mtj_nw->updateToDB();
-		// $mtj = clone $mtj_nw;
-		// unset($mtj_nw);
 	} 
-	
-	unset($_POST['updateMtBut']);
 	/* start de page opnieuw om een tweede update te voorkomen */
 	header("location: mut_maatje.php");
 	exit();	
@@ -205,9 +208,9 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
 						</div>
-						<input type="date" name="date_geboorte" class="form-control" value="<?php 
+						<input type="text" name="date_geboorte" class="form-control" value="<?php 
 						// error_log ($mtj->date_geboorte);
-						if ($mtj->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $mtj->date_geboorte))->format('d-m-Y'); ?>" maxlength="10">
+						if ($mtj->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $mtj->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -215,7 +218,6 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 						</div>
 						<input type="text" class="form-control" value="<?php if ($mtj->date_geboorte != '') echo calculateAge($mtj->date_geboorte); else echo ''; ?>" disabled>
 					</div>
-
 				</div>
 
 
@@ -232,6 +234,31 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 						</div>
 						<textarea type="textarea" name="functie" rows="5" class="form-control" value=""><?php echo $mtj->functie; ?></textarea>
 					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class=" input-group-text" style="width: 100%;">Actief als</span>
+						</div>
+						<select class="form-control"  name="actief_als" id="actief_als">
+							<option value="" <?php if($mtj->actief_als == '') echo 'selected'; ?>>Niet actief</option>
+							<option value="A" <?php if($mtj->actief_als == 'A') echo 'selected'; ?>>Maatje</option>
+							<option value="B" <?php if($mtj->actief_als == 'B') echo 'selected'; ?>>Jobgroupleider</option>
+							<option value="K" <?php if($mtj->actief_als == 'K') echo 'selected'; ?>>Maatje en jobgroupleider</option>
+						</select>
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class="input-group-text" style="width: 100%;">Maatje voor</span>
+						</div>
+						<?php
+						$wkzs = "";
+							foreach($wkzList->werkzoekendeColl as $wkz)
+							{
+								$wkzs .= $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . "\n";
+							}
+						?>
+						<textarea type="textarea" rows="5" class="form-control" disabled><?php echo $wkzs; ?></textarea>
+					</div>
+
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class="input-group-text" style="width: 100%;">Omschrijving</span>

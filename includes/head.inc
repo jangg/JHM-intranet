@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">       
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css' rel='stylesheet' type='text/css'> 
     <link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>        
- 
-    <link href="css/style.css" rel="stylesheet" type="text/css" /> 
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52110989-16"></script>
    <script>

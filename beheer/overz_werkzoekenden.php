@@ -2,6 +2,7 @@
 include_once('../config.php');
 include_once('../class/c_user.php');
 include_once('../class/c_werkzoekende_coll.php');
+include_once('../class/c_maatje.php');
 
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
@@ -55,18 +56,24 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 	}
 	// $acties .= '<i class="far fa-trash-alt ifont"></i>';
 	
+	if ($werkzoekende->id_maatje != '')
+	{
+		$mtj = new Maatje('id', $werkzoekende->id_maatje);
+		$maatje = $mtj->voornaam . ' ' . $mtj->tussenvoegsels . ' ' . $mtj->achternaam;
+	} else $maatje = '';
 	
 	$html .= '
-	<tr>
-		<td style="text-align: center;" class="p-1">' . sprintf('%04d', $werkzoekende->id) . '</td>
-		<td class="p-1">' . $werkzoekende->status . '</td>
-		<td class="p-1">' . $werkzoekende->voornaam . '</td>
-		<td class="p-1">' . $werkzoekende->tussenvoegsels . '</td>
-		<td class="p-1">' . $werkzoekende->achternaam . '</td>
-		<td class="p-1">' . $werkzoekende->emailadres . '</td>
-		<td class="p-1">' . $werkzoekende->datetime_created . '</td>
-		<td class="p-1">' . $werkzoekende->telefoonnr . '</td>
-		<td class="p-1">' . $acties . '</td>
+	<tr style="font-size: 0.9em;">
+		<td style="text-align: center;" class="p-0">' . sprintf('%04d', $werkzoekende->id) . '</td>
+		
+		<td class="text-center p-0">' . $werkzoekende->status . '</td>
+		<td class="p-0">' . $werkzoekende->achternaam . ', ' . $werkzoekende->voornaam . ' ' . $werkzoekende->tussenvoegsels . '</td>
+		<td class="p-0">' . $werkzoekende->emailadres . '</td>
+		<td class="p-0">' . $werkzoekende->datetime_created . '</td>
+		<td class="p-0">' . $werkzoekende->datetime_modified . '</td>
+		<td class="p-0">' . $werkzoekende->telefoonnr . '</td>
+		<td class="p-0">' . $maatje . '</td>
+		<td class="p-0">' . $acties . '</td>
 	</tr>';
 }
 ?>
@@ -104,22 +111,18 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<table class="table table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true"  data-page-size="20" data-page-list="20, 40, 60, 80" data-show-columns="true">
+					<table class="data-table table-striped" data-toggle="table" data-search="true" data-pagination="true"  data-page-size="20" data-page-list="20, 40, 60, 80" data-show-columns="true">
 					<!-- <table class="table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true" data-show-columns="true" data-page-size="15" data-page-list="15, 30, 60, 90"> -->
 					<thead class="thead-dark">
 					<tr>
-					<th data-sortable="true" data-field="id">id</th>
-					<th data-field="status" data-sortable="true">status</th>
-					<th data-field="voornaam" data-sortable="true">voornaam</th>
-					<th>tussenvoegsels</th>
-					<th data-field="achternaam" data-sortable="true">achternaam</th>
-					<th data-field="emailadres" data-sortable="true">emailadres</th>
-					<th data-field="datetime_created" data-sortable="true">datum</th>
-					<!-- <th data-field="straat" data-sortable="true">straat</th>
-					<th data-field="huisnummer" data-sortable="true">huisnr</th>
-					<th data-field="postcode" data-sortable="true">postcode</th>
-					<th data-field="woonplaats" data-sortable="true">woonplaats</th> -->
-					<th>telefoonnr</th>
+					<th data-sortable="true" data-field="id" data-visible="false">id</th>
+					<th class="text-center" data-field="status" data-sortable="true">status</th>
+					<th data-field="achternaam" data-sortable="true">naam</th>
+					<th data-field="emailadres" data-sortable="true" data-visible="false">emailadres</th>
+					<th data-field="datetime_created" data-sortable="true">datum gemaakt</th>
+					<th data-field="datetime_modified" data-sortable="true" data-visible="true">datum gewijzigd</th>				
+					<th data-visible="false">telefoonnr</th>
+					<th data-field="maatje" data-sortable="true" data-visible="true">maatje</th>
 					<th>acties</th>
 					</tr>
 					</thead>

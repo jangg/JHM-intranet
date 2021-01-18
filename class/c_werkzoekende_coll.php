@@ -36,6 +36,14 @@ class Werkzoekende_coll extends Person_coll {
 	    $this->query .= ';';
  	    // error_log($this->query);
     }
+	
+	protected function buildQueryAll () 
+	{
+		$this->query = 'SELECT werkzkd.*, person.* FROM werkzkd ';
+		$this->query .= 'INNER JOIN person ';
+		$this->query .= 'ON werkzkd.id_person = person.person_id ';
+		$this->query .= 'WHERE person.type = "wkz" ORDER BY werkzkd.id;';
+	}
     
 	protected function execQuery () {
 		global $connection;
@@ -58,5 +66,30 @@ class Werkzoekende_coll extends Person_coll {
 			  return FALSE;
 		}
 
+	}
+	
+	public function getAllWerkzoekenden()
+	{
+		$this->buildQueryAll();
+		$this->execQuery();
+		return TRUE;
+	}
+	
+		
+	public function wkzList ($mtj)
+	{
+		/* 
+		geeft lijst met wkz behorend bij maatje
+		*/
+		$wkzList = array ();
+		foreach ($this->werkzoekendeColl as $wkz)
+		{
+			/* zoek iedereen die maatje is */
+			if ($wkz->id_maatje == $mtj)
+			{
+				$wkzList[] = $wkz;
+			}
+		}
+		return $wkzList;
 	}
 }

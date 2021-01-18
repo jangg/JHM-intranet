@@ -4,6 +4,39 @@ function getMsgs ($number, $naam)
 {
 	$newsmsg = array();
 
+	$newsmsg[19] = '<h3 class="bluefont">Kort interview in het AD met Johan</h3>
+	<h5 class="bluefont">15-1-2021</h5>
+					<p>Afgelopen woensdag 13 januari stond er een interview met Johan Alebregtse in het AD over JobHulpMaatje en de nieuwe jobgroup die binnenkort start.</p>
+					<img src="img/AlebregtseAD.png" class="float-right" style="width: 100%; margin-bottom: 15px;">';	
+	
+	$newsmsg[18] = '<h3 class="bluefont">Posters voor Zoetermeer en omgeving</h3>
+	<h5 class="bluefont">15-1-2021</h5>
+					<p>In 2021 worden weer verschillende workshops voor werkzoekenden door JobHulpMaatje Zoetermeer georganiseerd. De eerste start online en we hopen dat het daarbij blijft.</p>
+					<p>De posters worden op A3 formaat geprint en op diverse plaatsen in de stad opgehangen. Als je ideeën hebt voor een goede plek, laat het dan weten aan <a href="mailto: flip@jhm-zoetermeer.nl">Flip</a>.</p>
+					<img src="img/JobHulpMaatjeposter.jpg" class="float-right" style="width: 100%; margin-bottom: 15px;">';	
+	
+	$newsmsg[17] = '<h3 class="bluefont">Maatjes online</h3>
+	<h5 class="bluefont">14-1-2021</h5>
+					<img src="img/IMG_0050.jpeg" class="float-right" style="width: 100%; margin-bottom: 15px;">
+					<p>We gaan nog eens proberen een maatjesavond te organiseren. Het lukte vorige maand niet om in persoon bij elkaar te komen, nu gaan we op maandagavond 25 januari een online meeting houden.</p>
+					<p>Dat vraagt natuurlijk enige voorbereiding. En bovendien ook wat aanpassingen van alle deelnemers. Het is online immers lastiger om elkaar even informeel te spreken of te groeten. Iets wat we zo gewend zijn maar wat nu 
+					al enige tijd niet kan.</p>
+					<p>We ontmoeten elkaar met behulp van Microsoft Teams, een programma waar de meesten van ons al wat ervaring mee hebben. Je kunt deelnemen met je PC, met je tablet en met je smartphone. Teams is gratis te gebruiken dus dat is geen probleem.<p>
+					<p>Binnenkort ontvang je meer informatie over wat je nodig hebt en wat je kunt verwachten. Als je eerder al vragen hebt, stel ze bijvoorkeur via het Forum (zie boven in de menubalk). Iedereen kan dan makkelijk de discussie volgen
+					 en er z\'n voordeel mee doen.</p>
+					<p>Bijgaande foto laat zien hoe het in goede tijden gaat. Hopelijk komen die snel weer terug!</p>
+					<p>Als je erbij bent, meld je aan in de presentielijst. Klik daarvoor op onderstaande knop.</p>
+					<p>Tot 25 januari!</p>
+					<p><a class="btn btn-primary" href="pages/presence_list200125.php" role="button">Meld je aan &raquo;</a></p>';
+
+	$newsmsg[16] = '<h3 class="bluefont">Online Jobgroup gaat van start</h3>
+	<h5 class="bluefont">11-1-2021</h5>
+					<img src="img/online workshops.png" class="float-right" style="width: 100%; margin-bottom: 15px;">
+					<p>Gedwongen door het Corona-virus wordt de eerste Jobgroup van dit jaar online gegeven. Hoewel we al eerder online-sessies 
+					hebben gehouden, is dit de eerste workshop die virtueel start,</p>
+					<p>Op vrijdag 22 januari \'s-ochtends starten Johan en Paula vanachter hun PC en worden in 7 sessies werkzoekenden geholpen bij het vinden van nieuw werk.</p>
+					<p>Er zijn nog enkele plaatsen open dus mocht je belangstellenden kennen, laat het dan weten.</p>';
+
 	$newsmsg[15] = '<h3 class="bluefont">Prettige kerstdagen en een goed 2021!!</h3>
 	<h5 class="bluefont">23-12-2020</h5>
 					<p>Dit bijzondere, bizarre jaar loopt ten einde. De kerstdagen staan voor de deur en voor velen van ons zijn ze anders dan we ooit hebben meegemaakt.

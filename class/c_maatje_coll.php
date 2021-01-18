@@ -1,6 +1,8 @@
 <?php
 include_once('c_person_coll.php');
 include_once ('c_maatje.php');
+include_once ('c_agendaitem_coll.php');
+include_once ('c_werkzoekende_coll.php');
 
 class Maatje_coll extends Person_coll {
 	
@@ -57,5 +59,52 @@ class Maatje_coll extends Person_coll {
 			  error_log('Connectie (person 1 in c_person_coll.php) met de database mislukt: ' . $e->getMessage());
 			  return FALSE;
 		}
+	}
+	
+	public function verjaardagenAgenda ()
+	{
+		$agendaitemColl = array ();
+		$date = new DateTime();
+		$todate = $date->format('-m-d');
+		foreach ($this->maatjeColl as $maatje)
+		{
+			$item = new Agendaitem ();
+			if ($maatje->date_geboorte != '')
+			{
+				if (substr($maatje->date_geboorte, 4,6) < $todate)
+					$item->datum = '2022' . substr($maatje->date_geboorte, 4,6);
+				else
+					$item->datum = '2021' . substr($maatje->date_geboorte, 4,6);
+				$item->titel = '<p style="color: #8d2e34"><img src="img/party-popper_1f389.png" width="10%"/>' . $maatje->voornaam . ' ' . $maatje->tussenvoegsels . ' ' . $maatje->achternaam . ' is jarig vandaag. Hoera!';
+				$item->titel .= '<img src="img/fireworks_1f386.png" width="10%"/></p>';
+				$item->begintijd = '';
+				$item->eindtijd = '';
+				$agendaitemColl[] = $item;
+			}
+		}
+		return $agendaitemColl;
+	}
+	
+	public function maatjesList ()
+	{
+		/* 
+		actief_als:
+			A = Als maatjes
+			B = als jobgroupleider
+			K = als zowel A als B
+		*/
+		$mtjList = array ();
+		$mtj = array();
+		foreach ($this->maatjeColl as $maatje)
+		{
+			/* zoek iedereen die maatje is */
+			if ($maatje->actief_als == 'A' || $maatje->actief_als == 'K')
+			{
+				$mtj[0] = $maatje->id;
+				$mtj[1] = $maatje->voornaam . ' ' . $maatje->tussenvoegsels . ' ' . $maatje->achternaam;
+				$mtjList[] = $mtj;
+			}
+		}
+		return $mtjList;
 	}
 }

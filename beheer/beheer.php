@@ -43,16 +43,16 @@ if (isset($_SESSION['userid']))
 			</div> -->
             <div class="row mt-4">
 				<div class="col-md-4 p-0 text-center">
-					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="overz_werkzoekenden.php">Overzicht werkzoekenden</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="aanmelding_wkz.php">Aanmelding werkzoekende</a></button>
+					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_werkzoekenden.php">Overzicht werkzoekenden</a></button>
+					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="aanmelding_wkz.php">Aanmelding werkzoekende</a></button>
 					<!-- <button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="intake.php">Intakeformulier</a></button> -->
 	            </div>
 				<div class="col-md-4 p-0 text-center">
-					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="#">Overzicht Jobgroups</a></button>
+					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="#">Overzicht Jobgroups</a></button>
 				</div>
 
 				<div class="col-md-4 p-0 text-center">
-					<button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="overz_maatjes.php">Overzicht maatjes</a></button>
+					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_maatjes.php">Overzicht maatjes</a></button>
 				</div>
             </div>
         </div>

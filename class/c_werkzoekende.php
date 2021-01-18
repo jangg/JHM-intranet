@@ -5,6 +5,7 @@ class Werkzoekende extends Person
 	protected $id;
 	protected $id_person;
 	protected $id_intakeform;
+	protected $id_maatje;
 	protected $situatie;
 	protected $opmerkingen;
 	protected $status;
@@ -24,6 +25,7 @@ class Werkzoekende extends Person
 		$this->id				= NULL;
 		$this->id_person		= NULL;
 		$this->id_intakeform	= NULL;
+		$this->id_maatje		= NULL;
 		$this->situatie			= '';
 		$this->opmerkingen		= '';
 		$this->status			= '000';
@@ -56,6 +58,7 @@ class Werkzoekende extends Person
 			$this->id				= $werkzoekenderow['id'];
 			$this->id_person		= $werkzoekenderow['id_person'];
 			$this->id_intakeform	= $werkzoekenderow['id_intakeform'];
+			$this->id_maatje		= $werkzoekenderow['id_maatje'];
 			$this->situatie			= $werkzoekenderow['situatie'];
 			$this->opmerkingen		= $werkzoekenderow['opmerkingen'];
 			$this->status			= $werkzoekenderow['status'];
@@ -77,7 +80,8 @@ class Werkzoekende extends Person
 	// 		$this->id				= '';
 	// 		$this->id_person		= '';
 	// 		$this->id_intakeform	= '';
-	// 		$this->situatie			= '';
+	// 		$this->id_maatje		= '';
+	//		$this->situatie			= '';
 	// 		$this->opmerkingen		= '';
 	// 		$this->status			= '000';
 	// 		$this->opties			= 0;
@@ -119,8 +123,9 @@ class Werkzoekende extends Person
 		print_r (parent::__toString());
 		return 
 			'$id				: ' . $this->id	. '<br/>' .
-			'$id_person			: ' . $this->id_person		. '<br/>' .
+			'$id_person			: ' . $this->id_person		. '<br/>' .			
 			'$id_intakeform		: ' . $this->id_intakeform	. '<br/>' .
+			'$id_maatje			: ' . $this->id_maatje		. '<br/>' .
 			'$situatie			: ' . $this->situatie		. '<br/>' .
 			'$opmerkingen		: ' . $this->opmerkingen		. '<br/>' .
 			'$status			: ' . $this->status		. '<br/>' .
@@ -150,6 +155,7 @@ class Werkzoekende extends Person
 						(	id			,
 							id_person   ,
 							id_intakeform,
+							id_maatje ,
 							situatie	,							
 							opmerkingen	,
 							status		,
@@ -168,6 +174,7 @@ class Werkzoekende extends Person
 							:id			,
 							:id_person	,
 							:id_intakeform ,
+							:id_maatje ,
 							:situatie	,		
 							:opmerkingen	,
 							:status		,
@@ -188,6 +195,7 @@ class Werkzoekende extends Person
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_intakeform"	, $this->id_intakeform, PDO::PARAM_STR);
+			$stmt->bindValue( ":id_maatje"		, $this->id_maatje, PDO::PARAM_STR);
 			$stmt->bindValue( ":situatie"		, htmlentities($this->situatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":opmerkingen"	, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":status"			, $this->status, PDO::PARAM_STR);
@@ -236,6 +244,28 @@ class Werkzoekende extends Person
 		return $Werkzoekenderow;	
 	}
 	
+	public function readAllWerkzoekendeWithId ($attr)
+	{
+		global $connection;
+		try
+		{
+			openDB();
+			$sql = "SELECT werkzkd.*, person.* FROM werkzkd JOIN person ON werkzkd.id_person = person.person_id WHERE werkzkd.id = :id LIMIT 1;";
+			
+			$stmt = $connection->prepare( $sql );
+			$stmt->bindValue( ":id", $attr, PDO::PARAM_STR);
+	//			echo $sql . '<br/>';
+			$stmt->execute();
+			$Werkzoekenderow = $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		catch (PDOException $e) 
+		{
+			  error_log('Connectie (Werkzoekende 2) met de database mislukt: ' . $e->getMessage());
+			  return FALSE;
+		}
+		return $Werkzoekenderow;	
+	}
+
 		
 	public function readWerkzoekendeWithEmailadres ($attr)
 	{
@@ -268,6 +298,7 @@ class Werkzoekende extends Person
 			$sql = "UPDATE werkzkd SET
 				id_person       = :id_person	,
 				id_intakeform   = :id_intakeform	,
+				id_maatje   	= :id_maatje	,
 				situatie		= :situatie	,
 				opmerkingen		= :opmerkingen,
 				status			= :status	,
@@ -286,6 +317,7 @@ class Werkzoekende extends Person
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_intakeform"	, $this->id_intakeform, PDO::PARAM_STR);
+			$stmt->bindValue( ":id_maatje"		, $this->id_maatje, PDO::PARAM_STR);
 			$stmt->bindValue( ":situatie"		, htmlentities($this->situatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":opmerkingen"	, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":status"			, $this->status, PDO::PARAM_STR);

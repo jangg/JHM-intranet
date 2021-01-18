@@ -24,6 +24,7 @@ $arr1 = array ();
 $arr2 = array (	array (0 => 'person.achternaam', 1 => 'ASC'));
 
 $maatjeColl = new Maatje_coll($arr1, $arr2);
+$wkzColl = new Werkzoekende_coll($arr1, $arr2);
 
 $html = '';
 // error_log ('Gelukt!');
@@ -32,27 +33,27 @@ foreach($maatjeColl->maatjeColl as $maatje)
 {
 	if ($maatje->emailadres == '')
 	{
-		$emailtxt = '<td class="p-1"></td>';
+		$emailtxt = '<td class="p-0"></td>';
 	} else
 	{
-		$emailtxt = '<td class="p-1"><a href="mailto:' . $maatje->emailadres . '"><i class="fa fa-envelope"></i></a> ' . $maatje->emailadres . '</td>';
+		$emailtxt = '<td class="p-0"><a href="mailto:' . $maatje->emailadres . '"><i class="fa fa-envelope"></i></a> ' . $maatje->emailadres . '</td>';
 	}
 
 	$user = new User ('id_person', $maatje->id_person);
+	
+	$wkzList = $wkzColl->wkzList($maatje->id);
 	$html .= '	
 	
-	<tr>
-		<td style="text-align: center;" class="p-1"><a href="mut_maatje.php?id=' . $maatje->id . '">' . $maatje->id . '</a></td>
-		<td class="p-1">' . $maatje->voornaam . '</td>
-		<td class="p-1">' . $maatje->tussenvoegsels . '</td>
-		<td class="p-1">' . $maatje->achternaam . '</td>
-		<td class="p-1">' . $user->activity . '</td>'
+	<tr style="font-size: 0.9em;">
+		<td style="text-align: center;" class="p-0"><a href="mut_maatje.php?id=' . $maatje->id . '"><i class="fas fa-user ifont"></i></a></td>
+		<td class="p-0">' . $maatje->achternaam . ', ' . $maatje->voornaam . ' ' . $maatje->tussenvoegsels . '</td>
+		<td class="p-0">' . $user->activity . '</td>
+		<td class="p-0">' . count($wkzList) . ' cliënten</td>'
 		.  $emailtxt .
-		'<td class="p-1">' . $maatje->straat . '</td>
-		<td class="p-1">' . $maatje->huisnummer . '</td>
-		<td class="p-1">' . $maatje->postcode . '</td>
-		<td class="p-1">' . $maatje->woonplaats . '</td>
-		<td class="p-1">' . $maatje->telefoonnr . '</td>
+		'<td class="p-0">' . $maatje->straat . ' ' . $maatje->huisnummer . '</td>
+		<td class="p-0">' . $maatje->postcode . '</td>
+		<td class="p-0">' . $maatje->woonplaats . '</td>
+		<td class="p-0">' . $maatje->telefoonnr . '</td>
 	</tr>';
 }
 ?>
@@ -66,6 +67,9 @@ foreach($maatjeColl->maatjeColl as $maatje)
 			.bootstrap-table .fixed-table-container .fixed-table-body {
 				height: auto;
 				}
+			i {
+				font-size: 1.3em;
+			}
 		</style>
 	</head>
 	<body style="background-color: #dddddd;">
@@ -94,17 +98,15 @@ foreach($maatjeColl->maatjeColl as $maatje)
 					<table class="table table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true"  data-page-size="20" data-page-list="20, 40, 60, 80" data-show-columns="true">
 					<thead class="thead-dark">
 					<tr>
-					<th data-sortable="true" data-field="id">id</th>
-					<th data-field="voornaam" data-sortable="true">voornaam</th>
-					<th>tussenvoegsels</th>
-					<th data-field="achternaam" data-sortable="true">achternaam</th>
+					<th></th>
+					<th data-field="achternaam" data-sortable="true">naam</th>
 					<th data-field="activity" data-sortable="true">laatst actief</th>
+					<th>maatje voor</th>
 					<th data-field="emailadres" data-sortable="true">emailadres</th>
-					<th data-field="straat" data-sortable="true">straat</th>
-					<th data-field="huisnummer" data-sortable="true">huisnr</th>
+					<th data-field="straat" data-sortable="true">adres</th>
 					<th data-field="postcode" data-sortable="true">postcode</th>
 					<th data-field="woonplaats" data-sortable="true">woonplaats</th>
-					<th data-field="telefoonnr" data-sortable="true">telefoonnr</th>
+					<th data-field="telefoonnr" data-sortable="false">telefoonnr</th>
 					</tr>
 					</thead>
 					<tbody>

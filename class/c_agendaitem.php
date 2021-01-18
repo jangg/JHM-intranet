@@ -172,15 +172,15 @@ class Agendaitem
 		{
 			openDB();
 			$sql = "UPDATE agendaitem SET
-			datum		 = :datum,
-			begintijd		  = :begintijd,
-			eindtijd	= :eindtijd,
-			titel		= :titel,
-			omschrijving		= :omschrijving,
-			locatie		= :locatie,
+			datum		 	= :datum,
+			begintijd		= :begintijd,
+			eindtijd		= :eindtijd,
+			titel			= :titel,
+			omschrijving	= :omschrijving,
+			locatie			= :locatie,
 			organisator		= :organisator,
-			picfile		= :picfile
-			WHERE id		 = :id";
+			picfile			= :picfile
+			WHERE id		= :id";
 			
 			
 			$stmt = $connection->prepare( $sql );
@@ -188,7 +188,7 @@ class Agendaitem
 			$stmt->bindValue( ":datum"			, $this->datum, PDO::PARAM_STR);
 			$stmt->bindValue( ":begintijd"		, $this->begintijd, PDO::PARAM_STR);
 			$stmt->bindValue( ":eindtijd"		, $this->eindtijd, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"	, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":locatie"		, htmlentities($this->locatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindValue( ":organisator"	, htmlentities($this->organisator, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);

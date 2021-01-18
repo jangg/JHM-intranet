@@ -4,7 +4,6 @@ class Intakeform
 	protected $id					;			
 	protected $id_werkzkd			;	
 	protected $roepnaam				;			
-	protected $gebdatum				;
 	protected $gebplaats			;			
 	protected $gebland				;			
 	protected $nationaliteit		;
@@ -45,7 +44,6 @@ class Intakeform
 		$this->id					= NULL;	
 		$this->id_werkzkd			= NULL;	
 		$this->roepnaam				= ''; 		
-		$this->gebdatum				= '';		
 		$this->gebplaats			= '';		
 		$this->gebland				= '';		
 		$this->nationaliteit		= '';		
@@ -97,7 +95,6 @@ class Intakeform
 			$this->id					= $intakeformrow['id'];
 			$this->id_werkzkd			= $intakeformrow['id_werkzkd'];
 			$this->roepnaam				= $intakeformrow['roepnaam'];
-			$this->gebdatum				= $intakeformrow['gebdatum'];
 			$this->gebplaats			= $intakeformrow['gebplaats'];
 			$this->gebland				= $intakeformrow['gebland'];
 			$this->nationaliteit		= $intakeformrow['nationaliteit'];
@@ -207,7 +204,6 @@ class Intakeform
 							id				,
 							id_werkzkd		,
 							roepnaam		,	
-							gebdatum		,	
 							gebplaats		,
 							gebland			,
 							nationaliteit	,
@@ -248,7 +244,6 @@ class Intakeform
 							:id				,
 							:id_werkzkd		,
 							:roepnaam		,
-							:gebdatum		,
 							:gebplaats		,
 							:gebland		,
 							:nationaliteit	,
@@ -291,7 +286,6 @@ class Intakeform
 			$stmt->bindvalue(":id"				, NULL, PDO::PARAM_STR);
 			$stmt->bindvalue(":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 			$stmt->bindvalue(":roepnaam"		, htmlentities($this->roepnaam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindvalue(":gebdatum"		, htmlentities($this->gebdatum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebplaats"		, htmlentities($this->gebplaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebland"			, htmlentities($this->gebland, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":nationaliteit"	, $this->nationaliteit, PDO::PARAM_STR);
@@ -349,7 +343,6 @@ class Intakeform
 
 			$sql = "UPDATE intakeform SET
 						roepnaam			= :roepnaam			,
-						gebdatum			= :gebdatum			,
 						gebplaats			= :gebplaats		,
 						gebland				= :gebland			,
 						nationaliteit		= :nationaliteit	,
@@ -389,7 +382,6 @@ class Intakeform
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindvalue(":id"				, $this->id, PDO::PARAM_STR);
 			$stmt->bindvalue(":roepnaam"		, htmlentities($this->roepnaam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindvalue(":gebdatum"		, htmlentities($this->gebdatum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebplaats"		, htmlentities($this->gebplaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebland"			, htmlentities($this->gebland, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":nationaliteit"	, $this->nationaliteit, PDO::PARAM_STR);

@@ -3,6 +3,18 @@ include_once('../config.php');
 include_once('../class/c_user.php');
 include_once('../class/c_werkzoekende.php');
 include_once('../class/c_processtap.php');
+include_once('../class/c_maatje_coll.php');
+
+function calculateAge($date)
+{
+	  //explode the date to get month, day and year
+	  $birthDate = explode("-", $date);
+	  //get age from date or birthdate
+	  $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md")
+		? ((date("Y") - $birthDate[0]) - 1)
+		: (date("Y") - $birthDate[0]));
+	  return $age;
+}
 
 $statusArray = array (
 	'---' => '',
@@ -86,9 +98,17 @@ if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 	$wkz_nw->emailadres				= $_POST['emailadres'];
 	$wkz_nw->telefoonnr				= $_POST['telefoonnr'];
 	$wkz_nw->link_linkedin			= $_POST['link_linkedin'];
-	$date = DateTime::createFromFormat('d-m-Y', $_POST['date_geboorte']);
-	if ($date)
-		$wkz_nw->date_geboorte		= $date->format('Y-m-d');
+	if ($_POST['date_geboorte'] != '')
+	{
+		if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['date_geboorte']) !== 0)
+		{
+			$date = DateTime::createFromFormat('d-m-Y', $_POST['date_geboorte']);
+			$wkz_nw->date_geboorte		= $date->format('Y-m-d');
+		} 
+	} else
+	{
+		$wkz_nw->date_geboorte		= '';
+	}
 	// $wkz_nw->picfile				= $_POST['picfile'];
 	if(isset($_POST['nnind'])) $wkz_nw->nnind = 'j'; else $wkz_nw->nnind = 'n';
 	$wkz_nw->startsituatie			= $_POST['startsituatie'];
@@ -98,6 +118,7 @@ if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 	$wkz_nw->instroomscore			= $_POST['instroomscore'];
 	$wkz_nw->uitstroomscore			= $_POST['uitstroomscore'];
 	$wkz_nw->soortwerk				= $_POST['soortwerk'];
+	$wkz_nw->id_maatje				= $_POST['id_maatje'];
 	$wkz_nw->toelichting			= $_POST['wztoelichting'];
 	
 	if ($wkz_nw != $wkz)
@@ -132,6 +153,18 @@ if (isset($_POST['savePsBut']) && $_POST['savePsBut'] == 'bewaar')
 	exit();	
 }
 
+$arr1 = array ();
+$arr2 = array ();
+$jhmz = new Maatje_coll ($arr1, $arr2);
+$maatjesLijst = $jhmz->maatjesList();
+$maatjesListHTML = '<option value="">---</option>';;
+// print_r($maatjesLijst);
+foreach ($maatjesLijst as $maatje)
+{
+	if($wkz->id_maatje == $maatje[0]) $sel = 'selected'; else $sel = '';
+	$maatjesListHTML .= '<option value="' . $maatje[0] . '" ' . $sel . '>' . $maatje[1] . '</option>';
+}
+
 /* Haal alle stappen op */
 $sql = 'SELECT processtap.* FROM processtap WHERE processtap.id_werkzkd = ' . $_SESSION['werkzkd_id'] . ' ORDER BY processtap.dt_stap DESC;';
 $psList = array();
@@ -161,7 +194,7 @@ foreach ($psList as $ps)
 	$ps_html .= 
 		'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $ps->dt_stap . '</div>
 		<div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $user->username . '</div>
-		<div class="input-group-text mb-1" style="font-size: .8em; display: inline-block;">' .  $wkz->status . ' - ' . (isset($statusArray[$wkz->status]) ? $statusArray[$wkz->status] : 'onbekend') . '</div></div>';
+		<div class="input-group-text mb-1" style="font-size: .8em; display: inline-block;">' .  $ps->wzstatus . ' - ' . (isset($statusArray[$ps->wzstatus]) ? $statusArray[$ps->wzstatus] : 'onbekend') . '</div></div>';
 	if ($ps->toelichting != '')
 	{
 		$ps_html .=
@@ -200,9 +233,25 @@ foreach ($psList as $ps)
 				flex: 0 0 auto;
 			  }
 			}
+			input.invalid, textarea.invalid{
+				border: 2px solid red;
+			}
+			
+			input.valid, textarea.valid{
+				border: 2px solid green;
+			}
 		</style>
 		<script>
-		$('input[type="date"]').val('dd-MM-yyyy');
+		$(document).ready(function() {
+			$('#date_geboorte').on('input', function() {
+				var input=$(this);
+				var datum= input.val();
+				if (datum.substr(0, 2) > 0 && datum.substr(0, 2) < 32 && datum.substr(3, 2) > 0 && datum.substr(3, 2) < 13 && datum.substr(6, 4) > 1940 && datum.substr(6, 4) < 2004 && datum.substr(2, 1) == '-' && datum.substr(5, 1) == '-')
+					{input.removeClass("invalid").addClass("valid");}
+				else
+					{input.removeClass("valid").addClass("invalid");}
+			});
+		});
 		</script>
 	</head>
 	<body style="background-color: #dddddd;">
@@ -324,7 +373,15 @@ foreach ($psList as $ps)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
 						</div>
-						<input type="date" name="date_geboorte" class="form-control" value="<?php if ($wkz->date_geboorte != '') echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" placeholder="dd-mm-jjjj" maxlength="10">
+						<input type="text" name="date_geboorte" id="date_geboorte" class="form-control" value="<?php 
+						// error_log ($wkz->date_geboorte);
+						if ($wkz->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class=" input-group-text" style="width: 100%;">Leeftijd</span>
+						</div>
+						<input type="text" class="form-control" value="<?php if ($wkz->date_geboorte != '') echo calculateAge($wkz->date_geboorte); else echo ''; ?>" disabled>
 					</div>
 
 				</div>
@@ -390,6 +447,8 @@ foreach ($psList as $ps)
 							<option value="" <?php if($wkz->opleiding == '') echo 'selected'; ?>>---</option>
 							<option value="GO" <?php if($wkz->opleiding == 'GO') echo 'selected'; ?>>Geen opleiding</option>
 							<option value="VMBO" <?php if($wkz->opleiding == 'VMBO/Mavo') echo 'selected'; ?>>VMBO/Mavo</option>
+							<option value="Havo" <?php if($wkz->opleiding == 'Havo') echo 'selected'; ?>>Havo</option>
+							<option value="VWO" <?php if($wkz->opleiding == 'VWO') echo 'selected'; ?>>VWO</option>
 							<option value="MBO1" <?php if($wkz->opleiding == 'MBO1') echo 'selected'; ?>>MBO 1/2</option>
 							<option value="MBO2" <?php if($wkz->opleiding == 'MBO2') echo 'selected'; ?>>MBO 3/4</option>
 							<option value="HB1O" <?php if($wkz->opleiding == 'HBO1') echo 'selected'; ?>>HBO bachelor</option>
@@ -398,7 +457,6 @@ foreach ($psList as $ps)
 							<option value="WO1" <?php if($wkz->opleiding == 'WO1') echo 'selected'; ?>>WO bachelor</option>
 							<option value="WO2" <?php if($wkz->opleiding == 'WO2') echo 'selected'; ?>>WO master</option>
 							<option value="WO3" <?php if($wkz->opleiding == 'WO3') echo 'selected'; ?>>WO post</option>
-
 						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
@@ -424,6 +482,14 @@ foreach ($psList as $ps)
 							<span class="input-group-text" style="width: 100%;">Soort werk</span>
 						</div>
 						<input type="text" name="soortwerk" class="form-control" value="<?php echo $wkz->soortwerk; ?>">
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+							<span class="input-group-text" style="width: 100%;">Maatje</span>
+						</div>
+						<select class="form-control"  name="id_maatje">
+							<?php echo $maatjesListHTML; ?>
+						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
