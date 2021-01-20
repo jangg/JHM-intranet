@@ -144,25 +144,25 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
-							<span class="input-group-text" style="width: 100%;">Voornaam</span>
+							<span class="input-group-text text-left text-wrap" style="width: 100%;">Voornaam</span>
 						</div>
 						<input type="text" name="voornaam" class="form-control" value="<?php echo $wkz->voornaam; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
-							  <span class=" input-group-text" style="width: 100%;">Tussenvoegsels</span>
+							  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Tussenvoegsels</span>
 						</div>
 						<input type="text" name="tussenvoegsels" class="form-control" value="<?php echo $wkz->tussenvoegsels; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
-							<span class="input-group-text" style="width: 100%;">Achternaam</span>
+							<span class="input-group-text text-left text-wrap" style="width: 100%;">Achternaam</span>
 						</div>
 						<input type="text" name="achternaam" class="form-control" value="<?php echo $wkz->achternaam; ?>" required>
 					</div>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
-							<span class=" input-group-text" style="width: 100%;">M/V/G</span>
+							<span class=" input-group-text text-left text-wrap" style="width: 100%;">M/V/G</span>
 						</div>
 						<select class="form-control"  name="geslacht" id="geslacht">
 							<option value="" <?php if($wkz->geslacht == '') echo 'selected'; ?>>---</option>							
@@ -173,82 +173,82 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					</div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Roepnaam</span>
+						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Roepnaam</span>
 					  </div>
 					  <input type="text" name="roepnaam" class="form-control" value="<?php echo $intakeform->roepnaam; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Straat</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Straat</span>
 					  </div>
 					  <input type="text" name="straat" class="form-control" value="<?php echo $wkz->straat; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Huisnummer</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Huisnummer</span>
 					  </div>
 					  <input type="text" name="huisnummer" class="form-control" value="<?php echo $wkz->huisnummer; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Postcode</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Postcode</span>
 					  </div>
 					  <input type="text" name="postcode" class="form-control"  maxlength="7" value="<?php echo $wkz->postcode; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Woonplaats</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Woonplaats</span>
 					  </div>
 					  <input type="text" name="woonplaats" class="form-control" value="<?php echo $wkz->woonplaats; ?>" required>
 				  </div>
 			
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Emailadres</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Emailadres</span>
 					  </div>
 					  <input type="email" name="emailadres" class="form-control" value="<?php echo $wkz->emailadres; ?>" disabled>
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Telefoonnummer</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Telefoonnummer</span>
 					  </div>
 					  <input type="tel" name="telefoonnr" class="form-control"  maxlength="11" value="<?php echo $wkz->telefoonnr; ?>" required>
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Geboortedatum</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Geboortedatum</span>
 					  </div>
 					  <input type="text" name="gebdatum" id="gebdatum" class="form-control" value="<?php 
 					  if ($wkz->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Geboorteplaats</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Geboorteplaats</span>
 					  </div>
 					  <input type="text" name="gebplaats" class="form-control" value="<?php echo $intakeform->gebplaats; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Geboorteland</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Geboorteland</span>
 					  </div>
 					  <input type="text" name="gebland" class="form-control" value="<?php echo $intakeform->gebland; ?>">
 				  </div>
 				  
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">Nationaliteit</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Nationaliteit</span>
 					  </div>
 					  <input type="text" name="nationaliteit" class="form-control"  maxlength="3" value="<?php echo $intakeform->nationaliteit; ?>">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Legitimatie gecheckt?</span>
+						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Legitimatie gecheckt?</span>
 					  </div>
 					  <input type="checkbox" name="legitimatieind" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->legitimatieind == 'j') echo ' checked'; ?>>				
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-						  <span class=" input-group-text" style="width: 100%;">URL LinkedIn</span>
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">URL LinkedIn</span>
 					  </div>
 					  <input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>">
 					  	<?php if ($wkz->link_linkedin != ''): ?>
@@ -268,19 +268,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Situatie</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Situatie</span>
 					</div>
 					<textarea type="text" name="situatie" class="form-control" rows="8" disabled><?php echo $wkz->situatie; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Opmerkingen</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Opmerkingen</span>
 					</div>
 					<textarea type="text" name="opmerkingen" class="form-control" rows="8" disabled><?php echo $wkz->opmerkingen; ?></textarea>				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Opties</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Opties</span>
 					</div>
 					<div class="pl-3" style="font-size: .9em;">
 						<div class="form-check">
@@ -319,7 +319,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Echtelijke staat</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Echtelijke staat</span>
 					</div>
 					<select class="form-control"  name="relatie">
 						<option value="" <?php if($intakeform->relatie == '') echo 'selected'; ?>>---</option>
@@ -332,13 +332,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Aantal volwassenen/kinderen</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Aantal volwassenen/kinderen</span>
 					</div>
 					<input type="text" name="volw_kind" class="form-control" value="<?php echo $intakeform->volw_kind; ?>" maxlength="120">				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Opleiding/beroep partner (indien relevant)</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Opleiding/beroep partner (indien relevant)</span>
 					</div>
 					<input type="text" name="partner_beroep" class="form-control" value="<?php echo $intakeform->partner_beroep; ?>" maxlength="120">
 				</div>
@@ -355,7 +355,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Wie heeft de werkzoekende aangemeld?</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Wie heeft de werkzoekende aangemeld?</span>
 					</div>
 					<select class="form-control"  name="aanmelding">
 						<option value="" 	<?php if($intakeform->aanmelding == '') echo 'selected'; ?>>---</option>
@@ -366,7 +366,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Huidige regeling</span>
+						<div class=" input-group-text text-left text-wrap" style="width: 100%;">In welke situatie/regeling zit werkzoekende momenteel?</div>
 					</div>
 					<select class="form-control"  name="regeling">
 						<option value="" 	<?php if($intakeform->regeling == '') 	  echo 'selected'; ?>>---</option>
@@ -380,37 +380,37 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Uitdagingen</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Waar loopt werkzoekende tegenaan in huidige situatie/zoektocht naar (ander) werk?</span>
 					</div>
 					<textarea type="text" name="uitdagingen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->uitdagingen; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Beperkingen</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is er sprake van iets waardoor JHM niet zou kunnen helpen? (bv. alcohol, drugs, psychische problemen etc.)</span>
 					</div>
 					<textarea type="text" name="beperking" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->beperking; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Motivatie</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Motivatie werkzoekende</span>
 					</div>
 					<textarea type="text" name="motivatie" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->motivatie; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Aanvullende eisen en welke</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">In geval van een uitkering of bijstand: wordt voldaan aan de sollicitatie-eis van de uitkerende instantie?</span>
 					</div>
 					<textarea type="text" name="eisen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->eisen; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Andere netwerken en hulpverlening</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Welk netwerk of welke hulpverlening is/was al aanwezig?</span>
 					</div>
 					<textarea type="text" name="netwerken" class="form-control" rows="4" maxlength="180"><?php echo $intakeform->netwerken; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Is andere hulp gewenst? Zo ja, welke?</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is andere hulp gewenst? Zo ja, welke?</span>
 					</div>
 					<textarea type="text" name="andere_hulp" class="form-control" rows="4" maxlength="180"><?php echo $intakeform->andere_hulp; ?></textarea>
 				</div>
@@ -427,13 +427,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 				  	<div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text" style="width: 100%;">Recent CV aanwezig?</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Recent CV aanwezig?</span>
 				  	</div>
 				  	<input type="checkbox" name="CVind" class="form-control" value="j"  style="margin-left: 15px;" <?php if($intakeform->CVind == 'j') echo ' checked'; ?>>				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Hoogst genoten opleiding</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Hoogst genoten opleiding</span>
 					</div>
 					<select class="form-control"  name="opleiding" id="opleiding">
 						<option value="" <?php if($wkz->opleiding == '') echo 'selected'; ?>>---</option>
@@ -453,20 +453,20 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Diploma behaald in</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Diploma behaald in</span>
 					</div>
 					<input type="text" name="diploma" class="form-control" value="<?php echo $intakeform->diploma ?>" maxlength="120">
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Tijd en middelen voor studie?</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is er bereidheid om tijd en/of middelen te steken in een aanvullende opleiding of stage? Zijn er beperkende factoren?</span>
 					</div>
 					<textarea type="text" name="studie" class="form-control" rows="4" maxlength="200"><?php echo $intakeform->studie; ?></textarea>
 				</div>
 	
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Werkervaring</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Werkervaring (evt. zie CV en/of LinkedIn)</span>
 					</div>
 					<textarea type="text" name="werkervaring" class="form-control" rows="4" maxlength="200"><?php echo $intakeform->werkervaring; ?></textarea>
 				</div>
@@ -483,19 +483,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text" style="width: 100%;">Wat voor werk is gewenst?</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">In welke richting wil de werkzoekende betaald werk vinden?</span>
 					  </div>
 					  <textarea type="text" name="werk_gewenst" class="form-control" rows="4"><?php echo $intakeform->werk_gewenst; ?></textarea>				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text" style="width: 100%;">Zijn er beperkingen/voorwaarden?</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Zijn er sociale of medische beperkingen? (bv. arbeidsongeschiktheid, laaggeletterdheid, autisme, aphasie etc.)</span>
 					  </div>
 					  <textarea type="text" name="voorwaarden" class="form-control" rows="4"><?php echo $intakeform->voorwaarden; ?></textarea>				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-					<span class="input-group-text" style="width: 100%;">Spreekt Nederlands</span>
+					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing van de Nederlandse taal</span>
 					</div>
 					<div class="pl-3">
 						<div class="form-check">
@@ -514,19 +514,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text" style="width: 100%;">Maximale reistijd</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Maximale reistijd</span>
 					  </div>
 					  <input type="text" name="reistijd" class="form-control" value="<?php echo $intakeform->reistijd; ?>" maxlength="120">				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text" style="width: 100%;">Beschikbaar vervoer</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Beschikbaar vervoer</span>
 					  </div>
 					  <input type="text" name="vervoer" class="form-control" value="<?php echo $intakeform->vervoer; ?>" maxlength="120">				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Verdere bijzonderheden</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Verdere bijzonderheden</span>
 					</div>
 					<textarea type="text" name="werkbijzh" class="form-control" rows="4"><?php echo $intakeform->werkbijzh; ?></textarea>
 				</div>
@@ -543,31 +543,31 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text" style="width: 100%;">Overige opmerkingen</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Overige opmerkingen</span>
 					</div>
 					<textarea type="text" name="overige_opm" class="form-control" rows="8"><?php echo $intakeform->overige_opm; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Besproken Missie & Visie JHM Zoetermeer</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken Missie & Visie JHM Zoetermeer</span>
 					</div>
 					<input type="checkbox" name="besprmis" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprmis == 'j') echo ' checked'; ?>>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Besproken taken maatje</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken taken maatje</span>
 					</div>
 					<input type="checkbox" name="besprtkn" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprtkn == 'j') echo ' checked'; ?>>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Besproken verantwoordelijkheden werkzoekende</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken verantwoordelijkheden werkzoekende</span>
 					</div>
 					<input type="checkbox" name="besprvwk" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprvwk == 'j') echo ' checked'; ?>>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class="input-group-text" style="width: 100%;">Besproken privacy verklaring</span>
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken privacy verklaring</span>
 					</div>
 					<input type="checkbox" name="besprprv" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprprv == 'j') echo ' checked'; ?>>
 				</div>
