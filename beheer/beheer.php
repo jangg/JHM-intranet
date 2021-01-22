@@ -34,7 +34,7 @@ if (isset($_SESSION['userid']))
 		</div>
 		<div class="container"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
-				<h1 class="mx-auto text-capitalize">JHM Zoetermeer beheer</h1>
+				<h1 class="mx-auto">JHM Zoetermeer doet de WAS</h1>
 			</div>
 		</div>
         <div class="container">

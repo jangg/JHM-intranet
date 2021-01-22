@@ -44,10 +44,10 @@
 				<li class="nav-item <?php if (substr(basename($_SERVER['PHP_SELF']), 7) == '/beheer') echo 'active'; ?>">
 					<?php
 					if (!isset($curr_user) || $curr_user->authLevel() <= '5')
-					echo '<a class="nav-link disabled" href="#">Beheer</a>';
+					echo '<a class="nav-link disabled" href="#">de WAS</a>';
 					else {
 						if ($curr_user->authLevel() >= '6')
-						echo '<a class="nav-link" href="/beheer/beheer.php">Beheer</a>';
+						echo '<a class="nav-link" href="/beheer/beheer.php">de WAS</a>';
 					}
 					?>
 				</li>

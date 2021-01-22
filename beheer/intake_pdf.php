@@ -223,9 +223,11 @@ $html =
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
 <tr><td>Wie heeft de werkzoekende aangemeld?</td><td>:</td><td>' . chkaanmelding($intakeform->aanmelding) . '</td></tr>
+<tr><td>Hoe is werkzoekende bij JobHulpMaatje terechtgekomen?</td><td>:</td><td>' . $intakeform->bron . '</td></tr>
 <tr><td>Huidige regeling</td><td>:</td><td>' . chkregeling($intakeform->regeling) . '</td></tr>
 <tr><td>Uitdagingen</td><td>:</td><td>' . $intakeform->uitdagingen . '</td></tr>
 <tr><td>Beperkingen</td><td>:</td><td>' . $intakeform->beperking . '</td></tr>
+<tr><td>Redenen voor hulpaanvraag</td><td>:</td><td>' . $intakeform->redenen . '</td></tr>
 <tr><td>Motivatie</td><td>:</td><td>' . $intakeform->motivatie . '</td></tr>
 <tr><td>Aanvullende eisen en welke</td><td>:</td><td>' . $intakeform->eisen . '</td></tr>
 <tr><td>Andere netwerken en hulpverlening</td><td>:</td><td>' . $intakeform->netwerken . '</td></tr>
@@ -247,6 +249,7 @@ $html =
 <tr><td>Wat voor werk is gewenst?</td><td>:</td><td>' . $intakeform->werk_gewenst . '</td></tr>
 <tr><td>Zijn er beperkingen/voorwaarden?</td><td>:</td><td>' . $intakeform->voorwaarden . '</td></tr>
 <tr><td>Spreekt Nederlands ...</td><td>:</td><td>' . chktaalbeh($intakeform->taalbeh) . '</td></tr>
+<tr><td>Schrijft Nederlands ...</td><td>:</td><td>' . chktaalbeh($intakeform->taalbeh_schr) . '</td></tr>
 <tr><td>Maximale reistijd</td><td>:</td><td>' . $intakeform->reistijd . '</td></tr>
 <tr><td>Beschikbaar vervoer</td><td>:</td><td>' . $intakeform->vervoer . '</td></tr>
 <tr><td>Verdere bijzonderheden</td><td>:</td><td>' . $intakeform->werkbijzh . '</td></tr>
@@ -259,6 +262,9 @@ $html =
 <tr><td>Besproken taken maatje</td><td>:</td><td>' . ($intakeform->besprtkn == 'j'?'Ja':'Nee') . '</td></tr>
 <tr><td>Besproken verantwoordelijkheden werkzoekende</td><td>:</td><td>' . ($intakeform->besprvwk == 'j'?'Ja':'Nee') . '</td></tr>
 <tr><td>Besproken privacy verklaring</td><td>:</td><td>' . ($intakeform->besprprv == 'j'?'Ja':'Nee') . '</td></tr>
+<tr><td>Besproken statiegeldregeling studieboeken (€25,=)</td><td>:</td><td>' . ($intakeform->besprstatgeld == 'j'?'Ja':'Nee') . '</td></tr>
+<tr><td>Besproken toesturen kopie nieuwe arbeidsovereenkomst</td><td>:</td><td>' . ($intakeform->besprkopie_ao == 'j'?'Ja':'Nee') . '</td></tr>
+<tr><td>Besproken vrijwillige bijdrage</td><td>:</td><td>' . ($intakeform->besprvrijwbijd == 'j'?'Ja':'Nee') . '</td></tr>
 </table>
 <h4 style="border-top: 2px solid black;">Akkoord en ondertekening</h4>
 <table>
@@ -267,6 +273,9 @@ $html =
 <tr><td>Plaats</td><td>:</td><td>' . $intakeform->akkoord_plaats . '</td></tr>
 <tr><td>Naam</td><td>:</td><td>' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</td></tr>
 <tr><td>Ondertekening</td><td>:</td><td>' . $intakeform->akkoord_handtek . '</td></tr>
+<tr><td>Privacy verklaring<br/></td><td>:</td><td>
+Door ondertekening gaat u akkoord met de inhoud én met de opslag en het gebruik van bovenstaande gegevens en de tijdens het begeleidingstraject verzamelde gegevens. JobHulpMaatje Zoetermeer verplicht zich om zorgvuldig om te gaan met alle gegevens die we van u ontvangen. We bewaren die gegevens tot maximaal 6 maanden na afronding van het traject; daarna zullen de gegevens worden verwijderd. JobHulpMaatje Zoetermeer aanvaart geen enkele aansprakelijkheid indien derden op illegale wijze deze gegevens hebben verkregen en/of gebruikt.
+</td></tr>
 </table>
 ';
 // Print text using writeHTMLCell()

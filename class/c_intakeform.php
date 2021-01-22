@@ -12,9 +12,11 @@ class Intakeform
 	protected $volw_kind			;			
 	protected $partner_beroep		;		
 	protected $aanmelding			;
+	protected $bron					;
 	protected $regeling				;	
 	protected $uitdagingen 			;			
-	protected $beperking			;			
+	protected $beperking			;
+	protected $redenen				;			
 	protected $motivatie			;			
 	protected $eisen				;			
 	protected $netwerken			;		
@@ -25,7 +27,8 @@ class Intakeform
 	protected $werkervaring			;
 	protected $werk_gewenst			;		
 	protected $voorwaarden			;	
-	protected $taalbeh				;	
+	protected $taalbeh				;
+	protected $taalbeh_schr			;	
 	protected $reistijd				;			
 	protected $vervoer				;			
 	protected $werkbijzh			;		
@@ -33,51 +36,71 @@ class Intakeform
 	protected $besprmis				;
 	protected $besprtkn				;
 	protected $besprvwk				;
-	protected $besprprv				;		
+	protected $besprprv				;
+	protected $besprstatgeld		;
+	protected $besprkopie_ao		;
+	protected $besprvrijwbijd		;		
 	protected $akkoord_datum		;
 	protected $akkoord_plaats		;		
 	protected $akkoord_naam			;	
 	protected $akkoord_handtek		;
+	protected $advjobgroup			;
+	protected $advmaatje			;
+	protected $advnietontv			;
+	protected $advopmerkingen		;
+	protected $advverwdatum			;
 		
 	public function __construct () 
 	{
-		$this->id					= NULL;	
-		$this->id_werkzkd			= NULL;	
-		$this->roepnaam				= ''; 		
-		$this->gebplaats			= '';		
-		$this->gebland				= '';		
-		$this->nationaliteit		= '';		
-		$this->legitimatieind		= '';		
-		$this->relatie				= '';		
-		$this->volw_kind			= '';		
-		$this->partner_beroep		= '';		
-		$this->aanmelding			= '';		
-		$this->regeling				= '';		
-		$this->uitdagingen			= '';		
-		$this->beperking			= '';		
-		$this->motivatie			= '';		
-		$this->eisen				= '';		
-		$this->netwerken			= '';		
-		$this->andere_hulp			= '';		
-		$this->CVind				= '';		
-		$this->diploma				= '';		
-		$this->studie				= '';		
-		$this->werkervaring			= '';		
-		$this->werk_gewenst			= '';		
-		$this->voorwaarden			= '';		
-		$this->taalbeh				= '';		
-		$this->reistijd				= '';		
-		$this->vervoer				= '';		
-		$this->werkbijzh			= '';		
+		$this->id					= NULL;
+		$this->id_werkzkd			= NULL;
+		$this->roepnaam				= '';
+		$this->gebplaats			= '';
+		$this->gebland				= '';
+		$this->nationaliteit		= '';
+		$this->legitimatieind		= '';
+		$this->relatie				= '';
+		$this->volw_kind			= '';
+		$this->partner_beroep		= '';
+		$this->aanmelding			= '';
+		$this->bron					= '';
+		$this->regeling				= '';
+		$this->uitdagingen 			= '';
+		$this->beperking			= '';
+		$this->redenen				= '';
+		$this->motivatie			= '';
+		$this->eisen				= '';
+		$this->netwerken			= '';
+		$this->andere_hulp			= '';
+		$this->CVind				= '';
+		$this->diploma				= '';
+		$this->studie				= '';
+		$this->werkervaring			= '';
+		$this->werk_gewenst			= '';
+		$this->voorwaarden			= '';
+		$this->taalbeh				= '';
+		$this->taalbeh_schr			= '';
+		$this->reistijd				= '';
+		$this->vervoer				= '';
+		$this->werkbijzh			= '';
 		$this->overige_opm			= '';
 		$this->besprmis				= '';
 		$this->besprtkn				= '';
 		$this->besprvwk				= '';
-		$this->besprprv				= '';		
-		$this->akkoord_datum		= '';		
-		$this->akkoord_plaats		= '';		
-		$this->akkoord_naam			= '';		
+		$this->besprprv				= '';
+		$this->besprstatgeld		= '';
+		$this->besprkopie_ao		= '';
+		$this->besprvrijwbijd		= '';
+		$this->akkoord_datum		= '';
+		$this->akkoord_plaats		= '';
+		$this->akkoord_naam			= '';
 		$this->akkoord_handtek		= '';
+		$this->advjobgroup			= '';
+		$this->advmaatje			= '';
+		$this->advnietontv			= '';
+		$this->advopmerkingen			= '';
+		$this->advverwdatum			= '';	
+		
 		$a = func_get_args(); 
 		$i = func_num_args(); 
 		if (method_exists($this,$f='__construct'.$i)) 
@@ -103,9 +126,11 @@ class Intakeform
 			$this->volw_kind			= $intakeformrow['volw_kind'];
 			$this->partner_beroep		= $intakeformrow['partner_beroep'];
 			$this->aanmelding			= $intakeformrow['aanmelding'];
+			$this->bron					= $intakeformrow['bron'];
 			$this->regeling				= $intakeformrow['regeling'];
 			$this->uitdagingen 			= $intakeformrow['uitdagingen'];
 			$this->beperking			= $intakeformrow['beperking'];
+			$this->redenen				= $intakeformrow['redenen'];
 			$this->motivatie			= $intakeformrow['motivatie'];
 			$this->eisen				= $intakeformrow['eisen'];
 			$this->netwerken			= $intakeformrow['netwerken'];
@@ -117,6 +142,7 @@ class Intakeform
 			$this->werk_gewenst			= $intakeformrow['werk_gewenst'];
 			$this->voorwaarden			= $intakeformrow['voorwaarden'];
 			$this->taalbeh				= $intakeformrow['taalbeh'];
+			$this->taalbeh_schr			= $intakeformrow['taalbeh_schr'];
 			$this->reistijd				= $intakeformrow['reistijd'];
 			$this->vervoer				= $intakeformrow['vervoer'];
 			$this->werkbijzh			= $intakeformrow['werkbijzh'];
@@ -125,10 +151,18 @@ class Intakeform
 			$this->besprtkn				= $intakeformrow['besprtkn'];
 			$this->besprvwk				= $intakeformrow['besprvwk'];
 			$this->besprprv				= $intakeformrow['besprprv'];
+			$this->besprstatgeld		= $intakeformrow['besprstatgeld'];
+			$this->besprkopie_ao		= $intakeformrow['besprkopie_ao'];
+			$this->besprvrijwbijd		= $intakeformrow['besprvrijwbijd'];
 			$this->akkoord_datum		= $intakeformrow['akkoord_datum'];
 			$this->akkoord_plaats		= $intakeformrow['akkoord_plaats'];
 			$this->akkoord_naam			= $intakeformrow['akkoord_naam'];
 			$this->akkoord_handtek		= $intakeformrow['akkoord_handtek'];
+			$this->advjobgroup			= $intakeformrow['advjobgroup'];
+			$this->advmaatje			= $intakeformrow['advmaatje'];
+			$this->advnietontv			= $intakeformrow['advnietontv'];
+			$this->advopmerkingen		= $intakeformrow['advopmerkingen'];
+			$this->advverwdatum			= $intakeformrow['advverwdatum'];
 		}
 	}
 
@@ -212,9 +246,11 @@ class Intakeform
 							volw_kind		,
 							partner_beroep	,
 							aanmelding		,
+							bron			,	
 							regeling		,	
-							uitdagingen		,
+							uitdagingen 	,	
 							beperking		,
+							redenen			,
 							motivatie		,
 							eisen			,
 							netwerken		,
@@ -226,58 +262,78 @@ class Intakeform
 							werk_gewenst	,	
 							voorwaarden		,
 							taalbeh			,
+							taalbeh_schr	,	
 							reistijd		,	
 							vervoer			,
 							werkbijzh		,
 							overige_opm		,
-							besprmis		,
-							besprtkn		,
-							besprvwk		,
+							besprmis		,	
+							besprtkn		,	
+							besprvwk		,	
 							besprprv		,	
+							besprstatgeld	,
+							besprkopie_ao	,
+							besprvrijwbijd	,
 							akkoord_datum	,
 							akkoord_plaats	,
 							akkoord_naam	,	
-							akkoord_handtek
+							akkoord_handtek	,
+							advjobgroup		,
+							advmaatje		,
+							advnietontv		,
+							advopmerkingen		,
+							advverwdatum
 						)
 					VALUES 
 						(
 							:id				,
 							:id_werkzkd		,
-							:roepnaam		,
+							:roepnaam		,	
 							:gebplaats		,
-							:gebland		,
+							:gebland			,
 							:nationaliteit	,
 							:legitimatieind	,
-							:relatie		,
+							:relatie			,
 							:volw_kind		,
 							:partner_beroep	,
 							:aanmelding		,
-							:regeling		,
-							:uitdagingen	,
+							:bron			,	
+							:regeling		,	
+							:uitdagingen 	,	
 							:beperking		,
+							:redenen			,
 							:motivatie		,
 							:eisen			,
 							:netwerken		,
-							:andere_hulp	,
+							:andere_hulp		,
 							:CVind			,
-							:diploma		,
+							:diploma			,
 							:studie			,
-							:werkervaring	,
-							:werk_gewenst	,
-							:voorwaarden	,
-							:taalbeh		,
-							:reistijd		,
-							:vervoer		,
+							:werkervaring	,	
+							:werk_gewenst	,	
+							:voorwaarden		,
+							:taalbeh			,
+							:taalbeh_schr	,	
+							:reistijd		,	
+							:vervoer			,
 							:werkbijzh		,
-							:overige_opm	,
-							:besprmis		,
-							:besprtkn		,
-							:besprvwk		,
-							:besprprv		,
+							:overige_opm		,
+							:besprmis		,	
+							:besprtkn		,	
+							:besprvwk		,	
+							:besprprv		,	
+							:besprstatgeld	,
+							:besprkopie_ao	,
+							:besprvrijwbijd	,
 							:akkoord_datum	,
 							:akkoord_plaats	,
-							:akkoord_naam	,
-							:akkoord_handtek
+							:akkoord_naam	,	
+							:akkoord_handtek	,
+							:advjobgroup		,
+							:advmaatje		,
+							:advnietontv		,
+							:advopmerkingen		,
+							:advverwdatum							
 						);";
 		
 			
@@ -294,9 +350,11 @@ class Intakeform
 			$stmt->bindvalue(":volw_kind"		, htmlentities($this->volw_kind, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":partner_beroep"	, htmlentities($this->partner_beroep, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":aanmelding"		, $this->aanmelding, PDO::PARAM_STR);
+			$stmt->bindvalue(":bron"			, htmlentities($this->bron, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":regeling"		, htmlentities($this->regeling, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":uitdagingen"		, htmlentities($this->uitdagingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":beperking"		, htmlentities($this->beperking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":redenen"			, htmlentities($this->redenen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":motivatie"		, htmlentities($this->motivatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":eisen"			, htmlentities($this->eisen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":netwerken"		, htmlentities($this->netwerken, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -308,6 +366,7 @@ class Intakeform
 			$stmt->bindvalue(":werk_gewenst"	, htmlentities($this->werk_gewenst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":voorwaarden"		, htmlentities($this->voorwaarden, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":taalbeh"			, $this->taalbeh, PDO::PARAM_STR);
+			$stmt->bindvalue(":taalbeh_schr"	, $this->taalbeh_schr, PDO::PARAM_STR);
 			$stmt->bindvalue(":reistijd"		, htmlentities($this->reistijd, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":vervoer"			, htmlentities($this->vervoer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":werkbijzh"		, htmlentities($this->werkbijzh, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -316,10 +375,19 @@ class Intakeform
 			$stmt->bindvalue(":besprtkn"		, $this->besprtkn, PDO::PARAM_STR);
 			$stmt->bindvalue(":besprvwk"		, $this->besprvwk, PDO::PARAM_STR);
 			$stmt->bindvalue(":besprprv"		, $this->besprprv, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprstatgeld"	, $this->besprstatgeld, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprkopie_ao"	, $this->besprkopie_ao, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprvrijwbijd"	, $this->besprvrijwbijd, PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_datum"	, htmlentities($this->akkoord_datum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_plaats"	, htmlentities($this->akkoord_plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_naam"	, htmlentities($this->akkoord_naam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_handtek" , htmlentities($this->akkoord_handtek, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advjobgroup"		, $this->advjobgroup, PDO::PARAM_STR);
+			$stmt->bindvalue(":advmaatje"		, $this->advmaatje, PDO::PARAM_STR);
+			$stmt->bindvalue(":advnietontv"		, htmlentities($this->advnietontv, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advopmerkingen"	, htmlentities($this->advopmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advverwdatum"    , htmlentities($this->advverwdatum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+
 			
 			$stmt->execute();
 // 			error_log('Een nieuwe c_intakeform is toegevoegd');
@@ -342,45 +410,57 @@ class Intakeform
 			// $this->datetime_modified = $date->format('Y-m-d H:i:s');
 
 			$sql = "UPDATE intakeform SET
-						roepnaam			= :roepnaam			,
-						gebplaats			= :gebplaats		,
-						gebland				= :gebland			,
-						nationaliteit		= :nationaliteit	,
-						legitimatieind		= :legitimatieind	,
-						relatie				= :relatie			,
-						volw_kind			= :volw_kind		,
-						partner_beroep		= :partner_beroep	,
-						aanmelding			= :aanmelding		,
-						regeling			= :regeling			,
-						uitdagingen 		= :uitdagingen 		,
-						beperking			= :beperking		,
-						motivatie			= :motivatie		,
-						eisen				= :eisen			,
-						netwerken			= :netwerken		,
-						andere_hulp			= :andere_hulp		,
-						CVind				= :CVind			,
-						diploma				= :diploma			,
-						studie				= :studie			,
-						werkervaring		= :werkervaring		,
-						werk_gewenst		= :werk_gewenst		,
-						voorwaarden			= :voorwaarden		,
-						taalbeh				= :taalbeh			,
-						reistijd			= :reistijd			,
-						vervoer				= :vervoer			,
-						werkbijzh			= :werkbijzh		,
-						overige_opm			= :overige_opm		,
-						besprmis			= :besprmis			,
-						besprtkn			= :besprtkn			,
-						besprvwk			= :besprvwk			,
-						besprprv			= :besprprv			,
-						akkoord_datum		= :akkoord_datum	,
-						akkoord_plaats		= :akkoord_plaats	,
-						akkoord_naam		= :akkoord_naam		,
-						akkoord_handtek		= :akkoord_handtek		
+					roepnaam		 =	:roepnaam		,
+					gebplaats		 =	:gebplaats	,
+					gebland			 =	:gebland		,
+					nationaliteit	 =	:nationaliteit	,
+					legitimatieind 	=	:legitimatieind,
+					relatie		 	=	:relatie		,
+					volw_kind		 =	:volw_kind	,
+					partner_beroep	 =	:partner_beroep,
+					aanmelding	 	=	:aanmelding	,
+					bron			 =	:bron			,
+					regeling		 =	:regeling		,
+					uitdagingen	 	=	:uitdagingen	,
+					beperking		 =	:beperking		,
+					redenen		 	=	:redenen		,
+					motivatie		 =	:motivatie		,
+					eisen			 =	:eisen			,
+					netwerken		 =	:netwerken		,
+					andere_hulp	 	=	:andere_hulp	,
+					CVind			 =	:CVind			,
+					diploma		 	=	:diploma		,
+					studie		 	=	:studie		,
+					werkervaring	 =	:werkervaring	,
+					werk_gewenst	 =	:werk_gewenst	,
+					voorwaarden	 	=	:voorwaarden	,
+					taalbeh			=	:taalbeh		,
+					taalbeh_schr	 =	:taalbeh_schr	,
+					reistijd		 =	:reistijd		,
+					vervoer		 	=	:vervoer		,
+					werkbijzh	 	=	:werkbijzh	,
+					overige_opm	 	=	:overige_opm	,
+					besprmis		 =	:besprmis		,
+					besprtkn		 =	:besprtkn		,
+					besprvwk		 =	:besprvwk		,
+					besprprv		 =	:besprprv		,
+					besprstatgeld 	=	:besprstatgeld,
+					besprkopie_ao	 =	:besprkopie_ao	,
+					besprvrijwbijd 	=	:besprvrijwbijd,
+					akkoord_datum	 =	:akkoord_datum	,
+					akkoord_plaats 	=	:akkoord_plaats,
+					akkoord_naam	 =	:akkoord_naam	,
+					akkoord_handtek =	:akkoord_handtek,
+					advjobgroup 	=	:advjobgroup,
+					advmaatje		 =	:advmaatje		,
+					advnietontv	 	=	:advnietontv	,
+					advopmerkingen 	=	:advopmerkingen,
+					advverwdatum   	=	:advverwdatum  
 					WHERE id = :id;";
 			// error_log($sql);
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindvalue(":id"				, $this->id, PDO::PARAM_STR);
+			// $stmt->bindvalue(":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 			$stmt->bindvalue(":roepnaam"		, htmlentities($this->roepnaam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebplaats"		, htmlentities($this->gebplaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":gebland"			, htmlentities($this->gebland, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -390,9 +470,11 @@ class Intakeform
 			$stmt->bindvalue(":volw_kind"		, htmlentities($this->volw_kind, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":partner_beroep"	, htmlentities($this->partner_beroep, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":aanmelding"		, $this->aanmelding, PDO::PARAM_STR);
+			$stmt->bindvalue(":bron"			, htmlentities($this->bron, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":regeling"		, htmlentities($this->regeling, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindvalue(":uitdagingen" 	, htmlentities($this->uitdagingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":uitdagingen"		, htmlentities($this->uitdagingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":beperking"		, htmlentities($this->beperking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":redenen"			, htmlentities($this->redenen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":motivatie"		, htmlentities($this->motivatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":eisen"			, htmlentities($this->eisen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":netwerken"		, htmlentities($this->netwerken, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -404,6 +486,7 @@ class Intakeform
 			$stmt->bindvalue(":werk_gewenst"	, htmlentities($this->werk_gewenst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":voorwaarden"		, htmlentities($this->voorwaarden, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":taalbeh"			, $this->taalbeh, PDO::PARAM_STR);
+			$stmt->bindvalue(":taalbeh_schr"	, $this->taalbeh_schr, PDO::PARAM_STR);
 			$stmt->bindvalue(":reistijd"		, htmlentities($this->reistijd, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":vervoer"			, htmlentities($this->vervoer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":werkbijzh"		, htmlentities($this->werkbijzh, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -412,12 +495,19 @@ class Intakeform
 			$stmt->bindvalue(":besprtkn"		, $this->besprtkn, PDO::PARAM_STR);
 			$stmt->bindvalue(":besprvwk"		, $this->besprvwk, PDO::PARAM_STR);
 			$stmt->bindvalue(":besprprv"		, $this->besprprv, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprstatgeld"	, $this->besprstatgeld, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprkopie_ao"	, $this->besprkopie_ao, PDO::PARAM_STR);
+			$stmt->bindvalue(":besprvrijwbijd"	, $this->besprvrijwbijd, PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_datum"	, htmlentities($this->akkoord_datum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_plaats"	, htmlentities($this->akkoord_plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_naam"	, htmlentities($this->akkoord_naam, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":akkoord_handtek" , htmlentities($this->akkoord_handtek, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advjobgroup"		, $this->advjobgroup, PDO::PARAM_STR);
+			$stmt->bindvalue(":advmaatje"		, $this->advmaatje, PDO::PARAM_STR);
+			$stmt->bindvalue(":advnietontv"		, htmlentities($this->advnietontv, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advopmerkingen"	, htmlentities($this->advopmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":advverwdatum"    , htmlentities($this->advverwdatum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 
-			// error_log($sql);
 			$stmt->execute();
 			
 		}

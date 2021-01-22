@@ -66,7 +66,7 @@ $fotopath = 'fotoos_person/';
 						if ($maatje->link_linkedin == '')
 						$linkedin = '--'; else {
 							$link = explode('/', $maatje->link_linkedin);
-							$linkedin = '<a href="' . $maatje->link_linkedin . '">' . end($link) . '</a>';
+							$linkedin = '<a href="' . $maatje->link_linkedin . '">' . $maatje->voornaam . $maatje->tussenvoegsels . $maatje->achternaam . '</a>';
 						}
 					echo '		
 					<div class="card bg-light m-1 m-lg-2 shadow-sm">

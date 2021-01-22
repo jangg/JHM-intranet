@@ -4,6 +4,14 @@ function getMsgs ($number, $naam)
 {
 	$newsmsg = array();
 
+	$newsmsg[20] = '<h3 class="bluefont">Online maatjesavond 25 januari</h3>
+	<h5 class="bluefont">20-1-2021</h5>
+					<img src="img/onlinemeeting.png" class="float-right" style="width: 40%; margin-left: 15px;">
+					<p>Maandag a.s. gaan we met z\'n allen online. De agenda is bekend. Als je je hebt aangemeld, dan vind je de link naar de meeting onder de agenda.</p>
+					<p>We hopen dat zoveel mogelijk mensen erbij zijn. Het is voor ons een spannend experiment, en misschien voor jullie ook.</p>
+					<p>Tot maandag!</p>
+					<p><a class="btn btn-primary" href="pages/bericht20210120_1.php" role="button">Bekijk de agenda &raquo;</a></p>';
+
 	$newsmsg[19] = '<h3 class="bluefont">Kort interview in het AD met Johan</h3>
 	<h5 class="bluefont">15-1-2021</h5>
 					<p>Afgelopen woensdag 13 januari stond er een interview met Johan Alebregtse in het AD over JobHulpMaatje en de nieuwe jobgroup die binnenkort start.</p>

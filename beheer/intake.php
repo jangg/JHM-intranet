@@ -132,6 +132,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="pill" href="#akkoord">Akkoord</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="pill" href="#advies">Advies</a>
 				</li>				
 			</ul>
 			
@@ -366,6 +369,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Hoe is werkzoekende bij JobHulpMaatje Zoetermeer terechtgekomen?</span>
+					</div>
+					<textarea type="text" name="bron" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->bron; ?></textarea>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
 						<div class=" input-group-text text-left text-wrap" style="width: 100%;">In welke situatie/regeling zit werkzoekende momenteel?</div>
 					</div>
 					<select class="form-control"  name="regeling">
@@ -389,6 +398,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is er sprake van iets waardoor JHM niet zou kunnen helpen? (bv. alcohol, drugs, psychische problemen etc.)</span>
 					</div>
 					<textarea type="text" name="beperking" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->beperking; ?></textarea>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Waarom heeft de werkzoekende hulp gezocht bij JobHulpMaatje?</span>
+					</div>
+					<textarea type="text" name="redenen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->redenen; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -495,7 +510,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing van de Nederlandse taal</span>
+					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing spreken van de Nederlandse taal</span>
 					</div>
 					<div class="pl-3">
 						<div class="form-check">
@@ -512,6 +527,26 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 						</div>
 					</div>
 				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing schrijven van de Nederlandse taal</span>
+					</div>
+					<div class="pl-3">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh_schr" id="taalbeh1" value="1" <?php if($intakeform->taalbeh_schr == '1') echo ' checked'; ?>>
+							<label class="form-check-label" for="taalbeh1">&nbsp;Goed</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh_schr" id="taalbeh2" value="2"<?php if($intakeform->taalbeh_schr == '2') echo ' checked'; ?>>
+							<label class="form-check-label" for="taalbeh2">&nbsp;Redelijk</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="taalbeh_schr" id="taalbeh3" value="3"<?php if($intakeform->taalbeh_schr == '3') echo ' checked'; ?>>
+							<label class="form-check-label" for="taalbeh3">&nbsp;Niet goed</label>
+						</div>
+					</div>
+				</div>
+				
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
 					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Maximale reistijd</span>
@@ -571,6 +606,24 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					</div>
 					<input type="checkbox" name="besprprv" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprprv == 'j') echo ' checked'; ?>>
 				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken statiegeldregeling cursusboeken</span>
+					</div>
+					<input type="checkbox" name="besprstatgeld" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprstatgeld == 'j') echo ' checked'; ?>>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken toesturen kopie nieuwe arbeidsovereenkomst</span>
+					</div>
+					<input type="checkbox" name="besprkopie_ao" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprkopie_ao == 'j') echo ' checked'; ?>>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Besproken optie vrijwillige bijdrage</span>
+					</div>
+					<input type="checkbox" name="besprvrijwbijd" class="form-control" value="j" style="margin-left: 15px;" <?php if($intakeform->besprvrijwbijd == 'j') echo ' checked'; ?>>
+				</div>
 
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar7" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
@@ -616,7 +669,68 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				</form>			
 			</div>
-<!--8---------------------------------------------------------------------------------------------->			
+<!--9---------------------------------------------------------------------------------------------->			
+	
+			<div id="advies" class="container tab-pane fade bg-tab pb-2"><br>
+				<h3>Advies</h3>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Advies deelname jobgroup</span>
+					</div>
+					<div class="pl-3">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="advjobgroup" id="advjobgroup" value="j" <?php if($intakeform->advjobgroup == 'j') echo ' checked'; ?>>
+							<label class="form-check-label" for="advjobgroup">&nbsp;Ja</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="advjobgroup" id="advjobgroup" value="n"<?php if($intakeform->advjobgroup == 'n') echo ' checked'; ?>>
+							<label class="form-check-label" for="advjobgroup">&nbsp;Nee</label>
+						</div>
+					</div>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class="input-group-text text-left text-wrap" style="width: 100%;">Advies begeleiding maatje</span>
+					</div>
+					<div class="pl-3">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="advmaatje" id="advmaatje" value="j" <?php if($intakeform->advmaatje == 'j') echo ' checked'; ?>>
+							<label class="form-check-label" for="advmaatje">&nbsp;Ja</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="advmaatje" id="advmaatje" value="n"<?php if($intakeform->advmaatje == 'n') echo ' checked'; ?>>
+							<label class="form-check-label" for="advmaatje">&nbsp;Nee</label>
+						</div>
+					</div>
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					  <div class="input-group-prepend" style="width: 30%;">
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">JobHulpMaatje kan helaas niet helpen want ...</span>
+					  </div>
+					  <textarea type="text" name="advnietontv" class="form-control" rows="4"><?php echo $intakeform->advnietontv; ?></textarea>				
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					  <div class="input-group-prepend" style="width: 30%;">
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Overige opmerkingen.</span>
+					  </div>
+					  <textarea type="text" name="advopmerkingen" class="form-control" rows="4"><?php echo $intakeform->advopmerkingen; ?></textarea>				
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					  <div class="input-group-prepend" style="width: 30%;">
+						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Verwachte datum antwoord aan werkzoekende</span>
+					  </div>
+					  <input type="text" name="advverwdatum" id="advverwdatum" class="form-control" value="<?php 
+					  if ($intakeform->advverwdatum == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $intakeform->advverwdatum))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
+				</div>
+				<div class="input-group input-group-sm mb-2">
+					<div class="forms-group mb-1">
+						<button name="saveWzBut" value="bewaar9" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
+						<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					</div>
+				</div>
+				</form>			
+			</div>
 		</div>
 			
 		<?php include('../includes/footer.inc'); ?>

@@ -75,9 +75,7 @@ if (isset($_POST['saveWzBut']))
 			$intakeform_nw->gebplaats		= $_POST['gebplaats'];
 			$intakeform_nw->gebland			= $_POST['gebland'];
 			$intakeform_nw->nationaliteit	= $_POST['nationaliteit'];
-			if (isset($_POST['legitimatieind']) && $_POST['legitimatieind'] == 'j') 
-				$intakeform_nw->legitimatieind = 'j'; 
-				else $intakeform_nw->legitimatieind = 'n';
+			if (isset($_POST['legitimatieind']))		$intakeform_nw->legitimatieind = 'j'; 		else $intakeform_nw->legitimatieind = 'n';
 			break;
 		case 'bewaar3':
 			$intakeform_nw->relatie			= $_POST['relatie'];
@@ -87,15 +85,17 @@ if (isset($_POST['saveWzBut']))
 		case 'bewaar4':
 			$intakeform_nw->aanmelding		= $_POST['aanmelding'];
 			$intakeform_nw->regeling		= $_POST['regeling'];
+			$intakeform_nw->bron			= $_POST['bron'];
 			$intakeform_nw->uitdagingen		= $_POST['uitdagingen'];
 			$intakeform_nw->beperking		= $_POST['beperking'];
+			$intakeform_nw->redenen			= $_POST['redenen'];
 			$intakeform_nw->motivatie		= $_POST['motivatie'];
 			$intakeform_nw->eisen			= $_POST['eisen'];
 			$intakeform_nw->netwerken		= $_POST['netwerken'];
 			$intakeform_nw->andere_hulp		= $_POST['andere_hulp'];
 			break;
 		case 'bewaar5':
-			$intakeform_nw->CVind			= $_POST['CVind'];
+			if (isset($_POST['CVind']))		$intakeform_nw->CVind = 'j'; 		else $intakeform_nw->CVind = 'n';
 			$wkz_nw->opleiding				= $_POST['opleiding'];
 			$intakeform_nw->diploma			= $_POST['diploma'];
 			$intakeform_nw->studie			= $_POST['studie'];
@@ -105,16 +105,20 @@ if (isset($_POST['saveWzBut']))
 			$intakeform_nw->werk_gewenst	= $_POST['werk_gewenst'];
 			$intakeform_nw->voorwaarden		= $_POST['voorwaarden'];
 			$intakeform_nw->taalbeh			= $_POST['taalbeh'];
+			$intakeform_nw->taalbeh_schr	= $_POST['taalbeh_schr'];
 			$intakeform_nw->reistijd		= $_POST['reistijd'];
 			$intakeform_nw->vervoer			= $_POST['vervoer'];
 			$intakeform_nw->werkbijzh		= $_POST['werkbijzh'];
 			break;
 		case 'bewaar7':
 			$intakeform_nw->overige_opm		= $_POST['overige_opm'];
-			$intakeform_nw->besprmis		= $_POST['besprmis'];
-			$intakeform_nw->besprtkn		= $_POST['besprtkn'];
-			$intakeform_nw->besprvwk		= $_POST['besprvwk'];
-			$intakeform_nw->besprprv		= $_POST['besprprv'];
+			if (isset($_POST['besprmis']))		$intakeform_nw->besprmis = 'j'; 		else $intakeform_nw->besprmis = 'n';
+			if (isset($_POST['besprtkn']))		$intakeform_nw->besprtkn = 'j'; 		else $intakeform_nw->besprtkn = 'n';
+			if (isset($_POST['besprvwk']))		$intakeform_nw->besprvwk = 'j'; 		else $intakeform_nw->besprvwk = 'n';
+			if (isset($_POST['besprprv']))		$intakeform_nw->besprprv = 'j';		 	else $intakeform_nw->besprprv = 'n';
+			if (isset($_POST['besprstatgeld']))	$intakeform_nw->besprstatgeld = 'j'; 	else $intakeform_nw->besprstatgeld = 'n';
+			if (isset($_POST['besprkopie_ao']))	$intakeform_nw->besprkopie_ao = 'j'; 	else $intakeform_nw->besprkopie_ao = 'n';
+			if (isset($_POST['besprvrijwbijd'])) $intakeform_nw->besprvrijwbijd = 'j'; 	else $intakeform_nw->besprvrijwbijd = 'n';
 			break;
 		case 'bewaar8':
 			$intakeform_nw->akkoord_datum	= $_POST['akkoord_datum'];
@@ -122,6 +126,24 @@ if (isset($_POST['saveWzBut']))
 			$intakeform_nw->akkoord_naam	= $_POST['akkoord_naam'];
 			$intakeform_nw->akkoord_handtek	= $_POST['akkoord_handtek'];
 			break;
+		case 'bewaar9':
+			$intakeform_nw->advjobgroup		= $_POST['advjobgroup'];
+			$intakeform_nw->advmaatje		= $_POST['advmaatje'];
+			$intakeform_nw->advnietontv		= $_POST['advnietontv'];
+			$intakeform_nw->advopmerkingen	= $_POST['advopmerkingen'];
+			if ($_POST['advverwdatum'] != '')
+			{
+				if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['advverwdatum']) !== 0)
+				{
+					$date = DateTime::createFromFormat('d-m-Y', $_POST['advverwdatum']);
+					$intakeform_nw->advverwdatum		= $date->format('Y-m-d');
+				} 
+			} else
+			{
+				$intakeform_nw->advverwdatum			= '';
+			}
+			break;
+
 		default:
 	}
 	updateIntakeform ($wkz, $wkz_nw, $intakeform, $intakeform_nw);
