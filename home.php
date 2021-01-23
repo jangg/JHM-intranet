@@ -101,7 +101,7 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[20]; ?>" alt="<?php  echo $list[20]; ?>" width="100%"></div>
 			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[21]; ?>" alt="<?php  echo $list[21]; ?>" width="100%"></div>
 			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[22]; ?>" alt="<?php  echo $list[22]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[3]; ?>" alt="<?php  echo $list[3]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[23]; ?>" alt="<?php  echo $list[3]; ?>" width="100%"></div>
 		</div>
 	</div>	
 		<!-- Main jumbotron for a primary marketing message or call to action -->

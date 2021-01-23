@@ -17,7 +17,7 @@ function calculateAge($date)
 	  return $age;
 }
 
-function getAllPs()
+function getStatusArray() 
 {
 	$statusArray = array (
 		'---' => '',
@@ -44,6 +44,12 @@ function getAllPs()
 		'920' => 'Afzwaaibrief verzonden',
 		'950' => 'Uitgeschreven'
 	);
+	return $statusArray;	
+}
+
+function getAllPs()
+{
+	$statusArray = getStatusArray();
 	
 	$sql = 'SELECT processtap.* FROM processtap WHERE processtap.id_werkzkd = ' . $_SESSION['werkzkd_id'] . ' ORDER BY processtap.dt_stap DESC;';
 	$psList = array();
@@ -256,7 +262,7 @@ if (isset($_POST['saveAtBut']) && $_POST['saveAtBut'] == 'bewaar')
 	exit();	
 }
 
-
+$statusArray = getStatusArray();
 $arr1 = array ();
 $arr2 = array ();
 $jhmz = new Maatje_coll ($arr1, $arr2);
@@ -329,10 +335,11 @@ foreach ($maatjesLijst as $maatje)
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
-				<h1 class="mx-auto text-capitalize">Persoonsgegevens</h1>
+				<h1 class="mx-auto">Werkzoekende gegevens</h1>
 			</div>
-			<div class="row">
+			<div class="row rounded text-center text-white pb-2 mb-2">
 				<div class="col-sm-12">
+					<h4 class="mx-auto"><?php echo $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam; ?></h4>
 				</div>
 			</div>
 		</div>
@@ -341,7 +348,11 @@ foreach ($maatjesLijst as $maatje)
 			<div class="row">
 				<div class="col-lg-4 mt-2 pt-2" style="background-color:#a5cad8">
 					<form method="POST" action="mut_persoon.php" id="postwz" novalidate>
-					<img class="card-img-top mb-2" src="fotoos_wkz/<?php echo $wkz->picfile; ?>" style="max-width: 160px;" alt=""/>
+					<?php if(file_exists('../fotoos_wkz/' . $wkz->picfile)): ?>
+						<img class="card-img-top mb-2" src="../fotoos_wkz/<?php echo $wkz->picfile; ?>" style="max-width: 160px;" alt=""/>
+					<?php else: ?>
+						<img class="card-img-top mb-2" src="../fotoos_wkz/unknown.png" style="max-width: 160px;" alt=""/>
+					<?php endif; ?>	
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Voornaam</span>
@@ -394,6 +405,9 @@ foreach ($maatjesLijst as $maatje)
 							<span class=" input-group-text text-left text-wrap" style="width: 100%;">Emailadres</span>
 						</div>
 						<input type="email" name="emailadres" class="form-control" value="<?php echo $wkz->emailadres; ?>"/>
+						<?php if ($wkz->emailadres != ''): ?>
+							<a href="mailto: <?php echo $wkz->emailadres; ?>" target="_blank"><i class="fas fa-envelope" style="font-size: 2em;"></i></a>
+						<?php endif; ?>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -405,7 +419,10 @@ foreach ($maatjesLijst as $maatje)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text text-left text-wrap" style="width: 100%;">URL LinkedIn</span>
 						</div>
-						<input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>"/></a>
+						<input type="text" name="link_linkedin" class="form-control" value="<?php echo $wkz->link_linkedin; ?>"/>
+						<?php if ($wkz->link_linkedin != ''): ?>
+							<a href="<?php echo $wkz->link_linkedin; ?>" target="_blank"><i class="fab fa-linkedin" style="font-size: 2em;"></i></a>
+						<?php endif; ?>
 					</div>					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -566,8 +583,8 @@ foreach ($maatjesLijst as $maatje)
 				
 				<div class="col-lg-4 mt-2 pt-2 bg-light">
 					<ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a class="nav-link border border border-primary border-bottom-0 active" data-toggle="tab" href="#aantek">Aantekeningen</a></li>
-						<li class="nav-item"><a class="nav-link border border border-primary border-bottom-0" data-toggle="tab" href="#statusreg">Statusregels</a></li>
+						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0 active" data-toggle="tab" href="#aantek">Aantekeningen</a></li>
+						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0" data-toggle="tab" href="#statusreg">Statusregels</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane container mx-0 px-0 mt-2 active" id="aantek">

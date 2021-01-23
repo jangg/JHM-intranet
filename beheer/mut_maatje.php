@@ -106,7 +106,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
-				<h1 class="mx-auto text-capitalize">Maatje gegevens</h1>
+				<h1 class="mx-auto">Maatje gegevens</h1>
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
@@ -124,7 +124,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 			<form method="POST" action="mut_maatje.php" id="postmt" novalidate>
 			<div class="row">
 				<div class="col-md-6 bg-light mt-2 pt-2">
-					<img class="card-img-top mb-2" src="fotoos/<?php echo $mtj->picfile; ?>" style="max-width: 160px;" alt="">
+					<img class="card-img-top mb-2" src="../fotoos_person/<?php echo $mtj->picfile; ?>" style="max-width: 160px;" alt="">
 
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -167,6 +167,9 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 							<span class=" input-group-text" style="width: 100%;">Emailadres</span>
 						</div>
 						<input type="email" name="emailadres" class="form-control" value="<?php echo $mtj->emailadres; ?>">
+						<?php if ($mtj->emailadres != ''): ?>
+							<a href="mailto: <?php echo $mtj->emailadres; ?>" target="_blank"><i class="fas fa-envelope" style="font-size: 2em;"></i></a>
+						<?php endif; ?>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -179,6 +182,9 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 							<span class=" input-group-text" style="width: 100%;">URL LinkedIn</span>
 						</div>
 						<input type="text" name="link_linkedin" class="form-control" value="<?php echo $mtj->link_linkedin; ?>">
+						<?php if ($mtj->link_linkedin != ''): ?>
+							<a href="<?php echo $mtj->link_linkedin; ?>" target="_blank"><i class="fab fa-linkedin" style="font-size: 2em;"></i></a>
+						<?php endif; ?>
 					</div>					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
