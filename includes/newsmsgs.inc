@@ -4,13 +4,24 @@ function getMsgs ($number, $naam)
 {
 	$newsmsg = array();
 
+	$newsmsg[21] = '<h3 class="bluefont">Het was informatief en gezellig</h3>
+	<h5 class="bluefont">26-1-2021</h5>
+					<img src="img/theater20210125.jpg" class="my-2 float-right" style="width: 100%; margin-left: 15px;">
+					<p>Voor zover dat mogelijk is als je met z\'n allen virtueel bij elkaar bent.</p>
+					<p>Gelukkig verliep alles technisch erg soepel, dankzij de voorbereidingen van Joke en Flip. Ook de kamertjesindeling ging helemaal volgens plan
+					en zo verliep de kennismaking ook heel gemoedelijk en vlotjes en maakten we kennis met twee nieuwe maatjes, Lou en Sjanet.</p>
+					<p>Met een opkomst van 17 JHMZ medewerkers was de meeting ruim bezocht. Uiteraard hopen we dat we elkaar de volgende keer weer op \'common ground\' mogen ontmoeten,
+					maar dit was zeker ook de moeite waard. Als het weer moet, doen we het zeker nog een keer op deze manier.
+					<img src="img/meeting20210125.jpg" class="float-right my-2" style="width: 100%; margin-left: 15px;">';
+					
 	$newsmsg[20] = '<h3 class="bluefont">Online maatjesavond 25 januari</h3>
 	<h5 class="bluefont">20-1-2021</h5>
 					<img src="img/onlinemeeting.png" class="float-right" style="width: 40%; margin-left: 15px;">
 					<p>Maandag a.s. gaan we met z\'n allen online. De agenda is bekend. Als je je hebt aangemeld, dan vind je de link naar de meeting onder de agenda.</p>
 					<p>We hopen dat zoveel mogelijk mensen erbij zijn. Het is voor ons een spannend experiment, en misschien voor jullie ook.</p>
 					<p>Tot maandag!</p>
-					<p><a class="btn btn-primary" href="pages/bericht20210120_1.php" role="button">Bekijk de agenda &raquo;</a></p>';
+					<!-- <p><a class="btn btn-primary" href="pages/bericht20210120_1.php" role="button">Bekijk de agenda &raquo;</a></p> -->';
+
 
 	$newsmsg[19] = '<h3 class="bluefont">Kort interview in het AD met Johan</h3>
 	<h5 class="bluefont">15-1-2021</h5>
@@ -35,7 +46,7 @@ function getMsgs ($number, $naam)
 					<p>Bijgaande foto laat zien hoe het in goede tijden gaat. Hopelijk komen die snel weer terug!</p>
 					<p>Als je erbij bent, meld je aan in de presentielijst. Klik daarvoor op onderstaande knop.</p>
 					<p>Tot 25 januari!</p>
-					<p><a class="btn btn-primary" href="pages/presence_list200125.php" role="button">Meld je aan &raquo;</a></p>';
+					<!-- <p><a class="btn btn-primary" href="pages/presence_list200125.php" role="button">Meld je aan &raquo;</a></p> -->';
 
 	$newsmsg[16] = '<h3 class="bluefont">Online Jobgroup gaat van start</h3>
 	<h5 class="bluefont">11-1-2021</h5>

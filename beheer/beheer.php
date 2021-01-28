@@ -48,7 +48,7 @@ if (isset($_SESSION['userid']))
 					<!-- <button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="intake.php">Intakeformulier</a></button> -->
 	            </div>
 				<div class="col-md-4 p-0 text-center">
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="#">Overzicht Jobgroups</a></button>
+					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_jobgroups.php">Overzicht Jobgroups</a></button>
 				</div>
 
 				<div class="col-md-4 p-0 text-center">

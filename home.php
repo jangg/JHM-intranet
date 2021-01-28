@@ -130,14 +130,14 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 					<img src="img/Logo_JobHulpMaatje_Zoetermeer.svg" class="mx-auto d-block mb-5" style="width: 350px;">
 				</div>
 				<div class="col-sm-4" id="sticky-right">
-					<ul>
+					<!-- <ul>
 						<li class="text-center">
 						  <a href="pages/presence_list200125.php" style="color: dark; background-color: #ede17a;">
 							<p style="font-size: 2em;">Doe mee op 25-1.<br/>Meet de maatjes</p>
 							<p style="font-size: 2em;">Klik hier</p>
 						  </a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</div>

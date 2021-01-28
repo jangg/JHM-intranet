@@ -180,6 +180,7 @@ if (isset($_POST['deleteWzBut']) && $_POST['deleteWzBut'] == 'delete')
 if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 {
 	$wkz_nw = clone $wkz;
+	$wkz_nw->picfile				= $_POST['picfile'];
 	$wkz_nw->voornaam				= $_POST['voornaam'];
 	$wkz_nw->achternaam				= $_POST['achternaam'];
 	$wkz_nw->tussenvoegsels			= $_POST['tussenvoegsels'];
@@ -348,11 +349,15 @@ foreach ($maatjesLijst as $maatje)
 			<div class="row">
 				<div class="col-lg-4 mt-2 pt-2" style="background-color:#a5cad8">
 					<form method="POST" action="mut_persoon.php" id="postwz" novalidate>
-					<?php if(file_exists('../fotoos_wkz/' . $wkz->picfile)): ?>
-						<img class="card-img-top mb-2" src="../fotoos_wkz/<?php echo $wkz->picfile; ?>" style="max-width: 160px;" alt=""/>
-					<?php else: ?>
-						<img class="card-img-top mb-2" src="../fotoos_wkz/unknown.png" style="max-width: 160px;" alt=""/>
-					<?php endif; ?>	
+						<img class="card-img-top mb-2" src="../fotoos_wkz/
+							<?php if($wkz->picfile == '') echo 'unknown.png'; else echo $wkz->picfile; ?>"
+							style="max-width: 160px;" alt=""/>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
+						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Filenaam foto</span>
+						</div>
+						<input type="text" name="picfile" class="form-control" value="<?php echo $wkz->picfile; ?>" <?php if ($curr_user->beheerind < 9) echo ' disabled'; ?>/>
+					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Voornaam</span>

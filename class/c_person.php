@@ -69,10 +69,6 @@ abstract class person
 			$this->presentInd		= $personrow['presentInd'];
 			$this->date_geboorte	= $personrow['date_geboorte'];
 			$this->geslacht			= $personrow['geslacht'];
-			// if ($personrow['date_geboorte'] != NULL)
-			// 	$this->date_geboorte = date("Y-m-d", strtotime($personrow['date_geboorte']));
-			// 	else 
-			// 	$this->date_geboorte = '';
 		}
 	}
 
@@ -277,12 +273,6 @@ abstract class person
 			$stmt->bindValue( ":presentInd"		, $this->presentInd, PDO::PARAM_STR);
 			$stmt->bindValue( ":date_geboorte"	, $this->date_geboorte, PDO::PARAM_STR);
 			$stmt->bindValue( ":geslacht"		, $this->geslacht, PDO::PARAM_STR);
-			// if ($this->date_geboorte != '')
-			// 	$stmt->bindValue( ":date_geboorte"	, date('Y-m-d', strtotime($this->date_geboorte)), PDO::PARAM_STR);
-			// 	else
-			// 	$stmt->bindValue( ":date_geboorte"	, NULL, PDO::PARAM_STR);
-
-			// error_log($sql);
 			$stmt->execute();
 			
 		}

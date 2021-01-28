@@ -113,13 +113,6 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 				</div>
 			</div>
 		</div>
-        <!-- <div class="container">
-            <div class="row mt-4">
-				<div class="col-md-12 p-0">
-					<button type="button" class="btn btn-primary" style="width: 120px;"><a class="text-white" href="beheer.php">terug</a></button>
-	            </div>
-            </div>
-        </div> -->
         <div class="container-fluid" style="padding-bottom: 80px;">	
 			<form method="POST" action="mut_maatje.php" id="postmt" novalidate>
 			<div class="row">
@@ -256,13 +249,19 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 							<span class="input-group-text" style="width: 100%;">Maatje voor</span>
 						</div>
 						<?php
-						$wkzs = "";
+						$wkzs = '';
+						if (count($wkzList->werkzoekendeColl) == 0)
+						{
+							$wkzs = '&nbsp;';
+						} else 
+						{
 							foreach($wkzList->werkzoekendeColl as $wkz)
 							{
-								$wkzs .= $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . "\n";
+								$wkzs .= '<a href="mut_persoon.php?id=' . $wkz->id . '">' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</a><br/>';
 							}
+						}						
 						?>
-						<textarea type="textarea" rows="5" class="form-control" disabled><?php echo $wkzs; ?></textarea>
+						<div class="p-1 m-0 form-control" style="background-color: #e4e7eb; font-size: .9em; max-width: 100%; height: 100%;"><?php echo $wkzs; ?></div>
 					</div>
 
 					<div class="input-group input-group-sm mb-1">
