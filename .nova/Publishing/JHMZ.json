@@ -6,8 +6,8 @@
     "configH2G.php",
     "includes\/newsmsgs copy.inc"
   ],
-  "remotePath" : "\/domains\/jhmz.nl\/public_html\/intra",
+  "remotePath" : "\/home\/prohuyg144\/domains\/jhmz.nl\/public_html\/intra",
   "remoteURL" : "https:\/\/intra.jhmz.nl",
-  "server" : "JHMZ",
+  "server" : "Versio Prohuyg144",
   "usesPublishing" : true
 }

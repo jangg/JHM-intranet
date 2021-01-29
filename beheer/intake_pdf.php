@@ -107,6 +107,50 @@ function chktaalbeh ($val)
 	return $textstring;
 }
 
+function chkmotivatie ($val)
+{
+	switch ($val)
+	{
+		case '1': 
+			$textstring = 'Weinig';
+			break;
+		case '2':
+			$textstring = 'Normaal';
+			break;
+		case '3':
+			$textstring = 'Sterk';
+			break;
+		default:
+			$textstring = '';
+	}
+	return $textstring;
+}
+
+function chkfinsituatie ($val)
+{
+	switch ($val)
+	{
+		case '1': 
+			$textstring = 'Uitstekend';
+			break;
+		case '2':
+			$textstring = 'Goed';
+			break;
+		case '3':
+			$textstring = 'Redelijk';
+			break;
+		case '4':
+			$textstring = 'Matig';
+			break;
+		case '5':
+			$textstring = 'Slecht';
+			break;
+		default:
+			$textstring = '';
+	}
+	return $textstring;
+}
+
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id']))
 {
@@ -227,8 +271,9 @@ $html =
 <tr><td>Huidige regeling</td><td>:</td><td>' . chkregeling($intakeform->regeling) . '</td></tr>
 <tr><td>Uitdagingen</td><td>:</td><td>' . $intakeform->uitdagingen . '</td></tr>
 <tr><td>Beperkingen</td><td>:</td><td>' . $intakeform->beperking . '</td></tr>
+<tr><td>Financiële situatie</td><td>:</td><td>' . chkfinsituatie($intakeform->finsituatie) . '</td></tr>
 <tr><td>Redenen voor hulpaanvraag</td><td>:</td><td>' . $intakeform->redenen . '</td></tr>
-<tr><td>Motivatie</td><td>:</td><td>' . $intakeform->motivatie . '</td></tr>
+<tr><td>Motivatie</td><td>:</td><td>' . chkmotivatie($intakeform->motivatie) . '</td></tr>
 <tr><td>Aanvullende eisen en welke</td><td>:</td><td>' . $intakeform->eisen . '</td></tr>
 <tr><td>Andere netwerken en hulpverlening</td><td>:</td><td>' . $intakeform->netwerken . '</td></tr>
 <tr><td>Is andere hulp gewenst? Zo ja, welke?</td><td>:</td><td>' . $intakeform->andere_hulp . '</td></tr>
@@ -238,7 +283,7 @@ $html =
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
 <tr><td>Recent CV aanwezig?</td><td>:</td><td>' . ($intakeform->CVind == 'j'?'Ja':'Nee') . '</td></tr>
 <tr><td>Hoogst genoten opleiding</td><td>:</td><td>' . $wkz->opleiding . '</td></tr>
-<tr><td>Diploma behaald in</td><td>:</td><td>' . $intakeform->diploma . '</td></tr>
+<tr><td>Diploma behaald</td><td>:</td><td>' . ($intakeform->diploma == 'j'?'Ja':'Nee'). '</td></tr>
 <tr><td>Tijd en middelen voor studie?</td><td>:</td><td>' . $intakeform->studie . '</td></tr>
 <tr><td>Werkervaring</td><td>:</td><td>' . $intakeform->werkervaring . '</td></tr>
 

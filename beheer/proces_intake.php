@@ -88,6 +88,7 @@ if (isset($_POST['saveWzBut']))
 			$intakeform_nw->bron			= $_POST['bron'];
 			$intakeform_nw->uitdagingen		= $_POST['uitdagingen'];
 			$intakeform_nw->beperking		= $_POST['beperking'];
+			$intakeform_nw->finsituatie		= $_POST['finsituatie'];
 			$intakeform_nw->redenen			= $_POST['redenen'];
 			$intakeform_nw->motivatie		= $_POST['motivatie'];
 			$intakeform_nw->eisen			= $_POST['eisen'];

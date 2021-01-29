@@ -131,7 +131,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<a class="nav-link" data-toggle="pill" href="#overig">Overig</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#akkoord">Akkoord</a>
+					<a class="nav-link disabled" data-toggle="pill" href="#akkoord">Akkoord</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="pill" href="#advies">Advies</a>
@@ -379,12 +379,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					</div>
 					<select class="form-control"  name="regeling">
 						<option value="" 	<?php if($intakeform->regeling == '') 	  echo 'selected'; ?>>---</option>
-						<option value="gen" <?php if($intakeform->regeling == 'gen') echo 'selected'; ?>>Geen</option>
-						<option value="wwe" <?php if($intakeform->regeling == 'wwe') echo 'selected'; ?>>WW</option>
-						<option value="opl" <?php if($intakeform->regeling == 'opl') echo 'selected'; ?>>Outplacement</option>
-						<option value="wia" <?php if($intakeform->regeling == 'wia') echo 'selected'; ?>>WIA</option>
-						<option value="bst" <?php if($intakeform->regeling == 'bst') echo 'selected'; ?>>Bijstand</option>
-						<option value="waj" <?php if($intakeform->regeling == 'waj') echo 'selected'; ?>>Wajong</option>
+						<option value="nug" <?php if($intakeform->regeling == 'nug') echo 'selected'; ?>>Is niet uitkering gerechtigd</option>
+						<option value="wwe" <?php if($intakeform->regeling == 'wwe') echo 'selected'; ?>>Ontvangt WW/Uitkering sociale verzekering</option>
+						<option value="bst" <?php if($intakeform->regeling == 'bst') echo 'selected'; ?>>Ontvangt bijstand/participatiewet</option>
+						<option value="wrk" <?php if($intakeform->regeling == 'wrk') echo 'selected'; ?>>Heeft werk</option>
 					</select>
 				</div>
 				<div class="input-group input-group-sm mb-2">
@@ -399,17 +397,50 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					</div>
 					<textarea type="text" name="beperking" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->beperking; ?></textarea>
 				</div>
-				<div class="input-group input-group-sm mb-2">
+				<!-- <div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Waarom heeft de werkzoekende hulp gezocht bij JobHulpMaatje?</span>
 					</div>
-					<textarea type="text" name="redenen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->redenen; ?></textarea>
+					<textarea type="text" name="redenen" class="form-control"  rows="4" maxlength="180"><?php // echo $intakeform->redenen; ?></textarea>
+				</div> -->
+				<div class="input-group input-group-sm mb-2">
+					<div class="input-group-prepend" style="width: 30%;">
+						<div class=" input-group-text text-left text-wrap" style="width: 100%;">Wat is de situatie m.b.t. de persoonlijke financiële omstandigheden?</div>
+					</div>
+					<div class="pl-3" style="font-size: .9em;">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="finsituatie" id="finsituatie" value="1" <?php if($intakeform->finsituatie == '1') echo ' checked'; ?>>
+						<label class="form-check-label" for="finsituatie">&nbsp;Uitstekend (geen schulden, geen BKR notering)</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="finsituatie" id="finsituatie" value="2"<?php if($intakeform->finsituatie == '2') echo ' checked'; ?>>
+						<label class="form-check-label" for="finsituatie">&nbsp;Goed (weinig schulden, geen BKR notering)</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="finsituatie" id="finsituatie" value="3"<?php if($intakeform->finsituatie == '3') echo ' checked'; ?>>
+						<label class="form-check-label" for="finsituatie">&nbsp;Redelijk (schulden onder controle, mogelijk BKR notering</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="finsituatie" id="finsituatie" value="3"<?php if($intakeform->finsituatie == '4') echo ' checked'; ?>>
+						<label class="form-check-label" for="finsituatie">&nbsp;Matig (behoorlijke schulden, BKR notering waarschijnlijk)</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="finsituatie" id="finsituatie" value="3"<?php if($intakeform->finsituatie == '5') echo ' checked'; ?>>
+						<label class="form-check-label" for="finsituatie">&nbsp;Slecht (veel schulden, geen eigen controle, BKR notering vrijwel zeker</label>
+					</div>
+					</div>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Motivatie werkzoekende</span>
 					</div>
-					<textarea type="text" name="motivatie" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->motivatie; ?></textarea>
+					<select class="form-control"  name="motivatie" id="motivatie">
+						<option value="" <?php if($intakeform->motivatie == '') echo 'selected'; ?>>---</option>							
+						<option value="weinig" <?php if($intakeform->motivatie == 'weinigm') echo 'selected'; ?>>Weinig</option>
+						<option value="normaal" <?php if($intakeform->motivatie == 'normaal') echo 'selected'; ?>>Normaal</option>
+						<option value="sterk" <?php if($intakeform->motivatie == 'sterk') echo 'selected'; ?>>Sterk</option>
+					</select>
+
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -442,7 +473,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 				  	<div class="input-group-prepend" style="width: 30%;">
-					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Recent CV aanwezig?</span>
+					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Recent CV aanwezig? (Alleen nodig als er geen goed LinkedIn profiel is)</span>
 				  	</div>
 				  	<input type="checkbox" name="CVind" class="form-control" value="j"  style="margin-left: 15px;" <?php if($intakeform->CVind == 'j') echo ' checked'; ?>>				
 				</div>
@@ -453,9 +484,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<select class="form-control"  name="opleiding" id="opleiding">
 						<option value="" <?php if($wkz->opleiding == '') echo 'selected'; ?>>---</option>
 						<option value="GO" <?php if($wkz->opleiding == 'GO') echo 'selected'; ?>>Geen opleiding</option>
-						<option value="VMBO" <?php if($wkz->opleiding == 'VMBO/Mavo') echo 'selected'; ?>>VMBO/Mavo</option>
-						<option value="Havo" <?php if($wkz->opleiding == 'Havo') echo 'selected'; ?>>Havo</option>
-						<option value="VWO" <?php if($wkz->opleiding == 'VWO') echo 'selected'; ?>>VWO</option>
+						<option value="VMBO" <?php if($wkz->opleiding == 'VMBO') echo 'selected'; ?>>VMBO/Mavo</option>
+						<option value="Havo" <?php if($wkz->opleiding == 'Havo') echo 'selected'; ?>>Havo/VWO</option>
 						<option value="MBO1" <?php if($wkz->opleiding == 'MBO1') echo 'selected'; ?>>MBO 1/2</option>
 						<option value="MBO2" <?php if($wkz->opleiding == 'MBO2') echo 'selected'; ?>>MBO 3/4</option>
 						<option value="HB1O" <?php if($wkz->opleiding == 'HBO1') echo 'selected'; ?>>HBO bachelor</option>
@@ -468,9 +498,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Diploma behaald in</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Diploma behaald?</span>
+					</div>					
+					<div class="pl-3 pt-1" style="font-size: .9em;">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="diploma" id="diploma" value="j" <?php if($intakeform->diploma == 'j') echo ' checked'; ?>>
+							<label class="form-check-label" for="diploma">&nbsp;Ja</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="diploma" id="diploma" value="n"<?php if($intakeform->diploma == 'n') echo ' checked'; ?>>
+							<label class="form-check-label" for="diploma">&nbsp;Nee</label>
+						</div>
 					</div>
-					<input type="text" name="diploma" class="form-control" value="<?php echo $intakeform->diploma ?>" maxlength="120">
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -481,7 +520,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 	
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
-						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Werkervaring (evt. zie CV en/of LinkedIn)</span>
+						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Werkervaring (indien er geen CV is en geen LinkedIn profiel)</span>
 					</div>
 					<textarea type="text" name="werkervaring" class="form-control" rows="4" maxlength="200"><?php echo $intakeform->werkervaring; ?></textarea>
 				</div>
@@ -512,7 +551,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<div class="input-group-prepend" style="width: 30%;">
 					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing spreken van de Nederlandse taal</span>
 					</div>
-					<div class="pl-3">
+					<div class="pl-3 pt-1" style="font-size: .9em;">
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="taalbeh" id="taalbeh1" value="1" <?php if($intakeform->taalbeh == '1') echo ' checked'; ?>>
 							<label class="form-check-label" for="taalbeh1">&nbsp;Goed</label>
@@ -531,7 +570,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<div class="input-group-prepend" style="width: 30%;">
 					<span class="input-group-text text-left text-wrap" style="width: 100%;">Beheersing schrijven van de Nederlandse taal</span>
 					</div>
-					<div class="pl-3">
+					<div class="pl-3 pt-1" style="font-size: .9em;">
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="taalbeh_schr" id="taalbeh1" value="1" <?php if($intakeform->taalbeh_schr == '1') echo ' checked'; ?>>
 							<label class="form-check-label" for="taalbeh1">&nbsp;Goed</label>
@@ -678,7 +717,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">Advies deelname jobgroup</span>
 					</div>
-					<div class="pl-3">
+					<div class="pl-3 pt-1" style="font-size: .9em;">
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="advjobgroup" id="advjobgroup" value="j" <?php if($intakeform->advjobgroup == 'j') echo ' checked'; ?>>
 							<label class="form-check-label" for="advjobgroup">&nbsp;Ja</label>
@@ -693,7 +732,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">Advies begeleiding maatje</span>
 					</div>
-					<div class="pl-3">
+					<div class="pl-3 pt-1" style="font-size: .9em;">
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="advmaatje" id="advmaatje" value="j" <?php if($intakeform->advmaatje == 'j') echo ' checked'; ?>>
 							<label class="form-check-label" for="advmaatje">&nbsp;Ja</label>

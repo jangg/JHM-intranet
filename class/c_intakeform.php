@@ -16,6 +16,7 @@ class Intakeform
 	protected $regeling				;	
 	protected $uitdagingen 			;			
 	protected $beperking			;
+	protected $finsituatie			;
 	protected $redenen				;			
 	protected $motivatie			;			
 	protected $eisen				;			
@@ -67,6 +68,7 @@ class Intakeform
 		$this->regeling				= '';
 		$this->uitdagingen 			= '';
 		$this->beperking			= '';
+		$this->finsituatie			= '';
 		$this->redenen				= '';
 		$this->motivatie			= '';
 		$this->eisen				= '';
@@ -130,6 +132,7 @@ class Intakeform
 			$this->regeling				= $intakeformrow['regeling'];
 			$this->uitdagingen 			= $intakeformrow['uitdagingen'];
 			$this->beperking			= $intakeformrow['beperking'];
+			$this->finsituatie			= $intakeformrow['finsituatie'];
 			$this->redenen				= $intakeformrow['redenen'];
 			$this->motivatie			= $intakeformrow['motivatie'];
 			$this->eisen				= $intakeformrow['eisen'];
@@ -250,6 +253,7 @@ class Intakeform
 							regeling		,	
 							uitdagingen 	,	
 							beperking		,
+							finsituatie		,
 							redenen			,
 							motivatie		,
 							eisen			,
@@ -301,6 +305,7 @@ class Intakeform
 							:regeling		,	
 							:uitdagingen 	,	
 							:beperking		,
+							:finsituatie		,
 							:redenen			,
 							:motivatie		,
 							:eisen			,
@@ -354,6 +359,7 @@ class Intakeform
 			$stmt->bindvalue(":regeling"		, htmlentities($this->regeling, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":uitdagingen"		, htmlentities($this->uitdagingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":beperking"		, htmlentities($this->beperking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":finsituatie"		, htmlentities($this->finsituatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":redenen"			, htmlentities($this->redenen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":motivatie"		, htmlentities($this->motivatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":eisen"			, htmlentities($this->eisen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
@@ -423,6 +429,7 @@ class Intakeform
 					regeling		 =	:regeling		,
 					uitdagingen	 	=	:uitdagingen	,
 					beperking		 =	:beperking		,
+					finsituatie		 =	:finsituatie		,
 					redenen		 	=	:redenen		,
 					motivatie		 =	:motivatie		,
 					eisen			 =	:eisen			,
@@ -474,6 +481,7 @@ class Intakeform
 			$stmt->bindvalue(":regeling"		, htmlentities($this->regeling, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":uitdagingen"		, htmlentities($this->uitdagingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":beperking"		, htmlentities($this->beperking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindvalue(":finsituatie"		, htmlentities($this->finsituatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":redenen"			, htmlentities($this->redenen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":motivatie"		, htmlentities($this->motivatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
 			$stmt->bindvalue(":eisen"			, htmlentities($this->eisen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
