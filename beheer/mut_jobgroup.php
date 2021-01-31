@@ -100,11 +100,11 @@ if (isset($_POST['updateJgBut']) && $_POST['updateJgBut'] == 'wijzig')
 							<option value="ZZP" <?php if($jgp->soort == 'ZZP') echo 'selected'; ?>>ZZP'ers</option>
 						</select>
 					</div>
-					<div class="input-group input-group-sm mb-2">
+					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class="input-group-text text-left text-wrap" style="width: 100%;">Online training</span>
 						</div>
-						<div class="pl-3">
+						<div class="pl-3 pt-1" style="font-size: .9em;">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="onlineInd" id="onlineInd" value="j" <?php if($jgp->onlineInd == 'j') echo ' checked'; ?>>
 								<label class="form-check-label" for="onlineInd">&nbsp;Ja</label>

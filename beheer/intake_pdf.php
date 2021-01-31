@@ -167,7 +167,7 @@ $pdf = new IntakeformPDF (PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true,
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Jan Geerdes');
+$pdf->SetAuthor('Coördinator werkzoekende');
 $pdf->SetTitle('Intakeformulier');
 $pdf->SetSubject('JHMZ intake');
 $pdf->SetKeywords('');
@@ -211,6 +211,7 @@ $pdf->setFontSubsetting(true);
 // print standard ASCII chars, you can use core fonts like
 // helvetica or times to reduce file size.
 $pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->setCellHeightRatio(1.5);
 
 // Add a page
 // This method has several options, check the source code documentation for more information.
@@ -232,7 +233,8 @@ if ($wkz->date_geboorte != '')
 }
 
 $html =
-'<h1 style="">' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</h1>
+'<h1 style="">' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</h1><br/>
+<h5>Printdatum: ' . $today . '</h5><br/><br/>
 <h4 style="border-top: 2px solid black;">Persoonsgegevens</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
@@ -248,21 +250,21 @@ $html =
 <tr><td>Geboorteland</td><td>:</td><td>' . $intakeform->gebland . '</td></tr>
 <tr><td>Nationaliteit</td><td>:</td><td>' . $intakeform->nationaliteit . '</td></tr>
 <tr><td>URL LinkedIn</td><td>:</td><td>' . $wkz->link_linkedin . '</td></tr><br/>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Aanmelding</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
 <tr><td>Situatie</td><td>:</td><td>' . $wkz->situatie . '</td></tr>
 <tr><td>Opmerkingen</td><td>:</td><td>' . $wkz->opmerkingen . '</td></tr>
 <tr><td>U heeft zich aangemeld voor</td><td>:</td><td>' . chkchkbx($wkz->opties) . '</td></tr>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Gezinssituatie</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
 <tr><td>Relatie</td><td>:</td><td>' . chkrelatie($intakeform->relatie) . '</td></tr>
 <tr><td>Aantal volw/kinderen</td><td>:</td><td>' . $intakeform->volw_kind . '</td></tr>
 <tr><td>Opleiding/beroep partner (indien relevant)</td><td>:</td><td>' . $intakeform->partner_beroep . '</td></tr>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Ondersteuning</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
@@ -277,7 +279,7 @@ $html =
 <tr><td>Aanvullende eisen en welke</td><td>:</td><td>' . $intakeform->eisen . '</td></tr>
 <tr><td>Andere netwerken en hulpverlening</td><td>:</td><td>' . $intakeform->netwerken . '</td></tr>
 <tr><td>Is andere hulp gewenst? Zo ja, welke?</td><td>:</td><td>' . $intakeform->andere_hulp . '</td></tr>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Ervaring en opleiding</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
@@ -287,7 +289,7 @@ $html =
 <tr><td>Tijd en middelen voor studie?</td><td>:</td><td>' . $intakeform->studie . '</td></tr>
 <tr><td>Werkervaring</td><td>:</td><td>' . $intakeform->werkervaring . '</td></tr>
 
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Eisen en wensen voor nieuw werk</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
@@ -298,7 +300,7 @@ $html =
 <tr><td>Maximale reistijd</td><td>:</td><td>' . $intakeform->reistijd . '</td></tr>
 <tr><td>Beschikbaar vervoer</td><td>:</td><td>' . $intakeform->vervoer . '</td></tr>
 <tr><td>Verdere bijzonderheden</td><td>:</td><td>' . $intakeform->werkbijzh . '</td></tr>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Overige informatie</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
@@ -310,18 +312,20 @@ $html =
 <tr><td>Besproken statiegeldregeling studieboeken (€25,=)</td><td>:</td><td>' . ($intakeform->besprstatgeld == 'j'?'Ja':'Nee') . '</td></tr>
 <tr><td>Besproken toesturen kopie nieuwe arbeidsovereenkomst</td><td>:</td><td>' . ($intakeform->besprkopie_ao == 'j'?'Ja':'Nee') . '</td></tr>
 <tr><td>Besproken vrijwillige bijdrage</td><td>:</td><td>' . ($intakeform->besprvrijwbijd == 'j'?'Ja':'Nee') . '</td></tr>
-</table>
+</table><br/><br/><br/>
 <h4 style="border-top: 2px solid black;">Akkoord en ondertekening</h4>
 <table>
 <tr><td style="width: 30%;"></td><td style="width: 2%;"></td><td style="width: 73%;"></td></tr>
-<tr><td>Datum</td><td>:</td><td>' . $intakeform->akkoord_datum . '</td></tr>
-<tr><td>Plaats</td><td>:</td><td>' . $intakeform->akkoord_plaats . '</td></tr>
-<tr><td>Naam</td><td>:</td><td>' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</td></tr>
-<tr><td>Ondertekening</td><td>:</td><td>' . $intakeform->akkoord_handtek . '</td></tr>
+<tr><td>Datum</td><td>:</td><td>' . $intakeform->akkoord_datum . '</td></tr><br/>
+<tr><td>Plaats</td><td>:</td><td>' . $intakeform->akkoord_plaats . '</td></tr><br/>
+<tr><td>Naam</td><td>:</td><td>' . $wkz->voornaam . ' ' . $wkz->tussenvoegsels . ' ' . $wkz->achternaam . '</td></tr><br/>
+<tr><td>Ondertekening</td><td>:</td><td>' . $intakeform->akkoord_handtek . '</td></tr><br/><br/><br/>
 <tr><td>Privacy verklaring<br/></td><td>:</td><td>
-Door ondertekening gaat u akkoord met de inhoud én met de opslag en het gebruik van bovenstaande gegevens en de tijdens het begeleidingstraject verzamelde gegevens. JobHulpMaatje Zoetermeer verplicht zich om zorgvuldig om te gaan met alle gegevens die we van u ontvangen. We bewaren die gegevens tot maximaal 6 maanden na afronding van het traject; daarna zullen de gegevens worden verwijderd. JobHulpMaatje Zoetermeer aanvaart geen enkele aansprakelijkheid indien derden op illegale wijze deze gegevens hebben verkregen en/of gebruikt.
+Door ondertekening gaat u akkoord met de inhoud én met de opslag en het gebruik van bovenstaande gegevens en de tijdens het begeleidingstraject verzamelde gegevens.<br/>
+JobHulpMaatje Zoetermeer verplicht zich om zorgvuldig om te gaan met alle gegevens die we van u ontvangen. We bewaren die gegevens tot maximaal 6 maanden na afronding van het traject; daarna zullen de gegevens worden verwijderd.
+<br/><br/>JobHulpMaatje Zoetermeer aanvaart geen enkele aansprakelijkheid indien derden op illegale wijze deze gegevens hebben verkregen en/of gebruikt.
 </td></tr>
-</table>
+</table><br/><br/><br/>
 ';
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

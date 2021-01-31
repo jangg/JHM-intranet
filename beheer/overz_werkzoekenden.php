@@ -81,8 +81,12 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 <!DOCTYPE html>
 <html lang="nl-NL">
 	<?php include('../includes/head.inc'); ?>
-		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
-		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+		<link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">		
+		<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+		<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+		<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+		<script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+		<script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
 		<style>
 		.bootstrap-table .fixed-table-container .fixed-table-body {
 			height: auto;
@@ -111,8 +115,17 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<table class="data-table table-striped" data-toggle="table" data-search="true" data-pagination="true"  data-page-size="20" data-page-list="20, 40, 60, 80" data-show-columns="true">
-					<!-- <table class="table-striped table-bordered table-hover" data-toggle="table" data-search="true" data-pagination="true" data-show-columns="true" data-page-size="15" data-page-list="15, 30, 60, 90"> -->
+					<table 	id="Thistable"
+							class="data-table table-striped" 
+							data-toggle="table" 
+							data-search="true" 
+							data-pagination="true"  
+							data-page-size="20" 
+							data-page-list="20, 40, 60, 80" 
+							data-show-columns="true"
+							data-cookie="true"
+							data-cookie-id-table="saveId"
+							>
 					<thead class="thead-dark">
 					<tr>
 					<th data-sortable="true" data-field="id" data-visible="false">id</th>
@@ -135,4 +148,12 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 		</div>
 		<?php include('../includes/footer.inc'); ?>
 	</body>
+	<script>
+	// The calling method syntax: $('#table').bootstrapTable('method', parameter).
+		$(document).ready(function(){
+			$(function() {
+				$('#Thistable').bootstrapTable('deleteCookie', 'saveId')
+			})
+		});		
+		</script>
 </html>
