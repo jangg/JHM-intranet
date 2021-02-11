@@ -62,10 +62,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 <html lang="nl-NL">
 	<?php include('../includes/head.inc'); ?>
 	<style>
-	.bg-tab {
-		background-color: #ccd9d9;
-		border: 1px #000000 solid;
-	}
 	.error-border {
 		border:	2px solid red;
 	}
@@ -76,6 +72,25 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 	input.valid, textarea.valid{
 		border: 2px solid green;
 	}
+	/* .nav-tabs .active > a, .nav-tabs .active > a:hover, .nav-tabs .active > a:focus { */
+	.nav-tabs .nav-link {
+		border: 1px solid #999999;
+		/* border-bottom: 2px solid #000000; */
+	}
+	.nav-tabs .nav-item > .active, .nav-tabs .nav-item:hover .active, .nav-tabs .nav-item:focus .active {
+		/* border-left: 2px solid #000000;
+		border-top: 2px solid #000000;
+		border-right: 2px solid #000000; */
+		border-bottom-color: #a5cad8;
+		background-color: #a5cad8;
+	}
+	#myTabContent > .container {
+		background-color: #a5cad8;
+		padding-top: 0em;
+		padding-bottom: 2em;
+		border-radius: 6px;
+	}
+	
 
 	</style>
 	<script>
@@ -88,6 +103,33 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				else
 					{input.removeClass("valid").addClass("invalid");}
 			});
+			
+			/* met onderstaande code wordt direct springen naar een bepaalde tab mogelijk */
+			let url = location.href.replace(/\/$/, "");
+			 
+			  if (location.hash) {
+				const hash = url.split("#");
+				$('#myTab a[href="#'+hash[1]+'"]').tab("show");
+				url = location.href.replace(/\/#/, "#");
+				history.replaceState(null, null, url);
+				setTimeout(() => {
+				  $(window).scrollTop(0);
+				}, 400);
+			  } 
+			   
+			  $('a[data-toggle="tab"]').on("click", function() {
+				let newUrl;
+				const hash = $(this).attr("href");
+				if(hash == "#personalia") {
+				  newUrl = url.split("#")[0];
+				} else {
+				  newUrl = url.split("#")[0] + hash;
+				}
+				newUrl += "/";
+				history.replaceState(null, null, newUrl);
+			  });
+			/**********************************************************************************/
+			
 		});
 		</script>				
 	</head>
@@ -106,45 +148,45 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 		</div>
 
-		<div class="container" style="margin: 10px auto;">
+		<div class="container" id="tabContainer">
 			<p><a class="btn btn-primary" href="intake_pdf.php?id=<?php echo $wkz->id; ?>" role="button">maak PDF</a></p>
-			<ul class="nav nav-pills" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" data-toggle="pill" href="#personalia">Persoon</a>
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<a class="nav-link active" data-toggle="tab" href="#personalia" id="personalia-tab" role="tab" aria-controls="personalia" aria-selected="true">Basis info</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#aanmelding">Aanmelding</a>
+					<a class="nav-link" data-toggle="tab" href="#aanmelding" id="aanmelding-tab" role="tab" aria-controls="aanmelding" aria-selected="false">Aanmelding</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#gezin">Gezin</a>
+					<a class="nav-link" data-toggle="tab" href="#gezin" id="gezin-tab" role="tab" aria-controls="gezin" aria-selected="false">Gezin</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#ondersteuning">Ondersteuning</a>
+					<a class="nav-link" data-toggle="tab" href="#ondersteuning" id="ondersteuning-tab" role="tab" aria-controls="ondersteuning" aria-selected="false">Ondersteuning</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#ervaring">Ervaring en opleiding</a>
+					<a class="nav-link" data-toggle="tab" href="#ervaring" id="ervaring-tab" role="tab" aria-controls="ervaring" aria-selected="false">Ervaring en opleiding</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#nieuw_werk">Werk</a>
+					<a class="nav-link" data-toggle="tab" href="#nieuw_werk" id="nieuw_werk-tab" role="tab" aria-controls="nieuw_werk" aria-selected="false">Werk</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#overig">Overig</a>
+					<a class="nav-link" data-toggle="tab" href="#overig" id="overig-tab" role="tab" aria-controls="overig" aria-selected="false">Overig</a>
 				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link disabled" data-toggle="tab" href="#akkoord" id="akkoord-tab" role="tab" aria-controls="akkoord" aria-selected="false">Akkoord</a>
+				</li> -->
 				<li class="nav-item">
-					<a class="nav-link disabled" data-toggle="pill" href="#akkoord">Akkoord</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="pill" href="#advies">Advies</a>
+					<a class="nav-link" data-toggle="tab" href="#advies" id="advies-tab" role="tab" aria-controls="advies" aria-selected="false">Advies</a>
 				</li>				
 			</ul>
 			
 		</div>
 		<!-- Tab panes -->
-		<div class="tab-content" style="color: black;">
+		<div class="tab-content" id="myTabContent" style="color: black;">
 <!--1---------------------------------------------------------------------------------------------->			
-			<div id="personalia" class="container tab-pane active bg-tab pb-2" style="margin: 10px auto;"><br>
-				<h3>Persoon</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+			<div id="personalia" class="container tab-pane fade show active" role="tabpanel" aria-labelledby="personalia-tab"><br>
+				<h3>Basisinformatie</h3>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#personalia" id="postwz" novalidate>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class="input-group-text text-left text-wrap" style="width: 100%;">Voornaam</span>
@@ -266,9 +308,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--2---------------------------------------------------------------------------------------------->			
 			
-			<div id="aanmelding" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="aanmelding" class="container tab-pane fade" role="tabpanel" aria-labelledby="aanmelding-tab"><br>
 				<h3>Aanmelding</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#aanmelding" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Situatie</span>
@@ -316,10 +358,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 		    </div>
 <!--3---------------------------------------------------------------------------------------------->			
 		 
-			<div id="gezin" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="gezin" class="container tab-pane fade" role="tabpanel" aria-labelledby="gezin-tab"><br>
 			
 				<h3>Gezin</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#gezin" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Echtelijke staat</span>
@@ -353,9 +395,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
  			</div>
 <!--4---------------------------------------------------------------------------------------------->			
 
-			<div id="ondersteuning" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="ondersteuning" class="container tab-pane fade" role="tabpanel" aria-labelledby="ondersteuning-tab"><br>
 				<h3>Ondersteuning</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#ondersteuning" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Wie heeft de werkzoekende aangemeld?</span>
@@ -468,9 +510,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--5---------------------------------------------------------------------------------------------->			
 			
-			<div id="ervaring" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="ervaring" class="container tab-pane fade" role="tabpanel" aria-labelledby="ervaring-tab"><br>
 				<h3>Ervaring en opleiding</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#ervaring" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 				  	<div class="input-group-prepend" style="width: 30%;">
 					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Recent CV aanwezig? (Alleen nodig als er geen goed LinkedIn profiel is)</span>
@@ -532,9 +574,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--6---------------------------------------------------------------------------------------------->			
 			
-			<div id="nieuw_werk" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="nieuw_werk" class="container tab-pane fade" role="tabpanel" aria-labelledby="nieuw_werk-tab"><br>
 				<h3>Eisen en wensen voor nieuw werk</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#nieuw_werk" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
 					  <span class="input-group-text text-left text-wrap" style="width: 100%;">In welke richting wil de werkzoekende betaald werk vinden?</span>
@@ -612,9 +654,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--7---------------------------------------------------------------------------------------------->			
 			
-			<div id="overig" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="overig" class="container tab-pane fade" role="tabpanel" aria-labelledby="overig-tab"><br>
 				<h3>Overige informatie</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#overig" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Overige opmerkingen</span>
@@ -672,9 +714,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--8---------------------------------------------------------------------------------------------->			
 			
-			<div id="akkoord" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="akkoord" class="container tab-pane fade" role="tabpanel" aria-labelledby="akkoord-tab"><br>
 				<h3>Akkoord</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#akkoord" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text" style="width: 100%;">Datum</span>
@@ -710,9 +752,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 			</div>
 <!--9---------------------------------------------------------------------------------------------->			
 	
-			<div id="advies" class="container tab-pane fade bg-tab pb-2"><br>
+			<div id="advies" class="container tab-pane fade" role="tabpanel" aria-labelledby="advies-tab"><br>
 				<h3>Advies</h3>
-				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>" id="postwz" novalidate>
+				<form method="POST" action="proces_intake.php?id=<?php echo $wkz->id?>#advies" id="postwz" novalidate>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">Advies deelname jobgroup</span>

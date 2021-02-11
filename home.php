@@ -109,15 +109,14 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 		<div class="container mb-3" id="sticky">
 			<div class="row">
 				<div class="col-sm-4 d-none d-sm-block" id="sticky-left" style="position: relative;">
-					<!-- <ul>
+					<ul>
 						<li>
-						  <a href="nieuwsbrief.php">
-							<p>December-nieuwsbrieven van JobHulpMaatje.</p>
-							<p>Van JHM landelijk en van JHM Zoetermeer.</p>
-							<p>Klik hier om ze te lezen.</p>
+						  <a href="pages/bericht20210205_1.php">
+							<p>Lees hier het jaarverslag 2020 van JobHulpMaatje Zoetermeer</p>
+							<p>Klik hier om het te lezen.</p>
 						  </a>
 						</li>
-					</ul> -->
+					</ul>
 				</div>
 				<!-- <div class="col-sm-4 d-none d-sm-block" id="sticky-left" style="position: absolute; z-index: 3;">
 					<ul>
@@ -130,14 +129,14 @@ $newsMsgs = getMsgs (10, $curr_user->voornaam);
 					<img src="img/Logo_JobHulpMaatje_Zoetermeer.svg" class="mx-auto d-block mb-5" style="width: 350px;">
 				</div>
 				<div class="col-sm-4" id="sticky-right">
-					<!-- <ul>
+					<ul>
 						<li class="text-center">
-						  <a href="pages/presence_list200125.php" style="color: dark; background-color: #ede17a;">
-							<p style="font-size: 2em;">Doe mee op 25-1.<br/>Meet de maatjes</p>
+						  <a href="pages/bericht20210202_2.php" style="color: dark; background-color: #ede17a;">
+							<p style="font-size: 1.5em;">Nieuw verslag van de bestuursvergadering!</p>
 							<p style="font-size: 2em;">Klik hier</p>
 						  </a>
 						</li>
-					</ul> -->
+					</ul>
 				</div>
 			</div>
 		</div>

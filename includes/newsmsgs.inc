@@ -4,8 +4,16 @@ function getMsgs ($number, $naam)
 {
 	$newsmsg = array();
 
+	$newsmsg[22] = '<h3 class="bluefont">Het jaarverslag over 2020</h3>
+	<h5 class="bluefont">5-2-2021</h5>
+					<p>Het jaarverslag van JobHulpMaatje Zoetermeer over het bijzondere jaar 2020 is klaar en je kunt het nu lezen.</p>
+					<p>Ook het financiëel verslag is klaar en in te zien.</p>
+					<p><a class="btn btn-primary" href="pages/bericht20210205_1.php" role="button">Lees het jaarverslag&raquo;</a></p>
+					<p><a class="btn btn-primary" href="pages/bericht20210205_2.php" role="button">Lees het financiëel jaarverslag &raquo;</a></p>';
+				
 	$newsmsg[21] = '<h3 class="bluefont">Het was informatief en gezellig</h3>
 	<h5 class="bluefont">26-1-2021</h5>
+					<p><a class="btn btn-primary" href="pages/bericht20210202_1.php" role="button">Lees Corrie\'s verslag &raquo;</a></p>
 					<img src="img/theater20210125.jpg" class="my-2 float-right" style="width: 100%; margin-left: 15px;">
 					<p>Voor zover dat mogelijk is als je met z\'n allen virtueel bij elkaar bent.</p>
 					<p>Gelukkig verliep alles technisch erg soepel, dankzij de voorbereidingen van Joke en Flip. Ook de kamertjesindeling ging helemaal volgens plan

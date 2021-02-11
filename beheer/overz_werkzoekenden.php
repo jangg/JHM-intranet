@@ -87,6 +87,8 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 		<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
 		<script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
 		<script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+		<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
+		<script type="text/javascript" src="libs/js-xlsx/xlsx.core.min.js"></script>
 		<style>
 		.bootstrap-table .fixed-table-container .fixed-table-body {
 			height: auto;
@@ -94,6 +96,10 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 		.ifont {
 			font-size: 1.5em;
 		}
+		#toolbar {
+			  margin: 0;
+			}
+			
 		</style>
 	</head>
 	<body style="background-color: #dddddd;">
@@ -115,6 +121,13 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
+					<div id="toolbar" class="select">
+						<select class="form-control">
+							<option value="">Exporteer pagina</option>
+							<option value="all">Exporteer alles</option>
+							<!-- <option value="selected">Export Selected</option> -->
+						</select>
+					</div>
 					<table 	id="Thistable"
 							class="data-table table-striped" 
 							data-toggle="table" 
@@ -125,12 +138,14 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 							data-show-columns="true"
 							data-cookie="true"
 							data-cookie-id-table="saveId"
+							data-show-export="true"
+							data-toolbar="#toolbar"
 							>
 					<thead class="thead-dark">
 					<tr>
 					<th data-sortable="true" data-field="id" data-visible="false">id</th>
 					<th class="text-center" data-field="status" data-sortable="true">status</th>
-					<th data-field="achternaam" data-sortable="true">naam</th>
+					<th data-field="naam" data-sortable="true">naam</th>
 					<th data-field="emailadres" data-sortable="true" data-visible="false">emailadres</th>
 					<th data-field="datetime_created" data-sortable="true">datum gemaakt</th>
 					<th data-field="datetime_modified" data-sortable="true" data-visible="true">datum gewijzigd</th>				
@@ -150,10 +165,35 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 	</body>
 	<script>
 	// The calling method syntax: $('#table').bootstrapTable('method', parameter).
-		$(document).ready(function(){
-			$(function() {
-				$('#Thistable').bootstrapTable('deleteCookie', 'saveId')
-			})
-		});		
+	$(document).ready(function(){
+		$(function() {
+			$('#Thistable').bootstrapTable('deleteCookie', 'saveId')
+		})
+		
+		var $table = $('#Thistable')
+		$(function() {
+			$('#toolbar').find('select').change(function () {
+				$table.bootstrapTable('destroy').bootstrapTable({
+					exportDataType: $(this).val(),
+					exportTypes: ['csv', 'txt', 'excel', 'pdf'],
+					columns: [
+						{
+						field: 'id',
+						title: 'id'
+						}, {
+						field: 'status',
+						title: 'Status'
+						}, {
+						field: 'naam',
+						title: 'Naam'
+						}, {
+						field: 'emailadres',
+						title: 'Email'
+						}
+					]
+				})
+			}).trigger('change')
+		})
+	});		
 		</script>
 </html>

@@ -23,7 +23,7 @@
 					<a class="dropdown-item" href="/faces.php">Wie is wie?</a>
 					<a class="dropdown-item" href="/nieuwsbrief.php">Nieuwsbrieven</a>
 					<a class="dropdown-item" href="/procedure.php">Workshops procedure</a>
-					<a class="dropdown-item" href="/pages/bericht20210104_1.php">Verslag bestuursvergadering</a>
+					<a class="dropdown-item" href="/pages/bericht20210202_2.php">Verslag bestuursvergadering</a>
 
 					<!-- <a class="dropdown-item" href="/pages/bericht20201001_1.php">Regels gebruik Forum</a> -->
 				</div>

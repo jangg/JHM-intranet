@@ -31,6 +31,8 @@ function getStatusArray()
 		'310' => 'JobGroup iWIN geplaatst',
 		'320' => 'JobGroup ZZP geplaatst',
 		'400' => 'Jobgroup afgerond',
+		'410' => 'Jobgroup iWIN afgerond',
+		'420' => 'Jobgroup ZZP afgerond',
 		'500' => 'Maatje aangemeld',
 		'510' => 'Match-afspraak gemaakt',
 		'520' => 'Begeleidingsovereenkomst getekend en gearchiveerd',
@@ -96,7 +98,7 @@ function getAllPs()
 
 function getAllAant()
 {
-	$sql = 'SELECT aantekening.* FROM aantekening WHERE aantekening.id_werkzkd = ' . $_SESSION['werkzkd_id'] . ' ORDER BY aantekening.datetime_created DESC;';
+	$sql = 'SELECT aantekening.* FROM aantekening WHERE aantekening.id_werkzkd = ' . $_SESSION['werkzkd_id'] . ' AND aantekening.delind = "n" ORDER BY aantekening.datetime_created DESC;';
 	$aantList = array();
 	global $connection;
 	try
@@ -284,7 +286,7 @@ foreach ($maatjesLijst as $maatje)
 		<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
 		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script> -->
 		<style>
-		.scrolling-wrapper {
+		/* .scrolling-wrapper {
 			  overflow-x: scroll;
 			  overflow-y: hidden;
 			  white-space: nowrap;
@@ -301,7 +303,7 @@ foreach ($maatjesLijst as $maatje)
 			  .card {
 				flex: 0 0 auto;
 			  }
-			}
+			} */
 			input.invalid, textarea.invalid{
 				border: 2px solid red;
 			}

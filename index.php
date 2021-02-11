@@ -85,7 +85,7 @@ else $foutidpw = FALSE;
 			<div class="row footer">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-6 text-center my-5">
-				&copy 2020 JobHulpMaatje Zoetermeer
+				&copy 2021 JobHulpMaatje Zoetermeer
 				</div>
 				<div class="col-lg-3"></div>
 			</div>

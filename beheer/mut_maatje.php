@@ -38,7 +38,7 @@ if (isset($_GET['id']))
 	$_SESSION['maatje_id'] = $_GET['id'];
 	else
 	{
-		if(!isset($_SESSION['maatje_id'])) $_SESSION['maatje_id'] = '15';
+		if(!isset($_SESSION['maatje_id'])) $_SESSION['maatje_id'] = '0';
 	}
 
 if (isset($_POST['backMtBut']) && $_POST['backMtBut'] == 'back')
@@ -87,7 +87,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 	
 	if ($mtj_nw != $mtj)
 	{
-		$mtj_nw->updateToDB();
+		if ($mtj_nw != 0) $mtj_nw->updateToDB(); else $mtj_nw->saveToDB();
 	} 
 	/* start de page opnieuw om een tweede update te voorkomen */
 	header("location: mut_maatje.php");
