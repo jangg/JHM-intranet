@@ -175,7 +175,6 @@ class Post
 			$stmt->bindValue( ":id_topic"		, $this->id_topic, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 			$stmt->execute();
-			
 		}
 		catch (PDOException $e) 
 		{
@@ -184,6 +183,7 @@ class Post
 		}
 		return TRUE;	
 	}
+
 	public function getShortPost($wordsreturned)
 	/*  Returns the first $wordsreturned out of $string.  If string
 	contains more words than $wordsreturned, the entire string
@@ -203,5 +203,43 @@ class Post
 		}
 		return $retval;
 	}
+	
+	public static function getMostRecentPost()
+	{
+		/*
+		Wat is nodig:
+		1. Tekst van Post
+		2. Titel van Topic
+		3. Titel van Categorie
+		4. ID van post.
+		SELECT posts.id, posts.post_content, posts.post_date, topics.topic_subject, categories.cat_name FROM posts, topics, categories WHERE posts.id_topic = topics.id AND topics.id_cat = categories.id AND topics.id <> 19 ORDER BY posts.id DESC LIMIT 1;
+		*/
+		$sql = "SELECT 	posts.id,
+						posts.id_user, 
+						posts.post_content, 
+						posts.post_date, 
+						topics.topic_subject, 
+						categories.cat_name 
+						FROM posts, topics, categories 
+						WHERE posts.id_topic = topics.id AND topics.id_cat = categories.id AND topics.id <> 19 
+						ORDER BY posts.id DESC 
+						LIMIT 1;";
+		global $connection;
+		try
+		{
+			openDB();
+			$stmt = $connection->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->fetch();
+		}
+		catch (PDOException $e) 
+		{
+			error_log('Connectie (posts 6) met de database mislukt: ' . $e->getMessage());
+			return FALSE;
+		}
+
+		return $result;
+	}
+
 }
 ?>
