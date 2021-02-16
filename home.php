@@ -30,12 +30,18 @@ unset($list[1]);
 
 shuffle($list);
 
-// print_r($list);
+//print_r($list);
 $newsMsgs = getMsgs (10, $curr_user->voornaam);
 
 $recentpost = Post::getMostRecentPost();
 $poster = new User('id', $recentpost['id_user']);
 $posternaam = $poster->voornaam . ' ' . $poster->tussenvoegsels . ' ' . $poster->achternaam;
+if ($recentpost['post_date'] == '') 
+	$postdatum = ''; 
+	else {
+		$p = DateTime::createFromFormat('Y-m-d H:i:s', $recentpost['post_date']);
+		$postdatum = $p->format('d M Y H:i');
+	}
 
 ?>
 <!DOCTYPE HTML>
@@ -113,20 +119,34 @@ $posternaam = $poster->voornaam . ' ' . $poster->tussenvoegsels . ' ' . $poster-
 	</div>	
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<!-- <div class="jumbotron"> -->
-	<div class="container my-5">
+	<div class="container mt-2 mb-2">
 		<div class="row">
-			<div class="col-md bg-danger">Laatste nieuwsbericht op JHM-Zoetermeer.nl
+			<div class="col-md jumbotron m-2 p-0" style="border: 4px solid #027afe;">
+				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
+					<span style="font-size: 1.1em; color: white;">Laatste nieuwsbericht op JHM-Zoetermeer.nl</span>
+				</div>
+				<div class="d-flex m-0 p-0">
+					<div><img src="newsflash/chrystalkorving2.jpg" height="150px"/></div>
+					<div class="m-2 p-1" style="font-size: .9em;"><span style="font-size: .9em;">2 februari 2021</span><br/>Chrystal helpt werkzoekenden zich met zelfvertrouwen te presenteren: “Ik ben zo trots als dat lukt”</div>
+				</div>
 			</div>
-			<div class="col-md bg-primary">Meest recente forumbericht<br/>
-			<?php echo $posternaam; ?><br/>
-			<?php echo $recentpost[2]; ?><br/>
-			<?php echo $recentpost[3]; ?><br/>
-			<?php echo $recentpost[4]; ?><br/>
-			<?php echo $recentpost[5]; ?><br/>
+			<div class="col-md jumbotron m-2 p-0" style="border: 4px solid #027afe;">
+				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
+					<span style="font-size: 1.1em; padding: 0px; color: white;">Meest recente forumbericht</scan>
+				</div>
+				<a href="forum/overz_topic.php?id=<?php echo $recentpost['id_topic'];?>" style="color: inherit; text-decoration: inherit;">
+				<div class="m-0 p-0">
+					<div class="m-2 p-1 pb-4" style="font-size: .9em;"><?php echo $recentpost['post_content']; ?>
+					</div>
+					<div style="position: absolute; bottom: 0px; width: 100%; font-size: .8em; line-height: 100%; color: #2a3470; background-color: rgba(2, 122, 254, 0.2);" class="m-0 p-2">
+						<?php echo $postdatum; ?> <?php echo $posternaam; ?> <br/><?php echo $recentpost['cat_name']; ?> --> <?php echo $recentpost['topic_subject']; ?>
+					</div>
+				</div>
+				</a>
 			</div>
 		</div>
 	</div>
-	<div class="container mb-3" id="sticky">
+	<div class="container mb-4" id="sticky">
 		<div class="row">
 			<div class="col-sm-4 d-none d-sm-block" id="sticky-left" style="position: relative;">
 				<ul>
@@ -182,31 +202,30 @@ $posternaam = $poster->voornaam . ' ' . $poster->tussenvoegsels . ' ' . $poster-
 	}
 	?>
 	<!-- einde jumbotron -->
+	
 	<div class="container">
+		<hr>
 		<!-- Example row of columns -->
-			<div class="row">
-				<div class="col-md-4">
-					<h2 class="bluefont">Wie is wie?</h2>
-					<p>Hier vind je foto's en wat informatie over de mensen die zich belangeloos inzetten voor JobHulpMaatje.</p>
-					<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jhm-zoetermeer.nl">email.</a>.</p>
-					<p><a class="btn btn-secondary" href="faces.php" role="button">Laat maar zien &raquo;</a></p>
-				</div>
-				<div class="col-md-4">
-					<h2 class="bluefont">Forum</h2>
-					<p>Het forum is de besloten online plaats waar je de andere vrijwilligers vragen kunt stellen en discussies met anderen kunt voeren. Het intranet is nadrukkelijk  niet toegangkelijk voor Werkzoekenden, wel voor Maatjes, zodat enige vrijheid mogelijk is. Maar houd je uiteraard wel aan de fatsoensnormen.</p>
-					<p><a class="btn btn-secondary" href="forum/overz_forum.php" role="button">Laat maar zien &raquo;</a></p>
-				</div>
-				<div class="col-md-4">
-					<h2 class="bluefont">Agenda</h2>
-					<p>Wanneer zijn er bijeenkomsten, wanneer en waar worden jobgroup-meetingen gehouden, etc.</p>
-					<p>Het is altijd handig om te weten wanneer er bepaalde zaken plaatsvinden in de toekomst. Een agenda-overzicht helpt daarbij. 
-					<p><a class="btn btn-secondary" href="agenda.php" role="button">Laat maar zien &raquo;</a></p>
-				</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h2 class="bluefont">Wie is wie?</h2>
+				<p>Hier vind je foto's en wat informatie over de mensen die zich belangeloos inzetten voor JobHulpMaatje.</p>
+				<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jhm-zoetermeer.nl">email.</a>.</p>
+				<p><a class="btn btn-secondary" href="faces.php" role="button">Laat maar zien &raquo;</a></p>
 			</div>
-			
-			<hr>
-			
-		</div> <!-- /container -->
+			<div class="col-md-4">
+				<h2 class="bluefont">Forum</h2>
+				<p>Het forum is de besloten online plaats waar je de andere vrijwilligers vragen kunt stellen en discussies met anderen kunt voeren. Het intranet is nadrukkelijk  niet toegangkelijk voor Werkzoekenden, wel voor Maatjes, zodat enige vrijheid mogelijk is. Maar houd je uiteraard wel aan de fatsoensnormen.</p>
+				<p><a class="btn btn-secondary" href="forum/overz_forum.php" role="button">Laat maar zien &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2 class="bluefont">Agenda</h2>
+				<p>Wanneer zijn er bijeenkomsten, wanneer en waar worden jobgroup-meetingen gehouden, etc.</p>
+				<p>Het is altijd handig om te weten wanneer er bepaalde zaken plaatsvinden in de toekomst. Een agenda-overzicht helpt daarbij. 
+				<p><a class="btn btn-secondary" href="agenda.php" role="button">Laat maar zien &raquo;</a></p>
+			</div>
+		</div>
+	</div> <!-- /container -->
 					
 	</main>
 	<?php include('includes/footer.inc'); ?>

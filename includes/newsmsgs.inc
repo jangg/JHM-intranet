@@ -4,6 +4,20 @@ function getMsgs ($number, $naam)
 {
 	$newsmsg = array();
 
+	$newsmsg[23] = '<h3 class="bluefont">Gespreksruimte beschikbaar</h3>
+	<h5 class="bluefont">13-2-2021</h5>
+					<p>Mogelijk is er gespreksruimte beschikbaar voor 1 op 1 maatjes-gesprekken.</p>
+					<img src="img/gesprek.png" class="my-2 float-right" style="width: 50%; margin-left: 15px;">
+					<p>Goede contacten zijn ook nuttig. Een van de maatjes heeft bij een Piëzo-vestiging gevraagd of er ruimte beschikbaar was voor een maatje-werkzoekende-gesprek. Met succes!</p> 
+					<p>Dank Lou, voor het voorbeeld! We hebben inmiddels aan enkele partners gevraagd of er vaker kan worden afgesproken voor twee-gesprekken. En ook met succes!</p>
+					<p>Forum wil zelfs een paar uur per week (op vrijdagochtend) speciaal voor ons reserveren, in het filiaal Rokkeveen. De mogelijkheden in Oosterheem zijn volgende week bekend.</p>
+					<p>We hebben het ook besproken met SchuldHulpMaatje (ruimte Bredewater); daar krijgen we nog bericht van. Ook met Piëzo hebben we gesproken. Die krijgen meer van deze vragen, maar staan er positief tegenover.</p>
+					
+					<p>Daarom aan jullie de vraag: wie wil weer op regelmatige basis een echt contact-gesprek (op 1,5m), en wil gebruik maken van deze mogelijkheden? Stuur dan een reactie naar Joke Sikking.</p>
+					<a class="btn btn-primary" href="mailto:joke@jhm-zoetermeer.nl" role="button">Email Joke &raquo;</a></p>
+					';
+				
+
 	$newsmsg[22] = '<h3 class="bluefont">Het jaarverslag over 2020</h3>
 	<h5 class="bluefont">5-2-2021</h5>
 					<p>Het jaarverslag van JobHulpMaatje Zoetermeer over het bijzondere jaar 2020 is klaar en je kunt het nu lezen.</p>

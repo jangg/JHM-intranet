@@ -146,8 +146,6 @@ class Post
 		3 = user_id van de poster
 		*/
 		$cmd = 'php -f ../mailroom.php ' . $this->id_topic . ' ' . $connection->lastInsertId() . ' ' . $this->id_user . ' > /dev/null &';
-//		$cmd = 'php -f ../mailroom.php ' . $this->id_topic . ' ' . $connection->lastInsertId() . ' ' . $this->id_user;
-		// error_log($cmd);
 		exec($cmd);
 		return TRUE;	
 	}
@@ -215,10 +213,11 @@ class Post
 		SELECT posts.id, posts.post_content, posts.post_date, topics.topic_subject, categories.cat_name FROM posts, topics, categories WHERE posts.id_topic = topics.id AND topics.id_cat = categories.id AND topics.id <> 19 ORDER BY posts.id DESC LIMIT 1;
 		*/
 		$sql = "SELECT 	posts.id,
-						posts.id_user, 
+						posts.id_user,
+						posts.id_topic, 
 						posts.post_content, 
 						posts.post_date, 
-						topics.topic_subject, 
+						topics.topic_subject,
 						categories.cat_name 
 						FROM posts, topics, categories 
 						WHERE posts.id_topic = topics.id AND topics.id_cat = categories.id AND topics.id <> 19 
