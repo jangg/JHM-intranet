@@ -182,7 +182,8 @@ if (isset($_POST['deleteWzBut']) && $_POST['deleteWzBut'] == 'delete')
 if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 {
 	$wkz_nw = clone $wkz;
-	$wkz_nw->picfile				= $_POST['picfile'];
+	if($curr_user->beheerind >= 9)
+		$wkz_nw->picfile			= $_POST['picfile'];
 	$wkz_nw->voornaam				= $_POST['voornaam'];
 	$wkz_nw->achternaam				= $_POST['achternaam'];
 	$wkz_nw->tussenvoegsels			= $_POST['tussenvoegsels'];
@@ -534,7 +535,7 @@ foreach ($maatjesLijst as $maatje)
 							<option value="VWO" <?php if($wkz->opleiding == 'VWO') echo 'selected'; ?>>VWO</option>
 							<option value="MBO1" <?php if($wkz->opleiding == 'MBO1') echo 'selected'; ?>>MBO 1/2</option>
 							<option value="MBO2" <?php if($wkz->opleiding == 'MBO2') echo 'selected'; ?>>MBO 3/4</option>
-							<option value="HB1O" <?php if($wkz->opleiding == 'HBO1') echo 'selected'; ?>>HBO bachelor</option>
+							<option value="HBO1" <?php if($wkz->opleiding == 'HBO1') echo 'selected'; ?>>HBO bachelor</option>
 							<option value="HBO2" <?php if($wkz->opleiding == 'HBO2') echo 'selected'; ?>>HBO master</option>
 							<option value="HBO3" <?php if($wkz->opleiding == 'HBO3') echo 'selected'; ?>>HBO post</option>
 							<option value="WO1" <?php if($wkz->opleiding == 'WO1') echo 'selected'; ?>>WO bachelor</option>

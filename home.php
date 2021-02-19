@@ -125,10 +125,12 @@ if ($recentpost['post_date'] == '')
 				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
 					<span style="font-size: 1.1em; color: white;">Laatste nieuwsbericht op JHM-Zoetermeer.nl</span>
 				</div>
+				<a href="https://jhm-zoetermeer.nl/nieuws/chrystal-helpt-werkzoekenden-zich-met-zelfvertrouwen-te-presenteren-ik-ben-zo-trots-als-dat-lukt/" style="color: inherit; text-decoration: inherit;">
 				<div class="d-flex m-0 p-0">
 					<div><img src="newsflash/chrystalkorving2.jpg" height="150px"/></div>
 					<div class="m-2 p-1" style="font-size: .9em;"><span style="font-size: .9em;">2 februari 2021</span><br/>Chrystal helpt werkzoekenden zich met zelfvertrouwen te presenteren: “Ik ben zo trots als dat lukt”</div>
 				</div>
+				</a>
 			</div>
 			<div class="col-md jumbotron m-2 p-0" style="border: 4px solid #027afe;">
 				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
