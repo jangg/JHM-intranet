@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('includes/configDB.inc');
+include_once ('class/c_tools.php');
 /* een sessie blijft hoogstens 10 minuten in delucht. Daarna moet er opnieuw worden ingelogd */
 // ini_set("session.cookie_lifetime","600");
 error_reporting(E_ALL);

@@ -79,7 +79,7 @@ function getAllPs()
 	{
 		$user = new User('id', $ps->id_user);
 		$ps_html .= 
-			'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $ps->dt_stap . '</div>
+			'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . Tools::ConvertTS($ps->dt_stap) . '</div>
 			<div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $user->username . '</div>
 			<div class="input-group-text mb-1" style="font-size: .8em; display: inline-block;">' .  $ps->wzstatus . ' - ' . (isset($statusArray[$ps->wzstatus]) ? $statusArray[$ps->wzstatus] : 'onbekend') . '</div></div>';
 		if ($ps->toelichting != '')
@@ -124,7 +124,7 @@ function getAllAant()
 	{
 		$user = new User('id', $aant->id_user);
 		$aant_html .= 
-			'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $aant->datetime_created . '</div>
+			'<div><div class="input-group-text" style="font-size: .8em; display: inline-block;">' . Tools::ConvertTS($aant->datetime_created) . '</div>
 			<div class="input-group-text" style="font-size: .8em; display: inline-block;">' . $user->username . '</div>';
 			$aant_html .=
 			'<div class="input-group input-group-sm mb-1">
@@ -195,17 +195,7 @@ if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 	$wkz_nw->emailadres				= $_POST['emailadres'];
 	$wkz_nw->telefoonnr				= $_POST['telefoonnr'];
 	$wkz_nw->link_linkedin			= $_POST['link_linkedin'];
-	if ($_POST['date_geboorte'] != '')
-	{
-		if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['date_geboorte']) !== 0)
-		{
-			$date = DateTime::createFromFormat('d-m-Y', $_POST['date_geboorte']);
-			$wkz_nw->date_geboorte		= $date->format('Y-m-d');
-		} 
-	} else
-	{
-		$wkz_nw->date_geboorte		= '';
-	}
+	$wkz_nw->date_geboorte			= Tools::ConvertTS($_POST['date_geboorte']);
 	// $wkz_nw->picfile				= $_POST['picfile'];
 	if(isset($_POST['nnind'])) $wkz_nw->nnind = 'j'; else $wkz_nw->nnind = 'n';
 	$wkz_nw->startsituatie			= $_POST['startsituatie'];
@@ -216,6 +206,7 @@ if (isset($_POST['updateWzBut']) && $_POST['updateWzBut'] == 'wijzig')
 	$wkz_nw->uitstroomscore			= $_POST['uitstroomscore'];
 	$wkz_nw->soortwerk				= $_POST['soortwerk'];
 	$wkz_nw->id_maatje				= $_POST['id_maatje'];
+	if(isset($_POST['id_maatje'])) $wkz_nw->id_maatje = $_POST['id_maatje']; else $wkz_nw->id_maatje = $wkz->id_maatje;
 	$wkz_nw->toelichting			= $_POST['wztoelichting'];
 	
 	if ($wkz_nw != $wkz)
@@ -275,7 +266,11 @@ $maatjesListHTML = '<option value="">---</option>';;
 // print_r($maatjesLijst);
 foreach ($maatjesLijst as $maatje)
 {
-	if($wkz->id_maatje == $maatje[0]) $sel = 'selected'; else $sel = '';
+	if($wkz->id_maatje == $maatje[0]) 
+	{
+		$sel = 'selected';
+	}
+	else $sel = '';
 	$maatjesListHTML .= '<option value="' . $maatje[0] . '" ' . $sel . '>' . $maatje[1] . '</option>';
 }
 
@@ -318,7 +313,10 @@ foreach ($maatjesLijst as $maatje)
 				border-width: 3px;
 				color: grey;
 			}
-			
+			.but-size {
+				width: 125px;
+			}
+		
 		</style>
 		<script>
 		$(document).ready(function() {
@@ -347,7 +345,9 @@ foreach ($maatjesLijst as $maatje)
 				</div>
 			</div>
 		</div>
-
+		<div class="container">
+			<a class="btn btn-primary but-size" href="overz_werkzoekenden.php" role="button">terug</a>
+		</div>
         <div class="container-fluid" style="padding-bottom: 80px;">	
 			<div class="row">
 				<div class="col-lg-4 mt-2 pt-2" style="background-color:#a5cad8">
@@ -400,13 +400,13 @@ foreach ($maatjesLijst as $maatje)
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text text-left text-wrap" style="width: 100%;">Datum/tijd nieuw</span>
 						</div>
-						<input type="text" name="datetime_created" class="form-control" disabled value="<?php echo $wkz->datetime_created; ?>"/>
+						<input type="text" name="datetime_created" class="form-control" disabled value="<?php echo Tools::ConvertTS($wkz->datetime_created); ?>"/>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text text-left text-wrap" style="width: 100%;">Datum/tijd gewijzigd</span>
 						</div>
-						<input type="text" name="datetime_modified" class="form-control" disabled value="<?php echo $wkz->datetime_modified; ?>"/>
+						<input type="text" name="datetime_modified" class="form-control" disabled value="<?php echo Tools::ConvertTS($wkz->datetime_modified); ?>"/>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -462,7 +462,7 @@ foreach ($maatjesLijst as $maatje)
 						</div>
 						<input type="text" name="date_geboorte" id="date_geboorte" class="form-control" value="<?php 
 						// error_log ($wkz->date_geboorte);
-						if ($wkz->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
+						echo Tools::ConvertTS($wkz->date_geboorte); ?>" maxlength="10" placeholder="dd-mm-jjjj">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -583,7 +583,7 @@ foreach ($maatjesLijst as $maatje)
 					</div>
 					<div class="forms-group mb-1">
 						<button name="updateWzBut" value="wijzig" type="submit" class="btn btn-primary btn-width btn-sm">Wijzig</button>
-						<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+						<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 						<button name="deleteWzBut" value="delete" type="submit" class="btn btn-danger btn-width btn-sm" style="float: right;">Delete</button>
 					</div>
 					</form>
@@ -591,11 +591,11 @@ foreach ($maatjesLijst as $maatje)
 				
 				<div class="col-lg-4 mt-2 pt-2 bg-light">
 					<ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0 active" data-toggle="tab" href="#aantek">Aantekeningen</a></li>
-						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0" data-toggle="tab" href="#statusreg">Statusregels</a></li>
+						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0 active" data-toggle="tab" href="#statusreg">Statusregels</a></li>
+						<li class="nav-item"><a class="nav-link border border-primary border-bottom-0" data-toggle="tab" href="#aantek">Aantekeningen</a></li>						
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane container mx-0 px-0 mt-2 active" id="aantek">
+						<div class="tab-pane container mx-0 px-0 mt-2" id="aantek">
 							<form method="POST" action="mut_persoon.php" id="postaant" novalidate>
 							<div class="input-group input-group-sm mb-1">							
 								<div class="input-group-prepend" style="width: 30%;">
@@ -610,7 +610,7 @@ foreach ($maatjesLijst as $maatje)
 							</form>
 							<?php echo getAllAant(); ?>
 						</div>
-						<div class="tab-pane container mx-0 px-0 mt-2" id="statusreg">
+						<div class="tab-pane container mx-0 px-0 mt-2 active" id="statusreg">
 							<form method="POST" action="mut_persoon.php" id="postps" novalidate>
 							<div class="input-group input-group-sm mb-1">							
 								<div class="input-group-prepend" style="width: 30%;">

@@ -51,20 +51,36 @@ else $foutidpw = FALSE;
 <html>
 	<head>
 	<?php include('includes/head.inc'); ?>
+	<style>
+	body {
+		  background: url('img/solliciteren.jpg') no-repeat 0, 0 #48b9b1;
+		  background-blend-mode: overlay;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		  background-position: center;
+		}
+	</style>
 	</head>
-	<body>
+	<body class="container-fluid">
 		<div class="container">
 			<div class="row mt-5 text-center">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-6">
 					<a href="index.php"><img src="img/Logo_JobHulpMaatje_Zoetermeer.svg" alt="LogoJHMZoetermeer" class="img-fluid" style="width: 100%"></a><br/><br/><br/><br/>
-					<h3 class="display-4">INTRANET</h3>
 				</div>
+			</div>
+		</div>		
+		<div>
+			<div class="row mt-5 text-center">
+				<div class="col-lg-3"></div>
+					<div class="col-lg-6">	
+						<h3 class="display-4">INTRANET</h3>
+					</div>
 				<div class="col-lg-3"></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"></div>
-				<div class="col-lg-6">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
 					<h5>Inloggen</h5>
 				<form role="form" method="POST" action="index.php">
 					<div class="form-groups">
@@ -80,7 +96,7 @@ else $foutidpw = FALSE;
 					<button name="vergeten" type="submit" class="btn btn-secondary">Wachtwoord vergeten?</button>
 				</form>
 				</div>
-				<div class="col-lg-3"></div>
+				<div class="col-lg-4"></div>
 			</div>
 			<div class="row footer">
 				<div class="col-lg-3"></div>

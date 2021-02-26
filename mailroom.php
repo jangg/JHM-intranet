@@ -14,11 +14,11 @@ include_once 'class/c_post.php';
 
 // var_dump ($argv);
 
-function logEmail ($emailaddress)
+function logEmail ($emailadres)
 {
 	$date = new DateTime();
 	$timestamp = $date->format("Y-m-d H:i:s-u e");
-	$logtxt = $timestamp . ' - email sent to ' . $emailaddress . "\r\n";
+	$logtxt = $timestamp . ' - email sent to ' . $emailadres . "\r\n";
 //	file_put_contents ($_SERVER['DOCUMENT_ROOT'] . '/forum_emails.txt', $logtxt, FILE_APPEND);
 	file_put_contents ('mail_apps/forum_emails.txt', $logtxt, FILE_APPEND);
 //	error_log($logtxt);
@@ -103,12 +103,13 @@ foreach ($users->userColl as $user)
 	try 
 	{				
 		$mail->addAddress($user->emailadres);
-		$mail->Body = $forumMessage;
-		$mail->AltBody = htmlentities($mail->Body);
+		// $mail->Body = $forumMessage;
+		// $mail->AltBody = htmlentities($mail->Body)
+		$mail->msgHTML($forumMessage);
 	/*************************************/
 	/*  HIER wordt de email verstuurd!   */				
 	/*************************************/
-		// logEmail($user->emailaddress);
+		logEmail($user->emailadres);
 		$mail->send();
 	}
 	catch (Exception $e)

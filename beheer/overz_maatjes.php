@@ -47,7 +47,7 @@ foreach($maatjeColl->maatjeColl as $maatje)
 	<tr style="font-size: 0.9em;">
 		<td style="text-align: center;" class="p-0"><a href="mut_maatje.php?id=' . $maatje->id . '"><i class="fas fa-user ifont"></i></a></td>
 		<td class="p-0">' . $maatje->achternaam . ', ' . $maatje->voornaam . ' ' . $maatje->tussenvoegsels . '</td>
-		<td class="p-0">' . $user->activity . '</td>
+		<td class="p-0">' . '<span style="display: none;">' .$user->activity . '</span>' . Tools::ConvertTS($user->activity) . '</td>
 		<td class="p-0">' . count($wkzList) . ' cliënten</td>'
 		.  $emailtxt .
 		'<td class="p-0">' . $maatje->straat . ' ' . $maatje->huisnummer . '</td>

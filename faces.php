@@ -51,7 +51,7 @@ $fotopath = 'fotoos_person/';
 				$j = 0;
 				foreach ($maatjesColl->maatjeColl as $maatje) {
 					$user = new User ('id_person', $maatje->id_person);
-					$activity = new DateTime($user->activity);
+					$activity = Tools::ConvertTS($user->activity);
 					
 					if ($maatje->picfile != '')
 						$picture = $fotopath . $maatje->picfile;
@@ -83,7 +83,7 @@ $fotopath = 'fotoos_person/';
 							<li class="m-0 p-1"><img src="logos/linkedin.png" width="16">&nbsp&nbsp' . $linkedin . '</li>
 						</ul>
 						<div class="card-footer m-0 p-1 text-center ">
-							<small>Laatst actief op ' . $activity->format("j-M-y G:i") . 'h' . '</small>
+							<small>Laatst actief op ' . $activity . 'h' . '</small>
 						</div>
 					</div>
 					';

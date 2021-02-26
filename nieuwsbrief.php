@@ -82,6 +82,11 @@ if (isset($_SESSION['userid']))
 					$(".nieuwsbrief").hide();
 					$("#2020122").show();
 				});
+				$("#13").click(function(){
+					$(".nieuwsbrief").hide();
+					$("#2021021").show();
+				});
+
 
 
 			});
@@ -108,6 +113,7 @@ if (isset($_SESSION['userid']))
 			<div class="row">
 				<div class="col-4">
 					<ul>
+					<li><p><a id="13" href="#">Februari 2021</a></p></li>
 					<li><p><a id="12" href="#">December 2020, JHM Zoetermeer</a></p></li>
 					<li><p><a id="11" href="#">December 2020, JHM Nederland</a></p></li>
 					<li><p><a id="10" href="#">November 2020</a></p></li>
@@ -166,9 +172,13 @@ if (isset($_SESSION['userid']))
 					<div id="2020121" class="nieuwsbrief"  style="display: none;">
 					<?php include('nieuwsbrieven/nb2020121.html'); ?>
 					</div>
-					<div id="2020122" class="nieuwsbrief"  style="display: block;">
+					<div id="2020122" class="nieuwsbrief"  style="display: none;">
 					<?php include('nieuwsbrieven/nb2020122.html'); ?>
 					</div>
+					<div id="2021021" class="nieuwsbrief"  style="display: block;">
+					<?php include('nieuwsbrieven/nb2021021.html'); ?>
+					</div>
+	
 	
 	
 				</div>

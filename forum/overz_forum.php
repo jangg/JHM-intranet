@@ -33,23 +33,16 @@ foreach($categorieColl->categorieColl as $categorie)
 	$aantalPosts = $categorie->getAantalPosts ();
 	$laatste_post = $categorie->getLastPost ();
 	$user_laatste_post = new User ('id', $laatste_post->id_user);
-	if ($laatste_post->datum != '')
-	{
-		$datum_lp = new DateTime($laatste_post->datum);
-		$datum_lp2 = $datum_lp->format('d-m') . '<br/>' . $datum_lp->format('H:i') . 'h';		
-	} else
-	{
-		$datum_lp2 = '';
-	}
+	$datum_lp2 = Tools::ConvertTS($laatste_post->datum);
 	
 	$html .= '	
 	<tr class="d-flex mx-0">
-	<td class="col-8 mx-0">
+	<td class="col-7 mx-0">
 	<span class="lead"><a href="overz_cat.php?id=' . $categorie->id . '">' . $categorie->naam . '</a></span><br/>' . $categorie->omschrijving . 
 	'</td>
 	<td class="col-1 text-center mx-0">' . $aantalTopics . '</td>
 	<td class="col-1 text-center mx-0">' . $aantalPosts . '</td>
-	<td class="col-1 text-center mx-0">' . $datum_lp2 . '</td>
+	<td class="col-2 text-center mx-0">' . $datum_lp2 . '</td>
     <td class="col-1 text-center mx-0">' . $user_laatste_post->voornaam . ' ' . $user_laatste_post->tussenvoegsels . ' ' . $user_laatste_post->achternaam . '</td>
 	</tr>';
 }
@@ -95,10 +88,10 @@ foreach($categorieColl->categorieColl as $categorie)
 				<table class="table bg-light" style="font-size: 13px;">
 				<thead class="bg-primary text-white">
 				  <tr class="d-flex">
-				    <th scope="col" class="col-8">Categorie</th>
+				    <th scope="col" class="col-7">Categorie</th>
 				    <th scope="col" class="col-1 text-center">aantal onderwerpen</th>
 					<th scope="col" class="col-1 text-center">aantal berichten</th>
-					<th scope="col" class="col-1 text-center">laatste bericht</th>
+					<th scope="col" class="col-2 text-center">laatste bericht</th>
 					<th scope="col" class="col-1 text-center">door</th>
 				  </tr>
 				</thead>

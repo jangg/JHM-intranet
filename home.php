@@ -1,53 +1,46 @@
 <?php
-include_once('config.php');
-include_once('class/c_user.php');
-include_once('includes/newsmsgs.inc');
-include_once('class/c_cat.php');
-include_once('class/c_topic.php');
-include_once('class/c_post.php');
+include_once "config.php";
+include_once "class/c_user.php";
+include_once "includes/newsmsgs.inc";
+include_once "class/c_cat.php";
+include_once "class/c_topic.php";
+include_once "class/c_post.php";
 
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
 *************************/
-if (!isset($_SESSION['username'])) {
-	header('location:index.php');
-	exit();
+if (!isset($_SESSION["username"])) {
+  header("location:index.php");
+  exit();
 }
-if (isset($_SESSION['userid']))
-{
-	$curr_user = new User ('id', $_SESSION['userid']);
-} else
-{
-	$curr_user = new User ();
+if (isset($_SESSION["userid"])) {
+  $curr_user = new User("id", $_SESSION["userid"]);
+} else {
+  $curr_user = new User();
 }
 /**********************/
 
 /* haal de filenames van de fotootjes op */
 
-$list = scandir('fotoos_person', SCANDIR_SORT_NONE);
+$list = scandir("fotoos_person", SCANDIR_SORT_NONE);
 unset($list[0]);
 unset($list[1]);
 
 shuffle($list);
 
 //print_r($list);
-$newsMsgs = getMsgs (10, $curr_user->voornaam);
+$newsMsgs = getMsgs(10, $curr_user->voornaam);
 
 $recentpost = Post::getMostRecentPost();
-$poster = new User('id', $recentpost['id_user']);
-$posternaam = $poster->voornaam . ' ' . $poster->tussenvoegsels . ' ' . $poster->achternaam;
-if ($recentpost['post_date'] == '') 
-	$postdatum = ''; 
-	else {
-		$p = DateTime::createFromFormat('Y-m-d H:i:s', $recentpost['post_date']);
-		$postdatum = $p->format('d M Y H:i');
-	}
-
+$poster = new User("id", $recentpost["id_user"]);
+$posternaam =
+$poster->voornaam . " " . $poster->tussenvoegsels . " " . $poster->achternaam;
+$postdatum = Tools::ConvertTS($recentpost["post_date"]);
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<?php include('includes/head.inc'); ?>			
+		<?php include "includes/head.inc"; ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -86,62 +79,64 @@ if ($recentpost['post_date'] == '')
 	</head>
  
 <body style="background-color: #dddddd; font-size: 16px;">
-	<?php include('includes/navbar.inc'); ?>
+	<?php include "includes/navbar.inc"; ?>
 	<div class="container mb-4">
 		<div class="row">
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[0]; ?>" alt="<?php  echo $list[0]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[1]; ?>" alt="<?php  echo $list[1]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[2]; ?>" alt="<?php  echo $list[2]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[3]; ?>" alt="<?php  echo $list[3]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[4]; ?>" alt="<?php  echo $list[4]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[5]; ?>" alt="<?php  echo $list[5]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[6]; ?>" alt="<?php  echo $list[6]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[7]; ?>" alt="<?php  echo $list[7]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[8]; ?>" alt="<?php  echo $list[8]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[9]; ?>" alt="<?php  echo $list[9]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[10]; ?>" alt="<?php  echo $list[10]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[11]; ?>" alt="<?php  echo $list[11]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[0]; ?>" alt="<?php echo $list[0]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[1]; ?>" alt="<?php echo $list[1]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[2]; ?>" alt="<?php echo $list[2]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[3]; ?>" alt="<?php echo $list[3]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[4]; ?>" alt="<?php echo $list[4]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[5]; ?>" alt="<?php echo $list[5]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[6]; ?>" alt="<?php echo $list[6]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[7]; ?>" alt="<?php echo $list[7]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[8]; ?>" alt="<?php echo $list[8]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[9]; ?>" alt="<?php echo $list[9]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[10]; ?>" alt="<?php echo $list[10]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[11]; ?>" alt="<?php echo $list[11]; ?>" width="100%"></div>
 		</div>
 		<div class="row">
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[12]; ?>" alt="<?php  echo $list[12]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[13]; ?>" alt="<?php  echo $list[13]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[14]; ?>" alt="<?php  echo $list[14]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[15]; ?>" alt="<?php  echo $list[15]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[16]; ?>" alt="<?php  echo $list[16]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[17]; ?>" alt="<?php  echo $list[17]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[18]; ?>" alt="<?php  echo $list[18]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[19]; ?>" alt="<?php  echo $list[19]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[20]; ?>" alt="<?php  echo $list[20]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[21]; ?>" alt="<?php  echo $list[21]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[22]; ?>" alt="<?php  echo $list[22]; ?>" width="100%"></div>
-			<div class="col p-0 m-0"><img src="fotoos_person/<?php  echo $list[23]; ?>" alt="<?php  echo $list[23]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[12]; ?>" alt="<?php echo $list[12]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[13]; ?>" alt="<?php echo $list[13]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[14]; ?>" alt="<?php echo $list[14]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[15]; ?>" alt="<?php echo $list[15]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[16]; ?>" alt="<?php echo $list[16]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[17]; ?>" alt="<?php echo $list[17]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[18]; ?>" alt="<?php echo $list[18]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[19]; ?>" alt="<?php echo $list[19]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[20]; ?>" alt="<?php echo $list[20]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[21]; ?>" alt="<?php echo $list[21]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[22]; ?>" alt="<?php echo $list[22]; ?>" width="100%"></div>
+			<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[23]; ?>" alt="<?php echo $list[23]; ?>" width="100%"></div>
 		</div>
 	</div>	
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<!-- <div class="jumbotron"> -->
 	<div class="container mt-2 mb-2">
 		<div class="row">
-			<div class="col-md jumbotron m-2 p-0" style="border: 4px solid #027afe;">
+			<div class="col-md-5 jumbotron p-0 m-1" style="border: 2px solid #027afe;">
 				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
 					<span style="font-size: 1.1em; color: white;">Laatste nieuwsbericht op JHM-Zoetermeer.nl</span>
 				</div>
 				<a href="https://jhm-zoetermeer.nl/nieuws/chrystal-helpt-werkzoekenden-zich-met-zelfvertrouwen-te-presenteren-ik-ben-zo-trots-als-dat-lukt/" style="color: inherit; text-decoration: inherit;">
 				<div class="d-flex m-0 p-0">
-					<div><img src="newsflash/chrystalkorving2.jpg" height="150px"/></div>
+					<div><img src="newsflash/chrystalkorving2.jpg" height="210px"/></div>
 					<div class="m-2 p-1" style="font-size: .9em;"><span style="font-size: .9em;">2 februari 2021</span><br/>Chrystal helpt werkzoekenden zich met zelfvertrouwen te presenteren: “Ik ben zo trots als dat lukt”</div>
 				</div>
 				</a>
 			</div>
-			<div class="col-md jumbotron m-2 p-0" style="border: 4px solid #027afe;">
+			<div class="col-md jumbotron p-0 m-1" style="border: 2px solid #027afe;">
 				<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
 					<span style="font-size: 1.1em; padding: 0px; color: white;">Meest recente forumbericht</scan>
 				</div>
-				<a href="forum/overz_topic.php?id=<?php echo $recentpost['id_topic'];?>" style="color: inherit; text-decoration: inherit;">
+				<a href="forum/overz_topic.php?id=<?php echo $recentpost["id_topic"]; ?>" style="color: inherit; text-decoration: inherit;">
 				<div class="m-0 p-0">
-					<div class="m-2 p-1 pb-4" style="font-size: .9em;"><?php echo $recentpost['post_content']; ?>
+					<div class="m-1 mb-0 p-1 pb-0" style="font-size: .9em; overflow: scroll;"><h5><?php echo $recentpost["cat_name"]; ?><br/><?php echo $recentpost["topic_subject"]; ?></h5>
 					</div>
-					<div style="position: absolute; bottom: 0px; width: 100%; font-size: .8em; line-height: 100%; color: #2a3470; background-color: rgba(2, 122, 254, 0.2);" class="m-0 p-2">
-						<?php echo $postdatum; ?> <?php echo $posternaam; ?> <br/><?php echo $recentpost['cat_name']; ?> --> <?php echo $recentpost['topic_subject']; ?>
+					<div class="m-1 p-1 pb-4" style="font-size: .9em; overflow: scroll;"><?php echo Tools::getShortPost($recentpost["post_content"], 70); ?>
+					</div>
+					<div style="position: absolute; bottom: 0px; width: 100%; font-size: .8em; line-height: 100%; color: #2a346f; background-color: rgba(2, 122, 254, 0.2);" class="m-0 p-2">
+						<?php echo $postdatum; ?> <?php echo $posternaam; ?> <br/>
 					</div>
 				</div>
 				</a>
@@ -173,36 +168,34 @@ if ($recentpost['post_date'] == '')
 			<div class="col-sm-4" id="sticky-right">
 				<ul>
 					<li class="text-center">
-					  <a href="pages/bericht20210202_2.php" style="color: dark; background-color: #ede17a;">
-						<p style="font-size: 1.5em;">Nieuw verslag van de bestuursvergadering!</p>
-						<p style="font-size: 2em;">Klik hier</p>
+					  <a href="nieuwsbrief.php" style="color: dark; background-color: #ede17a;">
+						<p style="font-size: 1.5em;">Er is een nieuwe nieuwsbrief. Editie februari is uit.</p>
+						<p style="font-size: 2em;">Klik hier om 'm te lezen.</p>
 					  </a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<?php
-	for ($i = count($newsMsgs) - 1; ($i > count($newsMsgs) - 10); $i = $i - 2) {
-		$naam = $curr_user->voornaam;
-		echo '
+	<?php for ($i = count($newsMsgs) - 1; $i > count($newsMsgs) - 10; $i = $i - 2) {
+   $naam = $curr_user->voornaam;
+   echo '
 		<div class="container">
 		<div class="row py-4 border-top border-primary">
 			<div class="col-md">
 			';
-		echo $newsMsgs[$i];
-		echo '				
+   echo $newsMsgs[$i];
+   echo '				
 		</div>
 		<div class="col-md">
 			';
-		echo $newsMsgs[$i - 1];
-		echo '
+   echo $newsMsgs[$i - 1];
+   echo '
 				</div>
 			</div>
 		</div>				
 		';
-	}
-	?>
+ } ?>
 	<!-- einde jumbotron -->
 	
 	<div class="container">
@@ -230,6 +223,6 @@ if ($recentpost['post_date'] == '')
 	</div> <!-- /container -->
 					
 	</main>
-	<?php include('includes/footer.inc'); ?>
+	<?php include "includes/footer.inc"; ?>
 </body>
 </html>

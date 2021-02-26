@@ -61,17 +61,18 @@ if (isset($_POST['saveWzBut']))
 			$wkz_nw->woonplaats				= $_POST['woonplaats'];
 			$wkz_nw->telefoonnr				= $_POST['telefoonnr'];
 			$wkz_nw->link_linkedin			= $_POST['link_linkedin'];
-			if ($_POST['gebdatum'] != '')
-			{
-				if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['gebdatum']) !== 0)
-				{
-					$date = DateTime::createFromFormat('d-m-Y', $_POST['gebdatum']);
-					$wkz_nw->date_geboorte		= $date->format('Y-m-d');
-				} 
-			} else
-			{
-				$wkz_nw->date_geboorte			= '';
-			}
+			$wkz_nw->gebdatum				= Tools::ConvertTS($_POST['gebdatum']);
+			// if ($_POST['gebdatum'] != '')
+			// {
+			// 	if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['gebdatum']) !== 0)
+			// 	{
+			// 		$date = DateTime::createFromFormat('d-m-Y', $_POST['gebdatum']);
+			// 		$wkz_nw->date_geboorte		= $date->format('Y-m-d');
+			// 	} 
+			// } else
+			// {
+			// 	$wkz_nw->date_geboorte			= '';
+			// }
 			$intakeform_nw->gebplaats		= $_POST['gebplaats'];
 			$intakeform_nw->gebland			= $_POST['gebland'];
 			$intakeform_nw->nationaliteit	= $_POST['nationaliteit'];
@@ -132,17 +133,18 @@ if (isset($_POST['saveWzBut']))
 			$intakeform_nw->advmaatje		= $_POST['advmaatje'];
 			$intakeform_nw->advnietontv		= $_POST['advnietontv'];
 			$intakeform_nw->advopmerkingen	= $_POST['advopmerkingen'];
-			if ($_POST['advverwdatum'] != '')
-			{
-				if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['advverwdatum']) !== 0)
-				{
-					$date = DateTime::createFromFormat('d-m-Y', $_POST['advverwdatum']);
-					$intakeform_nw->advverwdatum		= $date->format('Y-m-d');
-				} 
-			} else
-			{
-				$intakeform_nw->advverwdatum			= '';
-			}
+			$intakeform_nw->advverwdatum	= Tools::ConvertTS($_POST['advverwdatum']);
+			// if ($_POST['advverwdatum'] != '')
+			// {
+			// 	if (preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/", $_POST['advverwdatum']) !== 0)
+			// 	{
+			// 		$date = DateTime::createFromFormat('d-m-Y', $_POST['advverwdatum']);
+			// 		$intakeform_nw->advverwdatum		= $date->format('Y-m-d');
+			// 	} 
+			// } else
+			// {
+			// 	$intakeform_nw->advverwdatum			= '';
+			// }
 			break;
 
 		default:

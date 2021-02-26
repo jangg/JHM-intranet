@@ -87,13 +87,12 @@ $html = '';
 
 foreach ($postsColl->postColl as $post) {
 	$user = new User ('id', $post->id_user);
-	$datum_lp = new DateTime($post->datum);
-	$datum_lp2 = $datum_lp->format('d-m') . '<br/>' . $datum_lp->format('H:i') . 'h';
+	$datum_lp2 = Tools::ConvertTS($post->datum);
 	$html .= '	
 	<tr class="d-flex mx-0">
-	<td scope="col" class="col-1 text-center mx-0 overflow-hidden">' . $datum_lp2 . '</td>
+	<td scope="col" class="col-2 text-center mx-0 overflow-hidden">' . $datum_lp2 . '</td>
 	<td scope="col" class="col-1 text-center mx-0 overflow-hidden">' . $user->voornaam . ' ' . $user->tussenvoegsels . ' ' . $user->achternaam . '</td>
-	<td scope="col" class="col-10 mx-0">' . $post->tekst . '</td>
+	<td scope="col" class="col-9 mx-0">' . $post->tekst . '</td>
 	</tr>';
 }
 ?>
@@ -115,8 +114,19 @@ foreach ($postsColl->postColl as $post) {
 					  minHeight: null,			 // set minimum height of editor
 					  maxHeight: null,			 // set maximum height of editor
 					  focus: true,				  // set focus to editable area after initializing summernote
-					  tabDisable: false
+					  disableDragAndDrop: true,
+					  shortcuts: true,
+					  tabDisable: true,
+					  toolbar: [
+						  // [groupName, [list of button]]
+						  ['style', ['bold', 'italic', 'underline', 'clear']],
+						  ['fontsize', ['fontsize']],
+						  ['color', ['color']],
+						  ['para', ['ul', 'ol', 'paragraph']],
+						  ['insert', ['link']]
+						]
 				  });
+				  $('.note-editable').css('font-size','14px');
 			$("#button").click(function(){
 				$("#nw_bericht").fadeToggle();
 				jumpto('nw_bericht');
@@ -152,9 +162,9 @@ foreach ($postsColl->postColl as $post) {
 				<table class="table bg-light table-bordered" style="font-size: 13px;">
 				<thead class="bg-primary text-white">
 				  <tr class="d-flex">
-					<th scope="col" class="col-1 text-center m-0 px-0 overflow-hidden">datum<br/>tijd</th>
+					<th scope="col" class="col-2 text-center m-0 px-0 overflow-hidden">datum<br/>tijd</th>
 					<th scope="col" class="col-1 text-center m-0 px-0 overflow-hidden">door</th>
-				    <th scope="col" class="col-10 m-0">bericht</th>
+				    <th scope="col" class="col-9 m-0">bericht</th>
 				  </tr>
 				</thead>
 				<tbody>

@@ -90,6 +90,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 		padding-bottom: 2em;
 		border-radius: 6px;
 	}
+	.but-size {
+		width: 125px;
+	}
+	
 	
 
 	</style>
@@ -149,7 +153,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 		</div>
 
 		<div class="container" id="tabContainer">
-			<p><a class="btn btn-primary" href="intake_pdf.php?id=<?php echo $wkz->id; ?>" role="button">maak PDF</a></p>
+			<p>
+				<a class="btn btn-primary but-size" href="intake_pdf.php?id=<?php echo $wkz->id; ?>" role="button">maak PDF</a>
+				<a class="btn btn-primary but-size" href="overz_werkzoekenden.php" role="button">terug</a>
+			</p>
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item" role="presentation">
 					<a class="nav-link active" data-toggle="tab" href="#personalia" id="personalia-tab" role="tab" aria-controls="personalia" aria-selected="true">Basis info</a>
@@ -263,8 +270,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 					  <div class="input-group-prepend" style="width: 30%;">
 						  <span class=" input-group-text text-left text-wrap" style="width: 100%;">Geboortedatum</span>
 					  </div>
-					  <input type="text" name="gebdatum" id="gebdatum" class="form-control" value="<?php 
-					  if ($wkz->date_geboorte == '') echo ''; else echo (DateTime::createFromFormat('Y-m-d', $wkz->date_geboorte))->format('d-m-Y'); ?>" maxlength="10" placeholder="dd-mm-jjjj">
+					  <input type="text" name="gebdatum" id="gebdatum" class="form-control" value="<?php echo Tools::ConvertTS($wkz->date_geboorte); ?>" maxlength="10" placeholder="dd-mm-jjjj">
 				  </div>
 				  <div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
@@ -302,7 +308,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				  </div>
 				  <div class="forms-group mb-1">
 					  <button name="saveWzBut" value="bewaar1" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					  <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					  <!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				  </div>				
 			  </form>
 			</div>
@@ -352,7 +358,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar2" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>
 				</form>
 		    </div>
@@ -389,7 +395,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar3" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>
 				</form>			
  			</div>
@@ -504,7 +510,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar4" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>				
 				</form>
 			</div>
@@ -568,7 +574,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar5" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>				
 				</form>
 			</div>
@@ -648,7 +654,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar6" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>				
 				</form>
 			</div>
@@ -708,7 +714,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar7" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>				
 				</form>
 			</div>
@@ -746,7 +752,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar8" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-					<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+					<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 				</div>
 				</form>			
 			</div>
@@ -807,7 +813,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 				<div class="input-group input-group-sm mb-2">
 					<div class="forms-group mb-1">
 						<button name="saveWzBut" value="bewaar9" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
-						<button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+						<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
 					</div>
 				</div>
 				</form>			

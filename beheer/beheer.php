@@ -52,7 +52,7 @@ unset($_SESSION['jobgroup_id']);
 	            </div>
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_jobgroups.php">Overzicht jobgroups</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_jobgroup.php">Nieuwe jobgroup</a></button>
+					<!-- <button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_jobgroup.php">Nieuwe jobgroup</a></button> -->
 				</div>
 
 				<div class="col-md-4 p-0 text-center">

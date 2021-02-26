@@ -69,8 +69,8 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 		<td class="text-center p-0">' . $werkzoekende->status . '</td>
 		<td class="p-0">' . $werkzoekende->achternaam . ', ' . $werkzoekende->voornaam . ' ' . $werkzoekende->tussenvoegsels . '</td>
 		<td class="p-0">' . $werkzoekende->emailadres . '</td>
-		<td class="p-0">' . $werkzoekende->datetime_created . '</td>
-		<td class="p-0">' . $werkzoekende->datetime_modified . '</td>
+		<td class="p-0">' . '<span style="display: none;">' . $werkzoekende->datetime_created . '</span>' . Tools::ConvertTS($werkzoekende->datetime_created) . '</td>
+		<td class="p-0">' . '<span style="display: none;">' . $werkzoekende->datetime_modified . '</span>' . Tools::ConvertTS($werkzoekende->datetime_modified) . '</td>
 		<td class="p-0">' . $werkzoekende->telefoonnr . '</td>
 		<td class="p-0">' . $maatje . '</td>
 		<td class="p-0">' . $acties . '</td>

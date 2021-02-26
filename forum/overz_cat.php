@@ -91,16 +91,14 @@ $html = '';
 foreach($topicsColl->topicColl as $topic){
 
 	$aantal = $topic->getAantalPosts ();
-	$datum_tp = new DateTime($topic->datum);
-	$datum_tp2 = $datum_tp->format('d-m') . '<br/>' . $datum_tp->format('H:i') . 'h';
+	$datum_tp2 = Tools::ConvertTS($topic->datum);
 
 	$laatste_post = $topic->getLastPost();	
 	if ($laatste_post->id != NULL)
 	{
 		$user_lp = new User ('id', $laatste_post->id_user);
 		$user_lp_name = $user_lp->voornaam . ' ' . $user_lp->tussenvoegsels . ' ' . $user_lp->achternaam;
-		$datum_lp = new DateTime($laatste_post->datum);
-		$datum_lp2 = $datum_lp->format('d-m') . '<br/>' . $datum_lp->format('H:i') . 'h';
+		$datum_lp2 = Tools::ConvertTS($laatste_post->datum);
 		$laatste_post_tekst = $laatste_post->getShortPost(20);	
 	} else
 	{
@@ -114,8 +112,8 @@ foreach($topicsColl->topicColl as $topic){
 		 <td class="col-4 mx-0 d-none d-md-block"><a href="overz_topic.php?id=' . $topic->id . '">' . $topic->onderwerp . '</a></span></td>
 		 <td class="col-5 mx-0 d-md-none"><a href="overz_topic.php?id=' . $topic->id . '">' . $topic->onderwerp . '</a></span></td>
 		 <td class="col-1 text-center mx-0">' . $aantal . '</td>
-		 <td class="col-1 text-center mx-0 overflow-hidden d-none d-md-block">' . $datum_lp2 . '</td>
-		 <td class="col-5 mx-0">' . $laatste_post_tekst . '</td>
+		 <td class="col-2 text-center mx-0 overflow-hidden d-none d-md-block">' . $datum_lp2 . '</td>
+		 <td class="col-4 mx-0">' . $laatste_post_tekst . '</td>
 		 <td class="col-1 text-center mx-0">' .	 $user_lp_name . '</td>
 	</tr>';
 }
@@ -131,14 +129,26 @@ foreach($topicsColl->topicColl as $topic){
 			window.location.href = "#"+anchor;
 		}
 		$(document).ready(function() {
+		
 		$('#summernote').summernote(
-			{
-			height: 300,				 // set editor height
-			minHeight: null,			 // set minimum height of editor
-			maxHeight: null,			 // set maximum height of editor
-			focus: true,			  // set focus to editable area after initializing summernote
-			tabDisable: false
-			});
+			  {
+				  height: 300,				 // set editor height
+				  minHeight: null,			 // set minimum height of editor
+				  maxHeight: null,			 // set maximum height of editor
+				  focus: true,				  // set focus to editable area after initializing summernote
+				  disableDragAndDrop: true,
+				  shortcuts: true,
+				  tabDisable: true,
+				  toolbar: [
+					  // [groupName, [list of button]]
+					  ['style', ['bold', 'italic', 'underline', 'clear']],
+					  ['fontsize', ['fontsize']],
+					  ['color', ['color']],
+					  ['para', ['ul', 'ol', 'paragraph']],
+					  ['insert', ['link']]
+					]
+			  });
+			  $('.note-editable').css('font-size','14px');
 		$("#button").click(function(){
 			$("#nw_subject").fadeToggle();
 			jumpto('nw_subject');
@@ -180,8 +190,8 @@ foreach($topicsColl->topicColl as $topic){
 					<th scope="col" class="col-4 d-none d-md-block">onderwerp</th>
 					<th scope="col" class="col-5 d-md-none">onderwerp</th>
 					<th scope="col" class="col-1 text-center overflow-hidden">aantal<br/>berichten</th>
-					<th scope="col" class="col-1 text-center m-0 px-0  d-none d-md-block">laatste<br/>bericht</th>
-					<th scope="col" class="col-5">bericht</th>
+					<th scope="col" class="col-2 text-center m-0 px-0  d-none d-md-block">laatste<br/>bericht</th>
+					<th scope="col" class="col-4">bericht</th>
 					<th scope="col" class="col-1 text-center m-0 px-0">door</th>
 				  </tr>
 				</thead>
