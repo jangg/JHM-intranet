@@ -1,0 +1,14 @@
+{
+  "identifier" : "85AC773B-022B-42F4-825E-8CBF7E2274A1",
+  "ignoredFilePatterns" : [
+    "includes\/configDB.inc",
+    "bron_materiaal",
+    "configH2G.php",
+    "includes\/newsmsgs copy.inc"
+  ],
+  "localPath" : ".",
+  "remotePath" : "\/domains\/jhmz.nl\/public_html\/intra",
+  "remoteURL" : "https:\/\/intra.jhmz.nl",
+  "server" : "JHMintra",
+  "usesPublishing" : true
+}

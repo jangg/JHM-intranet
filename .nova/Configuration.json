@@ -1,0 +1,9 @@
+{
+  "index.ignored_file_patterns" : [
+    "configDB.inc"
+  ],
+  "workspace.name" : "JHMZ intra",
+  "workspace.preview_root" : ".",
+  "workspace.preview_type" : "custom",
+  "workspace.preview_url" : "http:\/\/jhmintra:8888\/"
+}

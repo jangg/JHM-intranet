@@ -1,0 +1,19 @@
+[core]
+	bare = false
+	repositoryformatversion = 0
+	filemode = true
+	ignorecase = true
+	precomposeunicode = true
+	logallrefupdates = true
+	sharedrepository = 1
+[receive]
+	denyNonFastforwards = true
+[remote "jhmintra"]
+[remote "JHMZ-intranet"]
+	url = https://github.com/jangg/JHM-intranet
+[branch "main"]
+[user]
+	name = jangg
+	email = jangg@mac.com
+[remote "JHMZ-intranet"]
+	fetch = +refs/heads/*:refs/remotes/JHMZ-intranet/*

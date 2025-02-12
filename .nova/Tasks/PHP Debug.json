@@ -1,0 +1,11 @@
+{
+  "extension" : {
+    "identifier" : "panic.PHP",
+    "name" : "PHP"
+  },
+  "extensionTemplate" : "phpDebug",
+  "extensionValues" : {
+    "php.debug.allowRemote" : false,
+    "php.debug.port" : 1025
+  }
+}

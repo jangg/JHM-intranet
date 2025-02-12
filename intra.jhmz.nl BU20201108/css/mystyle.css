@@ -1,0 +1,14 @@
+#email {
+    background-image: url('../img/paperboard-texture_95678-72.jpg');
+    color: ##0900d5;
+    /* width: 85%;
+    margin: 0 auto; */
+    border-radius: 10px;
+    /* padding: 60px;
+    margin-bottom: 10px; */
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.2em;
+    -webkit-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+}

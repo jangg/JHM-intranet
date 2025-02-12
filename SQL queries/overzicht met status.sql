@@ -1,0 +1,15 @@
+select 	person.achternaam,
+		person.voornaam,
+		  person.tussenvoegsels,
+		  werkzkd.opleiding,
+		  werkzkd.GAKind,
+		  werkzkd.instroomtrede,
+		  werkzkd.instroomscore,
+		  werkzkd.uitstroomscore,
+		  werkzkd.soortwerk,
+		  werkzkd.date_aanmelding,
+		  werkzkd.date_uitstroom,
+		  processtap.wzstatus,
+		  processtap.dt_stap,
+		  wkzstatus.omschrijving
+from werkzkd, person, wkzstatus, processtap where werkzkd.id_person = person.person_id and person.delind = 'n' and person.type = 'wkz' and werkzkd.id = processtap.id_werkzkd and processtap.wzstatus = wkzstatus.code order by person.achternaam, processtap.dt_stap, processtap.wzstatus; 

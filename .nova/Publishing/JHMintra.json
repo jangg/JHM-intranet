@@ -1,0 +1,16 @@
+{
+  "identifier" : "06D31D5B-F6AF-423B-AFBB-1B5504B60102",
+  "ignoredFilePatterns" : [
+    "bron_materiaal",
+    "includes\/configDB.inc",
+    "PHPMailer-master",
+    "intra.jhmz.nl BU20201108",
+    "stickynotes",
+    "configH2G.php"
+  ],
+  "localPath" : ".",
+  "remotePath" : "\/domains\/machunter.nl\/public_html\/jhmintra",
+  "remoteURL" : "http:\/\/www.machunter.nl\/jhmintra\/",
+  "server" : "JHMintra",
+  "usesPublishing" : true
+}
