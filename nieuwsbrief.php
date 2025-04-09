@@ -187,6 +187,11 @@ if (isset($_SESSION['userid']))
 					$(".nieuwsbrief").hide();
 					$("#20250201").show();
 				});
+				$("#41").click(function(){
+					$(".nieuwsbrief").hide();
+					$("#20250329").show();
+				});
+
 
 
 			});
@@ -225,6 +230,7 @@ if (isset($_SESSION['userid']))
 			<div class="row">
 				<div class="col-12">
 					<ul>
+					<li><p><a id="41" href="#">April 2025</a></p></li>
 					<li><p><a id="40" href="#">Februari 2025</a></p></li>
 					<li><p><a id="39" href="#">September 2024 nr2</a></p></li>
 					<li><p><a id="38" href="#">September 2024 nr1</a></p></li>
@@ -234,7 +240,6 @@ if (isset($_SESSION['userid']))
 					<li><p><a id="34" href="#">September 2023</a></p></li>
 					<li><p><a id="33" href="#">April 2023, JHM Nederland</a></p></li>
 					<li><p><a id="32" href="#">Oktober 2022, JHM Nederland</a></p></li>
-					<li><p><a id="31" href="#">Oktober 2022</a></p></li>
 					</ul>
 				</div>
 			</div>
@@ -268,9 +273,13 @@ if (isset($_SESSION['userid']))
 					<div id="20240927" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20240927.html'); ?>
 					</div>
-					<div id="20250201" class="nieuwsbrief"  style="display: block;">
+					<div id="20250201" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20250201.html'); ?>
 					</div>
+					<div id="20250329" class="nieuwsbrief"  style="display: block;">
+						<?php include('nieuwsbrieven/nb20250329.html'); ?>
+					</div>
+
 				</div>
 			</div>
 			<!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->

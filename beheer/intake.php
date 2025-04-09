@@ -464,7 +464,7 @@ foreach ($intakerLijst as $intaker)
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Hoe is werkzoekende bij JobHulpMaatje Zoetermeer terechtgekomen?</span>
 					</div>
-					<textarea type="text" name="bron" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->bron; ?></textarea>
+					<textarea type="text" name="bron" class="form-control"  rows="4" maxlength="8192"><?php echo $intakeform->bron; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -483,19 +483,19 @@ foreach ($intakerLijst as $intaker)
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Waar loopt werkzoekende tegenaan in huidige situatie/zoektocht naar (ander) werk?</span>
 					</div>
-					<textarea type="text" name="uitdagingen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->uitdagingen; ?></textarea>
+					<textarea type="text" name="uitdagingen" class="form-control"  rows="4" ><?php echo $intakeform->uitdagingen; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is er sprake van iets waardoor JHM niet zou kunnen helpen? (bv. alcohol, drugs, psychische problemen etc.)</span>
 					</div>
-					<textarea type="text" name="beperking" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->beperking; ?></textarea>
+					<textarea type="text" name="beperking" class="form-control"  rows="4" ><?php echo $intakeform->beperking; ?></textarea>
 				</div>
 				<!-- <div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Waarom heeft de werkzoekende hulp gezocht bij JobHulpMaatje?</span>
 					</div>
-					<textarea type="text" name="redenen" class="form-control"  rows="4" maxlength="180"><?php // echo $intakeform->redenen; ?></textarea>
+					<textarea type="text" name="redenen" class="form-control"  rows="4" ><?php // echo $intakeform->redenen; ?></textarea>
 				</div> -->
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
@@ -544,19 +544,19 @@ foreach ($intakerLijst as $intaker)
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">In geval van een uitkering of bijstand: wordt voldaan aan de sollicitatie-eis van de uitkerende instantie?</span>
 					</div>
-					<textarea type="text" name="eisen" class="form-control"  rows="4" maxlength="180"><?php echo $intakeform->eisen; ?></textarea>
+					<textarea type="text" name="eisen" class="form-control"  rows="4" ><?php echo $intakeform->eisen; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Welk netwerk of welke hulpverlening is/was al aanwezig?</span>
 					</div>
-					<textarea type="text" name="netwerken" class="form-control" rows="4" maxlength="180"><?php echo $intakeform->netwerken; ?></textarea>
+					<textarea type="text" name="netwerken" class="form-control" rows="4" ><?php echo $intakeform->netwerken; ?></textarea>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is andere hulp gewenst? Zo ja, welke?</span>
 					</div>
-					<textarea type="text" name="andere_hulp" class="form-control" rows="4" maxlength="180"><?php echo $intakeform->andere_hulp; ?></textarea>
+					<textarea type="text" name="andere_hulp" class="form-control" rows="4" ><?php echo $intakeform->andere_hulp; ?></textarea>
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar4" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
@@ -613,14 +613,14 @@ foreach ($intakerLijst as $intaker)
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Is er bereidheid om tijd en/of middelen te steken in een aanvullende opleiding of stage? Zijn er beperkende factoren?</span>
 					</div>
-					<textarea type="text" name="studie" class="form-control" rows="4" maxlength="200"><?php echo $intakeform->studie; ?></textarea>
+					<textarea type="text" name="studie" class="form-control" rows="4"><?php echo $intakeform->studie; ?></textarea>
 				</div>
 	
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text text-left text-wrap" style="width: 100%;">Werkervaring (indien er geen CV is en geen LinkedIn profiel)</span>
 					</div>
-					<textarea type="text" name="werkervaring" class="form-control" rows="4" maxlength="200"><?php echo $intakeform->werkervaring; ?></textarea>
+					<textarea type="text" name="werkervaring" class="form-control" rows="4" ><?php echo $intakeform->werkervaring; ?></textarea>
 				</div>
 				<div class="forms-group mb-1">
 					<button name="saveWzBut" value="bewaar5" type="submit" class="btn btn-primary btn-width btn-sm">Bewaar</button>
@@ -688,13 +688,13 @@ foreach ($intakerLijst as $intaker)
 					  <div class="input-group-prepend" style="width: 30%;">
 					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Maximale reistijd</span>
 					  </div>
-					  <input type="text" name="reistijd" class="form-control" value="<?php echo $intakeform->reistijd; ?>" maxlength="120">				
+					  <input type="text" name="reistijd" class="form-control" value="<?php echo $intakeform->reistijd; ?>">				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					  <div class="input-group-prepend" style="width: 30%;">
 					  <span class="input-group-text text-left text-wrap" style="width: 100%;">Beschikbaar vervoer</span>
 					  </div>
-					  <input type="text" name="vervoer" class="form-control" value="<?php echo $intakeform->vervoer; ?>" maxlength="120">				
+					  <input type="text" name="vervoer" class="form-control" value="<?php echo $intakeform->vervoer; ?>">				
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">

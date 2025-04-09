@@ -230,7 +230,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Telefoonnummers</span>
 						</div>
-						<input type="telnr" name="telefoonnr" class="form-control" value="<?php echo $mtj->telefoonnr; ?>">
+						<input type="text" name="telefoonnr" class="form-control" value="<?php echo $mtj->telefoonnr; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">

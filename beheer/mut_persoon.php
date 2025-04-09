@@ -499,9 +499,9 @@ foreach ($jobgroupLijst as $jobgroup)
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
-							<span class=" input-group-text text-left text-wrap" style="width: 100%;">Telefoonnummers</span>
+							<span class=" input-group-text text-left text-wrap" style="width: 100%;">Telefoonnummer</span>
 						</div>
-						<input type="telnr" name="telefoonnr" class="form-control" value="<?php echo $wkz->telefoonnr; ?>"/>
+						<input type="text" name="telefoonnr" class="form-control" value="<?php echo $wkz->telefoonnr; ?>"/>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">

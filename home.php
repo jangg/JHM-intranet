@@ -57,7 +57,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 		<div class="scroll-down"></div>
 		
 		<?php include "includes/navbar.inc"; ?>
-// 		<style>
+ 		<style>
 // 		.editor-stage .snow {
 // 		  height: 50px;
 // 		  background: #fff;
@@ -99,7 +99,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 // 		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 // 		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 // 		}
-// 		</style>
+ 		</style>
 			
 		<div class="container mb-4">
 			<div class="row">
@@ -134,12 +134,12 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 				<div class="col-md-4 d-md-block" id="sticky-right">
 					<ul>
 						<li>
-							<a href="nieuwsbrieven/nb20250201.html" style="color: dark; background-color: #da8ff8;">
+							<a href="nieuwsbrieven/nb20250329.html" style="color: dark; background-color: #da8ff8;">
 								<!-- <div style="position: relative;"><img src='img/agenda-490x297.jpg' width='100%'/></div> -->
 								<div style="position: absolute; top: 10px;">
-									<p style="font-size: 1.0em;">1 februari 2025</p>
+									<p style="font-size: 1.0em;">28 maart 2025</p>
 									<p style="font-size: 1.4em; color: rgb(42, 52, 112); text-align: center;"><br/>Nieuwe nieuwsbrief</p>
-									<p style="font-size: 1.0em;">De eerste nieuwsbrief van 2025 is uit.</p>
+									<p style="font-size: 1.0em;">De tweede nieuwsbrief van 2025 is uit.</p>
 									<p style="font-size: 1.0em; text-align: center;">Klik op mij.</p>
 								</div>
 							</a>
@@ -159,7 +159,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 					<img src="img/Logo_JobHulpMaatje_Zoetermeer.svg" class="mx-auto d-block mb-5" style="width: 350px;">
 				</div>
 				<div class="col-md-4 d-md-block" id="sticky-left">
-					<ul>
+					<!-- <ul>
 						<li>
 							<a href="pages/bericht20241218_1.php">
 								<p style="font-size: 1.0em;">18 december 2024</p>
@@ -168,7 +168,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 								<p style="font-size: 1.1em;">Klik hier....</p>
 							</a>
 						</li>
-					</ul>
+					</ul> -->
 				
 					
 				</div>

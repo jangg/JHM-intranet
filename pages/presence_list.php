@@ -127,12 +127,12 @@ foreach ($userColl->userColl as $user)
 <div class="jumbotron">
 	<div id="main">
 	<div class="container my-5" >
-		<h3 class="bluefont">1 december 2024</h3>
-		<h1 class="text-black mb-5 bluefont">Deelnamelijst Kerst Maatjesavond</h1>
-		<p>Op maandagavond 16 december 2024 vindt de laatste maatjesavond van 2024 plaats. Deze vindt plaats in de Kapelaan.</p>
+		<h3 class="bluefont">20 februari 2025</h3>
+		<h1 class="text-black mb-5 bluefont">Deelnamelijst Maatjesavond</h1>
+		<p>Op woensdagavond 12 maart 2025 vindt de volgende maatjesavond plaats. Deze vindt plaats in het Stadsforum, in het oude restaurant aan de vierkante tafel.</p>
 		<p>Verdere informatie komt nog via de Whatsapp groep of bij het nieuws van deze website.</p>
 		<p>Nu aanmelden of afmelden is belangrijk en simpel. De knop is grijs als je nog geen keuze hebt gemaakt. Als de schuifknop 1 x aanklikt wordt het 'ja' en geef je aan dat je komt. Als je de knop 2 x aanklikt wordt het, na refresh, 'nee' en geef je dus aan dat je niet komt.</p>
-		<p><strong>Schrijf je hier in en kom ook op 16 december. </strong></p>
+		<p><strong>Schrijf je hier in en kom ook op 12 maart. </strong></p>
 		<table class="table table-sm">
 			<thead>
 				<tr>

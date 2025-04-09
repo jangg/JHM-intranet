@@ -233,7 +233,7 @@ if (isset($_POST['saveWzBut']) && $_POST['saveWzBut'] == 'bewaar1')
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class=" input-group-text" style="width: 100%;">Telefoonnummer<sup>*</sup></span>
 					</div>
-					<input type="telnr" name="telefoonnr" class="form-control" value="<?php echo $wkz->telefoonnr; ?>" required>
+					<input type="text" name="telefoonnr" class="form-control" value="<?php echo $wkz->telefoonnr; ?>" required>
 				  </div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">

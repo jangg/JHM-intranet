@@ -201,7 +201,7 @@ if (isset($_POST['saveMtBut']) && $_POST['saveMtBut'] == 'bewaar')
 						<div class="input-group-prepend" style="width: 30%;">
 							<span class=" input-group-text" style="width: 100%;">Telefoonnummer</span>
 						</div>
-						<input type="telnr" id="telefoonnr" name="telefoonnr" class="form-control" value="<?php echo $mtj->telefoonnr; ?>">
+						<input type="text" id="telefoonnr" name="telefoonnr" class="form-control" value="<?php echo $mtj->telefoonnr; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
