@@ -201,6 +201,17 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
+						  <span class="input-group-text" style="width: 100%;">Type agenda item</span>
+						</div>
+						<select class="form-control"  name="type" id="type">
+							<option value="" <?php if($agendaitem->type == '') echo 'selected'; ?>>---</option>
+							<option value="bali" <?php if($agendaitem->type == 'bali') echo 'selected'; ?>>baliedienst</option>
+							<option value="mtng" <?php if($agendaitem->type == 'mtng') echo 'selected'; ?>>meeting</option>
+							<option value="wksp" <?php if($agendaitem->type == 'wksp') echo 'selected'; ?>>workshop</option>
+						</select>
+					</div>
+					<div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Titel</span>
 						</div>
 						<input id="titel" type="text" name="titel" class="form-control" value="<?php echo $agendaitem->titel; ?>">
@@ -239,25 +250,25 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Vrij veld 1</span>
+						  <span class="input-group-text" style="width: 100%;">Contactpersoon</span>
 						</div>
 						<input id="freefld1" type="text" name="freefld1" class="form-control" value="<?php echo $agendaitem->freefld1; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Vrij veld  2</span>
+						  <span class="input-group-text" style="width: 100%;">Vragen?</span>
 						</div>
 						<input id="freefld2" type="text" name="freefld2" class="form-control" value="<?php echo $agendaitem->freefld2; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Vrij veld  3</span>
+						  <span class="input-group-text" style="width: 100%;">Vrij veld</span>
 						</div>
 						<input id="freefld3" type="text" name="freefld3" class="form-control" value="<?php echo $agendaitem->freefld3; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
-						  <span class="input-group-text" style="width: 100%;">Vrij veld  4</span>
+						  <span class="input-group-text" style="width: 100%;">Picture naam</span>
 						</div>
 						<input id="freefld4" type="text" name="freefld4" class="form-control" value="<?php echo $agendaitem->freefld4; ?>">
 					</div>

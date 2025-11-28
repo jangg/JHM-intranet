@@ -39,7 +39,7 @@ if (isset($_POST['saveNiBut']) && $_POST['saveNiBut'] == 'bewaar')
 	}
 	
 	$agendaitem_nw->id_user_created		= $_SESSION['userid'];
-	$agendaitem_nw->type				= 'evnt';
+	$agendaitem_nw->type				= $_POST['type'];
 	$agendaitem_nw->titel				= $_POST['titel'];
 	$agendaitem_nw->omschrijving		= $_POST['omschrijving'];
 	$agendaitem_nw->datum				= $_POST['datum'];

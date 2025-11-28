@@ -1,0 +1,9 @@
+{
+  "index.ignored_file_patterns" : [
+    "configDB.inc",
+    "img"
+  ],
+  "workspace.preview_root" : ".",
+  "workspace.preview_type" : "custom",
+  "workspace.preview_url" : "https:\/\/jhmintra:8880\/"
+}

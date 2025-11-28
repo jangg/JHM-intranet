@@ -1,0 +1,145 @@
+.bodystyle {
+  background-color: rgb(175, 224, 228); 
+  font-size: 16px;
+}
+
+.verslag {
+    background-image: url('../img_fixed/paperboard-texture_95678-72.jpg');
+    color: ##0900d5;
+    /* width: 85%;
+    margin: 0 auto; */
+    border-radius: 10px;
+    /* padding: 60px;
+    margin-bottom: 10px; */
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.2em;
+    -webkit-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    padding: 80px 12%;
+
+}
+
+#email {
+    background-image: url('../img_fixed/paperboard-texture_95678-72.jpg');
+    color: ##0900d5;
+    /* width: 85%;
+    margin: 0 auto; */
+    border-radius: 10px;
+    /* padding: 60px;
+    margin-bottom: 10px; */
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.2em;
+    -webkit-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+    box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.66);
+}
+
+.image {
+    background-color: #4c4c4c;
+    color: white;
+    font-size: .8em;
+    font-style: italic;
+    padding: 10px 10px 1px 10px;
+    margin-bottom: 15px;
+}
+
+.bluefont {
+    color: #304280;
+}
+
+.bluefont h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 300;
+}
+
+.pinkfont {
+    color: #be5a9d;
+}
+
+.pinkfont h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 300;
+}
+
+.redfont {
+    color: #bd0011;
+}
+
+.stripedthrough {
+    text-decoration: line-through;
+}
+
+th,
+td {
+    text-align: center;
+}
+.articles th,
+.articles td {
+    text-align: left;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    text-align: left;
+}		
+
+
+
+/********* scroll sign ********/
+
+.scroll-down {
+  height: 50px;
+  width: 30px;
+  border: 2px solid black;
+  position: fixed;
+  left: 95%;
+  bottom: 80px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 996;
+ }
+.scroll-down::before,
+.scroll-down::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  height: 10px;
+  width: 10px;
+  transform: translate(-50%, -100%) rotate(45deg);
+  border: 3px solid black;
+  border-top: transparent;
+  border-left: transparent;
+  
+  animation: scroll-down 1s ease-in-out infinite;
+}
+.scroll-down::before {
+  top: 30%;
+  animation-delay: 1s;
+  
+  animation: scroll-down 1s ease-in-out infinite;
+}
+
+@keyframes scroll-down {
+  0% {
+    top:20%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    top: 90%;
+    opacity: 0;
+  }
+}

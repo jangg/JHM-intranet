@@ -1,22 +1,22 @@
 <?php
 class Agendaitem
 {
-	protected $id;					// unieke id van het agendaitem
+	protected $id;				// unieke id van het agendaitem
 	protected $delind;
 	protected $id_user_created;
 	protected $datetime_created;
 	protected $datetime_modified;
-	protected $type;				// soort item: evmt = evenement, meet = vergadering, spdy = speciale dag, 
+	protected $type;			// soort item: bali = baliedienst, wksp = workshop, mtng = meeting (bv maatjesavond), 
 	protected $publmed;			// publicatie medium: 0 = niet publiceren, 1 = intranet, 2 = website, 3 = intranet EN website
-	protected $datum;				// datum van agendaitem
+	protected $datum;			// datum van agendaitem
 	protected $begintijd;		// begintidj
-	protected $eindtijd;			// eindtijd
-	protected $titel;				// titel
+	protected $eindtijd;		// eindtijd
+	protected $titel;			// titel
 	protected $omschrijving;	// omschrijving
 	protected $locatie;			// locatie
 	protected $organisator;		// organisator
 	protected $picfile;			// plaatje
-	protected $freefld1;			// vrij velden, te gebruiken per type.
+	protected $freefld1;		// vrij velden, te gebruiken per type.
 	protected $freefld2;
 	protected $freefld3;
 	protected $freefld4;
@@ -80,16 +80,16 @@ class Agendaitem
 			$this->datum			= $row['datum'];
 			$this->begintijd		= $row['begintijd'];
 			$this->eindtijd 		= $row['eindtijd'];
-			$this->omschrijving 	= $row['omschrijving'];
-			$this->titel	 		= $row['titel'];
-			$this->locatie			= $row['locatie'];
-			$this->organisator 		= $row['organisator'];
-			$this->picfile 			= $row['picfile'];
-			$this->freefld1 		= $row['freefld1'];
-			$this->freefld2 		= $row['freefld2'];
-			$this->freefld3 		= $row['freefld3'];
-			$this->freefld4 		= $row['freefld4'];
-			$this->freefld5 		= $row['freefld5'];
+			$this->omschrijving 	= html_entity_decode($row['omschrijving']);
+			$this->titel	 		= html_entity_decode($row['titel']);
+			$this->locatie			= html_entity_decode($row['locatie']);
+			$this->organisator 		= html_entity_decode($row['organisator']);
+			$this->picfile 			= html_entity_decode($row['picfile']);
+			$this->freefld1 		= html_entity_decode($row['freefld1']);
+			$this->freefld2 		= html_entity_decode($row['freefld2']);
+			$this->freefld3 		= html_entity_decode($row['freefld3']);
+			$this->freefld4 		= html_entity_decode($row['freefld4']);
+			$this->freefld5 		= html_entity_decode($row['freefld5']);
 		}
 		else {
 			$this->id = NULL;
@@ -217,16 +217,16 @@ class Agendaitem
 			$stmt->bindValue( ":datum"			, $this->datum, PDO::PARAM_STR);
 			$stmt->bindValue( ":begintijd"		, $this->begintijd, PDO::PARAM_STR);
 			$stmt->bindValue( ":eindtijd"		, $this->eindtijd, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
-			$stmt->bindValue( ":locatie"		, $this->locatie, PDO::PARAM_STR);
-			$stmt->bindValue( ":organisator"	, $this->organisator, PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile"		, $this->picfile, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld1"		, $this->freefld1, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld2"		, $this->freefld2, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld3"		, $this->freefld3, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld4"		, $this->freefld4, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld5"		, $this->freefld5, PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":locatie"		, htmlentities($this->locatie, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":organisator"	, htmlentities($this->organisator, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile"		, htmlentities($this->picfile, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld1"		, htmlentities($this->freefld1, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld2"		, htmlentities($this->freefld2, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld3"		, htmlentities($this->freefld3, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld4"		, htmlentities($this->freefld4, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld5"		, htmlentities($this->freefld5, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->execute();
 			// error_log('Een nieuwe c_person is toegevoegd');
 			$this->id = $connection->lastInsertId();
@@ -275,20 +275,20 @@ class Agendaitem
 			$stmt->bindValue( ":datetime_created"		, $this->datetime_created, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_modified"		, $this->datetime_modified, PDO::PARAM_STR);
 			$stmt->bindValue( ":type"			, $this->type, PDO::PARAM_STR);
-			$stmt->bindValue( ":publmed"			, $this->publmed, PDO::PARAM_STR);
+			$stmt->bindValue( ":publmed"		, $this->publmed, PDO::PARAM_STR);
 			$stmt->bindValue( ":datum"			, $this->datum, PDO::PARAM_STR);
 			$stmt->bindValue( ":begintijd"		, $this->begintijd, PDO::PARAM_STR);
 			$stmt->bindValue( ":eindtijd"		, $this->eindtijd, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
-			$stmt->bindValue( ":locatie"		, $this->locatie, PDO::PARAM_STR);
-			$stmt->bindValue( ":organisator"	, $this->organisator, PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile"		, $this->picfile, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld1"		, $this->freefld1, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld2"		, $this->freefld2, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld3"		, $this->freefld3, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld4"		, $this->freefld4, PDO::PARAM_STR);
-			$stmt->bindValue( ":freefld5"		, $this->freefld5, PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":locatie"		, htmlentities($this->locatie, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":organisator"	, htmlentities($this->organisator, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile"		, htmlentities($this->picfile, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld1"		, htmlentities($this->freefld1, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld2"		, htmlentities($this->freefld2, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld3"		, htmlentities($this->freefld3, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld4"		, htmlentities($this->freefld4, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":freefld5"		, htmlentities($this->freefld5, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->execute();
 			
 		}

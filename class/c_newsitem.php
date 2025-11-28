@@ -272,26 +272,26 @@ class Newsitem
 				id					= :id;";
 			
 			$stmt = $connection->prepare( $sql );
-			$stmt->bindValue( ":id"							, $this->id, PDO::PARAM_STR);
+			$stmt->bindValue( ":id"						, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":delind"					, $this->delind, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user_created"		, $this->id_user_created, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_created"		, $this->datetime_created, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_modified"		, $this->datetime_modified, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"						, htmlentities($this->titel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":subtitel"					, htmlentities($this->subtitel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst"						, htmlentities($this->tekst, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"					, htmlentities($this->titel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":subtitel"				, htmlentities($this->subtitel, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst"					, htmlentities($this->tekst, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->bindValue( ":tekst_kort"				, htmlentities($this->tekst_kort, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst_samenvatting"	, htmlentities($this->tekst_samenvatting, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst_samenvatting"		, htmlentities($this->tekst_samenvatting, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->bindValue( ":tekst_knop"				, htmlentities($this->tekst_knop, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->bindValue( ":link_knop"				, htmlentities($this->link_knop, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->bindValue( ":pubind_intern"			, $this->pubind_intern, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_pub_intern"	, $this->datetime_pub_intern, PDO::PARAM_STR);
 			$stmt->bindValue( ":pubind_extern"			, $this->pubind_extern, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_pub_extern"	, $this->datetime_pub_extern, PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile1"					, htmlentities($this->picfile1, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile2"					, htmlentities($this->picfile2, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile3"					, htmlentities($this->picfile3, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-			$stmt->bindValue( ":picfile4"					, htmlentities($this->picfile4, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile1"				, htmlentities($this->picfile1, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile2"				, htmlentities($this->picfile2, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile3"				, htmlentities($this->picfile3, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+			$stmt->bindValue( ":picfile4"				, htmlentities($this->picfile4, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
 			$stmt->execute();
 
 		}
