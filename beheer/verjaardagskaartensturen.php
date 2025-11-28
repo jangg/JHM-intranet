@@ -95,7 +95,7 @@ try
 	/*  HIER wordt de email verstuurd!   */				
 	/*************************************/
 		logEmail($jarige->emailadres);
-		if ($jarige->emailadres != '' && $jarige->emailadres == 'jang@jhm-zoetermeer.nl')
+		if ($jarige->emailadres != '' && $jarige->emailadres == 'jang@jobhulpmaatjezoetermeer.nl')
 			$mail->send();
 	}
 	catch (Exception $e)

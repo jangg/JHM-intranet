@@ -222,7 +222,7 @@ if (isset($_SESSION['userid']))
 		<div class="container">
 			<h1 class="display-4 bluefont p-3">Nieuwsbrieven</h1>
 			<p>Op deze pagina kun je de nieuwsbrieven die JobHulpMaatje Nederland en JobHulpMaatje Zoetermeer verspreiden, terug lezen.</p>
-			<p>De originele nieuwsbrieven zijn uiteraard beschikbaar in je email zodra ze worden verspreid. Mocht je ze niet krijgen, dan is een emailtje naar Peter Veld (peter@jhm-zoetermeer.nl) voldoende om je hiervoor op te geven.</p>
+			<p>De originele nieuwsbrieven zijn uiteraard beschikbaar in je email zodra ze worden verspreid. Mocht je ze niet krijgen, dan is een emailtje naar Peter Veld (pwa.veld@gmail.com) voldoende om je hiervoor op te geven.</p>
 			<br/><br/>
 		</div>
 		<div class="container">

@@ -287,7 +287,7 @@ $postits = getPostits ();
 				<div class="col-md-4">
 					<h2 class="bluefont">Wie is wie?</h2>
 					<p>Hier vind je foto's en wat informatie over de mensen die zich belangeloos inzetten voor <?php echo LOC_NAME ?>.</p>
-					<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jhm-zoetermeer.nl">email.</a>.</p>
+					<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jobhulpmaatjezoetermeer.nl">email.</a>.</p>
 					<p><a class="btn btn-secondary" href="faces.php" role="button">Laat maar zien &raquo;</a></p>
 				</div>
 				<div class="col-md-4">

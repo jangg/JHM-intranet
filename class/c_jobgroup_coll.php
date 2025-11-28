@@ -178,7 +178,7 @@ class Jobgroup_coll {
 				
 				$item->freefld1 = $jobgroup->nbrSessies();
 				$item->freefld2 = $jobgroup->jgleider1;
-				$item->freefld3 = 'Vragen? Email ze naar de coördinator JobGroups op <a href="mailto: coordinator@jhm-zoetermeer.nl">coordinator@jhm-zoetermeer.nl</a>.';
+				$item->freefld3 = 'Vragen? Email ze naar de coördinator JobGroups op <a href="mailto: coordinator@jobhulpmaatjezoetermeer.nl">coordinator@jobhulpmaatjezoetermeer.nl</a>.';
 				$agendaitemColl[] = $item;
 			} 
 		}

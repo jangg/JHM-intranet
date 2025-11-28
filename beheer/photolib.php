@@ -69,7 +69,8 @@ if (!is_dir($thumbDir)) mkdir($thumbDir, 0777, true);
 $resultmessage = '';
 
 // Verwijderen
-if (isset($_GET['delete'])) {
+if (isset($_GET['delete'])) 
+{
 	$file = basename($_GET['delete']); // alleen bestandsnaam
 	$target = $uploadDir . $file;
 	$thumbTarget = $thumbDir . $file;
@@ -82,7 +83,8 @@ if (isset($_GET['delete'])) {
 
 // Upload verwerken
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) 
+{
 	$file = $_FILES['foto'];
 
 	if ($file['error'] === UPLOAD_ERR_OK && $file['size'] <= $maxSize) {
@@ -120,7 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
 }
 
 // Thumbnail functie
-function createThumbnail($src, $dest, $w, $h) {
+function createThumbnail($src, $dest, $w, $h) 
+{
 	[$origW, $origH, $type] = getimagesize($src);
 
 	switch ($type) {

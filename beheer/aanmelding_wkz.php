@@ -127,7 +127,7 @@ if (isset($_POST['saveWzBut']) && $_POST['saveWzBut'] == 'bewaar1')
 			$ps->drstrnaar = '';
 			$ps->toelichting = 'Nieuw';
 			$ps->saveToDB();
-			Tools::MailRoom('Coordinator Werkzoekenden', 'coordinatoren@jhm-zoetermeer.nl', 'Nieuwe werkzoekende toegevoegd in de WAS' . ' door ' . $curr_user->username, 
+			Tools::MailRoom('Coordinator Werkzoekenden', 'coordinatoren@jobhulpmaatjezoetermeer.nl', 'Nieuwe werkzoekende toegevoegd in de WAS' . ' door ' . $curr_user->username, 
 				$wkz_nw->voornaam . ' ' . $wkz_nw->tussenvoegsels . ' ' . $wkz_nw->achternaam);
 			echo '<script>alert("De gegevens zijn in de database opgenomen."); window.location.href = "https://intra.jhmz.nl/beheer/aanmelding_wkz.php";</script>';
 		}

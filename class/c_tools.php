@@ -329,7 +329,7 @@ class Tools
 		$subject = $onderwerp;
 		$mail_body = $tekst;
 		
-		$header = "From: " . 'no-reply@jhm-zoetermeer.nl' . " (" . 'no-reply@jhm-zoetermeer.nl' . ")\r\n";
+		$header = "From: " . 'no-reply@jobhulpmaatjezoetermeer.nl' . " (" . 'no-reply@jobhulpmaatjezoetermeer.nl' . ")\r\n";
 		$header .= 'MIME-Version: 1.0' . "\r\n";
 		$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 		

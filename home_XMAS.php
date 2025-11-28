@@ -213,9 +213,9 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 					<div style="background-color: #027afe; padding: 0px 5px 5px 5px;">
 						<span style="font-size: 1.1em; color: white;">Laatste nieuwsbericht op JHM-Zoetermeer.nl</span>
 					</div>
-					<a href="https://jhm-zoetermeer.nl/nieuws/persbericht-nieuwe-jobgroup-voor-zzpers/" style="color: inherit; text-decoration: inherit;">
+					<a href="https://jobhulpmaatjezoetermeer.nl/nieuws/persbericht-nieuwe-jobgroup-voor-zzpers/" style="color: inherit; text-decoration: inherit;">
 						<div class="m-0 p-0">
-							<div><img src="https://jhm-zoetermeer.nl/wp-content/uploads/2021/08/JHMZwerk.png" alt="" class="omslagfoto" width="100%" /></div>
+							<div><img src="https://jobhulpmaatjezoetermeer.nl/wp-content/uploads/2021/08/JHMZwerk.png" alt="" class="omslagfoto" width="100%" /></div>
 							<div class="m-2 p-1" style="font-size: .9em;"><span style="font-size: .9em;">28 augustus 2021</span><br />Training voor ZZP'ers start binnenkort</div>
 							<div class="m-2 p-1" style="font-size: .9em;">
 								JobHulpMaatje Zoetermeer start 24 september een JobGroup speciaal voor zzp’ers.
@@ -258,7 +258,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 				<div class="col-md-4">
 					<h2 class="bluefont">Wie is wie?</h2>
 					<p>Hier vind je foto's en wat informatie over de mensen die zich belangeloos inzetten voor JobHulpMaatje.</p>
-					<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jhm-zoetermeer.nl">email.</a>.</p>
+					<p>Sta je er niet bij of wil je iets wijzigen aan je eigen kaartje? Laat het dan weten aan de ICT-coördinator, b.v. per <a href="mailto:jang@jobhulpmaatjezoetermeer.nl">email.</a>.</p>
 					<p><a class="btn btn-secondary" href="faces.php" role="button">Laat maar zien &raquo;</a></p>
 				</div>
 				<div class="col-md-4">

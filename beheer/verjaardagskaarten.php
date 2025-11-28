@@ -66,7 +66,7 @@ if (empty($jarigen))
 	}
 $mail = new PHPMailer(TRUE);	
 $mail->setFrom(MAIL_SENDEREMAIL, 'JobHulpMaatje Zoetermeer');
-$mail->addReplyTo('coordinatoren@jhm-zoetermeer.nl', 'Coordinatoren');
+$mail->addReplyTo('coordinatoren@jjobhulpmaatjezoetermeer.nl', 'Coordinatoren');
 $mail->isHTML(TRUE);
 // if (strlen($post->tekst) < 80)
 // {
