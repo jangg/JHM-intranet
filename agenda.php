@@ -100,13 +100,17 @@ foreach ($agenda as $agendaitem)
 			<div class="col">
 			<h2 class="mb-4">' . strftime('%B', $datum->getTimestamp()) . ' ' . strftime('%Y', $datum->getTimestamp()) .'</h2>';
 		}
+		if ($agendaitem->type == 'wksp') $wksp = 'Workshop: '; else $wksp = '';
+		if ($agendaitem->type == 'jgse') $wksp = 'Jobgroup: ';
+		
 		$agenda_html .=
-		'<div class="row py-3" style="border-top: 1px solid #304280; background-color: ' . $backgrcolor . ';"><div class="col-2"><div>'
+		'<div class="row pt-3" style="border-top: 1px solid #304280; background-color: ' . $backgrcolor . ';"><div class="col-2"><div>'
 		. strftime('%A', $datum->getTimestamp()) . 
 		'</div><div><h1 class="pl-1">'
 		. $datum->format("j") . ' <span style="font-size: .4em;">' . strftime('%B', $datum->getTimestamp()) . '</span>' .
-		'</h1></div></div><div class="col-6">'
-		. $agendaitem->titel . '<br/>' 
+		'</h1></div></div><div class="col-6 pb-1"><h5>'
+		. $wksp
+		. $agendaitem->titel . '</h5>' 
 		. nl2br($agendaitem->omschrijving);
 		
 		if ($agendaitem->freefld3 != '') {

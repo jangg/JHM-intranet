@@ -4,7 +4,6 @@ include_once('class/c_user.php');
 
 function sendEmail ($volnaam, $email, $userid, $wachtwoord)
 {
-	/* Deze functie is momenteel niet in gebruik */
 	$mail_body  = 
 	'<html><head></head><body><p>
 	Beste ' . $volnaam . ' (' . $email . '),<br/><br/>	
@@ -15,7 +14,7 @@ function sendEmail ($volnaam, $email, $userid, $wachtwoord)
 	
 	</p></body></html>';
 
-	$Name = LOC_NAME; //senders name
+	$Name = "JHM Zoetermeer intranet"; //senders name
 	$subject = 'Gebruikersnaam en wachtwoord'; //subject
 	$header = "From: ". $Name . " <" . 'info@machunter.nl' . ">\r\n";
 	$header .= 'MIME-Version: 1.0' . "\r\n";
@@ -50,32 +49,35 @@ if (isset($_POST['wijzigen']) && $_POST['wijzigen'] == 'wijzigen')
 		if (isset($_POST['ww3'])) $ww3 = $_POST['ww3']; else $ww3 = '';
 		$user = new User('id', $_SESSION['userid']);
 		/* eerst testen of huidige ww correct is */
-		// if ($user->password != md5($ww1))
-		if ($user->password != $ww1)
-		{
+// 1) huidig wachtwoord checken (hash)
+		if (!$user->verifyPassword($ww1)) {
 			$error = 1;
-		} else 
-		{
-			if (!ctype_alnum($ww2))
-			{		
+		} else {
+		
+			// 2) validatie nieuw wachtwoord (jouw oude regels)
+			if (!ctype_alnum($ww2)) {
 				$error = 2;
-			} else 
-			{
-				if ($ww2 != $ww3)
-				{
-					$error = 3;
-				} else
-				{
-					// $user->password = md5($ww2);
-					$user->password = $ww2;
-					$user->password_mod = 'n';
-					$user->updateToDB();
-					header('location:index.php');
-				}		
-			}			
+			} elseif ($ww2 !== $ww3) {
+				$error = 3;
+			} else {
+		
+				// 3) hash opslaan
+				$user->setPassword($ww2);      // vult password_hash
+				$user->password_mod = 'n';
+				$user->updateToDB();
+		
+				// 4) sessie hardenen (optioneel)
+				session_regenerate_id(true);
+		
+				header('Location: index.php');
+				exit();
+			}
+		}
+		}			
 		}		
 	}
 }
+
 	
 ?>
 <!DOCTYPE html>
@@ -89,8 +91,8 @@ if (isset($_POST['wijzigen']) && $_POST['wijzigen'] == 'wijzigen')
 			<div class="row mt-5">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6" style="margin: 20px auto; text-align: center;">
-					<a href="../index.php"><img src="logos/<?php echo LOC_LOGO;?>" alt="LogoJobHulpMaatje" width="223"></a>
-					<h3 class="mt-lg-3"><?php echo LOC_NAME;?></h3>
+					<a href="../index.php"><img src="img/LogoJobHulpMaatjeZoetermeer.jpg" alt="LogoJobHulpMaatjeZoetermeer" width="223"></a>
+					<h3>JHM Zoetermeer Intranet</h3>
 				</div>
 				<div class="col-sm-3"></div>
 			</div>
@@ -123,7 +125,7 @@ if (isset($_POST['wijzigen']) && $_POST['wijzigen'] == 'wijzigen')
 			<div class="row footer">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6 text-center my-5">
-					&copy<?php echo date("Y") . ' ' . LOC_NAME; ?>
+					&copy 2021 JobHulpMaatje Zoetermeer
 				</div>
 				<div class="col-sm-3"></div>
 			</div>

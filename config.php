@@ -1,7 +1,28 @@
 <?php
 /* een sessie blijft hoogstens 4 uur in de lucht. Daarna moet er opnieuw worden ingelogd */
 ini_set("session.cookie_lifetime","14400");
-session_start();
+/** Session hardening (zet dit liefst in config.php vóór session_start) */
+ini_set('session.cookie_httponly', '1');
+ini_set('session.use_only_cookies', '1');
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+	ini_set('session.cookie_secure', '1');
+}
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+if (isset($_SESSION['userid'])) {
+	// idle time, na 30 minuten wordt de sessie afgebroken en moet opnieuw ingelogd worden.
+	$ttl = 30 * 60; // 30 min
+	if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > $ttl) {
+		session_unset();
+		session_destroy();
+		header('Location: index.php');
+		exit();
+	}
+	$_SESSION['last_activity'] = time();
+}
+
 include ('includes/configDB.inc');
 include_once ('class/c_tools.php');
 error_reporting(E_ALL);

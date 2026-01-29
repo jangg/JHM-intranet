@@ -59,16 +59,18 @@ foreach($newsitemColl->newsitemColl as $newsitem)
 		<td class="p-0 text-center">' . substr($newsitem->datetime_pub_intern, 0, 10) . '</td>
 		<td class="p-0 text-center">' . $newsitem->pubind_extern		. '</td>
 		<td class="p-0 text-center">' . substr($newsitem->datetime_pub_extern, 0, 10) . '</td>
-		<td style="text-align: center;" class="p-0"><a href="overz_newsitems.php?id=' . $newsitem->id . '&del=j"' . ' onclick="return confirm(\'Weet je zeker dat je dit bericht wilt verwijderen?\');"><i class="bi bi-trash"></i></a></td>
+		<td style="text-align: center;" class="p-0"><a href="overz_newsitems.php?id=' . $newsitem->id . '&del=j"' . ' onclick="return confirm(\'Weet je zeker dat je dit bericht wilt verwijderen?\');"><i class="fa-regular fa-trash-can"></i></a></td>
 		</tr>';
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>				
-		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
-		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+	<?php include('../includes/head.inc'); ?>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>			
+		<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script> -->
 		<style>
 			.bootstrap-table .fixed-table-container .fixed-table-body {
 				height: auto;

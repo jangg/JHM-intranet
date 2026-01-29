@@ -223,8 +223,8 @@ if ($wkzHTML == '')
 		$("#js-startdate" ).datepicker(
 		{
 			dateFormat: "yy-mm-dd",
-			minDate: "2020-01-01",
-			maxDate: "2025-01-01",
+			minDate: "2026-01-01",
+			maxDate: "2028-01-01",
 			// changeMonth: true,
 			// changeYear: true,
 		});

@@ -1,0 +1,164 @@
+[2026-01-08 13:05:14] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-01-08 13:05:14] DRY-RUN wid=320, pid=307 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=324, pid=311 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=326, pid=313 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=335, pid=324 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=337, pid=326 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=355, pid=344 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=366, pid=357 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=367, pid=358 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=379, pid=370 => delete aantekening=0, processtap=0, intakeform=1, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=387, pid=378 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=388, pid=379 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=389, pid=380 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=390, pid=381 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=391, pid=382 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=392, pid=383 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=393, pid=384 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=394, pid=385 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=395, pid=386 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=396, pid=387 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=397, pid=388 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=408, pid=402 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=410, pid=404 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=451, pid=447 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=452, pid=448 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=466, pid=462 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=485, pid=482 => delete aantekening=0, processtap=9, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=486, pid=483 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=488, pid=485 => delete aantekening=0, processtap=2, intakeform=1, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=489, pid=486 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=495, pid=492 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=498, pid=495 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=505, pid=502 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=506, pid=503 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=510, pid=507 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=512, pid=509 => delete aantekening=0, processtap=5, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=513, pid=510 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=514, pid=511 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=515, pid=512 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=534, pid=531 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=535, pid=532 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=539, pid=536 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=582, pid=581 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=587, pid=588 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=603, pid=605 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=605, pid=607 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=609, pid=611 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=612, pid=614 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DRY-RUN wid=615, pid=617 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:14] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-01-08 13:05:37] START cleanup_werkzkd (dryRun=yes, limit=10)
+[2026-01-08 13:05:37] DRY-RUN wid=320, pid=307 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=324, pid=311 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=326, pid=313 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=335, pid=324 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=337, pid=326 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=355, pid=344 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=366, pid=357 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=367, pid=358 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=379, pid=370 => delete aantekening=0, processtap=0, intakeform=1, werkzkd=1, person=1
+[2026-01-08 13:05:37] DRY-RUN wid=387, pid=378 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:05:37] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-01-08 13:06:16] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-01-08 13:06:16] DRY-RUN wid=320, pid=307 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=324, pid=311 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=326, pid=313 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=335, pid=324 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=337, pid=326 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=355, pid=344 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=366, pid=357 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=367, pid=358 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=379, pid=370 => delete aantekening=0, processtap=0, intakeform=1, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=387, pid=378 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=388, pid=379 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=389, pid=380 => delete aantekening=1, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=390, pid=381 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=391, pid=382 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=392, pid=383 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=393, pid=384 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=394, pid=385 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=395, pid=386 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=396, pid=387 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=397, pid=388 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=408, pid=402 => delete aantekening=0, processtap=0, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=410, pid=404 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=451, pid=447 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=452, pid=448 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=466, pid=462 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=485, pid=482 => delete aantekening=0, processtap=9, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=486, pid=483 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:16] DRY-RUN wid=488, pid=485 => delete aantekening=0, processtap=2, intakeform=1, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=489, pid=486 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=495, pid=492 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=498, pid=495 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=505, pid=502 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=506, pid=503 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=510, pid=507 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=512, pid=509 => delete aantekening=0, processtap=5, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=513, pid=510 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=514, pid=511 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=515, pid=512 => delete aantekening=0, processtap=4, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=534, pid=531 => delete aantekening=0, processtap=3, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=535, pid=532 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=539, pid=536 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=582, pid=581 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=587, pid=588 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=603, pid=605 => delete aantekening=0, processtap=2, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=605, pid=607 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=609, pid=611 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=612, pid=614 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DRY-RUN wid=615, pid=617 => delete aantekening=0, processtap=1, intakeform=0, werkzkd=1, person=1
+[2026-01-08 13:06:17] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-01-08 13:07:06] START cleanup_werkzkd (dryRun=no, limit=500)
+[2026-01-08 13:07:06] OK wid=320, pid=307 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=324, pid=311 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=326, pid=313 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=335, pid=324 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=337, pid=326 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=355, pid=344 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=366, pid=357 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=367, pid=358 verwijderd (aant=0, proc=4, intk=0)
+[2026-01-08 13:07:06] OK wid=379, pid=370 verwijderd (aant=0, proc=0, intk=1)
+[2026-01-08 13:07:06] OK wid=387, pid=378 verwijderd (aant=1, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=388, pid=379 verwijderd (aant=1, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=389, pid=380 verwijderd (aant=1, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=390, pid=381 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=391, pid=382 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=392, pid=383 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=393, pid=384 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=394, pid=385 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=395, pid=386 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=396, pid=387 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=397, pid=388 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=408, pid=402 verwijderd (aant=0, proc=0, intk=0)
+[2026-01-08 13:07:06] OK wid=410, pid=404 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=451, pid=447 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=452, pid=448 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=466, pid=462 verwijderd (aant=0, proc=4, intk=0)
+[2026-01-08 13:07:06] OK wid=485, pid=482 verwijderd (aant=0, proc=9, intk=0)
+[2026-01-08 13:07:06] OK wid=486, pid=483 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=488, pid=485 verwijderd (aant=0, proc=2, intk=1)
+[2026-01-08 13:07:06] OK wid=489, pid=486 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=495, pid=492 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=498, pid=495 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=505, pid=502 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=506, pid=503 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=510, pid=507 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=512, pid=509 verwijderd (aant=0, proc=5, intk=0)
+[2026-01-08 13:07:06] OK wid=513, pid=510 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=514, pid=511 verwijderd (aant=0, proc=4, intk=0)
+[2026-01-08 13:07:06] OK wid=515, pid=512 verwijderd (aant=0, proc=4, intk=0)
+[2026-01-08 13:07:06] OK wid=534, pid=531 verwijderd (aant=0, proc=3, intk=0)
+[2026-01-08 13:07:06] OK wid=535, pid=532 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=539, pid=536 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=582, pid=581 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=587, pid=588 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=603, pid=605 verwijderd (aant=0, proc=2, intk=0)
+[2026-01-08 13:07:06] OK wid=605, pid=607 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=609, pid=611 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=612, pid=614 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] OK wid=615, pid=617 verwijderd (aant=0, proc=1, intk=0)
+[2026-01-08 13:07:06] DONE: verwijderd => werkzkd=48, person=48, aantekening=3, processtap=99, intakeform=2
+[2026-01-08 13:08:21] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-01-08 13:08:21] INFO: geen records gevonden om te verwijderen.

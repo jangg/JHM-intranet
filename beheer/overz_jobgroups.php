@@ -52,11 +52,11 @@ foreach($jobgroupColl->jobgroupColl as $jobgroup)
 	}
 	$html .= '		
 	<tr style="font-size: 0.9em;">
-		<td style="text-align: center;" class="p-0"><a href="mut_jobgroup.php?id=' . $jobgroup->id . '"><i class="fas fa-user-friends ifont"></i></a></td>
-		<td class="p-0">' . $jobgroup->titel . '</td>
+		<td style="text-align: center;" class="p-0"><a href="mut_jobgroup.php?id=' . $jobgroup->id . '"><i class="bi bi-people"></i></a></td>
+		<td style="text-align: left;" class="p-0">' . $jobgroup->titel . '</td>
 		<td class="p-0">' . $jobgroup->status . '</td>
 		<td class="p-0">' . $online . '</td>
-		<td class="p-0">' . $locatie . '</td>
+		<td style="text-align: left;" class="p-0">' . $locatie . '</td>
 		<td class="p-0">' . $jobgroup->startDate . '</td>
 		<td class="p-0">' . $jobgroup->soort . '</td>
 		<td class="p-0">' . $jobgroup->nbrSessies() . '</td>
@@ -68,9 +68,11 @@ foreach($jobgroupColl->jobgroupColl as $jobgroup)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>				
-		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
-		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+	<?php include('../includes/head.inc'); ?>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>				
+		<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script> -->
 		<style>
 			.bootstrap-table .fixed-table-container .fixed-table-body {
 				height: auto;

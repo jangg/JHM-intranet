@@ -195,6 +195,14 @@ if (isset($_SESSION['userid']))
 					$(".nieuwsbrief").hide();
 					$("#20250903").show();
 				});
+				$("#43").click(function(){
+					$(".nieuwsbrief").hide();
+					$("#20251218").show();
+				});
+				$("#44").click(function(){
+					$(".nieuwsbrief").hide();
+					$("#20260128").show();
+				});
 
 
 
@@ -234,13 +242,15 @@ if (isset($_SESSION['userid']))
 			<div class="row">
 				<div class="col-md-4">
 					<ul>
+					<li><p><a id="44" href="#">Februari 2026</a></p></li>
+					<li><p><a id="43" href="#">December 2025</a></p></li>
 					<li><p><a id="42" href="#">September 2025</a></p></li>
 					<li><p><a id="41" href="#">April 2025</a></p></li>
-					<li><p><a id="40" href="#">Februari 2025</a></p></li>
 					</ul>
 				</div>
 				<div class="col-md-4">
 					<ul>
+					<li><p><a id="40" href="#">Februari 2025</a></p></li>
 					<li><p><a id="39" href="#">September 2024 nr2</a></p></li>
 					<li><p><a id="38" href="#">September 2024 nr1</a></p></li>
 					<li><p><a id="37" href="#">Februari 2024</a></p></li>
@@ -284,8 +294,14 @@ if (isset($_SESSION['userid']))
 					<div id="20250329" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20250329.html'); ?>
 					</div>
-					<div id="20250903" class="nieuwsbrief"  style="display: block;">
+					<div id="20250903" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20250903.html'); ?>
+					</div>
+					<div id="20251218" class="nieuwsbrief"  style="display: none;">
+						<?php include('nieuwsbrieven/nb20251218.html'); ?>
+					</div>
+					<div id="20260128" class="nieuwsbrief"  style="display: block;">
+						<?php include('nieuwsbrieven/nb20260128.html'); ?>
 					</div>
 
 

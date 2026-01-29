@@ -36,6 +36,11 @@ else
 
 $user_created = new User ('id', $agendaitem->id_user_created);
 
+ // Map met bestanden (pas eventueel aan)
+ $directory = "../img/";
+
+ // Alle bestanden ophalen (geen directories)
+ $files = array_diff(scandir($directory), ["..", "."]);
 ?>
 
 <!DOCTYPE html>
@@ -270,7 +275,18 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Picture naam</span>
 						</div>
-						<input id="freefld4" type="text" name="freefld4" class="form-control" value="<?php echo $agendaitem->freefld4; ?>">
+						<select class="form-control" id="freefld4" type="text" name="freefld4">
+							<option value="">--</option>
+							<?php foreach ($files as $file): ?>
+							<?php if (is_file($directory . "/" . $file)): ?>
+							<option value="<?php echo $file; ?>" <?php if ($agendaitem->freefld4 == $file) {echo " selected";} ?>>
+							<?php echo $file; ?>
+							</option>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</select>
+
+						<!-- <input id="freefld4" type="text" name="freefld4" class="form-control" value="<?php // echo $agendaitem->freefld4; ?>"> -->
 					</div>
 					<!-- <div class="input-group input-group-sm mb-2">
 						<!-- <div class="input-group-prepend" style="width: 30%;">

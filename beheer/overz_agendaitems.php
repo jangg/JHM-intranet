@@ -37,9 +37,11 @@ if (isset($_GET['del']) && $_GET['del'] == 'j')
 }
 
 $arr1 = array ();
-$arr2 = array (array (0 => 'datetime_created', 1 => 'DESC'));
+$arr2 = array (array (0 => 'datum', 1 => 'DESC'));
 
 $agendaitemColl = new Agendaitem_coll($arr1, $arr2);
+
+$today = date("Y-m-d");
 
 $html = '';
 // error_log ('Gelukt!');
@@ -51,8 +53,12 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 	$publind_ext = 'n'; 
 	if ($agendaitem->publmed ==  2 || $agendaitem->publmed ==  3) $publind_int = 'j';
 	if ($agendaitem->publmed ==  1 || $agendaitem->publmed ==  3) $publind_ext = 'j';
+	if ($today <= $agendaitem->datum)
+	{
+		$trstyle = ' background-color: lightgreen;';
+	} else $trstyle = '';
 	$html .= '		
-	<tr style="font-size: 0.9em;">
+	<tr style="font-size: 0.9em;' . $trstyle . '">
 		<td style="text-align: center;" class="p-0"><a href="mut_agendaitem.php?id=' . $agendaitem->id . '"><i class="fas fa-newspaper"></i></i></a></td>
 		<td class="p-0">' . $agendaitem->datetime_created		. '</td>
 		<td class="p-0">' . $agendaitem->datetime_modified	. '</td>
@@ -61,7 +67,7 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 		<td class="p-0">' . $agendaitem->datum	. '</td>
 		<td class="p-0">' . $publind_int 		. '</td>
 		<td class="p-0">' . $publind_ext		. '</td>
-		<td style="text-align: center;" class="p-0"><a href="overz_agendaitems.php?id=' . $agendaitem->id . '&del=j"' . ' onclick="return confirm(\'Weet je zeker dat je dit agenda item wilt verwijderen?\');"><i class="bi bi-trash"></i></a></td>
+		<td style="text-align: center;" class="p-0"><a href="overz_agendaitems.php?id=' . $agendaitem->id . '&del=j"' . ' onclick="return confirm(\'Weet je zeker dat je dit agenda item wilt verwijderen?\');"><i class="fa-regular fa-trash-can"></i></a></td>
 		
 		</tr>';
 }
@@ -69,9 +75,11 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>				
-		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
-		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+	<?php include('../includes/head.inc'); ?>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>				
+		<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script> -->
 		<style>
 			.bootstrap-table .fixed-table-container .fixed-table-body {
 				height: auto;

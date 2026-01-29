@@ -1,46 +1,45 @@
 <?php
-include_once('../config.php');
-include_once('../class/c_user.php');
-include_once('../class/c_newsitem.php');
+include_once "../config.php";
+include_once "../class/c_user.php";
+include_once "../class/c_newsitem.php";
 
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
 *************************/
-if (!isset($_SESSION['username'])) {
-	header('location:../index.php');
-	exit();
+if (!isset($_SESSION["username"])) {
+  header("location:../index.php");
+  exit();
 }
 /**********************/
 
-if (isset($_SESSION['userid']))
-{
-	$curr_user = new User ('id', $_SESSION['userid']);
-} else
-{
-	$curr_user = new User ();
-	$curr_user->id = '1';
+if (isset($_SESSION["userid"])) {
+  $curr_user = new User("id", $_SESSION["userid"]);
+} else {
+  $curr_user = new User();
+  $curr_user->id = "1";
 }
 
-if (isset($_GET['id']))
-{
-	$_SESSION['newsitem_id'] = $_GET['id'];
-	/* Haal de newsitem op */
-	$newsitem = new Newsitem ('id', $_SESSION['newsitem_id']);
-	
-}
-else
-{
-	$_SESSION['newsitem_id'] = '0';
-	$newsitem = new Newsitem ();
+if (isset($_GET["id"])) {
+  $_SESSION["newsitem_id"] = $_GET["id"];
+  /* Haal de newsitem op */
+  $newsitem = new Newsitem("id", $_SESSION["newsitem_id"]);
+} else {
+  $_SESSION["newsitem_id"] = "0";
+  $newsitem = new Newsitem();
 }
 
-$user_created = new User ('id', $newsitem->id_user_created);
+$user_created = new User("id", $newsitem->id_user_created);
+ // Map met bestanden (pas eventueel aan)
+ $directory = "../img/";
+
+ // Alle bestanden ophalen (geen directories)
+ $files = array_diff(scandir($directory), ["..", "."]);
 ?>
 
 <!DOCTYPE html>
 <html lang="nl-NL">
 	<head>
-	<?php include('../includes/head.inc'); ?>
+	<?php include "../includes/head.inc"; ?>
 	<link href="../css/style2.css" rel="stylesheet" type="text/css">
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>			
@@ -131,7 +130,7 @@ $user_created = new User ('id', $newsitem->id_user_created);
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include "../includes/navbar.inc"; ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -149,26 +148,26 @@ $user_created = new User ('id', $newsitem->id_user_created);
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Datum gemaakt</span>
 						</div>
-						<input id="datetime_created" type="text" name="datetime_created" class="form-control" value="<?php echo $newsitem->datetime_created ?>" disabled>
+						<input id="datetime_created" type="text" name="datetime_created" class="form-control" value="<?php echo $newsitem->datetime_created; ?>" disabled>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text" style="width: 100%;">Datum gewijzigd</span>
 						</div>
-						<input id="datetime_modified" type="text" name="datetime_modified" class="form-control" value="<?php echo $newsitem->datetime_modified ?>" disabled>
+						<input id="datetime_modified" type="text" name="datetime_modified" class="form-control" value="<?php echo $newsitem->datetime_modified; ?>" disabled>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text" style="width: 100%;">Laatst gewijzigd door</span>
 						</div>
-						<input id="user_created" type="text" name="user_created" class="form-control" value="<?php echo $user_created->username ?>" disabled>
+						<input id="user_created" type="text" name="user_created" class="form-control" value="<?php echo $user_created->username; ?>" disabled>
 					</div>
 
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Titel</span>
 						</div>
-						<input id="jg-titel" type="text" name="titel" class="form-control" value="<?php echo $newsitem->titel ?>">
+						<input id="jg-titel" type="text" name="titel" class="form-control" value="<?php echo $newsitem->titel; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
@@ -198,63 +197,92 @@ $user_created = new User ('id', $newsitem->id_user_created);
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Button tekst</span>
 						</div>
-						<input id="tekst_knop" type="text" name="tekst_knop" class="form-control" value="<?php echo $newsitem->tekst_knop ?>">
+						<input id="tekst_knop" type="text" name="tekst_knop" class="form-control" value="<?php echo $newsitem->tekst_knop; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Button link</span>
 						</div>
-						<input id="link_knop" type="text" name="link_knop" class="form-control" value="<?php echo $newsitem->link_knop ?>">
+						<input id="link_knop" type="text" name="link_knop" class="form-control" value="<?php echo $newsitem->link_knop; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Intern publiceren</span>
 						</div>
-						<input type="checkbox" name="pubind_intern" class="form-control" value="j" style="margin-left: 15px;" <?php if($newsitem->pubind_intern == 'j') echo ' checked'; ?>>									
+						<input type="checkbox" name="pubind_intern" class="form-control" value="j" style="margin-left: 15px;" 
+						<?php if ($newsitem->pubind_intern == "j") {echo " checked";} ?>>	
 					</div>
 					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Datum interne publicatie</span>
 						</div>
-						<input id="datetime_pub_intern" type="text" name="datetime_pub_intern" class="form-control" value="<?php echo $newsitem->datetime_pub_intern ?>">
+						<input id="datetime_pub_intern" type="text" name="datetime_pub_intern" class="form-control" value="<?php echo $newsitem->datetime_pub_intern; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-2">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text text-left text-wrap" style="width: 100%;">Extern publiceren</span>
 						</div>
-						<input type="checkbox" name="pubind_extern" class="form-control" value="j" style="margin-left: 15px;" <?php if($newsitem->pubind_extern == 'j') echo ' checked'; ?>>									
+						<input type="checkbox" name="pubind_extern" class="form-control" value="j" style="margin-left: 15px;" 
+						<?php if ($newsitem->pubind_extern == "j") {echo " checked";} ?>>									
 					</div>
 					
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Datum externe publicatie</span>
 						</div>
-						<input id="datetime_pub_extern" type="text" name="datetime_pub_extern" class="form-control" value="<?php echo $newsitem->datetime_pub_extern ?>">
+						<input id="datetime_pub_extern" type="text" name="datetime_pub_extern" class="form-control" value="<?php echo $newsitem->datetime_pub_extern; ?>">
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Image filenaam 1</span>
 						</div>
-						<input id="picfile1" type="text" name="picfile1" class="form-control" value="<?php echo $newsitem->picfile1 ?>">
+						<select class="form-control" name="picfile1" id="picfile1">
+							<option value="">--</option>
+							<?php foreach ($files as $file): ?>
+							<?php if (is_file($directory . "/" . $file)): ?>
+							<option value="<?php echo $file; ?>" <?php if ($newsitem->picfile1 == $file) {echo " selected";} ?>>
+							<?php echo $file; ?>
+							</option>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Image filenaam 2</span>
 						</div>
-						<input id="picfile2" type="text" name="picfile2" class="form-control" value="<?php echo $newsitem->picfile2 ?>">
+						<select class="form-control" name="picfile2" id="picfile2">
+							<option value="">--</option>
+							<?php foreach ($files as $file): ?>
+							<?php if (is_file($directory . "/" . $file)): ?>
+							<option value="<?php echo $file; ?>" <?php if ($newsitem->picfile2 == $file) {echo " selected";} ?>>
+							<?php echo $file; ?>
+							</option>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Image filenaam 3</span>
 						</div>
-						<input id="picfile3" type="text" name="picfile3" class="form-control" value="<?php echo $newsitem->picfile3 ?>">
+						<select class="form-control" name="picfile3" id="picfile3">
+							<option value="">--</option>
+							<?php foreach ($files as $file): ?>
+							<?php if (is_file($directory . "/" . $file)): ?>
+							<option value="<?php echo $file; ?>" <?php if ($newsitem->picfile3 == $file) {echo " selected";} ?>>
+							<?php echo $file; ?>
+							</option>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</select>
 					</div>
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Image filenaam 4</span>
 						</div>
-						<input id="picfile4" type="text" name="picfile4" class="form-control" value="<?php echo $newsitem->picfile4 ?>">
+						<input id="picfile4" type="text" name="picfile4" class="form-control" value="<?php echo $newsitem->picfile4; ?>">
 					</div>
 					<!-- <div class="input-group input-group-sm mb-2">
 						<!-- <div class="input-group-prepend" style="width: 30%;">
@@ -281,6 +309,6 @@ $user_created = new User ('id', $newsitem->id_user_created);
 				</div>
 			</div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include "../includes/footer.inc"; ?>
 	</body>
 </html>

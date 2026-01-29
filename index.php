@@ -23,8 +23,8 @@ if (isset($_POST['aanmelden']) && $_POST['username'] != '')
 		if ($user->password == $_POST['password'])
 		{
 			$_SESSION['username'] = $_POST['username'];
-			$_SESSION['password'] = $_POST['password'];
 			$_SESSION['userid'] = $user->id;
+			session_regenerate_id(true);
 		    $datetime = new DateTime();
 			$user->activity = $datetime->format('Y\-m\-d\ H:i:s');
 			$user->updateToDB();
@@ -58,7 +58,7 @@ else $foutidpw = FALSE;
 			<div class="row mt-5 text-center">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-6">
-					<a href="index.php"><img src="logos/Logo_JobHulpMaatje_Zoetermeer.svg" alt="LogoJHMZoetermeer" class="img-fluid" style="width: 100%"></a><br/><br/><br/><br/>
+					<a href="index.php"><img src="logos/<?php echo LOC_LOGO;?>" alt="LogoJHM" class="img-fluid" style="width: 100%"></a><br/><br/><br/><br/>
 				</div>
 			</div>
 		</div>		
@@ -93,7 +93,7 @@ else $foutidpw = FALSE;
 			<div class="row footer">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-6 text-center my-5">
-				&copy <?php echo date("Y");?> JobHulpMaatje Zoetermeer
+				&copy <?php echo date("Y") . ' ' . LOC_NAME;?>
 				</div>
 				<div class="col-lg-3"></div>
 			</div>

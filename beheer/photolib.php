@@ -139,6 +139,15 @@ function createThumbnail($src, $dest, $w, $h)
 	$newH = (int)($origH * $ratio);
 
 	$thumb = imagecreatetruecolor($newW, $newH);
+	
+	// 🔑 Transparantie fix
+	if ($type !== IMAGETYPE_JPEG) {
+		imagealphablending($thumb, false);
+		imagesavealpha($thumb, true);
+		$transparent = imagecolorallocatealpha($thumb, 0, 0, 0, 127);
+		imagefill($thumb, 0, 0, $transparent);
+	}
+	
 	imagecopyresampled($thumb, $img, 0,0,0,0, $newW, $newH, $origW, $origH);
 
 	switch ($type) {
@@ -211,11 +220,11 @@ function createThumbnail($src, $dest, $w, $h)
 							$file = basename($thumb);
 							echo "<div style='text-align:center; width: ' . $thumbnailwidth + 20 . 'px;'>
 									<a href='../$directory/$file' target='_blank'>
-										<img src='../$directory/thumbs/$file' style='max-width: ' . $thumbnailwidth . 'px; height:auto; display:block; margin:0 auto;'>
+										<img src='../$directory/thumbs/$file' style='max-width: ' . $thumbnailwidth . 'px; height:auto; display:block; margin:0 auto; background-color: white;'>
 									</a>
 									<div style='margin-top:5px; font-size:14px; word-wrap:break-word;'>$file</div>
 									<a href='?delete=$file&q=$q' onclick=\"return confirm('Weet je zeker dat je $file wilt verwijderen?');\">
-										<i class='bi bi-trash'></i>
+										<i class='fa-regular fa-trash-can'></i>
 									</a>
 								</div>";
 						}
