@@ -85,7 +85,7 @@ foreach ($intakerLijst as $intaker)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	<style>
 	.error-border {
 		border:	2px solid red;
@@ -175,7 +175,7 @@ foreach ($intakerLijst as $intaker)
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white pt-2 mb-0">
@@ -878,6 +878,6 @@ foreach ($intakerLijst as $intaker)
 			</div>
 		</div>
 			
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

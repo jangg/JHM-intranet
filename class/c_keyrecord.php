@@ -62,8 +62,8 @@ class Keyrecord
 		/* hier printen we het object mee uit, voor testdoeleinden */
 		return 
 			'$id		: ' . $this->id .			'<br/>' .
-			'$sleutel	: ' . html_entity_decode($this->sleutel) .	'<br/>' .
-			'$waarde	: ' . html_entity_decode($this->waarde) .	'<br/>';
+			'$sleutel	: ' . $this->sleutel .	'<br/>' .
+			'$waarde	: ' . $this->waarde .	'<br/>';
 	}
 	
 	protected function readKeyrecordWithSleutel ($sleutel)
@@ -107,8 +107,8 @@ class Keyrecord
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
- 			$stmt->bindValue( ":sleutel"		, htmlentities($this->sleutel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":waarde"			, htmlentities($this->waarde, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+ 			$stmt->bindValue( ":sleutel"		, $this->sleutel, PDO::PARAM_STR);
+			$stmt->bindValue( ":waarde"			, $this->waarde, PDO::PARAM_STR);
 
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
@@ -136,8 +136,8 @@ class Keyrecord
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
-			$stmt->bindValue( ":sleutel"		, htmlentities($this->sleutel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":waarde"			, htmlentities($this->waarde, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":sleutel"		, $this->sleutel, PDO::PARAM_STR);
+			$stmt->bindValue( ":waarde"			, $this->waarde, PDO::PARAM_STR);
 			$stmt->execute();
 		}
 		catch (PDOException $e) 

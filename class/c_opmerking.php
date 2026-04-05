@@ -43,7 +43,7 @@ class Opmerking
 			$this->id_werkzkd 	= $row['id_werkzkd'];
 			$this->id_user 		= $row['id_user'];
 			$this->dt_opmerking 		= $row['dt_opmerking'];
-			$this->opmerking 	= html_entity_decode($row['opmerking']);
+			$this->opmerking 	= $row['opmerking'];
 		}
 		else {
 			$this->id = NULL;
@@ -120,7 +120,7 @@ class Opmerking
 			$stmt->bindValue( ":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 			$stmt->bindValue( ":dt_opmerking"		, $this->dt_opmerking, PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerking"	, htmlentities($this->opmerking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerking"	, $this->opmerking, PDO::PARAM_STR);
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
 		}
@@ -152,7 +152,7 @@ class Opmerking
 			$stmt->bindValue( ":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 			$stmt->bindValue( ":dt_opmerking"		, $this->dt_opmerking, PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerking"	, htmlentities($this->opmerking, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerking"	, $this->opmerking, PDO::PARAM_STR);
 			$stmt->execute();
 			
 		}

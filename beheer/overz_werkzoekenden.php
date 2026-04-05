@@ -8,16 +8,15 @@ include_once "../class/c_jobgroup.php";
 /************************
 Dit stukje is nodig om misbruik van de website voorkomen
 *************************/
-if (!isset($_SESSION["username"])) {
+if (!isset($_SESSION["username"])) 
+{
   header("location:../index.php");
   exit();
 }
 
-if (isset($_SESSION["userid"])) {
-  $curr_user = new User("id", $_SESSION["userid"]);
-} else {
-  $curr_user = new User();
-}
+if (isset($_SESSION["userid"])) $curr_user = new User("id", $_SESSION["userid"]);
+	else $curr_user = new User();
+
 /********************************
 werkzoekende verwijderen (delind wordt j)
 ********************************* */
@@ -33,13 +32,12 @@ if (isset($_GET['del']) && $_GET['del'] == 'j')
 }
 
 
-if (isset($_POST["selection"])) {
-  $_SESSION["selection"] = $_POST["selection"];
-} else {
-  if (!isset($_SESSION["selection"])) {
-    $_SESSION["selection"] = "act";
-  }
+if (isset($_POST["selection"])) $_SESSION["selection"] = $_POST["selection"];
+else 
+{
+  if (!isset($_SESSION["selection"])) $_SESSION["selection"] = "act";
 }
+
 $selection = $_SESSION["selection"];
 
 $arr1 = [];
@@ -51,22 +49,29 @@ $html = "";
 $nbr = 0;
 // error_log ('Gelukt!');
 
-foreach ($wzColl->werkzoekendeColl as $werkzoekende) {
+foreach ($wzColl->werkzoekendeColl as $werkzoekende) 
+{
   /* hier selectie op welke wkz worden getoond */
   $ok = true;
-  if ($selection == "new") {
-    if ($werkzoekende->status != "000") {
+  if ($selection == "new") 
+  {
+    if ($werkzoekende->status != "000") 
+	{
       $ok = false;
     }
   }
-  if ($selection == "act") {
+  if ($selection == "act") 
+  {
     // if ($werkzoekende->status == '000' || $werkzoekende->status > '599') $ok = FALSE;
-    if ($werkzoekende->status > "599") {
+    if ($werkzoekende->status > "599") 
+	{
       $ok = false;
     }
   }
-  if ($selection == "non") {
-    if ($werkzoekende->status < "600") {
+  if ($selection == "non") 
+  {
+    if ($werkzoekende->status < "600") 
+	{
       $ok = false;
     }
   }
@@ -81,34 +86,40 @@ foreach ($wzColl->werkzoekendeColl as $werkzoekende) {
       $user_modified = new User();
     }
 
-    if ($werkzoekende->status != 0) {
+    if ($werkzoekende->status != 0) 
+	{
       $acties .=
         '<a href="mut_persoon.php?id=' .
         $werkzoekende->id .
         '"><i class="fa-solid fa-user"></i></a>&nbsp&nbsp&nbsp';
-    } else {
+    } else 
+	{
       $acties .=
         '<a href="mut_persoon.php?id=' .
         $werkzoekende->id .
         '"><i class="fa-regular fa-user"></i></a>&nbsp&nbsp&nbsp';
     }
-    if ($werkzoekende->id_intakeform != "") {
+    if ($werkzoekende->id_intakeform != "") 
+	{
       $acties .=
         '<a href="intake.php?id=' .
         $werkzoekende->id .
         '"><i class="fa-solid fa-file-lines"></i></a>&nbsp&nbsp&nbsp';
-    } else {
+    } else 
+	{
       $acties .=
         '<a href="intake.php?id=' .
         $werkzoekende->id .
         '"><i class="fa-regular fa-file-lines"></i></a>&nbsp&nbsp&nbsp';
     }
-    if ($werkzoekende->emailadres != "") {
+    if ($werkzoekende->emailadres != "") 
+	{
       $acties .=
         '<a href="mailto:' .
         $werkzoekende->emailadres .
         '"><i class="fa-regular fa-envelope"></i></a>&nbsp&nbsp&nbsp';
-    } else {
+    } else 
+	{
       $acties .=
         '<i class="fa-regular fa-envelope" style="opacity: 0;"></i>&nbsp&nbsp&nbsp';
     }
@@ -165,7 +176,7 @@ foreach ($wzColl->werkzoekendeColl as $werkzoekende) {
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include "../includes/head.inc"; ?>
+	<?php include "../includes/head.php"; ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>	
 		<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
@@ -193,34 +204,43 @@ foreach ($wzColl->werkzoekendeColl as $werkzoekende) {
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include "../includes/navbar.inc"; ?>
+			<?php include "../includes/navbar.php"; ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
 				<h1 class="mx-auto text-capitalize">Werkzoekenden</h1>
 			</div>
 		</div>
-        <div class="container-fluid">
-            <div class="row mt-4">
-				<div class="col-md-1 p-0">
-					<button type="button" class="btn btn-primary mx-3" style="width: 120px;"><a class="text-white" href="beheer.php">Menu</a></button>
-				</div>
-				<div class="col-md-1 p-0">
-					<div class="form-group text-right">
-						<label for="sel1" class="col-form-label">Toon&nbsp</label>
-					</div>
-				</div>
-				<div class="col-md-2 p-0">
-					<form method="POST" action="overz_werkzoekenden.php" id="postwz" novalidate>
-					<select name="selection" class="form-control" id="sel1" onchange="this.form.submit()">
-						<option value="act" <?php if ($selection == "act") { echo "selected"; } ?>>actieve werkzoekenden</option>
+		<div class="container-fluid">
+		  <div class="row mt-4">
+			<div class="col-12">
+			  <div class="d-flex flex-wrap align-items-center gap-2">		
+				<!-- Links -->
+				<div class="d-flex flex-wrap align-items-center gap-2">
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="beheer.php">Menu</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="aanmelding_wkz.php">Nieuwe werkzkd</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="photolib.php?q=wkz">Foto's</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="overz_wkz_vrjrdgn.php">Verjaardagen</a>
+			</div>
+		
+				<!-- Spacer -->
+				<div class="flex-grow-1"></div>
+		
+				<!-- Rechts -->
+				<div class="d-flex align-items-center gap-2">
+				  <label for="sel1" class="mb-0">Toon</label>
+		
+				  <form method="POST" action="overz_werkzoekenden.php" class="mb-0">
+					<select name="selection" class="form-control" id="sel1"
+							style="min-width:170px"
+							onchange="this.form.submit()">						<option value="act" <?php if ($selection == "act") { echo "selected"; } ?>>actieve werkzoekenden</option>
 						<option value="non" <?php if ($selection == "non") { echo "selected"; } ?>>niet actieve werkzoekenden</option>
 						<option value="all" <?php if ($selection == "all") { echo "selected"; } ?>>alle werkzoekenden</option>
 					</select>
 					</form>
 				</div>				
             </div>
-        </div>
+        </div></div></div>
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
@@ -275,7 +295,7 @@ foreach ($wzColl->werkzoekendeColl as $werkzoekende) {
 				</div>
 			</div>
 		</div>
-		<?php include "../includes/footer.inc"; ?>
+		<?php include "../includes/footer.php"; ?>
 	</body>
 	<script>
 	// The calling method syntax: $('#table').bootstrapTable('method', parameter).

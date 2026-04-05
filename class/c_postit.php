@@ -52,11 +52,11 @@ class Postit
 			$this->id 			= $row['id'];
 			$this->publInd		= $row['publInd'];
 			$this->publDatum	= $row['publDatum'];
-			$this->titel		= html_entity_decode($row['titel']);
-			$this->tekst		= html_entity_decode($row['tekst']);
-			$this->linkTekst	= html_entity_decode($row['linkTekst']);
-			$this->link			= html_entity_decode($row['link']);
-			$this->kleur		= html_entity_decode($row['kleur']);
+			$this->titel		= $row['titel'];
+			$this->tekst		= $row['tekst'];
+			$this->linkTekst	= $row['linkTekst'];
+			$this->link			= $row['link'];
+			$this->kleur		= $row['kleur'];
 		}
 		else {
 			$this->id = NULL;
@@ -80,11 +80,11 @@ class Postit
 			'$id		: ' . $this->id .			'<br/>' .
 			'$publInd: ' . $this->publInd .	'<br/>' .
 			'$publDatum: ' . $this->publDatum .	'<br/>' .
-			'$titel		: ' . html_entity_decode($this->titel) .	'<br/>' .
-			'$tekst		: ' . html_entity_decode($this->tekst) .	'<br/>' .
-			'$linkTekst: ' . html_entity_decode($this->linkTekst) .	'<br/>' .
-			'$link		: ' . html_entity_decode($this->link) .	'<br/>' .
-			'$kleur		: ' . html_entity_decode($this->kleur) .	'<br/>';
+			'$titel		: ' . $this->titel .	'<br/>' .
+			'$tekst		: ' . $this->tekst .	'<br/>' .
+			'$linkTekst: ' . $this->linkTekst .	'<br/>' .
+			'$link		: ' . $this->link .	'<br/>' .
+			'$kleur		: ' . $this->kleur .	'<br/>';
 	}
 	protected function readPostitWithId ($id)
 	{
@@ -140,13 +140,13 @@ class Postit
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
- 		   	$stmt->bindValue( ":publInd"		, htmlentities($this->publInd, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":publDatum"		, htmlentities($this->publDatum, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":linkTekst"		, htmlentities($this->linkTekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":link"			, htmlentities($this->link, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":kleur"			, htmlentities($this->kleur, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+ 		   	$stmt->bindValue( ":publInd"		, $this->publInd, PDO::PARAM_STR);
+			$stmt->bindValue( ":publDatum"		, $this->publDatum, PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
+			$stmt->bindValue( ":linkTekst"		, $this->linkTekst, PDO::PARAM_STR);
+			$stmt->bindValue( ":link"			, $this->link, PDO::PARAM_STR);
+			$stmt->bindValue( ":kleur"			, $this->kleur, PDO::PARAM_STR);
 
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
@@ -183,11 +183,11 @@ class Postit
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":publInd"		, $this->publInd, PDO::PARAM_STR);
 			$stmt->bindValue( ":publDatum"		, $this->publDatum, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":linkTekst"		, htmlentities($this->linkTekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":link"			, htmlentities($this->link, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":kleur"			, htmlentities($this->kleur, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
+			$stmt->bindValue( ":linkTekst"		, $this->linkTekst, PDO::PARAM_STR);
+			$stmt->bindValue( ":link"			, $this->link, PDO::PARAM_STR);
+			$stmt->bindValue( ":kleur"			, $this->kleur, PDO::PARAM_STR);
 			$stmt->execute();
 		}
 		catch (PDOException $e) 

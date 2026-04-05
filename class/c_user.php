@@ -43,8 +43,8 @@ class User extends Person
 		{
 			$this->id             = $userrow['id'];
 			$this->id_person      = $userrow['id_person'];
-			$this->username       = html_entity_decode($userrow['username']);
-			$this->password 	  = html_entity_decode($userrow['password']);
+			$this->username       = $userrow['username'];
+			$this->password 	  = $userrow['password'];
 			$this->password_mod	  = $userrow['password_mod'];
 			$this->activity       = $userrow['activity'];
 			$this->beheerind      = $userrow['beheerind'];
@@ -252,8 +252,8 @@ class User extends Person
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"          , $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"   , $this->id_person, PDO::PARAM_STR);
-			$stmt->bindValue( ":username"    , htmlentities($this->username, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":password" 	 , htmlentities($this->password, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":username"    , $this->username, PDO::PARAM_STR);
+			$stmt->bindValue( ":password" 	 , $this->password, PDO::PARAM_STR);
 			$stmt->bindValue( ":password_mod" 	 , $this->password_mod, PDO::PARAM_STR);
 			$stmt->bindValue( ":activity"    , $this->activity, PDO::PARAM_STR);
 			$stmt->bindValue( ":beheerind"   , $this->beheerind, PDO::PARAM_STR);

@@ -53,7 +53,7 @@ if()
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('../includes/head.inc'); ?>			
+		<?php include('../includes/head.php'); ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -73,7 +73,7 @@ if()
 	</head>
  
 <body style="background-color: #dddddd; font-size: 16px;">
-<?php include('../includes/navbar.inc'); ?>
+<?php include('../includes/navbar.php'); ?>
 <div class="container my-5">
 	<div>
 		<h3 class="bluefont">22 april 2021</h3>
@@ -149,6 +149,6 @@ if()
 	</table>	
 </div>
 </body>
-<?php include('../includes/footer.inc'); ?>
+<?php include('../includes/footer.php'); ?>
 </body>
 </html>

@@ -4,38 +4,32 @@ include_once('../class/c_user.php');
 
 
 /************************
-Dit stukje is nodig om misbruik van de website voorkomen
-*************************/
+ * Toegangsbeveiliging: alleen ingelogde gebruikers
+ ************************/
 if (!isset($_SESSION['username'])) {
-	header('location:../index.php');
+	header('Location: ../index.php');
 	exit();
 }
-/**********************/
 
-if (isset($_SESSION['userid']))
-{
-	$curr_user = new User ('id', $_SESSION['userid']);
-} else
-{
-	$curr_user = new User ();
-}
+// Huidige gebruiker initialiseren
+$curr_user = isset($_SESSION['userid'])
+	? new User('id', $_SESSION['userid'])
+	: new User();
 
-/* initieer jobgroup en maatje */
-unset($_SESSION['jobgroup_id']);
-unset($_SESSION['maatje_id']);
-
+// Sessievariabelen resetten
+unset($_SESSION['jobgroup_id'], $_SESSION['maatje_id']);
 ?>
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>				
+	<?php include('../includes/head.php'); ?>				
 		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
 		<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 	</head>
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white pt-2">
@@ -49,46 +43,37 @@ unset($_SESSION['maatje_id']);
             <div class="row mt-4">
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_werkzoekenden.php">Werkzoekenden</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="aanmelding_wkz.php">Nieuwe werkzoekende</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_wkz_vrjrdgn.php">Verjaardagen werkzoekenden</a></button>
+					<!-- <button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_wkz_vrjrdgn.php">Verjaardagen werkzoekenden</a></button> -->
 					<!-- <button type="button" class="btn btn-primary my-2" style="width: 300px;"><a class="text-white" href="intake.php">Intakeformulier</a></button> -->
 	            </div>
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_jobgroups.php">Jobgroups</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_jobgroup.php">Nieuwe jobgroup</a></button>
 					<!-- <button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_jobgroup.php">Nieuwe jobgroup</a></button> -->
 				</div>
 
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_maatjes.php">Maatjes</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="aanmelding_mtj.php">Nieuw maatje</a></button>
 				</div>
             </div>
 			<hr>
 			<div class="row mt-4">
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_newsitems.php">Nieuwsberichten</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_newsitem.php">Nieuw nieuwsbericht</a></button>
 				</div>
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="overz_agendaitems.php">Agenda items</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_agendaitem.php">Nieuw agenda item</a></button>
 				</div>
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="mut_postits.php">Post-its</a></button>
 				</div>
 			</div>
-			<hr>
+			<!-- <hr>
 			<div class="row mt-4">
 				<div class="col-md-4 p-0 text-center">
 					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="photolib.php?q=img">Afbeeldingen</a></button>
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="photolib.php?q=mtj">Maatje foto's</a></button>
-				</div>
-				<div class="col-md-4 p-0 text-center">
-					<button type="button" class="btn btn-primary my-2" style="width: 70%;"><a class="text-white" href="photolib.php?q=wkz">Werkzoekende foto's</a></button>
 				</div>
 
-			</div>
+			</div> -->
 
         </div>
         <div class="container">
@@ -97,6 +82,6 @@ unset($_SESSION['maatje_id']);
 		</div>
 		<div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

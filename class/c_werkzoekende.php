@@ -63,25 +63,25 @@ class Werkzoekende extends Person
 		if ($werkzoekenderow)
 		{
 	// 			error_log("De person bestaat, invullen maar");
-			$this->id					= $werkzoekenderow['id'];
-			$this->id_person			= $werkzoekenderow['id_person'];
-			$this->id_intakeform		= $werkzoekenderow['id_intakeform'];
-			$this->id_maatje			= $werkzoekenderow['id_maatje'];
+			$this->id				= $werkzoekenderow['id'];
+			$this->id_person		= $werkzoekenderow['id_person'];
+			$this->id_intakeform	= $werkzoekenderow['id_intakeform'];
+			$this->id_maatje		= $werkzoekenderow['id_maatje'];
 			$this->id_jobgroup		= $werkzoekenderow['id_jobgroup'];
-			$this->situatie			= html_entity_decode($werkzoekenderow['situatie']);
-			$this->opmerkingen		= html_entity_decode($werkzoekenderow['opmerkingen']);
-			$this->status				= $werkzoekenderow['status'];
-			$this->opties				= $werkzoekenderow['opties'];
-			$this->nnind				= $werkzoekenderow['nnind'];
-			$this->startsituatie		= $werkzoekenderow['startsituatie'];
-			$this->GAKind				= $werkzoekenderow['GAKind'];
-			$this->DBBind				= $werkzoekenderow['DBBind'];
-			$this->opleiding			= $werkzoekenderow['opleiding'];
-			$this->instroomtrede		= $werkzoekenderow['instroomtrede'];
-			$this->instroomscore		= $werkzoekenderow['instroomscore'];
+			$this->situatie			= $werkzoekenderow['situatie'];
+			$this->opmerkingen		= $werkzoekenderow['opmerkingen'];
+			$this->status			= $werkzoekenderow['status'];
+			$this->opties			= $werkzoekenderow['opties'];
+			$this->nnind			= $werkzoekenderow['nnind'];
+			$this->startsituatie	= $werkzoekenderow['startsituatie'];
+			$this->GAKind			= $werkzoekenderow['GAKind'];
+			$this->DBBind			= $werkzoekenderow['DBBind'];
+			$this->opleiding		= $werkzoekenderow['opleiding'];
+			$this->instroomtrede	= $werkzoekenderow['instroomtrede'];
+			$this->instroomscore	= $werkzoekenderow['instroomscore'];
 			$this->uitstroomscore	= $werkzoekenderow['uitstroomscore'];
-			$this->soortwerk			= $werkzoekenderow['soortwerk'];
-			$this->toelichting		= html_entity_decode($werkzoekenderow['toelichting']);
+			$this->soortwerk		= $werkzoekenderow['soortwerk'];
+			$this->toelichting		= $werkzoekenderow['toelichting'];
 			$this->date_aanmelding 	= $werkzoekenderow['date_aanmelding'];
 			$this->date_uitstroom 	= $werkzoekenderow['date_uitstroom'];
 			parent::__construct1 ($werkzoekenderow);
@@ -196,16 +196,16 @@ class Werkzoekende extends Person
 		
 			
 			$stmt = $connection->prepare( $sql );
-			$stmt->bindValue( ":id"				 			, NULL, PDO::PARAM_STR);
+			$stmt->bindValue( ":id"				 		, NULL, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"				, $this->id_person, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_intakeform"			, $this->id_intakeform, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_maatje"				, $this->id_maatje, PDO::PARAM_STR);
-			$stmt->bindValue( ":id_jobgroup"				, $this->id_jobgroup, PDO::PARAM_STR);
-			$stmt->bindValue( ":situatie"					, htmlentities($this->situatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerkingen"				, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":id_jobgroup"			, $this->id_jobgroup, PDO::PARAM_STR);
+			$stmt->bindValue( ":situatie"				, $this->situatie, PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerkingen"			, $this->opmerkingen, PDO::PARAM_STR);
 			$stmt->bindValue( ":status"					, $this->status, PDO::PARAM_STR);
 			$stmt->bindValue( ":opties"					, $this->opties, PDO::PARAM_STR);
-			$stmt->bindValue( ":nnind"						, $this->nnind, PDO::PARAM_STR);
+			$stmt->bindValue( ":nnind"					, $this->nnind, PDO::PARAM_STR);
 			$stmt->bindValue( ":startsituatie"			, $this->startsituatie, PDO::PARAM_STR);
 			$stmt->bindValue( ":GAKind"					, $this->GAKind, PDO::PARAM_STR);
 			$stmt->bindValue( ":DBBind"					, $this->DBBind, PDO::PARAM_STR);
@@ -214,7 +214,7 @@ class Werkzoekende extends Person
 			$stmt->bindValue( ":instroomscore"			, $this->instroomscore, PDO::PARAM_STR);
 			$stmt->bindValue( ":uitstroomscore"			, $this->uitstroomscore, PDO::PARAM_STR);
 			$stmt->bindValue( ":soortwerk"				, $this->soortwerk, PDO::PARAM_STR);
-			$stmt->bindValue( ":toelichting"				, htmlentities($this->toelichting, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":toelichting"			, $this->toelichting, PDO::PARAM_STR);
 			$stmt->bindValue( ":date_aanmelding"		, $this->date_aanmelding, PDO::PARAM_STR);
 			$stmt->bindValue( ":date_uitstroom"			, $this->date_uitstroom, PDO::PARAM_STR);
 			
@@ -326,16 +326,16 @@ class Werkzoekende extends Person
 				date_uitstroom = :date_uitstroom
 				WHERE id = :id;";
 			$stmt = $connection->prepare( $sql );
-			$stmt->bindValue( ":id"					, $this->id, PDO::PARAM_STR);
+			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_intakeform"	, $this->id_intakeform, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_maatje"		, $this->id_maatje, PDO::PARAM_STR);
-			$stmt->bindValue( ":id_jobgroup"		, $this->id_jobgroup, PDO::PARAM_STR);
-			$stmt->bindValue( ":situatie"			, htmlentities($this->situatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerkingen"		, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":id_jobgroup"	, $this->id_jobgroup, PDO::PARAM_STR);
+			$stmt->bindValue( ":situatie"		, $this->situatie, PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerkingen"	, $this->opmerkingen, PDO::PARAM_STR);
 			$stmt->bindValue( ":status"			, $this->status, PDO::PARAM_STR);
 			$stmt->bindValue( ":opties"			, $this->opties, PDO::PARAM_STR);
-			$stmt->bindValue( ":nnind"				, $this->nnind, PDO::PARAM_STR);
+			$stmt->bindValue( ":nnind"			, $this->nnind, PDO::PARAM_STR);
 			$stmt->bindValue( ":startsituatie"	, $this->startsituatie, PDO::PARAM_STR);
 			$stmt->bindValue( ":GAKind"			, $this->GAKind, PDO::PARAM_STR);
 			$stmt->bindValue( ":DBBind"			, $this->DBBind, PDO::PARAM_STR);
@@ -344,9 +344,9 @@ class Werkzoekende extends Person
 			$stmt->bindValue( ":instroomscore"	, $this->instroomscore, PDO::PARAM_STR);
 			$stmt->bindValue( ":uitstroomscore"	, $this->uitstroomscore, PDO::PARAM_STR);
 			$stmt->bindValue( ":soortwerk"		, $this->soortwerk, PDO::PARAM_STR);
-			$stmt->bindValue( ":toelichting"		, htmlentities($this->toelichting, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":date_aanmelding"		, $this->date_aanmelding, PDO::PARAM_STR);
-			$stmt->bindValue( ":date_uitstroom"		, $this->date_uitstroom, PDO::PARAM_STR);
+			$stmt->bindValue( ":toelichting"	, $this->toelichting, PDO::PARAM_STR);
+			$stmt->bindValue( ":date_aanmelding", $this->date_aanmelding, PDO::PARAM_STR);
+			$stmt->bindValue( ":date_uitstroom"	, $this->date_uitstroom, PDO::PARAM_STR);
 			// error_log($sql);
 			// error_log(print_r($this));
 			$stmt->execute();

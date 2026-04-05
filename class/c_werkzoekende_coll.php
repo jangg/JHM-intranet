@@ -104,13 +104,10 @@ class Werkzoekende_coll extends Person_coll {
 		$todate = $date->format('-m-d');
 		foreach ($this->werkzoekendeColl as $werkzoekende)
 		{
-			if ($werkzoekende->date_uitstroom == '')
+			if ($werkzoekende->date_geboorte != '' && $werkzoekende->date_uitstroom == '' && $werkzoekende->status < 800)
 			{
-				if ($werkzoekende->date_geboorte != '')
-				{
-					if (substr($werkzoekende->date_geboorte, 4,6) == $todate)
-						$wkzColl[] = $werkzoekende;
-				}
+				if (substr($werkzoekende->date_geboorte, 4,6) == $todate)
+					$wkzColl[] = $werkzoekende;
 			}
 		}
 		return $wkzColl;

@@ -113,7 +113,7 @@ foreach($topicsColl->topicColl as $topic){
 		 <td class="col-5 mx-0 d-md-none"><a href="overz_topic.php?id=' . $topic->id . '">' . $topic->onderwerp . '</a></span></td>
 		 <td class="col-1 text-center mx-0">' . $aantal . '</td>
 		 <td class="col-2 text-center mx-0 overflow-hidden d-none d-md-block">' . $datum_lp2 . '</td>
-		 <td class="col-4 mx-0">' . $laatste_post_tekst . '</td>
+		 <td class="col-4 text-left mx-0">' . $laatste_post_tekst . '</td>
 		 <td class="col-1 text-center mx-0">' .	 $user_lp_name . '</td>
 	</tr>';
 }
@@ -121,10 +121,11 @@ foreach($topicsColl->topicColl as $topic){
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	<link href="../css/mystyle.css" rel="stylesheet" type="text/css" />					
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>			
+<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>			
 	<script>
 		function jumpto(anchor){
 			window.location.href = "#"+anchor;
@@ -165,7 +166,7 @@ foreach($topicsColl->topicColl as $topic){
 	<body class="bodystyle">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -193,7 +194,7 @@ foreach($topicsColl->topicColl as $topic){
 					<th scope="col" class="col-5 d-md-none">onderwerp</th>
 					<th scope="col" class="col-1 text-center overflow-hidden">aantal<br/>berichten</th>
 					<th scope="col" class="col-2 text-center m-0 px-0  d-none d-md-block">laatste<br/>bericht</th>
-					<th scope="col" class="col-4">bericht</th>
+					<th scope="col" class="col-4 text-left">bericht</th>
 					<th scope="col" class="col-1 text-center m-0 px-0">door</th>
 				  </tr>
 				</thead>
@@ -223,6 +224,6 @@ foreach($topicsColl->topicColl as $topic){
 			</div>
 			</form>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

@@ -30,10 +30,10 @@ class Aantekening
 		{
 			$this->id 					= $row['id'];			
 			$this->delind 				= $row['delind']; 			
-			$this->id_user 			= $row['id_user'];			
-			$this->id_werkzkd 		= $row['id_werkzkd']; 			
-			$this->datetime_created = $row['datetime_created'];
-			$this->tekst 				= html_entity_decode($row['tekst']);
+			$this->id_user 				= $row['id_user'];			
+			$this->id_werkzkd 			= $row['id_werkzkd']; 			
+			$this->datetime_created 	= $row['datetime_created'];
+			$this->tekst 				= $row['tekst'];
 		} else $this->id = NULL;
 	}
 	public function __construct2 ($attr, $value)
@@ -128,7 +128,7 @@ class Aantekening
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 			$stmt->bindValue( ":datetime_created", $this->datetime_created, PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
 			$stmt->execute();
 			// error_log('Een nieuwe c_topic is toegevoegd');
 			// error_log($sql);
@@ -163,7 +163,7 @@ class Aantekening
 				$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 				$stmt->bindValue( ":id_werkzkd"		, $this->id_werkzkd, PDO::PARAM_STR);
 				$stmt->bindValue( ":datetime_created", $this->datetime_created, PDO::PARAM_STR);
-				$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+				$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
 				$stmt->execute();
 		}
 		catch (PDOException $e) 

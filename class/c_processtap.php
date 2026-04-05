@@ -52,7 +52,7 @@ class Processtap
 			$this->dt_stap 		= $row['dt_stap'];
 			$this->wzstatus 		= $row['wzstatus'];
 			$this->drstrnaar 		= $row['drstrnaar'];
-			$this->toelichting 	= html_entity_decode($row['toelichting']);
+			$this->toelichting 	= $row['toelichting'];
 		}
 		else {
 			$this->id = NULL;
@@ -141,7 +141,7 @@ class Processtap
 			$stmt->bindValue( ":dt_stap"		, $this->dt_stap, PDO::PARAM_STR);
 			$stmt->bindValue( ":wzstatus"		, $this->wzstatus, PDO::PARAM_STR);
 			$stmt->bindValue( ":drstrnaar"	, $this->drstrnaar, PDO::PARAM_STR);
-			$stmt->bindValue( ":toelichting"	, htmlentities($this->toelichting, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":toelichting"	, $this->toelichting, PDO::PARAM_STR);
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
 		}
@@ -178,7 +178,7 @@ class Processtap
 			$stmt->bindValue( ":dt_stap"		, $this->dt_stap, PDO::PARAM_STR);
 			$stmt->bindValue( ":wzstatus"		, $this->wzstatus, PDO::PARAM_STR);
 			$stmt->bindValue( ":drstrnaar"	, $this->drstrnaar, PDO::PARAM_STR);
-			$stmt->bindValue( ":toelichting"	, htmlentities($this->toelichting, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":toelichting"	, $this->toelichting, PDO::PARAM_STR);
 			$stmt->execute();
 			
 		}

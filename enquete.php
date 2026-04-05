@@ -25,7 +25,7 @@ include_once('includes/chk_enquete.inc');
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('includes/head.inc'); ?>			
+		<?php include('includes/head.php'); ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -47,7 +47,7 @@ include_once('includes/chk_enquete.inc');
 	</head>
  
 <body style="background-color: #dddddd; font-size: 16px;">
-<?php include('includes/navbar.inc'); ?>
+<?php include('includes/navbar.php'); ?>
 	<div id="alert" style="display: <?php if ($enquete_ready) echo 'block'; else echo 'none';?>;">
 		<div class="container my-5"" id="cont01">
 			<h1 class="text-black mb-5 bluefont text-center errormessage">Dank voor het invullen en opsturen!</h1>
@@ -185,6 +185,6 @@ include_once('includes/chk_enquete.inc');
 	</div>
 	</form>
 	</div>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 </body>
 </html>

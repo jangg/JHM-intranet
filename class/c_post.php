@@ -44,7 +44,7 @@ class Post
 		if ($row)
 		{
 			$this->id 			= $row['id'];
-			$this->tekst		= html_entity_decode($row['post_content']);
+			$this->tekst		= $row['post_content'];
 			$this->datum		= $row['post_date'];
 			$this->id_topic		= $row['id_topic'];
 			$this->id_user		= $row['id_user'];
@@ -69,7 +69,7 @@ class Post
 		/* hier printen we het object mee uit, voor testdoeleinden */
 		return 
 			'$id		: ' . $this->id .			'<br/>' .
-			'$tekst		: ' . html_entity_decode($this->tekst) .	'<br/>' .
+			'$tekst		: ' . $this->tekst .	'<br/>' .
 			'$datum		: ' . $this->datum .		'<br/>' .
 			'$id_topic	: ' . $this->id_topic .		'<br/>' .
 			'$id_user	: ' . $this->id_user .		'<br/>';
@@ -125,7 +125,7 @@ class Post
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
- 			$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+ 			$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
 			// $stmt->bindValue( ":tekst"			, 'php -f mailroom.php ' . $this->id_topic . ' ' . $connection->lastInsertId() . ' ' . $this->id_user . ' > /dev/null &', PDO::PARAM_STR);
 			$stmt->bindValue( ":id_topic"		, $this->id_topic, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
@@ -145,7 +145,7 @@ class Post
 		2 = post_id
 		3 = user_id van de poster
 		*/
-		$cmd = 'php -f ../mailroom.php ' . $this->id_topic . ' ' . $connection->lastInsertId() . ' ' . $this->id_user . ' > /dev/null &';
+		$cmd = 'php -f ../mailroom_forum.php ' . $this->id_topic . ' ' . $connection->lastInsertId() . ' ' . $this->id_user . ' > /dev/null &';
 		exec($cmd);
 		return TRUE;	
 	}
@@ -168,7 +168,7 @@ class Post
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
-			$stmt->bindValue( ":tekst"			, htmlentities($this->tekst, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":tekst"			, $this->tekst, PDO::PARAM_STR);
 			$stmt->bindValue( ":datumnw"		, $this->datum, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_topic"		, $this->id_topic, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);

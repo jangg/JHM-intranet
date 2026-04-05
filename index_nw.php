@@ -88,7 +88,7 @@ if (isset($_POST['aanmelden'])) {
 <!DOCTYPE html>
 <html>
 	<head>
-	<?php include('includes/head.inc'); ?>
+	<?php include('includes/head.php'); ?>
 	</head>
 	<body class="container-fluid bodystyle">
 		

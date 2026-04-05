@@ -22,7 +22,7 @@ if (isset($_SESSION['userid']))
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<?php include('includes/head.inc'); ?>			
+		<?php include('includes/head.php'); ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -35,7 +35,7 @@ if (isset($_SESSION['userid']))
  
 <body style="background-color: #dddddd; font-size: 16px;">
 	
-	<?php include('includes/navbar.inc'); ?>
+	<?php include('includes/navbar.php'); ?>
 	<main role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="jumbotron">
@@ -143,6 +143,6 @@ if (isset($_SESSION['userid']))
 		</div>
 			
 	</main>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 </body>
 </html>

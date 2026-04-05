@@ -78,7 +78,7 @@ foreach ($userColl->userColl as $user)
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('../includes/head.inc'); ?>			
+		<?php include('../includes/head.php'); ?>			
 	<!-- Custom styles for this template -->
 		<link href="../css/jumbotron.css" rel="stylesheet" type='text/css'>
 		<link href="../css/mystyle.css" rel="stylesheet" type='text/css'>
@@ -104,7 +104,7 @@ foreach ($userColl->userColl as $user)
  
 <body style="background-color: #dddddd; font-size: 16px;">
 	
-<?php include('../includes/navbar.inc'); ?>
+<?php include('../includes/navbar.php'); ?>
 <div class="jumbotron">
 	<div id="main">
 	<div class="container my-5" >
@@ -128,6 +128,6 @@ foreach ($userColl->userColl as $user)
 	</div>
 </div>
 </body>
-<?php include('../includes/footer.inc'); ?>
+<?php include('../includes/footer.php'); ?>
 </body>
 </html>

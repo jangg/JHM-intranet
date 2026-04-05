@@ -132,10 +132,10 @@ foreach ($agenda as $agendaitem)
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<?php include('includes/head.inc'); ?>
+		<?php include('includes/head.php'); ?>
 	</head>
 	<body class="bodystyle">
-		<?php include('includes/navbar.inc'); ?>		
+		<?php include('includes/navbar.php'); ?>		
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
 				<h1 class="mx-auto text-uppercase">agenda</h1>
@@ -148,6 +148,6 @@ foreach ($agenda as $agendaitem)
 				</div>
 			</div> -->
 			<?php echo $agenda_html; ?>
-		    <?php include('includes/footer.inc'); ?>
+		    <?php include('includes/footer.php'); ?>
 	</body>
 </html>

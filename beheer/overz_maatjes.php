@@ -128,7 +128,7 @@ foreach($maatjeColl->maatjeColl as $maatje)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>	
 		<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
@@ -156,7 +156,7 @@ foreach($maatjeColl->maatjeColl as $maatje)
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -167,27 +167,39 @@ foreach($maatjeColl->maatjeColl as $maatje)
 				</div>
 			</div>
 		</div>
-        <div class="container-fluid">
-			<div class="row mt-4">
-            <!-- <div class="d-flex flex-row header rounded pt-2 mb-0 mx-0 px-0"> -->
-				<div class="col-md-2 p-0">
-					<button type="button" class="btn btn-primary mx-3" style="width: 120px;"><a class="text-white" href="beheer.php">Menu</a></button>
+		<div class="container-fluid">
+		  <div class="row mt-4">
+			<div class="col-12">
+			  <div class="d-flex flex-wrap align-items-center gap-2">		
+				<!-- Links -->
+				<div class="d-flex flex-wrap align-items-center gap-2">
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="beheer.php">Menu</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="aanmelding_mtj.php">Nieuw maatje</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="photolib.php?q=mtj">Foto's</a>
 				</div>
-				<div class="col-md-1 p-0">
-					<label for="sel1" class="col-form-label d-inline-flex" style="float: right;">Toon&nbsp&nbsp</label>
-				</div>
-				<div class="col-md-2 p-0">
-					<form method="POST" action="overz_maatjes.php" novalidate>
-					<select name="selection" class="form-control" id="sel1" onchange="this.form.submit()">
-						<option value="mtj" <?php if($selection == 'mtj') echo 'selected'; ?>>maatjes</option>
-						<option value="ext" <?php if($selection == 'ext') echo 'selected'; ?>>externen</option>
-						<option value="all" <?php if($selection == 'all') echo 'selected'; ?>>iedereen</option>
+		
+				<!-- Spacer -->
+				<div class="flex-grow-1"></div>
+		
+				<!-- Rechts -->
+				<div class="d-flex align-items-center gap-2">
+				  <label for="sel1" class="mb-0">Toon</label>
+		
+				  <form method="POST" action="overz_maatjes.php" class="mb-0">
+					<select name="selection" class="form-control" id="sel1"
+							style="min-width:170px"
+							onchange="this.form.submit()">
+					  <option value="mtj" <?php if($selection == 'mtj') echo 'selected'; ?>>maatjes</option>
+					  <option value="ext" <?php if($selection == 'ext') echo 'selected'; ?>>externen</option>
+					  <option value="all" <?php if($selection == 'all') echo 'selected'; ?>>iedereen</option>
 					</select>
-					</form>
-				</div>
+				  </form>
+				</div>		
+			  </div>
 			</div>
-        </div>
-        <div class="container-fluid">
+		  </div>
+		</div>        
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div id="toolbar" class="select">
@@ -234,7 +246,7 @@ foreach($maatjeColl->maatjeColl as $maatje)
 				</div>
 			</div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 	<script>
 		// The calling method syntax: $('#table').bootstrapTable('method', parameter).

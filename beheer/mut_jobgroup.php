@@ -108,7 +108,7 @@ if ($wkzHTML == '')
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	<script>
 	
 	$(document).ready(function() {
@@ -232,15 +232,14 @@ if ($wkzHTML == '')
 	});
 	</script>
 	<style>
-		thead {
-			text-align: left;
-		}
+		.table th,
+		.table td { text-align: left; }	
 	</style>				
 	</head>
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -376,7 +375,7 @@ if ($wkzHTML == '')
 					<div class="row header rounded text-white p-1 m-1"  style="background-color: #304280;">
 						<h4 class="mx-auto">sessies</h1>
 					</div>
-					<table class="table table-sm" style="font-size: 0.9em;">
+					<table class="table table-sm style="font-size: 0.9em; text-align: left;">
 						<thead>
 						<tr>
 						<th>#</th>
@@ -477,6 +476,6 @@ if ($wkzHTML == '')
 			</div>
 		</div>
 
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

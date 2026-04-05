@@ -36,13 +36,15 @@ function getFlag(string $key): bool
 	return true;
 }
 
-function log_line(string $msg, string $logFile, bool $verbose = false): void {
+function log_line(string $msg, string $logFile, bool $verbose = false): void 
+{
 	$line = sprintf("[%s] %s\n", date('Y-m-d H:i:s'), $msg);
 	@file_put_contents($logFile, $line, FILE_APPEND);
 	if ($verbose) echo $line;
 }
 
-function acquire_lock(string $lockFile) {
+function acquire_lock(string $lockFile) 
+{
 	$fh = @fopen($lockFile, 'c');
 	if (!$fh) return false;
 	if (!flock($fh, LOCK_EX | LOCK_NB)) return false;
@@ -59,7 +61,8 @@ $verbose = getFlag('verbose');
 
 // limit
 $limit = 500;
-if (isset($_GET['limit']) && is_numeric($_GET['limit'])) {
+if (isset($_GET['limit']) && is_numeric($_GET['limit'])) 
+{
 	$limit = max(1, (int)$_GET['limit']);
 }
 
@@ -69,7 +72,8 @@ $logFile  = $config['log_file'];
 $lockFile = $config['lock_file'];
 
 $lockHandle = acquire_lock($lockFile);
-if ($lockHandle === false) {
+if ($lockHandle === false) 
+{
 	echo 'geen LockHandle? Jammer. Einde oefening.<br/>';
 	log_line("SKIP: lock not acquired (script draait al).", $logFile, $verbose);
 	exit(0);
@@ -83,7 +87,8 @@ $totals = [
 	'intakeform'  => 0,
 ];
 
-try {
+try 
+{
 	log_line("START cleanup_werkzkd (dryRun=" . ($dryRun ? 'yes' : 'no') . ", limit={$limit})", $logFile, $verbose);
 
 	$pdo = new PDO(
@@ -97,7 +102,8 @@ try {
 	$sqlSelect = "
 		SELECT
 			w.id       AS werkzkd_id,
-			w.id_person AS person_id
+			w.id_person AS person_id,
+			p.achternaam AS naam
 		FROM werkzkd w
 		INNER JOIN person p ON p.person_id = w.id_person
 		WHERE p.delind = 'j'
@@ -110,7 +116,8 @@ try {
 	$stSelect->execute();
 	$rows = $stSelect->fetchAll();
 
-	if (!$rows) {
+	if (!$rows) 
+	{
 		echo 'Geen records gevonden. Pech!<br/>';
 		log_line("INFO: geen records gevonden om te verwijderen.", $logFile, $verbose);
 		exit(0);
@@ -125,11 +132,13 @@ try {
 
 	echo 'Nu komt de loop<br/>';
 	$n = 0;
-	foreach ($rows as $r) {
+	foreach ($rows as $r) 
+	{
 		// $n++;
 		// echo $n . ' werkzoekende gevonden<br/>';
 		$wid = (int)$r['werkzkd_id'];
 		$pid = (int)$r['person_id'];
+		$naam = (string)$r['naam'];
 
 		// Per werkzoekende in eigen transactie (veiliger, kortere locks)
 		$pdo->beginTransaction();
@@ -139,8 +148,9 @@ try {
 		$cntP = (int)$pdo->query("SELECT COUNT(*) FROM processtap  WHERE id_werkzkd = {$wid}")->fetchColumn();
 		$cntI = (int)$pdo->query("SELECT COUNT(*) FROM intakeform  WHERE id_werkzkd = {$wid}")->fetchColumn();
 
-		if ($dryRun) {
-			log_line("DRY-RUN wid={$wid}, pid={$pid} => delete aantekening={$cntA}, processtap={$cntP}, intakeform={$cntI}, werkzkd=1, person=1",
+		if ($dryRun) 
+		{
+			log_line("DRY-RUN wid={$wid}, pid={$pid} => delete aantekening={$cntA}, processtap={$cntP}, intakeform={$cntI}, werkzkd=1, person=1, naam={$naam}",
 				$logFile, $verbose);
 			$pdo->rollBack();
 			continue;
@@ -157,14 +167,16 @@ try {
 		$pdo->commit();
 		// echo 'records zijn verwijderd!<br/>';
 
-		log_line("OK wid={$wid}, pid={$pid} verwijderd (aant={$cntA}, proc={$cntP}, intk={$cntI})", $logFile, $verbose);
+		log_line("OK wid={$wid}, pid={$pid} verwijderd (aant={$cntA}, proc={$cntP}, intk={$cntI}), naam={$naam}", $logFile, $verbose);
 	}
 
-	if ($dryRun) {
+	if ($dryRun) 
+	{
 		echo 'alle records zijn niet verwijderd want dry-run!!<br/>';
 
 		log_line("DONE DRY-RUN: geen wijzigingen doorgevoerd.", $logFile, $verbose);
-	} else {
+	} else 
+	{
 		echo 'alle records zijn WEL verwijderd want execute!!<br/>';
 		log_line(
 			"DONE: verwijderd => werkzkd={$totals['werkzkd']}, person={$totals['person']}, aantekening={$totals['aantekening']}, processtap={$totals['processtap']}, intakeform={$totals['intakeform']}",
@@ -175,15 +187,19 @@ try {
 
 	exit(0);
 
-} catch (Throwable $e) {
-	if (isset($pdo) && $pdo->inTransaction()) {
+} catch (Throwable $e) 
+{
+	if (isset($pdo) && $pdo->inTransaction()) 
+	{
 		$pdo->rollBack();
 	}
 	log_line("ERROR: " . $e->getMessage(), $logFile, true);
 	exit(1);
 
-} finally {
-	if (is_resource($lockHandle)) {
+} finally 
+{
+	if (is_resource($lockHandle)) 
+	{
 		flock($lockHandle, LOCK_UN);
 		fclose($lockHandle);
 	}

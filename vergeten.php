@@ -79,7 +79,7 @@ if (isset($_POST['wijzigen']))
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include('includes/head.inc'); ?>				
+		<?php include('includes/head.php'); ?>				
 	</head>
 	<body class="bodystyle">
 		

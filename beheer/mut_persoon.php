@@ -396,7 +396,7 @@ if ($wkz->id_user_modified != "") {
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include "../includes/head.inc"; ?>				
+	<?php include "../includes/head.php"; ?>				
 		<style>
 			input.invalid, textarea.invalid{
 				border: 2px solid red;
@@ -469,7 +469,7 @@ if ($wkz->id_user_modified != "") {
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include "../includes/navbar.inc"; ?>
+			<?php include "../includes/navbar.php"; ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -779,7 +779,7 @@ if ($wkz->id_user_modified != "") {
 							<option value="GO" <?php if ($wkz->opleiding == "GO") {
          echo "selected";
        } ?>>Geen opleiding</option>
-							<option value="VMBO" <?php if ($wkz->opleiding == "VMBO/Mavo") {
+							<option value="VMBO/Mavo" <?php if ($wkz->opleiding == "VMBO/Mavo") {
          echo "selected";
        } ?>>VMBO/Mavo</option>
 							<option value="Havo" <?php if ($wkz->opleiding == "Havo") {
@@ -868,8 +868,6 @@ if ($wkz->id_user_modified != "") {
 					</div>
 					<div class="forms-group mb-1">
 						<button name="updateWzBut" value="wijzig" type="submit" class="btn btn-primary btn-width btn-sm">Wijzig</button>
-						<!-- <button name="backWzBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button> -->
-						<!-- <button name="deleteWzBut" value="delete" type="submit" class="btn btn-danger btn-width btn-sm" style="float: right;">Delete</button> -->
 					</div>
 					</form>
 				</div>		
@@ -935,6 +933,6 @@ if ($wkz->id_user_modified != "") {
 				</div>				
 			</div>
 		</div>
-		<?php include "../includes/footer.inc"; ?>
+		<?php include "../includes/footer.php"; ?>
 	</body>
 </html>

@@ -22,7 +22,7 @@ if (isset($_SESSION['userid']))
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('includes/head.inc'); ?>
+		<?php include('includes/head.php'); ?>
 	<!-- Custom styles for this template -->
 		<!-- <link href="css/jumbotron.css" rel="stylesheet"> -->
 		<script>
@@ -203,6 +203,10 @@ if (isset($_SESSION['userid']))
 					$(".nieuwsbrief").hide();
 					$("#20260128").show();
 				});
+				$("#45").click(function(){
+					$(".nieuwsbrief").hide();
+					$("#20260305").show();
+				});
 
 
 
@@ -224,7 +228,7 @@ if (isset($_SESSION['userid']))
  
 <body class="bodystyle">
 	
-	<?php include('includes/navbar.inc'); ?>
+	<?php include('includes/navbar.php'); ?>
 	<main role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="container">
@@ -242,6 +246,7 @@ if (isset($_SESSION['userid']))
 			<div class="row">
 				<div class="col-md-4">
 					<ul>
+					<li><p><a id="45" href="#">Maart 2026</a></p></li>
 					<li><p><a id="44" href="#">Februari 2026</a></p></li>
 					<li><p><a id="43" href="#">December 2025</a></p></li>
 					<li><p><a id="42" href="#">September 2025</a></p></li>
@@ -300,8 +305,11 @@ if (isset($_SESSION['userid']))
 					<div id="20251218" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20251218.html'); ?>
 					</div>
-					<div id="20260128" class="nieuwsbrief"  style="display: block;">
+					<div id="20260128" class="nieuwsbrief"  style="display: none;">
 						<?php include('nieuwsbrieven/nb20260128.html'); ?>
+					</div>
+					<div id="20260305" class="nieuwsbrief"  style="display: block;">
+						<?php include('nieuwsbrieven/nb20260305.html'); ?>
 					</div>
 
 
@@ -310,6 +318,6 @@ if (isset($_SESSION['userid']))
 			<!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
 		</div>								
 	</main>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 </body>
 </html>

@@ -21,7 +21,7 @@ if (isset($_SESSION['userid']))
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('../includes/head.inc'); ?>
+		<?php include('../includes/head.php'); ?>
 		<link href="css/mystyle.css" rel="stylesheet" type="text/css">			
 		<style>
 			.bluefont {
@@ -50,7 +50,7 @@ if (isset($_SESSION['userid']))
  
 <body>
 	
-<?php include('../includes/navbar.inc'); ?>
+<?php include('../includes/navbar.php'); ?>
 <div class="jumbotron">
 	<div id="main">
 		<div class="container verslag my-5">
@@ -77,6 +77,6 @@ if (isset($_SESSION['userid']))
 	</div>
 </div>
 </body>
-<?php include('../includes/footer.inc'); ?>
+<?php include('../includes/footer.php'); ?>
 </body>
 </html>

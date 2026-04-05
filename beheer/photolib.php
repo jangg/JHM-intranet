@@ -24,6 +24,10 @@ if (isset($_GET['q']))
 	$q = $_GET['q'];
 	else
 	$q = 'img';
+if (isset($_GET['r']))
+	$r = $_GET['r'];
+	else
+	$r = 'ni';
 switch ($q) {
 	case 'mtj':
 		$titel = "Maatje foto's";
@@ -35,7 +39,8 @@ switch ($q) {
 		$tekst = 'Foto\'s moeten voldoen aan de volgende voorwaarden:<br/>
 		1. niet groter dan 0,5 Mb<br/>
 		2. alleen formaat jpg, jpeg, png, gif of webp<br/>
-		3. foto moet vierkant zijn<br/>';
+		3. foto wordt automatisch vierkant gemaakt<br/>';
+		$back_url = 'overz_maatjes.php';
 		break;
 	case 'wkz':
 		$titel = "Werkzoekende foto's";
@@ -47,7 +52,8 @@ switch ($q) {
 		$tekst = 'Foto\'s moeten voldoen aan de volgende voorwaarden:<br/>
 		1. niet groter dan 0,5 Mb<br/>
 		2. alleen formaat jpg, jpeg, png, gif of webp<br/>
-		3. foto moet vierkant zijn<br/>';
+		3. foto wordt automatisch vierkant gemaakt<br/>';
+		$back_url = 'overz_werkzoekenden.php';
 		break;
 	default:
 		$titel = "Afbeeldingen";
@@ -59,6 +65,8 @@ switch ($q) {
 		$tekst = 'Afbeeldingen moeten voldoen aan de volgende voorwaarden:<br/>
 		1. niet groter dan 5 Mb<br/>
 		2. alleen formaat jpg, jpeg, png, gif of webp<br/>';
+		if ($r == 'ni') $back_url = 'overz_newsitems.php';
+		else $back_url = 'overz_agendaitems.php';
 }
 
 // Zorg dat directories bestaan
@@ -107,7 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto']))
 				$resultmessage = "❌ Bestand met deze naam bestaat al.";
 			} else {
 				if (move_uploaded_file($file['tmp_name'], $target)) {
-					createThumbnail($target, $thumbTarget, 200, 200);
+					// Automatisch bijsnijden naar vierkant voor mtj en wkz
+					if (in_array($q, ['mtj', 'wkz'])) {
+						makeSquare($target);
+					}
+					createThumbnail($target, $thumbTarget, $thumbnailwidth, $thumbnailwidth);
 					$resultmessage = "✔ Upload gelukt!";
 				} else {
 					$resultmessage = "❌ Upload mislukt bij verplaatsen.";
@@ -119,6 +131,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto']))
 	} else {
 		$resultmessage = "❌ Upload mislukt (te groot of fout).";
 	}
+}
+
+// Maak de foto ALTIJD vierkant.
+// na de upload wordt de kortste zijde genomen als maat, en de afbeelding wordt vanuit het midden bijgesneden tot een perfect vierkant. 
+// Daarna wordt daar de thumbnail van gemaakt. Het origineel op schijf is dan ook altijd vierkant.
+
+function makeSquare($path) 
+{
+	[$origW, $origH, $type] = getimagesize($path);
+
+	// Al vierkant? Niets doen
+	if ($origW === $origH) return;
+
+	switch ($type) {
+		case IMAGETYPE_JPEG: $img = imagecreatefromjpeg($path); break;
+		case IMAGETYPE_PNG:  $img = imagecreatefrompng($path);  break;
+		case IMAGETYPE_GIF:  $img = imagecreatefromgif($path);  break;
+		case IMAGETYPE_WEBP: $img = imagecreatefromwebp($path); break;
+		default: return;
+	}
+
+	// Kleinste zijde bepaalt de vierkantgrootte
+	$size = min($origW, $origH);
+
+	// Centeer de crop
+	$srcX = (int)(($origW - $size) / 2);
+	$srcY = (int)(($origH - $size) / 2);
+
+	$square = imagecreatetruecolor($size, $size);
+
+	// Transparantie behouden voor PNG/GIF/WEBP
+	if ($type !== IMAGETYPE_JPEG) {
+		imagealphablending($square, false);
+		imagesavealpha($square, true);
+		$transparent = imagecolorallocatealpha($square, 0, 0, 0, 127);
+		imagefill($square, 0, 0, $transparent);
+	}
+
+	imagecopyresampled($square, $img, 0, 0, $srcX, $srcY, $size, $size, $size, $size);
+
+	// Opslaan op dezelfde plek (overschrijft het origineel)
+	switch ($type) {
+		case IMAGETYPE_JPEG: imagejpeg($square, $path, 90); break;
+		case IMAGETYPE_PNG:  imagepng($square, $path, 8);   break;
+		case IMAGETYPE_GIF:  imagegif($square, $path);      break;
+		case IMAGETYPE_WEBP: imagewebp($square, $path, 90); break;
+	}
+
+	imagedestroy($img);
+	imagedestroy($square);
 }
 
 // Thumbnail functie
@@ -164,12 +226,12 @@ function createThumbnail($src, $dest, $w, $h)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	</head>
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -187,7 +249,7 @@ function createThumbnail($src, $dest, $w, $h)
 		<div class="container-fluid">
 			<div class="row mt-4">
 				<div class="col-md-3 p-0">
-					<button type="button" class="btn btn-primary mx-3" style="width: 120px;"><a class="text-white" href="beheer.php">Menu</a></button>
+					<button type="button" class="btn btn-primary mx-3" style="width: 120px;"><a class="text-white" href="<?= $back_url ?>">Terug</a></button>
 				</div>
 
 				<div class="col-md-6 p-0">
@@ -218,15 +280,16 @@ function createThumbnail($src, $dest, $w, $h)
 						foreach (glob($thumbDir . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE) as $thumb) 
 						{
 							$file = basename($thumb);
-							echo "<div style='text-align:center; width: ' . $thumbnailwidth + 20 . 'px;'>
-									<a href='../$directory/$file' target='_blank'>
-										<img src='../$directory/thumbs/$file' style='max-width: ' . $thumbnailwidth . 'px; height:auto; display:block; margin:0 auto; background-color: white;'>
-									</a>
-									<div style='margin-top:5px; font-size:14px; word-wrap:break-word;'>$file</div>
-									<a href='?delete=$file&q=$q' onclick=\"return confirm('Weet je zeker dat je $file wilt verwijderen?');\">
-										<i class='fa-regular fa-trash-can'></i>
-									</a>
-								</div>";
+							
+							echo "<div style='text-align:center; width: " . ($thumbnailwidth + 20) . "px;'>
+								<a href='../$directory/$file' target='_blank'>
+									<img src='../$directory/thumbs/$file' style='max-width: " . $thumbnailwidth . "px; height:auto; display:block; margin:0 auto; background-color: white;'>
+								</a>
+								<div style='margin-top:5px; font-size:14px; word-wrap:break-word;'>$file</div>
+								<a href='?delete=$file&q=$q' onclick=\"return confirm('Weet je zeker dat je $file wilt verwijderen?');\">
+									<i class='fa-regular fa-trash-can'></i>
+								</a>
+							  </div>";							
 						}
 					?>
 			<!-- </form> -->
@@ -234,7 +297,7 @@ function createThumbnail($src, $dest, $w, $h)
 				</div>
 			</div>
 		</div>
-<?php include('../includes/footer.inc'); ?>
+<?php include('../includes/footer.php'); ?>
 
 </body>
 </html>

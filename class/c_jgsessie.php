@@ -34,7 +34,7 @@ class Jgsessie
 		if ($row)
 		{
 			$this->id 			= $row['id'];
-			$this->titel 		= html_entity_decode($row['titel']);
+			$this->titel 		= $row['titel'];
 			$this->id_jobgroup 	= $row['id_jobgroup'];
 			$this->sessienr 	= $row['sessienr'];;
 			$this->id_locatie 	= $row['id_locatie'];
@@ -136,7 +136,7 @@ class Jgsessie
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_jobgroup"	, $this->id_jobgroup, PDO::PARAM_STR);
 			$stmt->bindValue( ":sessienr"		, $this->sessienr, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_locatie"		, $this->id_locatie, PDO::PARAM_STR);
@@ -178,7 +178,7 @@ class Jgsessie
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_jobgroup"	, $this->id_jobgroup, PDO::PARAM_STR);
 			$stmt->bindValue( ":sessienr"		, $this->sessienr, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_locatie"		, $this->id_locatie, PDO::PARAM_STR);

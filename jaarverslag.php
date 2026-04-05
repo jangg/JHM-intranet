@@ -22,7 +22,7 @@ if (isset($_SESSION['userid']))
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('includes/head.inc'); ?>
+		<?php include('includes/head.php'); ?>
 		<link href="css/mystyle.css" rel="stylesheet" type="text/css">		
 		<style>
 			.bluefont {
@@ -39,7 +39,7 @@ if (isset($_SESSION['userid']))
  
 <body class="bodystyle">
 	
-	<?php include('includes/navbar.inc'); ?>
+	<?php include('includes/navbar.php'); ?>
 	<main role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="container">
@@ -74,7 +74,7 @@ if (isset($_SESSION['userid']))
 			<!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
 		</div>								
 	</main>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 	<script type="text/javascript">
 function loadApp() {
 

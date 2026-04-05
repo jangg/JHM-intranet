@@ -59,11 +59,11 @@ $fotopath = 'fotoos_person/';
 
 <html>
 	<head>
-		<?php include('includes/head.inc'); ?>
+		<?php include('includes/head.php'); ?>
 	</head>
 <body class="bodystyle">
 	
-	<?php include('includes/navbar.inc'); ?>
+	<?php include('includes/navbar.php'); ?>
 	<div class="container">
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3 mb-3 mx-0 px-0">
@@ -150,6 +150,6 @@ $fotopath = 'fotoos_person/';
 			?>
 		</div>
 	</div>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 	</body>
 </html>

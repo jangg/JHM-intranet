@@ -55,18 +55,18 @@ abstract class person
       $this->id_user_modified = $personrow["id_user_modified"];
       $this->datetime_created = $personrow["datetime_created"];
       $this->datetime_modified = $personrow["datetime_modified"];
-      $this->voornaam = html_entity_decode($personrow["voornaam"]);
-      $this->tussenvoegsels = html_entity_decode($personrow["tussenvoegsels"]);
-      $this->achternaam = html_entity_decode($personrow["achternaam"]);
-      $this->straat = html_entity_decode($personrow["straat"]);
-      $this->huisnummer = html_entity_decode($personrow["huisnummer"]);
-      $this->postcode = html_entity_decode($personrow["postcode"]);
-      $this->woonplaats = html_entity_decode($personrow["woonplaats"]);
-      $this->emailadres = html_entity_decode($personrow["emailadres"]);
-      $this->telefoonnr = html_entity_decode($personrow["telefoonnr"]);
+      $this->voornaam = $personrow["voornaam"];
+      $this->tussenvoegsels = $personrow["tussenvoegsels"];
+      $this->achternaam = $personrow["achternaam"];
+      $this->straat = $personrow["straat"];
+      $this->huisnummer = $personrow["huisnummer"];
+      $this->postcode = $personrow["postcode"];
+      $this->woonplaats = $personrow["woonplaats"];
+      $this->emailadres = $personrow["emailadres"];
+      $this->telefoonnr = $personrow["telefoonnr"];
       $this->type = $personrow["type"];
       $this->picfile = $personrow["picfile"];
-      $this->link_linkedin = html_entity_decode($personrow["link_linkedin"]);
+      $this->link_linkedin = $personrow["link_linkedin"];
       $this->presentInd = $personrow["presentInd"];
       $this->date_geboorte = $personrow["date_geboorte"];
       $this->geslacht = $personrow["geslacht"];
@@ -246,54 +246,54 @@ abstract class person
       );
       $stmt->bindValue(
         ":voornaam",
-        htmlentities($this->voornaam, ENT_QUOTES, "UTF-8"),
+        $this->voornaam,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":tussenvoegsels",
-        htmlentities($this->tussenvoegsels, ENT_QUOTES, "UTF-8"),
+        $this->tussenvoegsels,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":achternaam",
-        htmlentities($this->achternaam, ENT_QUOTES, "UTF-8"),
+        $this->achternaam,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":straat",
-        htmlentities($this->straat, ENT_QUOTES, "UTF-8"),
+        $this->straat,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":huisnummer",
-        htmlentities($this->huisnummer, ENT_QUOTES, "UTF-8"),
+        $this->huisnummer,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":postcode",
-        htmlentities($this->postcode, ENT_QUOTES, "UTF-8"),
+        $this->postcode,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":woonplaats",
-        htmlentities($this->woonplaats, ENT_QUOTES, "UTF-8"),
+        $this->woonplaats,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":emailadres",
-        htmlentities($this->emailadres, ENT_QUOTES, "UTF-8"),
+        $this->emailadres,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":telefoonnr",
-        htmlentities($this->telefoonnr, ENT_QUOTES, "UTF-8"),
+        $this->telefoonnr,
         PDO::PARAM_STR
       );
       $stmt->bindValue(":type", $this->type, PDO::PARAM_STR);
       $stmt->bindValue(":picfile", $this->picfile, PDO::PARAM_STR);
       $stmt->bindValue(
         ":link_linkedin",
-        htmlentities($this->link_linkedin, ENT_QUOTES, "UTF-8"),
+        $this->link_linkedin,
         PDO::PARAM_STR
       );
       $stmt->bindValue(":presentInd", $this->presentInd, PDO::PARAM_STR);
@@ -368,54 +368,54 @@ abstract class person
       );
       $stmt->bindValue(
         ":voornaam",
-        htmlentities($this->voornaam, ENT_QUOTES, "UTF-8"),
+        $this->voornaam,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":tussenvoegsels",
-        htmlentities($this->tussenvoegsels, ENT_QUOTES, "UTF-8"),
+        $this->tussenvoegsels,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":achternaam",
-        htmlentities($this->achternaam, ENT_QUOTES, "UTF-8"),
+        $this->achternaam,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":straat",
-        htmlentities($this->straat, ENT_QUOTES, "UTF-8"),
+        $this->straat,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":huisnummer",
-        htmlentities($this->huisnummer, ENT_QUOTES, "UTF-8"),
+        $this->huisnummer,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":postcode",
-        htmlentities($this->postcode, ENT_QUOTES, "UTF-8"),
+        $this->postcode,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":woonplaats",
-        htmlentities($this->woonplaats, ENT_QUOTES, "UTF-8"),
+        $this->woonplaats,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":emailadres",
-        htmlentities($this->emailadres, ENT_QUOTES, "UTF-8"),
+        $this->emailadres,
         PDO::PARAM_STR
       );
       $stmt->bindValue(
         ":telefoonnr",
-        htmlentities($this->telefoonnr, ENT_QUOTES, "UTF-8"),
+        $this->telefoonnr,
         PDO::PARAM_STR
       );
       $stmt->bindValue(":type", $this->type, PDO::PARAM_STR);
       $stmt->bindValue(":picfile", $this->picfile, PDO::PARAM_STR);
       $stmt->bindValue(
         ":link_linkedin",
-        htmlentities($this->link_linkedin, ENT_QUOTES, "UTF-8"),
+        $this->link_linkedin,
         PDO::PARAM_STR
       );
       $stmt->bindValue(":presentInd", $this->presentInd, PDO::PARAM_STR);

@@ -46,7 +46,7 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 <!DOCTYPE html>
 <html lang="nl-NL">
 	<head>
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	<link href="../css/style2.css" rel="stylesheet" type="text/css">
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>			
@@ -153,7 +153,7 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -313,6 +313,6 @@ $user_created = new User ('id', $agendaitem->id_user_created);
 				</div>
 			</div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

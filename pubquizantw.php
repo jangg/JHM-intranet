@@ -83,7 +83,7 @@ $_SESSION['vrnr']++;
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('includes/head.inc'); ?>			
+		<?php include('includes/head.php'); ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -108,7 +108,7 @@ $_SESSION['vrnr']++;
 	</head>
  
 <body style="background-color: #dddddd; font-size: 16px;">
-<?php include('includes/navbar.inc'); ?>
+<?php include('includes/navbar.php'); ?>
 	<!-- <div id="alert" style="display: <?php // if ($enquete_ready) echo 'block'; else echo 'none';?>;">
 		<div class="container my-5"" id="cont01">
 			<h1 class="text-black mb-5 bluefont text-center errormessage">Dank voor het invullen en opsturen!</h1>
@@ -400,6 +400,6 @@ $_SESSION['vrnr']++;
 		<button id="verstuurBut" name="volgende" value="volgende" type="submit" class="btn btn-primary">Volgende vraag</button>
 	</div>
 	</form>>
-	<?php include('includes/footer.inc'); ?>
+	<?php include('includes/footer.php'); ?>
 </body>
 </html>

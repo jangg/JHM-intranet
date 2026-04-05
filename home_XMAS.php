@@ -41,7 +41,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 <html>
 
 <head>
-	<?php include "includes/head.inc"; ?>
+	<?php include "includes/head.php"; ?>
 	<!-- Custom styles for this page -->
 	<link href="css/jumbotron.css" rel="stylesheet" type="text/css">
 	<link href="css/sticky_notes.css" rel="stylesheet" type="text/css">
@@ -58,7 +58,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 	<main style="position: relative;">
 		<div class="scroll-down"></div>
 		
-		<?php include "includes/navbar.inc"; ?>
+		<?php include "includes/navbar.php"; ?>
 		<!-- <!-- ------ -->
 					<style>
 					.editor-stage .snow {
@@ -275,7 +275,7 @@ $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 			</div>
 		</div> <!-- /container -->
 	</main>
-	<?php include "includes/footer.inc"; ?>
+	<?php include "includes/footer.php"; ?>
 	<div class="snow" />
 </body>
 

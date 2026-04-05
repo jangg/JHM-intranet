@@ -137,17 +137,12 @@ shuffle($list);
 $newsMsgs = getMsgs(10, $curr_user->voornaam);
 $postits = getPostits ();
 
-// $recentpost = Post::getMostRecentPost();
-// $poster = new User("id", $recentpost["id_user"]);
-// $posternaam =
-// $poster->voornaam . " " . $poster->tussenvoegsels . " " . $poster->achternaam;
-// $postdatum = Tools::ConvertTS($recentpost["post_date"]);
 ?>
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 
 <head>
-	<?php include "includes/head.inc"; ?>
+	<?php include "includes/head.php"; ?>
 	<!-- Custom styles for this page -->
 	<link href="css/jumbotron.css" rel="stylesheet" type="text/css">
 	<link href="css/sticky_notes.css" rel="stylesheet" type="text/css">
@@ -161,8 +156,8 @@ $postits = getPostits ();
 	<main style="position: relative;">
 		<div class="scroll-down"></div>
 		
-		<?php include "includes/navbar.inc"; ?>
- 		<style>
+		<?php include "includes/navbar.php"; ?>
+		 <style>
  // 		.editor-stage .snow {
  // 		  height: 50px;
  // 		  background: #fff;
@@ -205,37 +200,41 @@ $postits = getPostits ();
  // 		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
  // 		} */
 			</style>
-			
+		<?php
+		// Max 18 foto's, willekeurig gekozen
+		$fotos = array_values(array_slice($list, 0, 18));
+		$aantal = count($fotos);
+		
+		if ($aantal > 0):
+			if ($aantal < 10):
+				// 1 rij met alle foto's
+				$rijen = [$fotos];
+			else:
+				// 2 rijen: verdeel zo gelijk mogelijk
+				$rij1aantal = (int)ceil($aantal / 2);
+				$rijen = [
+					array_slice($fotos, 0, $rij1aantal),
+					array_slice($fotos, $rij1aantal),
+				];
+			endif;
+		?>
 		<div class="container mb-4">
+			<?php foreach ($rijen as $rij): ?>
 			<div class="row">
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[0]; ?>" alt="<?php echo $list[0]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[1]; ?>" alt="<?php echo $list[1]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[2]; ?>" alt="<?php echo $list[2]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[3]; ?>" alt="<?php echo $list[3]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[4]; ?>" alt="<?php echo $list[4]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[5]; ?>" alt="<?php echo $list[5]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[6]; ?>" alt="<?php echo $list[6]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[7]; ?>" alt="<?php echo $list[7]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[8]; ?>" alt="<?php echo $list[8]; ?>" width="100%"></div>
+				<?php foreach ($rij as $foto): ?>
+				<div class="col p-0 m-0">
+					<img src="fotoos_person/<?= htmlspecialchars($foto) ?>"
+						 alt="<?= htmlspecialchars($foto) ?>"
+						 width="100%">
+				</div>
+				<?php endforeach; ?>
 			</div>
-			<div class="row">
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[9]; ?>" alt="<?php echo $list[9]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[10]; ?>" alt="<?php echo $list[10]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[11]; ?>" alt="<?php echo $list[11]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[12]; ?>" alt="<?php echo $list[12]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[13]; ?>" alt="<?php echo $list[13]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[14]; ?>" alt="<?php echo $list[14]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[15]; ?>" alt="<?php echo $list[15]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[16]; ?>" alt="<?php echo $list[16]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[17]; ?>" alt="<?php echo $list[17]; ?>" width="100%"></div>
-				<!-- <div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[18]; ?>" alt="<?php echo $list[18]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[19]; ?>" alt="<?php echo $list[19]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[20]; ?>" alt="<?php echo $list[20]; ?>" width="100%"></div>
-				<div class="col p-0 m-0"><img src="fotoos_person/<?php echo $list[21]; ?>" alt="<?php echo $list[21]; ?>" width="100%"></div> -->
-			</div>
+			<?php endforeach; ?>
 		</div>
-		<div class="container my-4" id="sticky">
-			<div class="row">
+		<?php endif; ?>
+			
+		<div class="container my-0" id="sticky">
+			<div class="row my-0">
 				<div class="col-md-4 d-md-block" id="sticky-right">
 					<?php echo $postits[0]; ?>
 				</div>
@@ -249,35 +248,35 @@ $postits = getPostits ();
 <!-- 			<div class="row">
 				<h1 class="text-center" style="font-family: Parisienne; font-size: 4em; color:#2a3470; text-shadow: 2px 2px 8px #ffffff;">Een gelukkig en vooral gezond 2022!</h1>
 			</div> -->
-		</div>
+			</div>
 		</div>
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<!-- <div class="jumbotron"> -->
 
 		<?php 
-	for ($i = count($newsMsgs) - 1; $i > count($newsMsgs) - 10 && $i >= 0; $i = $i - 2) {
-	$naam = $curr_user->voornaam;
-    echo '
-		<div class="articles container">
-		<div class="row py-4 border-top border-primary">
-			<div class="col-md-6">
-			';
-	echo $newsMsgs[$i];
-	echo '				
-		</div>
-		<div class="col-md">
-			';
-	if ($i > 0)
-	{
-		echo $newsMsgs[$i - 1];		
-	}
-	echo '
+			for ($i = count($newsMsgs) - 1; $i > count($newsMsgs) - 10 && $i >= 0; $i = $i - 2) {
+			$naam = $curr_user->voornaam;
+			echo '
+				<div class="articles container">
+				<div class="row py-4 border-top border-primary">
+					<div class="col-md-6">
+					';
+			echo $newsMsgs[$i];
+			echo '				
 				</div>
-			</div>
-		</div>				
-		';
- 	} 
- 	?>
+				<div class="col-md">
+					';
+			if ($i > 0)
+			{
+				echo $newsMsgs[$i - 1];		
+			}
+			echo '
+						</div>
+					</div>
+				</div>				
+				';
+			} 
+		?>
 		<!-- einde jumbotron -->
 		
 		<div class="container border-top border-primary">
@@ -305,7 +304,7 @@ $postits = getPostits ();
 		</div> <!-- /container -->
 	</main>
 
-	<?php include "includes/footer.inc"; ?>
+	<?php include "includes/footer.php"; ?>
 	<div class="snow" />
 </body>
 

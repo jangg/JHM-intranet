@@ -21,7 +21,7 @@ if (isset($_SESSION['userid']))
 <!DOCTYPE HTML>
 <html lang="nl-NL">
 	<head>
-		<?php include('../includes/head.inc'); ?>			
+		<?php include('../includes/head.php'); ?>			
 		<style>
 			.bluefont {
 				color: #304280;
@@ -52,7 +52,7 @@ if (isset($_SESSION['userid']))
 	</head>
  
 <body style="background-color: #dddddd; font-size: 16px;">
-<?php include('../includes/navbar.inc'); ?>
+<?php include('../includes/navbar.php'); ?>
 <div class="jumbotron">
 	<div id="main">
 		<div class="container verslag my-5" style="padding-left: 5%; padding-right: 5%;">
@@ -155,6 +155,6 @@ if (isset($_SESSION['userid']))
 	</div>
 </div>
 </body>
-<?php include('../includes/footer.inc'); ?>
+<?php include('../includes/footer.php'); ?>
 </body>
 </html>

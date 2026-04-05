@@ -32,12 +32,12 @@ class Locatie
 		if ($row)
 		{
 			$this->id 				= $row['id'];
-			$this->titel 			= html_entity_decode($row['titel']);
-			$this->straat 			= html_entity_decode($row['straat']);
-			$this->huisnummer 	= html_entity_decode($row['huisnummer']);
-			$this->postcode		= html_entity_decode($row['postcode']);
-			$this->plaats 			= html_entity_decode($row['plaats']);
-			$this->sublocatie 	= html_entity_decode($row['sublocatie']);
+			$this->titel 			= $row['titel'];
+			$this->straat 			= $row['straat'];
+			$this->huisnummer 	= $row['huisnummer'];
+			$this->postcode		= $row['postcode'];
+			$this->plaats 			= $row['plaats'];
+			$this->sublocatie 	= $row['sublocatie'];
 		} else $this->id = NULL;
 	}
 	public function __construct2 ($attr, $value)
@@ -158,12 +158,12 @@ class Locatie
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":straat"			, htmlentities($this->straat, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":huisnummer"		, htmlentities($this->huisnummer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":postcode"		, htmlentities($this->postcode, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":plaats"			, htmlentities($this->plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":sublocatie"		, htmlentities($this->sublocatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":straat"			, $this->straat, PDO::PARAM_STR);
+			$stmt->bindValue( ":huisnummer"		, $this->huisnummer, PDO::PARAM_STR);
+			$stmt->bindValue( ":postcode"		, $this->postcode, PDO::PARAM_STR);
+			$stmt->bindValue( ":plaats"			, $this->plaats, PDO::PARAM_STR);
+			$stmt->bindValue( ":sublocatie"		, $this->sublocatie, PDO::PARAM_STR);
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
 		}
@@ -193,12 +193,12 @@ class Locatie
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":straat"			, htmlentities($this->straat, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":huisnummer"		, htmlentities($this->huisnummer, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":postcode"		, htmlentities($this->postcode, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":plaats"			, htmlentities($this->plaats, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":sublocatie"		, htmlentities($this->sublocatie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":straat"			, $this->straat, PDO::PARAM_STR);
+			$stmt->bindValue( ":huisnummer"		, $this->huisnummer, PDO::PARAM_STR);
+			$stmt->bindValue( ":postcode"		, $this->postcode, PDO::PARAM_STR);
+			$stmt->bindValue( ":plaats"			, $this->plaats, PDO::PARAM_STR);
+			$stmt->bindValue( ":sublocatie"		, $this->sublocatie, PDO::PARAM_STR);
 			$stmt->execute();
 			
 		}

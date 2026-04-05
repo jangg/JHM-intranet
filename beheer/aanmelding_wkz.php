@@ -25,68 +25,53 @@ function chkchkbx($p, $pos)
   /* 1 3 7 15 31 */
   switch ($p) {
     case 1:
-      if (($pos & 1) == 1) {
-        return true;
-      }
+      if (($pos & 1) == 1) {return true;}
       break;
     case 2:
-      if (($pos & 2) == 2) {
-        return true;
-      }
+      if (($pos & 2) == 2) {return true;}
       break;
     case 3:
-      if (($pos & 4) == 4) {
-        return true;
-      }
+      if (($pos & 4) == 4) {return true;}
       break;
     case 4:
-      if (($pos & 8) == 8) {
-        return true;
-      }
+      if (($pos & 8) == 8) {return true;}
       break;
     case 5:
-      if (($pos & 16) == 16) {
-        return true;
-      }
+      if (($pos & 16) == 16) {return true;}
       break;
     case 6:
-      if (($pos & 32) == 32) {
-        return true;
-      }
+      if (($pos & 32) == 32) {return true;}
       break;
     case 7:
-      if (($pos & 64) == 64) {
-        return true;
-      }
+      if (($pos & 64) == 64) {return true;}
       break;
   }
   return false;
 }
 
 if (isset($_POST["backWzBut"]) && $_POST["backWzBut"] == "back") {
-  header("location: beheer.php");
+  header("location: overz_werkzoekenden.php");
   exit();
 }
 
 $wkz = new Werkzoekende();
 
-if (isset($_SESSION["getemailadres"])) {
-  $wkz = new Werkzoekende("emailadres", $_SESSION["getemailadres"]);
-  $_SESSION["wkz_id"] = $wkz->id;
-  unset($_SESSION["getemailadres"]);
+if (isset($_SESSION["getemailadres"])) 
+{
+	$wkz = new Werkzoekende("emailadres", $_SESSION["getemailadres"]);
+	$_SESSION["wkz_id"] = $wkz->id;
+	unset($_SESSION["getemailadres"]);
 }
 
-if (
-  isset($_POST["getWkzBut"]) &&
-  $_POST["getWkzBut"] == "get1" &&
-  $_POST["getemailadres"] != ""
-) {
-  $_SESSION["getemailadres"] = $_POST["getemailadres"];
-  header("location: aanmelding_wkz.php");
-  exit();
+if (isset($_POST["getWkzBut"]) && $_POST["getWkzBut"] == "get1" && $_POST["getemailadres"] != "") 
+{
+	$_SESSION["getemailadres"] = $_POST["getemailadres"];
+	header("location: aanmelding_wkz.php");
+	exit();
 }
 
-if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
+if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") 
+{
   // if (isset($_SESSION['wkz_id']))
   // 	$wkz_nw = new Werkzoekende('id', $_SESSION['wkz_id']);
   // 	else
@@ -161,19 +146,25 @@ if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
     $ps->drstrnaar = "";
     $ps->toelichting = "Nieuw";
     $ps->saveToDB();
+	
+	/********
+	*** Nu mailen aan de coordinatoren
+	*** function Tools::MailRoom($nameTo, $emailTo, $onderwerp, $tekst)
+	***************** */
     Tools::MailRoom(
-      "Coordinator Werkzoekenden",
-      "coordinatoren@jobhulpmaatjezoetermeer.nl",
-      "Nieuwe werkzoekende toegevoegd in de WAS" .
-        " door " .
-        $curr_user->username,
-      $wkz_nw->voornaam .
-        " " .
-        $wkz_nw->tussenvoegsels .
-        " " .
-        $wkz_nw->achternaam
+		"Coordinator Werkzoekenden",
+		"coordinatoren@jobhulpmaatjezoetermeer.nl",
+		"Nieuwe werkzoekende toegevoegd in de WAS" . " door " . $curr_user->username,
+		$wkz_nw->voornaam . " " . $wkz_nw->tussenvoegsels . " " . $wkz_nw->achternaam
     );
-    echo '<script>alert("De gegevens zijn in de database opgenomen."); window.location.href = "https://intra.jhmz.nl/beheer/aanmelding_wkz.php";</script>';
+	// Tools::MailRoom(
+	// 	"System Controller",
+	// 	"jan@prohunter.nl",
+	// 	"Nieuwe werkzoekende toegevoegd in de WAS" . " door " . $curr_user->username,
+	// 	$wkz_nw->voornaam . " " . $wkz_nw->tussenvoegsels . " " . $wkz_nw->achternaam
+   //  );
+   Tools::closeMailer();
+   echo '<script>alert("De gegevens zijn in de database opgenomen."); window.location.href = "https://intra.jhmz.nl/beheer/overz_werkzoekenden.php";</script>';
   }
   exit();
 }
@@ -181,7 +172,7 @@ if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include "../includes/head.inc"; ?>
+	<?php include "../includes/head.php"; ?>
 	<style>
 	.bg-tab {
 		background-color: #ccd9d9;
@@ -198,7 +189,7 @@ if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include "../includes/navbar.inc"; ?>
+			<?php include "../includes/navbar.php"; ?>
 		</div>
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-2 mb-3">
@@ -285,91 +276,55 @@ if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
 					</div>
 					<div class="pl-3" style="font-size: .9em;">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(1, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(1, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh1">&nbsp;Individueel traject</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(2, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(2, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh2">&nbsp;Jobgroup</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(3, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(3, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh3">&nbsp;Jobgroup "Ik Werk In Nederland"</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(4, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(4, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh3">&nbsp;Jobgroup voor ZZP'ers</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(5, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(5, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh3">&nbsp;Workshop</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox"<?php if (
-         chkchkbx(7, $wkz->opties)
-       ) {
-         echo " checked";
-       } ?>>
+							<input class="form-check-input" type="checkbox"<?php if (chkchkbx(7, $wkz->opties)) {echo " checked";} ?>>
 							<label class="form-check-label" for="taalbeh3">&nbsp;Weet ik nog niet</label>
 						</div>
 					</div>
 				</div>
 				<div class="input-group input-group-sm mb-2">
-				  <div class="input-group-prepend" style="width: 30%;">
-					  <span class=" input-group-text" style="width: 100%;">Situatie</span>
-				  </div>
-				  <textarea type="text" name="situatie" class="form-control" rows="8"><?php echo $wkz->situatie; ?></textarea>
+					<div class="input-group-prepend" style="width: 30%;">
+						<span class=" input-group-text" style="width: 100%;">Situatie</span>
+					</div>
+					<textarea type="text" name="situatie" class="form-control" rows="8"><?php echo $wkz->situatie; ?></textarea>
 				</div>
 				
 				<div class="input-group input-group-sm mb-1">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">Nieuwe Nederlander</span>
 					</div>
-					<input type="checkbox" name="nnind" class="form-control" value="j" <?php if (
-       $wkz->nnind == "j"
-     ) {
-       echo " checked";
-     } ?>>
+					<input type="checkbox" name="nnind" class="form-control" value="j" <?php if ($wkz->nnind == "j") {echo " checked";} ?>>
 				</div>
 				<div class="input-group input-group-sm mb-1">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">GAK</span>
 					</div>
-					<input type="checkbox" name="GAKind" class="form-control" value="j" <?php if (
-       $wkz->GAKind == "j"
-     ) {
-       echo " checked";
-     } ?>>
+					<input type="checkbox" name="GAKind" class="form-control" value="j" <?php if ($wkz->GAKind == "j") {echo " checked";} ?>>
 				</div>
 				<div class="input-group input-group-sm mb-2">
 					<div class="input-group-prepend" style="width: 30%;">
 						<span class="input-group-text text-left text-wrap" style="width: 100%;">De Binnenbaan</span>
 					</div>
-					<input type="checkbox" name="DBBind" class="form-control" value="j" <?php if (
-       $wkz->DBBind == "j"
-     ) {
-       echo " checked";
-     } ?>>
+					<input type="checkbox" name="DBBind" class="form-control" value="j" <?php if ($wkz->DBBind == "j") {echo " checked";} ?>>
 				</div>
 
 				<div class="input-group input-group-sm mb-2">
@@ -385,7 +340,7 @@ if (isset($_POST["saveWzBut"]) && $_POST["saveWzBut"] == "bewaar1") {
 				</div>				
 				</form>
 			</div>		 		
-		<?php include "../includes/footer.inc"; ?>
+		<?php include "../includes/footer.php"; ?>
 		<script>
 			const postcode = document.getElementById("postcode");
 			const huisnummer = document.getElementById("huisnummer");

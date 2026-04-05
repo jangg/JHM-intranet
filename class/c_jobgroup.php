@@ -47,8 +47,8 @@ class Jobgroup
 			$this->id 				= $row['id'];
 			$this->delind 			= $row['delind'];
 			$this->status 			= $row['status'];
-			$this->titel 			= html_entity_decode($row['titel']);
-			$this->omschrijving	= html_entity_decode($row['omschrijving']);
+			$this->titel 			= $row['titel'];
+			$this->omschrijving	= $row['omschrijving'];
 			$this->id_locatie 	= $row['id_locatie'];
 			$this->startDate 		= $row['startdate'];
 			$this->soort 			= $row['soort'];
@@ -56,7 +56,7 @@ class Jobgroup
 			$this->nbrPlaatsen 	= $row['nbrplaatsen'];
 			$this->jgleider1 		= $row['jgleider1'];
 			$this->jgleider2 		= $row['jgleider2'];
-			$this->opmerkingen 	= html_entity_decode($row['opmerkingen']);
+			$this->opmerkingen 	= $row['opmerkingen'];
 		} else $this->id = NULL;
 	}
 	public function __construct2 ($attr, $value)
@@ -206,8 +206,8 @@ class Jobgroup
 			$stmt->bindValue( ":id"					, NULL, PDO::PARAM_STR);
 			$stmt->bindValue( ":delind"			, $this->delind, PDO::PARAM_STR);
 			$stmt->bindValue( ":status"			, $this->status, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"				, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"				, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_locatie"		, $this->id_locatie, PDO::PARAM_STR);
 			$stmt->bindValue( ":startdate"		, $this->startDate, PDO::PARAM_STR);
 			$stmt->bindValue( ":soort"				, $this->soort, PDO::PARAM_STR);
@@ -215,7 +215,7 @@ class Jobgroup
 			$stmt->bindValue( ":nbrplaatsen"		, $this->nbrPlaatsen, PDO::PARAM_STR);
 			$stmt->bindValue( ":jgleider1"		, $this->jgleider1, PDO::PARAM_STR);
 			$stmt->bindValue( ":jgleider2"		, $this->jgleider2, PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerkingen"		, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerkingen"		, $this->opmerkingen, PDO::PARAM_STR);
 			$stmt->execute();
 			$this->id = $connection->lastInsertId();
 		}
@@ -253,8 +253,8 @@ class Jobgroup
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":delind"			, $this->delind, PDO::PARAM_STR);
 			$stmt->bindValue( ":status"			, $this->status, PDO::PARAM_STR);
-			$stmt->bindValue( ":titel"			, htmlentities($this->titel, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":titel"			, $this->titel, PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_locatie"		, $this->id_locatie, PDO::PARAM_STR);
 			$stmt->bindValue( ":startdate"		, $this->startDate, PDO::PARAM_STR);
 			$stmt->bindValue( ":soort"			, $this->soort, PDO::PARAM_STR);
@@ -262,7 +262,7 @@ class Jobgroup
 			$stmt->bindValue( ":nbrplaatsen"	, $this->nbrPlaatsen, PDO::PARAM_STR);
 			$stmt->bindValue( ":jgleider1"		, $this->jgleider1, PDO::PARAM_STR);
 			$stmt->bindValue( ":jgleider2"		, $this->jgleider2, PDO::PARAM_STR);
-			$stmt->bindValue( ":opmerkingen"	, htmlentities($this->opmerkingen, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":opmerkingen"	, $this->opmerkingen, PDO::PARAM_STR);
 			$stmt->execute();
 			
 		}

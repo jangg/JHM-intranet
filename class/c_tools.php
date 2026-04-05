@@ -1,49 +1,18 @@
 <?php
+require_once __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/../PHPMailer/src/SMTP.php';
+require_once __DIR__ . '/../PHPMailer/src/Exception.php';
+	
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 include_once ('c_keyrecord.php');
 
 class Tools
 {	
-	public static $statusArray = array (
-		'---' => '',
-		'000' => 'Nieuw',
-		'020' => 'Aanmelding bevestigd, wacht op reactie',
-		'030' => 'Contact gehad',
-		'100' => 'Intake gepland',
-		'101' => 'Intake afspraak niet nagekomen',
-		'110' => 'Intake afgenomen',
-		'120' => 'Intake gegevens bijgewerkt',
-		'200' => 'Intake akkoord en gearchiveerd',
-		'250' => 'Aangemeld voor Workshop NetWerken',
-		'260' => 'Uitgenodigd voor deelname JobGroup',
-		'300' => 'JobGroup geplaatst',
-		'301' => 'JobGroup plaatsing ingetrokken',
-		'310' => 'JobGroup iWIN geplaatst',
-		'311' => 'JobGroup iWIN plaatsing ingetrokken',
-		'320' => 'JobGroup ZZP geplaatst',
-		'321' => 'JobGroup ZZP plaatsing ingetrokken',
-		'400' => 'Jobgroup afgerond',
-		'401' => 'Jobgroup afgebroken',
-		'410' => 'Jobgroup iWIN afgerond',
-		'411' => 'Jobgroup iWIN afgebroken',
-		'420' => 'Jobgroup ZZP afgerond',
-		'421' => 'Jobgroup ZZP afgebroken',
-		'500' => 'Maatje aangemeld en gekoppeld',
-		'510' => 'Match-afspraak gemaakt',
-		'511' => 'Match-afspraak ingetrokken',
-		'520' => 'Begeleidingsovereenkomst getekend en gearchiveerd',
-		'550' => 'Groepsmaatje',
-		'590' => 'Maatje afgemeld en ontkoppeld',
-		'750' => 'Dolaard',
-		'800' => 'Uitstroom',
-		'810' => 'Uitstroom naar Werk/Opleiding',
-		'820' => 'Kopie contract aangeleverd',
-		'900' => 'Afronding',
-		'910' => 'Evaluatie-formulier verzonden',
-		'920' => 'Afzwaaibrief verzonden',
-		'940' => 'Doorverwezen naar andere instantie',
-		'950' => 'Uitgeschreven'
-	);
-	
+	private static ?PHPMailer $mailer = null;  // PHP 7.4+: typed property
+	public static array $statusArray = [];
+			
 	public static function ConvertTS ($date)
 	{
 		$months = [
@@ -324,26 +293,109 @@ class Tools
 		  return $age;
 	}
 	
-	public static function MailRoom ($nameTo, $emailTo, $onderwerp, $tekst)
-	{   
-		$subject = $onderwerp;
-		$mail_body = $tekst;
-		
-		$header = "From: " . 'no-reply@jobhulpmaatjezoetermeer.nl' . " (" . 'no-reply@jobhulpmaatjezoetermeer.nl' . ")\r\n";
-		$header .= 'MIME-Version: 1.0' . "\r\n";
-		$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		
-		return mail($emailTo, $subject, $mail_body, $header);
+	private static function getMailer(): PHPMailer
+	{
+		if (self::$mailer === null)
+		{
+			$mail = new PHPMailer(true);
+			$mail->isSMTP();
+			$mail->Host       = MAIL_SMTP_SERVER;
+			$mail->SMTPAuth   = true;
+			$mail->Username   = MAIL_USERID;
+			$mail->Password   = MAIL_PASSWORD;
+			$mail->SMTPSecure = MAIL_SMTPSECURE === 'tls'
+				? PHPMailer::ENCRYPTION_STARTTLS
+				: PHPMailer::ENCRYPTION_SMTPS;
+			$mail->Port       = MAIL_SMTPSECURE === 'tls' ? 587 : 465;
+			$mail->CharSet    = 'UTF-8';
+			$mail->isHTML(true);
+			$mail->SMTPDebug  = MAIL_DEBUG_IND ?? 0;
+	
+			// SMTP-verbinding open houden tussen verzendingen
+			$mail->SMTPKeepAlive = true;
+	
+			self::$mailer = $mail;
+		}
+		return self::$mailer;
 	}
 	
+	public static function closeMailer(): void
+	{
+		if (self::$mailer !== null)
+		{
+			self::$mailer->smtpClose();
+			self::$mailer = null;
+		}
+	}
+
+	public static function MailRoom($nameTo, $emailTo, $onderwerp, $tekst)
+	{
+		// Maak een nieuw PHPMailer-object
+		$mail = self::getMailer();
+		// echo 'MailRoom is gestart.<br/>';
+		try {
+			// Ontvanger & inhoud instellen (per aanroep anders)
+			$mail->clearAddresses();
+			$mail->clearReplyTos();
+	
+			// Afzender & ontvanger
+			$mail->setFrom(MAIL_SENDEREMAIL, LOC_NAME);
+			$mail->addReplyTo(MAIL_NOREPLYEMAIL, 'No Reply');
+			$mail->addAddress($emailTo, $nameTo);
+	
+			// E-mailinhoud
+			$mail->Subject = $onderwerp;
+			$mail->Body    = $tekst;
+			$mail->AltBody = strip_tags($tekst);        // Tekstversie (fallback)
+			// Versturen
+			$result = $mail->send();
+			// echo 'Mail is verzonden.<br/>';
+			// ===  Logging toevoegen  ===
+			self::logMailAction($emailTo, $onderwerp, $result, $mail->ErrorInfo ?? '');
+			// echo 'Regel is gelogd.<br/>';
+			return $result;
+		} catch (Exception $e) {
+			// Eventuele fouten loggen
+			error_log("Mail kon niet worden verzonden. Fout: {$mail->ErrorInfo}");
+			// echo "Mail kon niet worden verzonden. Fout: {$mail->ErrorInfo}<br/>";
+			// echo MAIL_SMTP_SERVER . '/' . MAIL_USERID . '/' . MAIL_PASSWORD;
+			return false;
+		}
+	}
+	
+	/**
+	 * Interne helperfunctie voor e-maillogging
+	 */
+	private static function logMailAction($emailTo, $subject, $success, $errorMessage = '')
+	{
+		// echo 'Start logging.<br/>';
+		$tijdstip = (new DateTime())->format('Y-m-d H:i:s');
+		$status   = $success ? 'OK' : 'FAILED';
+		$logregel = sprintf(
+			"%s | %s | %s | %s | %s\r\n",
+			$tijdstip,
+			$status,
+			$emailTo,
+			$subject,
+			$errorMessage
+		);
+		// Logmap (pas eventueel pad aan)
+		$logMap = MAIL_LOGDIR;
+		if (!is_dir($logMap)) {
+			mkdir($logMap, 0775, true);
+		}
+		$logBestand = $logMap . MAIL_LOGFILE;
+		file_put_contents($logBestand, $logregel, FILE_APPEND);
+		// echo $logregel . '<br/>';
+	}
+
 	public static function getKey($key)
 	{
-		$keyrecord = new Keyrecord ('sleutel', $key);
+		$keyrecord = new Keyrecord('sleutel', $key);
 		return $keyrecord->waarde;
 	}
-	
-
-	
-		
 }
+
+Tools::$statusArray = require __DIR__ . '/../includes/statuslijst.php';
+
 ?>

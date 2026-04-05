@@ -39,88 +39,10 @@ $user_created = new User("id", $newsitem->id_user_created);
 <!DOCTYPE html>
 <html lang="nl-NL">
 	<head>
-	<?php include "../includes/head.inc"; ?>
+	<?php include "../includes/head.php"; ?>
 	<link href="../css/style2.css" rel="stylesheet" type="text/css">
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>			
-	<script>
-		function jumpto(anchor){
-			window.location.href = "#"+anchor;
-		}
-		$(document).ready(function() {
-		  // $('.summernote').summernote(
-			//   {
-			// 	  height: 300,				 // set editor height
-			// 	  minHeight: null,			 // set minimum height of editor
-			// 	  maxHeight: null,			 // set maximum height of editor
-			// 	  lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
-			// 	  focus: true,				  // set focus to editable area after initializing summernote
-			// 	  disableDragAndDrop: true,
-			// 	  shortcuts: true,
-			// 	  tabDisable: true,
-			// 	  toolbar: [
-			// 		  // [groupName, [list of button]]
-			// 		  ['style', ['bold', 'italic', 'underline', 'clear']],
-			// 		  ['font', ['strikethrough', 'superscript', 'subscript']],
-			// 		  ['fontsize', ['fontsize']],
-			// 		  ['color', ['color']],
-			// 		  ['para', ['ul', 'ol', 'paragraph']],
-			// 		  ['height', ['height']],
-			// 		  ['insert', ['link']],
-			// 		  ['view', ['fullscreen', 'codeview', 'help']]
-			// 		 
-			// 		]
-			//   });
-		// $('.note-editable').css('font-size','14px');
-		// $('.summernote').summernote('fontSize', 16);
-
-		$("#datetime_pub_intern" ).datepicker(
-		{
-			dateFormat: "yy-mm-dd",
-		});
-		$("#datetime_pub_extern" ).datepicker(
-			{
-				dateFormat: "yy-mm-dd",
-			});
-	
-		$('div.ui-datepicker').css({ fontSize: '0.8em' });
-	});
-	/*  ==========================================
-		SHOW UPLOADED IMAGE
-		* ========================================== */
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-		
-				reader.onload = function (e) {
-					$('#imageResult')
-						.attr('src', e.target.result);
-				};
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		
-		$(function () {
-			$('#upload').on('change', function () {
-				readURL(input);
-			});
-		});
-		
-		/*  ==========================================
-			SHOW UPLOADED IMAGE NAME
-		* ========================================== */
-		var input = document.getElementById( 'upload' );
-		var infoArea = document.getElementById( 'upload-label' );
-		
-		input.addEventListener( 'change', showFileName );
-		function showFileName( event ) {
-		  var input = event.srcElement;
-		  var fileName = input.files[0].name;
-		  infoArea.textContent = 'File name: ' + fileName;
-		}
-
-
-	</script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>			
 	<style>
 		thead {
 			text-align: left;
@@ -130,7 +52,7 @@ $user_created = new User("id", $newsitem->id_user_created);
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include "../includes/navbar.inc"; ?>
+			<?php include "../includes/navbar.php"; ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -175,24 +97,24 @@ $user_created = new User("id", $newsitem->id_user_created);
 						</div>
 						<textarea type="text" name="subtitel" class="form-control" rows="3"><?php echo $newsitem->subtitel; ?></textarea>
 					</div>
+					<!-- <div class="input-group input-group-sm mb-1">
+						<div class="input-group-prepend" style="width: 100%;">
+							<span class=" input-group-text" style="width: 100%;">Tekst</span>
+						</div>
+						<textarea style="width: 100%;" type="text" name="tekst" class="form-control summernote" rows="8"><?php // echo $newsitem->tekst; ?></textarea>
+					</div> -->
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 100%;">
 							<span class=" input-group-text" style="width: 100%;">Tekst</span>
 						</div>
-						<textarea style="width: 100%;" type="text" name="tekst" class="form-control summernote" rows="8"><?php echo $newsitem->tekst; ?></textarea>
+						<textarea type="text" name="tekst_kort" class="form-control summernote" rows="14"><?php echo $newsitem->tekst_kort; ?></textarea>
 					</div>
-					<div class="input-group input-group-sm mb-1">
-						<div class="input-group-prepend" style="width: 100%;">
-							<span class=" input-group-text" style="width: 100%;">Korte tekst</span>
-						</div>
-						<textarea type="text" name="tekst_kort" class="form-control summernote" rows="5"><?php echo $newsitem->tekst_kort; ?></textarea>
-					</div>
-					<div class="input-group input-group-sm mb-1">
+					<!-- <div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 100%;">
 							<span class=" input-group-text" style="width: 100%;">Samenvatting</span>
 						</div>
-						<textarea type="text" name="tekst_samenvatting" class="form-control summernote" rows="5"><?php echo $newsitem->tekst_samenvatting; ?></textarea>
-					</div>
+						<textarea type="text" name="tekst_samenvatting" class="form-control summernote" rows="5"><?php // echo $newsitem->tekst_samenvatting; ?></textarea>
+					</div> -->
 					<div class="input-group input-group-sm mb-1">
 						<div class="input-group-prepend" style="width: 30%;">
 						  <span class="input-group-text" style="width: 100%;">Button tekst</span>
@@ -309,6 +231,90 @@ $user_created = new User("id", $newsitem->id_user_created);
 				</div>
 			</div>
 		</div>
-		<?php include "../includes/footer.inc"; ?>
+		<?php include "../includes/footer.php"; ?>
+		<script>
+			function jumpto(anchor){
+				window.location.href = "#"+anchor;
+			}
+			$(document).ready(function() {
+			  $('.summernote').summernote(
+				  {
+					height: 300,				 // set editor heigh
+					width: 1200,
+					minHeight: 200,			 // set minimum height of editor
+					maxHeight: 600,			 // set maximum height of editor
+					fontSize: '16px',
+					fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '24', '36'],
+					lineHeights: ['0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+//					fontNames: ['Exo', 'Arial', 'Verdana', 'Georgia', 'Times New Roman', 'Courier New'],
+					focus: true,				  // set focus to editable area after initializing summernote
+					disableDragAndDrop: true,
+					shortcuts: true,
+					tabDisable: true,
+					toolbar: [
+						// [groupName, [list of button]]
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['style', ['style']],
+//						['font', ['fontname', 'fontsize', 'strikethrough', 'superscript', 'subscript']],
+//	 					['fontsize', ['fontsize']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['height', ['height']],
+						['table', ['table']],
+						['insert', ['link']],
+						['view', ['codeview', 'help']]					 
+					],
+					styleTags: [
+						'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+					],
+				  });
+
+			$('.note-editable').css('font-size','16px');
+			$("#datetime_pub_intern" ).datepicker(
+			{
+				dateFormat: "yy-mm-dd",
+			});
+			$("#datetime_pub_extern" ).datepicker(
+				{
+					dateFormat: "yy-mm-dd",
+				});
+		
+			$('div.ui-datepicker').css({ fontSize: '0.8em' });
+		});
+		/*  ==========================================
+			SHOW UPLOADED IMAGE
+			* ========================================== */
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+			
+					reader.onload = function (e) {
+						$('#imageResult')
+							.attr('src', e.target.result);
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+			
+			$(function () {
+				$('#upload').on('change', function () {
+					readURL(input);
+				});
+			});
+			
+			/*  ==========================================
+				SHOW UPLOADED IMAGE NAME
+			* ========================================== */
+			var input = document.getElementById('upload');
+			var infoArea = document.getElementById('upload-label');
+			
+			input.addEventListener('change', function () {
+			  if (this.files && this.files.length > 0) {
+				var fileName = this.files[0].name;
+				infoArea.textContent = 'File name: ' + fileName;
+			  }
+			});
+		</script>
+
 	</body>
 </html>

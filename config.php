@@ -17,13 +17,13 @@ if (isset($_SESSION['userid'])) {
 	if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > $ttl) {
 		session_unset();
 		session_destroy();
-		header('Location: index.php');
+		header('Location: /index.php');
 		exit();
 	}
 	$_SESSION['last_activity'] = time();
 }
 
-include ('includes/configDB.inc');
+include ('includes/configDB.php');
 include_once ('class/c_tools.php');
 error_reporting(E_ALL);
 setlocale(LC_ALL, 'nl_NL');

@@ -130,7 +130,7 @@ if (isset($_POST["updateMtBut"]) && $_POST["updateMtBut"] == "wijzig") {
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-<?php include "../includes/head.inc"; ?>
+<?php include "../includes/head.php"; ?>
 <script>
 	$(document).ready(function() {
 		$("#date_geboorte").datepicker({
@@ -184,7 +184,7 @@ if (isset($_POST["updateMtBut"]) && $_POST["updateMtBut"] == "wijzig") {
 <body style="background-color: #dddddd;">
 
 	<div class="container">
-		<?php include "../includes/navbar.inc"; ?>
+		<?php include "../includes/navbar.php"; ?>
 	</div>
 	<div class="container-fluid" style="margin-top: 80px; background-color: #304280;">
 		<div class="row header rounded text-white py-3">
@@ -418,22 +418,22 @@ if (isset($_POST["updateMtBut"]) && $_POST["updateMtBut"] == "wijzig") {
 					</div>
 					<!-- Oplossing om ervoor te zorgen dat alleen Joke (en ik) met beheerind > 6 maatjes kunnen wijzigen of toevoegen -->
 					<?php if ($curr_user->beheerind > 6) {
-       echo '<div class="forms-group mb-1">
-						<button name="updateMtBut" value="wijzig" type="submit" class="btn btn-primary btn-width btn-sm">Wijzig</button>
-						<button name="backMtBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
-					</div>';
-     } else {
-       echo '<div class="forms-group mb-1">
-						<button value="wijzig" class="btn btn-primary btn-width btn-sm" disabled>Wijzig</button>
-						<button name="backMtBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
-					</div>';
-     } ?>
+					echo '<div class="forms-group mb-1">
+										<button name="updateMtBut" value="wijzig" type="submit" class="btn btn-primary btn-width btn-sm">Wijzig</button>
+										<button name="backMtBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+									</div>';
+					} else {
+					echo '<div class="forms-group mb-1">
+										<button value="wijzig" class="btn btn-primary btn-width btn-sm" disabled>Wijzig</button>
+										<button name="backMtBut" value="back" type="submit" class="btn btn-secondary btn-width btn-sm">Terug</button>
+									</div>';
+					} ?>
 				</div>
 		</form>
 	</div>
 	<!-- </form> -->
 	</div>
-	<?php include "../includes/footer.inc"; ?>
+	<?php include "../includes/footer.php"; ?>
 </body>
 
 </html>

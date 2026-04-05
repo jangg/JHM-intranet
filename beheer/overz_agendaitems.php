@@ -75,7 +75,7 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.26.0/dist/bootstrap-table.min.js"></script>				
 		<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
@@ -92,7 +92,7 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -103,13 +103,18 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 				</div>
 			</div>
 		</div>
-        <div class="container">
-            <div class="row mt-4">
-				<div class="col-md-1 p-0">
-					<button type="button" class="btn btn-primary mx-3" style="width: 120px;"><a class="text-white" href="beheer.php">Menu</a></button>
+		<div class="container-fluid">
+		  <div class="row mt-4">
+			<div class="col-12">
+			  <div class="d-flex flex-wrap align-items-center gap-2">		
+				<!-- Links -->
+				<div class="d-flex flex-wrap align-items-center gap-2">
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="beheer.php">Menu</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="mut_agendaitem.php">Nieuw agendaitem</a>
+				  <a class="btn btn-primary mr-2" style="min-width:140px" href="photolib.php?q=img&r=ai">Afbeeldingen</a>
 				</div>
-            </div>
-        </div>
+			</div>
+		</div></div></div>
         <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
@@ -143,6 +148,6 @@ foreach($agendaitemColl->agendaitemColl as $agendaitem)
 				</div>
 			</div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

@@ -33,18 +33,21 @@ $html = '';
 
 foreach($wzColl->werkzoekendeColl as $werkzoekende)
 {	
-	$html .= '
-	<tr style="font-size: 0.9em;">
-		<td class="p-0 px-2 text-left">' . $werkzoekende->achternaam . ', ' . $werkzoekende->voornaam . ' ' . $werkzoekende->tussenvoegsels . '</td>
-		<td class="p-0 px-2 text-left">' . $werkzoekende->emailadres . '</td>
-		<td class="p-0 px-2 text-left"><span style="display: none;">' . substr($werkzoekende->date_geboorte, 5) . '</span>' . Tools::convertTS2($werkzoekende->date_geboorte, 'verjaardag') . '</td>
-	</tr>';
+	if ($werkzoekende->status < 800) 
+	{
+		$html .= '
+		<tr style="font-size: 0.9em;">
+			<td class="p-0 px-2 text-left">' . $werkzoekende->achternaam . ', ' . $werkzoekende->voornaam . ' ' . $werkzoekende->tussenvoegsels . '</td>
+			<td class="p-0 px-2 text-left">' . $werkzoekende->emailadres . '</td>
+			<td class="p-0 px-2 text-left"><span style="display: none;">' . substr($werkzoekende->date_geboorte, 5) . '</span>' . Tools::convertTS2($werkzoekende->date_geboorte, 'verjaardag') . '</td>
+		</tr>';
+	}
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 		<link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">		
 		<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
 		<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>
@@ -69,7 +72,7 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -79,7 +82,7 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
         <div class="container">
             <div class="row mt-4">
 				<div class="col-md-12 p-0">
-					<button type="button" class="btn btn-primary" style="width: 120px;"><a class="text-white" href="beheer.php">terug</a></button>
+					<button type="button" class="btn btn-primary" style="width: 120px;"><a class="text-white" href="overz_werkzoekenden.php">Terug</a></button>
 	            </div>
             </div>
         </div>
@@ -110,6 +113,6 @@ foreach($wzColl->werkzoekendeColl as $werkzoekende)
 			</div>
 			<br/><br/>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

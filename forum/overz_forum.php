@@ -50,7 +50,7 @@ foreach($categorieColl->categorieColl as $categorie)
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include('../includes/head.inc'); ?>
+		<?php include('../includes/head.php'); ?>
 		<link href="../css/mystyle.css" rel="stylesheet" type="text/css" />				
 
 		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@ foreach($categorieColl->categorieColl as $categorie)
 	</head>
 	<body class="bodystyle">
 		
-		<?php include('../includes/navbar.inc'); ?>
+		<?php include('../includes/navbar.php'); ?>
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
 				<h1 class="mx-auto text-capitalize">forum</h1>
@@ -106,6 +106,6 @@ foreach($categorieColl->categorieColl as $categorie)
 			</div>
 		</div>
 		<!-- Footer -->
-			<?php include('../includes/footer.inc'); ?>
+			<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

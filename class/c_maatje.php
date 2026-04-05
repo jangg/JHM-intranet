@@ -39,8 +39,8 @@ class Maatje extends Person
 		{
 			$this->id			  	= $maatjerow['id'];
 			$this->id_person	  	= $maatjerow['id_person'];
-			$this->omschrijving	= html_entity_decode($maatjerow['omschrijving']);
-			$this->functie		  	= html_entity_decode($maatjerow['functie']);
+			$this->omschrijving	= $maatjerow['omschrijving'];
+			$this->functie		  	= $maatjerow['functie'];
 			$this->actief_als	  	= $maatjerow['actief_als'];
 			$this->mtjcrt_ind	  	= $maatjerow['mtjcrt_ind'];
 			$this->jglcrt_ind	  	= $maatjerow['jglcrt_ind'];
@@ -163,8 +163,8 @@ class Maatje extends Person
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"					, NULL, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":functie"			, htmlentities($this->functie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
+			$stmt->bindValue( ":functie"			, $this->functie, PDO::PARAM_STR);
 			$stmt->bindValue( ":actief_als"		, $this->actief_als, PDO::PARAM_STR);
 			$stmt->bindValue( ":mtjcrt_ind"		, $this->mtjcrt_ind, PDO::PARAM_STR);
 			$stmt->bindValue( ":jglcrt_ind"		, $this->jglcrt_ind, PDO::PARAM_STR);
@@ -196,8 +196,8 @@ class Maatje extends Person
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"					, $this->id, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_person"		, $this->id_person, PDO::PARAM_STR);
-			$stmt->bindValue( ":omschrijving"	, htmlentities($this->omschrijving, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
-			$stmt->bindValue( ":functie"			, htmlentities($this->functie, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":omschrijving"	, $this->omschrijving, PDO::PARAM_STR);
+			$stmt->bindValue( ":functie"			, $this->functie, PDO::PARAM_STR);
 			$stmt->bindValue( ":actief_als"		, $this->actief_als, PDO::PARAM_STR);
 			$stmt->bindValue( ":mtjcrt_ind"		, $this->mtjcrt_ind, PDO::PARAM_STR);
 			$stmt->bindValue( ":jglcrt_ind"		, $this->jglcrt_ind, PDO::PARAM_STR);

@@ -31,7 +31,7 @@ class Topic
 		if ($row)
 		{
 			$this->id 				= $row['id'];
-			$this->onderwerp		= html_entity_decode($row['topic_subject']);
+			$this->onderwerp		= $row['topic_subject'];
 			$this->datum			= $row['topic_date'];
 			$this->id_cat			= $row['id_cat'];
 			$this->id_user			= $row['id_user'];
@@ -158,7 +158,7 @@ class Topic
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, NULL, PDO::PARAM_STR);
-			$stmt->bindValue( ":onderwerp"	, htmlentities($this->onderwerp, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":onderwerp"	, $this->onderwerp, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_cat"		, $this->id_cat, PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user, PDO::PARAM_STR);
 			$stmt->bindValue( ":nbrPosts"		, $this->nbrPosts, PDO::PARAM_STR);
@@ -192,7 +192,7 @@ class Topic
 			
 			$stmt = $connection->prepare( $sql );
 			$stmt->bindValue( ":id"				, $this->id, PDO::PARAM_STR);
-			$stmt->bindValue( ":onderwerp"	, htmlentities($this->onderwerp, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
+			$stmt->bindValue( ":onderwerp"	, $this->onderwerp, PDO::PARAM_STR);
 			$stmt->bindValue( ":datum"			, $this->datum,  PDO::PARAM_STR);
 			$stmt->bindValue( ":id_cat"		, $this->id_cat,  PDO::PARAM_STR);
 			$stmt->bindValue( ":id_user"		, $this->id_user,  PDO::PARAM_STR);

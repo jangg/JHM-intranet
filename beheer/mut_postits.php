@@ -76,7 +76,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 
 <!DOCTYPE html>
 <html lang="nl-NL">
-	<?php include('../includes/head.inc'); ?>
+	<?php include('../includes/head.php'); ?>
 	<script>
 		$(document).ready(function() {
 			$("#publDatumL" ).datepicker(
@@ -102,7 +102,7 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 	<body style="background-color: #dddddd;">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container-fluid"  style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -215,6 +215,6 @@ if (isset($_POST['updateMtBut']) && $_POST['updateMtBut'] == 'wijzig')
 			</form>
 		</div>
 		</div>
-		<?php include('../includes/footer.inc'); ?>
+		<?php include('../includes/footer.php'); ?>
 	</body>
 </html>

@@ -162,3 +162,39 @@
 [2026-01-08 13:07:06] DONE: verwijderd => werkzkd=48, person=48, aantekening=3, processtap=99, intakeform=2
 [2026-01-08 13:08:21] START cleanup_werkzkd (dryRun=yes, limit=500)
 [2026-01-08 13:08:21] INFO: geen records gevonden om te verwijderen.
+[2026-02-26 18:45:17] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 18:45:17] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1
+[2026-02-26 18:45:17] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 18:52:39] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 18:52:39] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1
+[2026-02-26 18:52:39] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 18:54:17] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 18:54:17] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1
+[2026-02-26 18:54:17] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 18:56:33] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 18:56:33] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1
+[2026-02-26 18:56:33] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:07:15] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:07:15] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=
+[2026-02-26 19:07:15] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:07:22] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:07:22] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=
+[2026-02-26 19:07:22] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:07:43] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:07:43] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=
+[2026-02-26 19:07:43] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:08:04] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:08:04] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=
+[2026-02-26 19:08:04] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:10:46] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:10:46] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=
+[2026-02-26 19:10:46] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:12:46] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:12:46] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=Boers
+[2026-02-26 19:12:46] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:12:59] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:12:59] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=Boers
+[2026-02-26 19:12:59] DONE DRY-RUN: geen wijzigingen doorgevoerd.
+[2026-02-26 19:13:08] START cleanup_werkzkd (dryRun=yes, limit=500)
+[2026-02-26 19:13:08] DRY-RUN wid=405, pid=397 => delete aantekening=1, processtap=14, intakeform=1, werkzkd=1, person=1, naam=Boers
+[2026-02-26 19:13:08] DONE DRY-RUN: geen wijzigingen doorgevoerd.

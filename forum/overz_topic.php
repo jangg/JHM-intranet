@@ -92,7 +92,7 @@ foreach ($postsColl->postColl as $post) {
 	<tr class="d-flex mx-0">
 	<td scope="col" class="col-2 text-center mx-0 overflow-hidden">' . $datum_lp2 . '</td>
 	<td scope="col" class="col-1 text-center mx-0 overflow-hidden">' . $user->voornaam . ' ' . $user->tussenvoegsels . ' ' . $user->achternaam . '</td>
-	<td scope="col" class="col-9 mx-0">' . $post->tekst . '</td>
+	<td scope="col" class="col-9 text-left mx-0">' . $post->tekst . '</td>
 	</tr>';
 }
 ?>
@@ -100,10 +100,10 @@ foreach ($postsColl->postColl as $post) {
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include('../includes/head.inc'); ?>
+		<?php include('../includes/head.php'); ?>
 		<link href="../css/mystyle.css" rel="stylesheet" type="text/css" />		
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-  	  	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>			
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>			
 		  <script>
 			function jumpto(anchor){
 				window.location.href = "#"+anchor;
@@ -138,7 +138,7 @@ foreach ($postsColl->postColl as $post) {
 	<body class="bodystyle">
 		
 		<div class="container">
-			<?php include('../includes/navbar.inc'); ?>
+			<?php include('../includes/navbar.php'); ?>
 		</div>
 		<div class="container" style="margin-top: 80px; background-color: #304280;">
 			<div class="row header rounded text-white py-3">
@@ -166,7 +166,7 @@ foreach ($postsColl->postColl as $post) {
 				  <tr class="d-flex">
 					<th scope="col" class="col-2 text-center m-0 px-0 overflow-hidden">datum<br/>tijd</th>
 					<th scope="col" class="col-1 text-center m-0 px-0 overflow-hidden">door</th>
-				    <th scope="col" class="col-9 m-0">bericht</th>
+				    <th scope="col" class="col-9 text-left m-0">bericht</th>
 				  </tr>
 				</thead>
 				<tbody>
@@ -190,6 +190,6 @@ foreach ($postsColl->postColl as $post) {
 		</form>
 		</div>
 		<!-- Footer -->
-			<?php include('../includes/footer.inc'); ?>
+			<?php include('../includes/footer.php'); ?>
 	</body>
 </html>
