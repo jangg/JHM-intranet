@@ -19,6 +19,11 @@ if (isset($_SESSION['userid']))
 {
 	$curr_user = new User ();
 }
+
+/* bepaal het autorisatie level van de user */
+$level = isset($curr_user) ? (int)$curr_user->authLevel() : 0;
+$canForumWrite = $level >= 2;
+
 /**********************/
 
 if (isset($_GET['id']) && is_numeric($_GET['id']))
@@ -202,7 +207,8 @@ foreach($topicsColl->topicColl as $topic){
 					<?php echo $html; ?>
 				</tbody>
 				</table>
-				<button id="button" type="button" class="btn btn-primary" style="margin-bottom: 80px;">Nieuw onderwerp maken</button>
+				
+				<button id="button" type="button" class="btn btn-primary" style="margin-bottom: 80px;" <?= $canForumWrite ? '' : 'disabled' ?>>Nieuw onderwerp maken</button>
 			</div>
 		</div>
 		<div>

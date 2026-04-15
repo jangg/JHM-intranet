@@ -25,6 +25,10 @@ if (isset($_SESSION['userid']))
 	$curr_user = new User ();
 }
 /**********************/
+/* bepaal het autorisatie level van de user */
+$level = isset($curr_user) ? (int)$curr_user->authLevel() : 0;
+$canForumWrite = $level >= 2;
+
 
 if (isset($_GET['id']) && is_numeric($_GET['id']))
 {
@@ -173,7 +177,7 @@ foreach ($postsColl->postColl as $post) {
 				<?php echo $html; ?>
 				</tbody>
 				</table>
-					<button id="button" type="button" class="btn btn-primary" style="margin-bottom: 80px;">Nieuw bericht maken</button>
+					<button id="button" type="button" class="btn btn-primary" style="margin-bottom: 80px;" <?= $canForumWrite ? '' : 'disabled' ?>>Nieuw bericht maken</button>
 			</div>
 		</div>
 		<div id="nw_bericht" name="nw_bericht" class="container py-3 rounded" style="margin-bottom: 160px; border-style: solid; border-color: #304280; border-width: 2px; display: none;">

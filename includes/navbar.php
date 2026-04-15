@@ -1,5 +1,25 @@
 <?php
-// error_log(basename($_SERVER['PHP_SELF']));
+/***************************************
+*****
+***** Autorisatie levels worden hier bepaald
+***** 0 = Alleen lezen, geen Forum
+***** 1 = Alleen lezen, ook Forum lezen
+***** 2 = Lezen + Forum lezen/schrijven
+***** 3 = 2
+***** 4 = 3 + Redactie 
+***** 5 = 3 + WAS
+***** 6 = 3 + Redactie & WAS
+***** 7 = 6
+***** 8 = 6
+***** 9 = 6
+*******************************************/
+
+$level			= isset($curr_user) ? (int)$curr_user->authLevel() : 0;
+$canForumRead 	= $level >= 1;
+$canForumWrite 	= $level >= 2;
+$canRedactie 	= $level === 4 || $level >= 6;
+$canWas      	= $level >= 5;
+$canAll 		= $level === 9;
 ?>
 <nav class="navbar navbar-expand-xl navbar-dark fixed-top bg-primary">
 	<div class="container">
@@ -16,50 +36,34 @@
 					<a class="nav-link" href="/agenda.php">Agenda</a>
 				</li>				
 				<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-					Overige info
-				</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="/faces.php">Wie is wie?</a>
-					<a class="dropdown-item" href="/nieuwsbrief.php">Nieuwsbrieven</a>
-					<a class="dropdown-item" target="_new" href="<?php echo LOC_WEBSITE ?>">Publieke website</a>
-<!-- 					<a class="dropdown-item" href="/procedure.php">Workshops procedure</a> -->
-<!--					<a class="dropdown-item" href="/pages/bericht20210428_1.php">Verslag bestuursvergadering</a> -->
-
-					<!-- <a class="dropdown-item" href="/pages/bericht20201001_1.php">Regels gebruik Forum</a> -->
-				</div>
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						Overige info
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/faces.php">Wie is wie?</a>
+						<a class="dropdown-item" href="/nieuwsbrief.php">Nieuwsbrieven</a>
+						<a class="dropdown-item" target="_new" href="<?php echo LOC_WEBSITE_PUB ?>">Publieke website</a>
+					</div>
 				</li>
 
 				<li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == 'overz_forum.php' || basename($_SERVER['PHP_SELF']) == 'overz_cat.php' || basename($_SERVER['PHP_SELF']) == 'overz_topic.php') echo 'active'; ?>">
-					<?php
-					if (!isset($curr_user) || $curr_user->authLevel() <= '2')
-					echo '<a class="nav-link disabled" href="#">Forum</a>';
-					else {
-						if ($curr_user->authLevel() >= '3')
-						echo '<a class="nav-link" href="/forum/overz_forum.php">Forum</a>';
-					}
-					?>
-
+					<a class="nav-link <?= $canForumRead ? '' : 'disabled' ?>" href="<?= $canForumRead ? '/forum/overz_forum.php' : '#' ?>">Forum</a>
+				</li>
+				
+				
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Beheer</a>
+					<div class="dropdown-menu">
+					<a class="dropdown-item <?= $canRedactie ? '' : 'disabled' ?>"
+					   href="<?= $canRedactie ? '/beheerred/beheer.php' : '#' ?>"
+					   <?= $canRedactie ? '' : 'aria-disabled="true"' ?>>Redactie</a>
 					
+					<a class="dropdown-item <?= $canWas ? '' : 'disabled' ?>"
+					   href="<?= $canWas ? '/beheerwas/beheer.php' : '#' ?>"
+					   <?= $canWas ? '' : 'aria-disabled="true"' ?>>de WAS</a>					
+				   </div>
 				</li>
-				<li class="nav-item <?php if (substr(basename($_SERVER['PHP_SELF']), 7) == '/beheer') echo 'active'; ?>">
-					<?php
-					if (!isset($curr_user) || $curr_user->authLevel() <= '5')
-					echo '<a class="nav-link disabled" href="#">de WAS</a>';
-					else {
-						if ($curr_user->authLevel() >= '6')
-						echo '<a class="nav-link" href="/beheer/beheer.php">de WAS</a>';
-					}
-					?>
-				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link" href="/logout.php">Log uit</a>
-				</li> -->
 			</ul>
-			<!-- <div class="text-white"> -->
-			<!-- <li class="nav-item">
-				Ingelogd als: <?php if (isset($curr_user)) echo $curr_user->username; else echo '----';?>
-			</div> -->
 			<li class="navbar-nav dropdown">
 				<a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
 					Ingelogd als: <?php if (isset($curr_user)) echo $curr_user->username; else echo '----';?>
